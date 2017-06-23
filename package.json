@@ -1,0 +1,13 @@
+{
+  "name": "gibbs.github.io",
+  "version": "5.0.0",
+  "description": "Temporary placeholder site.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dan Gibbs",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^0.10.0"
+  }
+}
