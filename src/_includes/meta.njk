@@ -1,0 +1,23 @@
+<meta name="description" content="{{ description or meta.title }}">
+<link ref="canonical" href="{{ site.url }}{{ page.url }}">
+<link rel="manifest" href="{{ site.url }}/manifest.webmanifest">
+{% if metatag and metatag.robots %}
+<meta name="robots" content="{{ metatag.robots }}">
+{% endif %}
+{% if jsonld %}
+<script type="application/ld+json">
+{% block jsonld %}
+{
+  "@context":"http://schema.org",
+  "@type": "{{ jsonld.type or 'BlogPosting' }}",
+  "url": "{{ site.url }}{{ page.url }}",
+  "dateCreated": "{{ page.created }}",
+  "datePublished": "{{ page.created }}",
+  "dateModified": "{{ page.date }}",
+  "inLanguage": "{{ meta.language }}",
+  "copyrightYear": "{{ date }}",
+  "copyrightHolder": "{{ meta.author.name }}"
+}
+{% endblock %}
+</script>
+{% endif %}

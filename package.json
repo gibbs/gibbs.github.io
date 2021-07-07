@@ -1,13 +1,42 @@
 {
   "name": "gibbs.github.io",
-  "version": "5.0.0",
-  "description": "Temporary placeholder site.",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "version": "6.0.0",
+  "author": "Dan Gibbs <dev@dangibbs.co.uk>",
+  "description": "Dan Gibbs website repository",
+  "engines": {
+    "node": ">=14"
   },
-  "author": "Dan Gibbs",
+  "scripts": {
+    "build": "npx @11ty/eleventy",
+    "debug": "DEBUG=* npx @11ty/eleventy",
+    "serve": "APP_ENV=local npx @11ty/eleventy --config=eleventy.js --serve --port ${APP_PORT:-8080}",
+    "lint-js": "standard eleventy.js src/**/*.js --env mocha test/**/*.js || true",
+    "lint-yaml": "eslint src/**/*.yaml || true",
+    "test-integration": "mocha test/**/* || true",
+    "test": "npm run lint-js && npm run lint-yaml && npm-run test-integration"
+  },
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:gibbs/gibbs.github.io.git"
+  },
+  "bugs": "https://github.com/gibbs/gibbs.github.io/issues",
   "devDependencies": {
-    "http-server": "^0.10.0"
+    "@11ty/eleventy": "^0.12.1",
+    "@11ty/eleventy-img": "^0.9.0",
+    "@11ty/eleventy-plugin-rss": "^1.1.1",
+    "browserslist": "^4.16.6",
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
+    "eslint": "^7.25.0",
+    "eslint-plugin-yml": "^0.9.0",
+    "html-minifier": "^4.0.0",
+    "html-validate": "^5.0.2",
+    "js-yaml": "^4.1.0",
+    "libxmljs2-xsd": "^0.26.5",
+    "mocha": "^9.0.2",
+    "rss-parser": "^3.12.0",
+    "schemaorg-jsd": "^0.17.1",
+    "standard": "^16.0.3"
   }
 }

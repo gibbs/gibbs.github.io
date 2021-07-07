@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="{{ meta.language }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title or meta.title }}</title>
+    {% include "meta.njk" %}
+  </head>
+
+  <body>
+    {% block content %}
+      {{ content | safe }}
+    {% endblock %}
+  </body>
+</html>

@@ -1,0 +1,34 @@
+---
+permalink: feed.xml
+eleventyExcludeFromCollections: true
+feed:
+  title: Dan Gibbs Feed
+  subtitle: Subtitle
+  url: /
+  author:
+    name: Dan Gibbs
+    email: dev@dangibbs.co.uk
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>{{ feed.title }}</title>
+  <subtitle>{{ feed.subtitle }}</subtitle>
+  <link href="{{ feed.url }}/{{ permalink }}" rel="self" />
+  <link href="{{ feed.url }}" />
+  <updated>{{ collections.posts | getNewestCollectionItemDate | dateToRfc3339 }}</updated>
+  <id>{{ feed.url }}</id>
+  <author>
+    <name>{{ feed.author.name }}</name>
+    <email>{{ feed.author.email }}</email>
+  </author>
+  {%- for post in collections.posts %}
+  {% set absolutePostUrl %}{{ post.url | url | absoluteUrl(feed.url) }}{% endset %}
+  <entry>
+    <title>{{ post.data.title }}</title>
+    <link href="{{ absolutePostUrl }}"/>
+    <updated>{{ post.date | dateToRfc3339 }}</updated>
+    <id>{{ absolutePostUrl }}</id>
+    <content type="html">{{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) }}</content>
+  </entry>
+  {%- endfor %}
+</feed>

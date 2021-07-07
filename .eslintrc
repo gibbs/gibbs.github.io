@@ -1,0 +1,8 @@
+{
+  "extends": [
+    "plugin:yml/standard"
+  ],
+  "rules": {
+    "yml/key-spacing": "off"
+  }
+}
