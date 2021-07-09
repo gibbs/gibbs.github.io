@@ -3,6 +3,10 @@ layout: base.njk
 title: Test
 draft: true
 description: Markdown style testing
+jsonld:
+    "@type": Website
+    name: Dan Gibbs
+    url: https://dangibbs.uk/
 ---
 
 {{ site.environment }}

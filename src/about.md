@@ -1,18 +1,16 @@
 ---
 layout: base
-title: Dan Gibbs
-description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-anchor: Home
+title: About - Dan Gibbs
+description: About Dan Gibbs
+anchor: About
 tags: page
 
 jsonld:
-    "@type": Website
+    '@type': Person
     name: Dan Gibbs
+    nationality: British
     url: https://dangibbs.uk/
-    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    publisher:
-        "@type": ProfilePage
-        name: Dan Gibbs Website
+    jobTitle: Technical Director
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta est eget 

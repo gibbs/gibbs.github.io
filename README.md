@@ -1,9 +1,30 @@
-# Personal Website
+# dangibbs.uk
 
-My personal website built with [eleventy](https://github.com/11ty/eleventy)
+Dan Gibbs's blog and personal website built with 
+[Eleventy](https://github.com/11ty/eleventy).
 
-## Dating
+## Build
 
 ```
-date --rfc-3339=ns
+npm run build
+```
+
+## Develop
+
+```
+APP_URL="http://localhost:8080" npm run serve
+```
+
+## Test
+
+Run all tests:
+
+```
+npm run test
+```
+
+TDD integration tests only:
+
+```
+npm run test-integration
 ```

@@ -2,6 +2,9 @@
 title: Test 2
 description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 uri: test2
+
+jsonld:
+    articleSection: test
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta est eget 

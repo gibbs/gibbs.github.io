@@ -1,11 +1,11 @@
-const setup = require('../setup.js')
+const config = require('../config.js')
 
 const chai = require('chai')
 chai.use(require('chai-http'))
 
 const expect = chai.expect
 const assert = chai.assert
-const request = chai.request(setup.url)
+const request = chai.request(config.url)
 
 /*
  * Check a web app manifest exists with valid icon URLs
@@ -49,7 +49,7 @@ describe('Web app manifest', function () {
     for (const key in manifest.icons) {
       const url = new URL(manifest.icons[key].src)
 
-      chai.request(setup.url).get(url.pathname).end((err, res) => {
+      chai.request(config.url).get(url.pathname).end((err, res) => {
         assert.equal(err, null)
         expect(res).to.have.status(200, `Failed to get ${manifest.icons[key].src}`)
       })

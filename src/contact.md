@@ -1,7 +1,16 @@
 ---
 layout: base
-title: Lorem ipsum
+title: Contact - Dan Gibbs
 description: Lorem ipsum
+anchor: Contact
+tags: page
+
+jsonld:
+    '@type': Person
+    name: Dan Gibbs
+    nationality: British
+    url: https://dangibbs.uk/
+    jobTitle: Technical Director
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta est eget 

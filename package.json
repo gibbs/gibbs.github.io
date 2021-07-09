@@ -7,13 +7,14 @@
     "node": ">=14"
   },
   "scripts": {
-    "build": "npx @11ty/eleventy",
+    "build": "APP_ENV=production npx @11ty/eleventy",
     "debug": "DEBUG=* npx @11ty/eleventy",
-    "serve": "APP_ENV=local npx @11ty/eleventy --config=eleventy.js --serve --port ${APP_PORT:-8080}",
-    "lint-js": "standard eleventy.js src/**/*.js --env mocha test/**/*.js || true",
-    "lint-yaml": "eslint src/**/*.yaml || true",
-    "test-integration": "mocha test/**/* || true",
-    "test": "npm run lint-js && npm run lint-yaml && npm-run test-integration"
+    "serve": "APP_ENV=${APP_ENV:-local} npx @11ty/eleventy --serve --port ${APP_PORT:-8080}",
+    "lint": "npm run lint:js && npm run lint:yaml",
+    "lint:js": "eslint .eleventy.js --env mocha src/**/*.js || true",
+    "lint:yaml": "eslint src/**/*.yaml || true",
+    "test:integration": "mocha test/**/* || true",
+    "test": "npm run lint:js && npm run lint:yaml && npm run test:integration"
   },
   "license": "MIT",
   "repository": {
@@ -25,18 +26,31 @@
     "@11ty/eleventy": "^0.12.1",
     "@11ty/eleventy-img": "^0.9.0",
     "@11ty/eleventy-plugin-rss": "^1.1.1",
+    "@babel/core": "^7.14.6",
+    "@babel/preset-env": "^7.14.7",
+    "autoprefixer": "^10.2.6",
     "browserslist": "^4.16.6",
     "chai": "^4.3.4",
     "chai-http": "^4.3.0",
-    "eslint": "^7.25.0",
+    "clean-css": "^5.1.3",
+    "eslint": "^7.28.0",
+    "eslint-config-standard": "^16.0.0",
     "eslint-plugin-yml": "^0.9.0",
+    "file-type": "^16.5.0",
     "html-minifier": "^4.0.0",
     "html-validate": "^5.0.2",
-    "js-yaml": "^4.1.0",
+    "jsdom": "^16.6.0",
     "libxmljs2-xsd": "^0.26.5",
     "mocha": "^9.0.2",
+    "modern-normalize": "^1.1.0",
+    "postcss": "^8.3.5",
+    "postcss-import": "^14.0.2",
+    "postcss-load-config": "^3.1.0",
+    "postcss-preset-env": "^6.7.0",
+    "postcss-scss": "^4.0.0",
     "rss-parser": "^3.12.0",
-    "schemaorg-jsd": "^0.17.1",
-    "standard": "^16.0.3"
+    "standard": "^16.0.3",
+    "xml-js": "^1.6.11",
+    "yamljs": "^0.3.0"
   }
 }

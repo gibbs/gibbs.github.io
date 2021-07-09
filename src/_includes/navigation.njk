@@ -1,0 +1,16 @@
+<nav>
+  <ul>
+    <li{% if page.url == '/' %} aria-current="page"{% endif %}>
+      <a href="{{ site.url }}/">Home</a>
+    </li>
+    <li{% if page.url == '/blog/' %} aria-current="page"{% endif %}>
+      <a href="{{ site.url }}/blog/">Blog</a>
+    </li>
+    <li{% if page.url == '/about/' %} aria-current="page"{% endif %}>
+      <a href="{{ site.url }}/about/">About</a>
+    </li>
+    <li{% if page.url == '/contact/' %} aria-current="page"{% endif %}>
+      <a href="{{ site.url }}/contact/">Contact</a>
+    </li>
+  </ul>
+</nav>

@@ -1,7 +1,13 @@
 ---
 layout: base
-title: Lorem ipsum
-description: Lorem ipsum
+title: Blog - Dan Gibbs
+description: The tech blog of Dan Gibbs
+anchor: Blog
+tags: page
+
+jsonld:
+    '@type': Table
+    about: Latest blog posts
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta est eget 

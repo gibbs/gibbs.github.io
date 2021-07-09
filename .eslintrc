@@ -1,8 +1,10 @@
 {
   "extends": [
+    "standard",
     "plugin:yml/standard"
   ],
   "rules": {
     "yml/key-spacing": "off"
-  }
+  },
+  "ignorePatterns": ["!.eleventy.js"]
 }

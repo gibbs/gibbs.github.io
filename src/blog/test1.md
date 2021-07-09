@@ -1,13 +1,10 @@
 ---
 title: Test 1
 description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-meta:
-    date:
-        created: "2021-07-07 18:57:21.739466611+01:00"
-    author:
-        name: Someone else
 uri: test1
-jsonld: true
+
+jsonld:
+    articleSection: test
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta est eget 

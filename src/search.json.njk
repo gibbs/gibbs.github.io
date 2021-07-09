@@ -1,0 +1,12 @@
+---
+permalink: search.json
+eleventyExcludeFromCollections: true
+---
+[
+{%- for page in collections.all -%}
+{
+  "url": "{{ site.url}}{{ page.url }}",
+  "title": "{{ page.data.title }}"
+}{% if not loop.last %},{% endif %}
+{%- endfor -%}
+]
