@@ -10,19 +10,34 @@
       {% block json_ld %}{{ jsonld | toJSONLD | safe }}{% endblock %}
     </script>
     {% endif %}
+    <style>{% css %}</style>
   </head>
 
-  <body>
-    <header>
-      {% include "navigation.njk" %}
+  <body class="layout__{{ layout|default('base') }}">
+    {% block header %}
+    <header class="header">
+      <div class="container">
+        {% include "navigation.njk" %}
+      </div>
     </header>
-
-    {% block content %}
-      {{ content | safe }}
     {% endblock %}
 
-    <footer>
+    {% block banner %}{% endblock %}
+
+    <main id="content" class="content">
+      {% block content %}
+      <div class="container">
+        <div class="row">
+          {{ content | safe }}
+        </div>
+      </div>
+      {% endblock %}
+    </main>
+
+    {% block footer %}
       {% include "footer.njk" %}
-    </footer>
+    {% endblock %}
+
+    <script src="{{ site.url }}{% manifest 'main.js' %}" integrity="{% sri 'main.js', true %}"></script>
   </body>
 </html>

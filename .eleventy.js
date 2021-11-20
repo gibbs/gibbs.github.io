@@ -1,9 +1,11 @@
 const fs = require('fs')
+const path = require('path')
 const yaml = require('yamljs')
 
 // Plugins
 const setFilters = require('./src/utils/filters')
 const setPlugins = require('./src/utils/plugins')
+const setLibrary = require('./src/utils/library')
 const setShortcodes = require('./src/utils/shortcodes')
 const setTransforms = require('./src/utils/transforms')
 
@@ -11,12 +13,21 @@ module.exports = (eleventyConfig) => {
   // YAML extension
   eleventyConfig.addDataExtension('yaml', contents => yaml.parse(contents))
 
+  // Wait
+  eleventyConfig.setWatchThrottleWaitTime(1500)
+
+  // Watch for CSS/JS changes
+  eleventyConfig.setUseGitIgnore(false)
+  eleventyConfig.addWatchTarget(path.join(__dirname, 'src/**/*.{css,js}'))
+  eleventyConfig.addWatchTarget(path.join(__dirname, 'public/assets/*.{css,js}'))
+
   // Copy the favicon
   eleventyConfig.addPassthroughCopy('src/favicon.ico')
 
   // Setup
   setPlugins(eleventyConfig)
   setFilters(eleventyConfig)
+  setLibrary(eleventyConfig)
   setShortcodes(eleventyConfig)
   setTransforms(eleventyConfig)
 
@@ -45,10 +56,10 @@ module.exports = (eleventyConfig) => {
   return {
     dataTemplateEngine: 'njk',
     dir: {
-      data: '_data',
-      input: 'src',
-      includes: '_includes',
-      layouts: '_layouts',
+      input: 'content',
+      data: '../src/_data',
+      includes: '../src/_includes',
+      layouts: '../src/_layouts',
       output: 'public'
     },
     htmlOutputSuffix: '-o',

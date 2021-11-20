@@ -1,16 +1,24 @@
-<nav>
-  <ul>
-    <li{% if page.url == '/' %} aria-current="page"{% endif %}>
-      <a href="{{ site.url }}/">Home</a>
-    </li>
-    <li{% if page.url == '/blog/' %} aria-current="page"{% endif %}>
-      <a href="{{ site.url }}/blog/">Blog</a>
-    </li>
-    <li{% if page.url == '/about/' %} aria-current="page"{% endif %}>
-      <a href="{{ site.url }}/about/">About</a>
-    </li>
-    <li{% if page.url == '/contact/' %} aria-current="page"{% endif %}>
-      <a href="{{ site.url }}/contact/">Contact</a>
-    </li>
-  </ul>
-</nav>
+<div class="row">
+  <nav class="navigation">
+    <input type="checkbox" id="navigation_menu">
+
+    <label for="navigation_menu" class="navigation__toggle">
+      <span class="icon-hamburger"><span></span></span>
+    </label>
+
+    <ul class="navigation__list">
+      <li class="navigation__item" {% if page.url == '/' %} aria-current="page"{% endif %}>
+        <a class="navigation__anchor{% if page.url == '/' %} navigation__anchor--active{% endif %}" href="{{ site.url }}/">Home</a>
+      </li>
+      {#<li class="navigation__item" {% if '/blog/' in page.url %} aria-current="page"{% endif %}>
+        <a class="navigation__anchor{% if '/blog/' in page.url %} navigation__anchor--active{% endif %}" href="{{ site.url }}/blog/">Blog</a>
+      </li>#}
+      <li class="navigation__item" {% if page.url == '/projects/' %} aria-current="page"{% endif %}>
+        <a class="navigation__anchor{% if '/projects/' in page.url %} navigation__anchor--active{% endif %}" href="{{ site.url }}/projects/">Projects</a>
+      </li>
+      {#<li class="navigation__item" {% if page.url == '/contact/' %} aria-current="page"{% endif %}>
+        <a class="navigation__anchor{% if page.url == '/contact/' %} navigation__anchor--active{% endif %}" href="{{ site.url }}/contact/">Contact</a>
+      </li>#}
+    </ul>
+  </nav>
+</div>

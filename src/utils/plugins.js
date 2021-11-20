@@ -1,5 +1,22 @@
-const rss = require('./plugins/rss')
+const rss = require('@11ty/eleventy-plugin-rss')
+const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight')
 
 module.exports = (config) => {
-  rss(config)
+  config.addPlugin(rss, {
+    posthtmlRenderOptions: {
+      closingSingleTag: '>',
+      replaceQuote: true,
+      quoteAllAttributes: true
+    }
+  })
+
+  config.addPlugin(syntaxHighlight, {
+    templateFormats: ['*'],
+    alwaysWrapLineHighlights: false,
+    trim: false,
+    lineSeparator: '<br>',
+    preAttributes: {
+      tabindex: 0
+    }
+  })
 }

@@ -1,0 +1,62 @@
+/*
+ * Primary colours:
+ * #E21A23 (red)
+ * #34344A (dark purple)
+ * #F9F8F8 (white)
+ * #595FD9 (blue)
+ * #A663CC (pinkish?)
+ */
+
+:root {
+  // Main Colours
+  --body-bg: #F9F8F8;
+  --primary-color: #E21A23; // BCFC
+  --secondary-color: #34344A;
+  --tertiary-color: #595FD9;
+  --secondary-color-text: #8DA7BE;
+  --sub-heading-color: #000; //#337CA0;
+  --link-text-color: #595FD9; //#1D8A99; //#3E92CC;
+  --link-text-hover-color: #E21A23;
+  --border-color: #e2dddd;
+  --black-color: #444;
+  --white-color: #fff;
+  --shadow-color: #efefef;
+  --mask-dark: rgba(0, 0, 0, .1);
+  --mask-light: rgba(255, 255, 255, .1);
+
+  // Animations
+  --transition-speed: 0.1s;
+
+  // Typography
+  --font-size-base: 1.15rem;
+  --font-size-scale: 2;
+  --line-height: 1.5rem;
+  --text-color: #444;
+  --heading-color: var(--secondary-color);
+
+  // Grid
+  --spacer: 1rem;
+  --gutter-width: 1.5rem;
+
+  // Elements
+  --table-border-color: var(--border-color);
+  --table-row-background-color: var(--body-bg);
+  --table-row-background-alt-color: var(--mask-dark);
+}
+
+// Containers and breakpoints
+$breakpoints: (
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+);
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1320px
+);

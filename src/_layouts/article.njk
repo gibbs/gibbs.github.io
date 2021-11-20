@@ -1,7 +1,0 @@
-{% extends "../_layouts/base.njk" %}
-
-{% block json_ld %}{{ jsonld | toJSONLDBlog | safe }}{% endblock %}
-
-{% block content %}
-  {{ content | safe }}
-{% endblock %}

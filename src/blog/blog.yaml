@@ -1,4 +1,0 @@
-layout: article
-permalink: "blog/{{ uri | slug }}/index.html"
-tags:
-  - article

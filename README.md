@@ -1,17 +1,20 @@
 # dangibbs.uk
 
-Dan Gibbs's blog and personal website built with 
+Dan Gibbs's personal website repository built with 
 [Eleventy](https://github.com/11ty/eleventy).
 
 ## Build
 
-```
+```bash
 npm run build
 ```
 
 ## Develop
 
-```
+```bash
+npm run serve
+
+# Specify URL
 APP_URL="http://localhost:8080" npm run serve
 ```
 
@@ -19,12 +22,6 @@ APP_URL="http://localhost:8080" npm run serve
 
 Run all tests:
 
-```
+```bash
 npm run test
-```
-
-TDD integration tests only:
-
-```
-npm run test-integration
 ```

@@ -5,6 +5,5 @@
   ],
   "rules": {
     "yml/key-spacing": "off"
-  },
-  "ignorePatterns": ["!.eleventy.js"]
+  }
 }
