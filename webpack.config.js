@@ -14,7 +14,7 @@ module.exports = {
     path.resolve(__dirname, 'src', 'assets', 'css', 'main.scss'),
   ],
   output: {
-    path: path.resolve(__dirname, 'public', 'assets'),
+    path: path.resolve(__dirname, 'docs', 'assets'),
     filename: filename + '.js',
     publicPath: '/assets/',
     clean: {

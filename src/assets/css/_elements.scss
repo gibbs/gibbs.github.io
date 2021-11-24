@@ -49,6 +49,7 @@ li {
 
   &::before {
     position: absolute;
+    top: -1rem;
     left: -.75rem;
     font-size: 6rem;
     opacity: .25;
@@ -118,10 +119,9 @@ li {
     align-items: flex-start;
     margin: 0;
     padding: 0;
-    box-shadow: 5px 5px 5px #eee;
+    box-shadow: 5px 5px 5px var(--shadow-color);
     background-color: var(--white-color);
     margin: calc(var(--spacer) * .5) 0 calc(var(--spacer) * .5) 0;
-    //padding: var(--spacer);
   }
 
   &__heading {
@@ -141,5 +141,23 @@ li {
 }
 
 .hero {
-  padding: calc(var(--spacer) * 4) 0 calc(var(--spacer) * 4) 0;
+  padding: calc(var(--spacer) * 6) 0 calc(var(--spacer) * 6) 0;
+  margin: 0 0 var(--spacer) 0;
+
+  &--title {
+    margin: var(--spacer) 0 calc(var(--spacer) * .5) 0;
+    color: var(--tertiary-color);
+    font-weight: 500;
+  }
+
+  &--subtitle {
+    margin: calc(var(--spacer) * .5) 0 var(--spacer) 0;
+    color: var(--secondary-color);
+    font-weight: 400;
+  }
+
+  &--text {
+    margin: 0;
+    color: var(--text-color-light);
+  }
 }

@@ -19,7 +19,7 @@ module.exports = (eleventyConfig) => {
   // Watch for CSS/JS changes
   eleventyConfig.setUseGitIgnore(false)
   eleventyConfig.addWatchTarget(path.join(__dirname, 'src/**/*.{css,js}'))
-  eleventyConfig.addWatchTarget(path.join(__dirname, 'public/assets/*.{css,js}'))
+  eleventyConfig.addWatchTarget(path.join(__dirname, 'docs/assets/*.{css,js}'))
 
   // Copy the favicon
   eleventyConfig.addPassthroughCopy('src/favicon.ico')
@@ -37,7 +37,7 @@ module.exports = (eleventyConfig) => {
     ui: false,
     callbacks: {
       ready: function (error, browserSync) {
-        const content = fs.readFileSync('public/404.html')
+        const content = fs.readFileSync('docs/404.html')
 
         if (error) {
           throw Error(error)
@@ -60,7 +60,7 @@ module.exports = (eleventyConfig) => {
       data: '../src/_data',
       includes: '../src/_includes',
       layouts: '../src/_layouts',
-      output: 'public'
+      output: 'docs'
     },
     htmlOutputSuffix: '-o',
     htmlTemplateEngine: 'njk',

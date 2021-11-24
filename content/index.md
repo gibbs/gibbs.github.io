@@ -15,10 +15,9 @@ jsonld:
         name: Dan Gibbs Website
 ---
 
-# Dan Gibbs { #goto-h1 }
+# Dan Gibbs { .hero--title #goto-h1 }
 
-## Full Stack Web Developer and GNU/Linux Sysadmin{ #goto-h2 }
+## Full Stack Web Developer and GNU/Linux Sysadmin{ .hero--subtitle #goto-h2 }
 
-I build, test, release and maintain websites, web applications and IT 
-infrastructure.
+Email: [dev@dangibbs.co.uk](mailto:dev@dangibbs.co.uk) {.hero--text}
 

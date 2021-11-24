@@ -19,7 +19,7 @@ const request = chai.request(config.url)
  * @return {object}
  */
 function getURLFixtures () {
-  const sitemapPath = path.join(__dirname, '/../../public/sitemap.xml')
+  const sitemapPath = path.join(__dirname, '/../../docs/sitemap.xml')
   const sitemap = convertXML.xml2js(fs.readFileSync(sitemapPath, 'utf8'), {
     compact: true,
     spaces: 4
