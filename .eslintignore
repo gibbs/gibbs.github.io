@@ -1,2 +1,4 @@
+/backup
 /node_modules
+/docs
 !.eleventy.js

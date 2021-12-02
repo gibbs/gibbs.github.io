@@ -6,19 +6,19 @@ const { WebpackManifestPlugin } = require('webpack-manifest-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 // The output filename
-const filename = '[name]' + (site.environment == 'production' ? '.[contenthash]' : '')
+const filename = '[name]' + (site.environment === 'production' ? '.[contenthash]' : '')
 
 module.exports = {
   entry: [
     path.resolve(__dirname, 'src', 'assets', 'js', 'index.js'),
-    path.resolve(__dirname, 'src', 'assets', 'css', 'main.scss'),
+    path.resolve(__dirname, 'src', 'assets', 'css', 'main.scss')
   ],
   output: {
     path: path.resolve(__dirname, 'docs', 'assets'),
     filename: filename + '.js',
     publicPath: '/assets/',
     clean: {
-      keep: /images/,
+      keep: /images/
     }
   },
   module: {
@@ -28,9 +28,9 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader,
           {
-            loader: 'css-loader',
+            loader: 'css-loader'
           },
-          'sass-loader',
+          'sass-loader'
         ],
         exclude: /node_modules/
       },
@@ -39,28 +39,28 @@ module.exports = {
         use: [{
           loader: 'url-loader',
           options: {
-            name: 'fonts/[name].[ext]',
-          },
-        }],
+            name: 'fonts/[name].[ext]'
+          }
+        }]
       },
       {
         test: /\.(ttf|eot|svg)(\?[a-z0-9]+)?$/,
         use: [{
           loader: 'file-loader',
           options: {
-            name: 'fonts/[name].[ext]',
-          },
+            name: 'fonts/[name].[ext]'
+          }
         }]
       }
-    ],
+    ]
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: filename + '.css',
+      filename: filename + '.css'
     }),
     new WebpackManifestPlugin({
       fileName: 'manifest.json',
-      publicPath: '/assets/',
-    }),
+      publicPath: '/assets/'
+    })
   ]
 }

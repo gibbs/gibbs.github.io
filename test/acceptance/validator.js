@@ -1,9 +1,11 @@
 const config = require('../config.js')
+const { before, describe, it } = require('mocha')
 const fs = require('fs')
 const path = require('path')
 const jsdom = require('jsdom')
 const { JSDOM } = jsdom
 const { HtmlValidate } = require('html-validate')
+
 const chai = require('chai')
 chai.use(require('chai-http'))
 
@@ -61,7 +63,7 @@ for (const key in urls) {
       expect(response).to.have.status(200)
     })
 
-    it ('should contain content', () => {
+    it('should contain content', () => {
       const document = new JSDOM(response.text)
       const selector = document.window.document.querySelector('#content > .container > .row')
 
@@ -69,7 +71,7 @@ for (const key in urls) {
       assert.isTrue(selector.textContent.replace(/[\n\r]+|[\s]{2,}/g, '').trim() !== '')
     })
 
-    it ('should have a suitable title less than 60 characters', () => {
+    it('should have a suitable title less than 60 characters', () => {
       const document = new JSDOM(response.text)
       const selector = document.window.document.querySelector('title')
 
@@ -78,7 +80,7 @@ for (const key in urls) {
       assert.isTrue(selector.textContent.length <= 60)
     })
 
-    it ('should have a suitable meta description between 50 and 160 characters', () => {
+    it('should have a suitable meta description between 50 and 160 characters', () => {
       const document = new JSDOM(response.text)
       const selector = document.window.document.querySelector('meta[name="description"]')
 

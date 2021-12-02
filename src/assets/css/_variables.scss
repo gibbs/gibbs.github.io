@@ -7,7 +7,7 @@
  * #A663CC (pinkish?)
  */
 
-:root {
+:root, :root[data-dark-mode="false"] {
   // Main Colours
   --body-bg: #F9F8F8;
   --primary-color: #E21A23; // BCFC
@@ -15,7 +15,6 @@
   --tertiary-color: #595FD9;
   --quaternary-color: #A663CC;
   --secondary-color-text: #8DA7BE;
-  --sub-heading-color: #000; //#337CA0;
   --link-text-color: #595FD9; //#1D8A99; //#3E92CC;
   --link-text-hover-color: #E21A23;
   --border-color: #e2dddd;
@@ -24,6 +23,7 @@
   --shadow-color: #efefef;
   --mask-dark: rgba(0, 0, 0, .1);
   --mask-light: rgba(255, 255, 255, .1);
+  --header-bg: #fff;
 
   // Animations
   --transition-speed: 0.1s;
@@ -35,15 +35,55 @@
   --text-color: #444;
   --text-color-light: #666;
   --heading-color: var(--secondary-color);
+  --hero-title-color: var(--tertiary-color);
+  --hero-subtitle-color: var(--secondary-color);
 
   // Grid
   --spacer: 1rem;
   --gutter-width: 1.5rem;
 
   // Elements
+  --blockquote-bg-color: var(--white-color);
+  --card-bg-color: var(--white-color);
   --table-border-color: var(--border-color);
-  --table-row-background-color: var(--body-bg);
-  --table-row-background-alt-color: var(--mask-dark);
+  --table-heading-bg-color: var(--white-color);
+  --table-row-bg-color: var(--body-bg);
+  --table-row-bg-alt-color: var(--mask-dark);
+}
+
+// Dark mode colours
+:root[data-dark-mode="true"] {
+  // Main Colours
+  --body-bg: #1c1c1c;
+  --primary-color: #e9454d; // BCFC
+  --secondary-color: #34344A;
+  --tertiary-color: #595FD9;
+  --quaternary-color: #A663CC;
+  --secondary-color-text: #8DA7BE;
+  --link-text-color: #7176de; //#1D8A99; //#3E92CC;
+  --link-text-hover-color: #e9454d;
+  --border-color: #1d2222;
+  --black-color: #bbb;
+  --white-color: #000;
+  --shadow-color: #101010;
+  --mask-dark: rgba(255, 255, 255, .1);
+  --mask-light: rgba(0, 0, 0, .1);
+  --header-bg: #34344A;
+ 
+  // Typography
+  --text-color: #ddd;
+  --text-color-light: #999;
+  --heading-color: #595FD9;
+  --hero-title-color: var(--tertiary-color);
+  --hero-subtitle-color: #8DA7BE;
+
+  // Elements
+  --blockquote-bg-color: var(--mask-dark);
+  --card-bg-color: var(--mask-light);
+  --table-border-color: var(--border-color);
+  --table-heading-bg-color: #2f2f2f;
+  --table-row-bg-color: var(--mask-light);
+  --table-row-bg-alt-color: var(--mask-dark);
 }
 
 // Containers and breakpoints

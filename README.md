@@ -12,9 +12,6 @@ npm run build
 ## Develop
 
 ```bash
-npm run serve
-
-# Specify URL
 APP_URL="http://localhost:8080" npm run serve
 ```
 

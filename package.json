@@ -12,7 +12,7 @@
     "build:site": "APP_ENV=production npx @11ty/eleventy",
     "debug": "DEBUG=* npx @11ty/eleventy",
     "lint": "run-s lint:*",
-    "lint:js": "eslint .eleventy.js src/**/*.js || true",
+    "lint:js": "eslint '**/*.js' || true",
     "lint:yaml": "eslint content/**/*.yaml || true",
     "serve": "APP_URL=${APP_URL:-\"http://localhost:8080\"} run-p serve:*",
     "serve:assets": "APP_ENV=${APP_ENV:-development} webpack --mode ${APP_ENV:-development} --watch",
