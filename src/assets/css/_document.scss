@@ -138,11 +138,11 @@ body {
   background-color: var(--secondary-color);
 
   a {
-    color: var(--white-color);
+    color: var(--dark-link-text-color);
   }
 
   a:hover, a:focus {
-    color: var(--secondary-color-text);
+    color: var(--dark-link-text-hover-color);
   }
 
   &__information {

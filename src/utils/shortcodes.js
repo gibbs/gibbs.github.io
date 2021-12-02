@@ -149,10 +149,9 @@ async function responsiveImageShortcode (src, alt = '', options = {}) {
   img.setAttribute('width', srcDimensions.width)
   img.setAttribute('height', srcDimensions.height)
   img.setAttribute('alt', alt)
-  img.setAttribute('style', 'background-size: cover; background-image: none;')
+  img.setAttribute('class', 'fallback--img')
   img.setAttribute('src', `/assets/images/${srcBasename}-${sizes.widths[0]}.jpeg`)
   img.setAttribute('decoding', 'async')
-  // img.setAttribute('loading', 'lazy')
 
   // Traverse each image format
   Object.keys(mime).forEach((format) => {

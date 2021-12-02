@@ -38,7 +38,6 @@ composer require gibbs/php-windows-base-dir
 Using the Composer autoloader print all available paths:
 
 ```php
-<?php
 // Path to the Composer autoloader
 require __DIR__ . '/vendor/autoload.php';
 
@@ -51,35 +50,199 @@ print_r($paths);
 
 ## API
 
-| Visibility | Function |
-|:-----------|:---------|
-| public | <strong>getAllEnvironmentPaths()</strong> : <em>array</em><br /><em>An array of all paths with the envvar as key</em> |
-| public | <strong>getAllPaths()</strong> : <em>array</em><br /><em>An array of all paths with underscore delimited key names</em> |
-| public | <strong>getAllUsersProfilePath()</strong> : <em>string/null</em> |
-| public | <strong>getAppDataPath()</strong> : <em>string/null</em> |
-| public | <strong>getComSpecPath()</strong> : <em>string/null</em> |
-| public | <strong>getCommonProgramFilesPath()</strong> : <em>string/null</em> |
-| public | <strong>getCommonProgramFilesX86Path()</strong> : <em>string/null</em> |
-| public | <strong>getDriverDataPath()</strong> : <em>string/null</em> |
-| public | <strong>getEnvironment()</strong> : <em>string/null</em> |
-| public | <strong>getHomeDrive()</strong> : <em>string/null</em> |
-| public | <strong>getHomeDrivePath()</strong> : <em>string/null</em> |
-| public | <strong>getHomePath()</strong> : <em>string/null</em> |
-| public | <strong>getLocalAppDataPath()</strong> : <em>string/null</em> |
-| public | <strong>getLogonServerPath()</strong> : <em>string/null</em> |
-| public | <strong>getOneDrivePath()</strong> : <em>string/null</em> |
-| public | <strong>getPath()</strong> : <em>string/null</em> |
-| public | <strong>getPathExt()</strong> : <em>string/null</em> |
-| public | <strong>getProgramDataPath()</strong> : <em>string/null</em> |
-| public | <strong>getProgramFilesPath()</strong> : <em>string/null</em> |
-| public | <strong>getProgramFilesX86Path()</strong> : <em>string/null</em> |
-| public | <strong>getPublicPath()</strong> : <em>string/null</em> |
-| public | <strong>getSystemDrivePath()</strong> : <em>string/null</em> |
-| public | <strong>getSystemRootPath()</strong> : <em>string/null</em> |
-| public | <strong>getTempPath()</strong> : <em>string/null</em> |
-| public | <strong>getUserDomain()</strong> : <em>string/null</em> |
-| public | <strong>getUserDomainRoaminProfile()</strong> : <em>string/null</em> |
-| public | <strong>getUserProfilePath()</strong> : <em>string/null</em> |
-| public | <strong>getUsername()</strong> : <em>string/null</em> |
-| public | <strong>getWindirPath()</strong> : <em>string/null</em> |
-| public | <strong>isWindowsEnvironment()</strong> : <em>bool</em><br /><em>Determine if the current runtime environment is Windows</em> |
+<table>
+  <thead>
+    <tr>
+      <th scope="col">Visibility</th>
+      <th scope="col">Function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>public</td>
+      <td>
+        <strong>getAllEnvironmentPaths()</strong> : <em>array</em>
+        <br>
+        <em>An array of all paths with the envvar as key</em>
+      </td>
+    </tr>
+    <tr>
+      <td>public</td>
+      <td>
+        <strong>getAllPaths()</strong> : <em>array</em>
+        <br>
+        <em>An array of all paths with underscore delimited key names</em>
+      </td>
+    </tr>
+    <tr>
+      <td>public</td>
+      <td>
+        <strong>getAllUsersProfilePath()</strong> : <em>string/null</em>
+      </td>
+    </tr>
+    <tr>
+      <td>public</td>
+      <td>
+        <strong>getAppDataPath()</strong> : <em>string/null</em>
+      </td>
+    </tr>
+    <tr>
+      <td>public</td>
+      <td>
+        <strong>getComSpecPath()</strong> : <em>string/null</em>
+      </td>
+    </tr>
+    <tr>
+      <td>public</td>
+      <td>
+        <strong>getCommonProgramFilesPath()</strong> : <em>string/null</em>
+      </td>
+    </tr>
+    <tr>
+      <td>public</td>
+      <td>
+        <strong>getCommonProgramFilesX86Path()</strong> : <em>string/null</em>
+      </td>
+    </tr>
+    <tr>
+      <td>public</td>
+      <td>
+        <strong>getDriverDataPath()</strong> : <em>string/null</em>
+      </td>
+    </tr>
+    <tr>
+      <td>public</td>
+      <td>
+        <strong>getEnvironment()</strong> : <em>string/null</em>
+      </td>
+    </tr>
+    <tr>
+      <td>public</td>
+      <td>
+        <strong>getHomeDrive()</strong> : <em>string/null</em>
+      </td>
+    </tr>
+    <tr>
+      <td>public</td>
+      <td>
+        <strong>getHomeDrivePath()</strong> : <em>string/null</em>
+      </td>
+    </tr>
+    <tr>
+      <td>public</td>
+      <td>
+        <strong>getHomePath()</strong> : <em>string/null</em>
+      </td>
+    </tr>
+    <tr>
+      <td>public</td>
+      <td>
+        <strong>getLocalAppDataPath()</strong> : <em>string/null</em>
+      </td>
+    </tr>
+    <tr>
+      <td>public</td>
+      <td>
+        <strong>getLogonServerPath()</strong> : <em>string/null</em>
+      </td>
+    </tr>
+    <tr>
+      <td>public</td>
+      <td>
+        <strong>getOneDrivePath()</strong> : <em>string/null</em>
+      </td>
+    </tr>
+    <tr>
+      <td>public</td>
+      <td>
+        <strong>getPath()</strong> : <em>string/null</em>
+      </td>
+    </tr>
+    <tr>
+      <td>public</td>
+      <td>
+        <strong>getPathExt()</strong> : <em>string/null</em>
+      </td>
+    </tr>
+    <tr>
+      <td>public</td>
+      <td>
+        <strong>getProgramDataPath()</strong> : <em>string/null</em>
+      </td>
+    </tr>
+    <tr>
+      <td>public</td>
+      <td>
+        <strong>getProgramFilesPath()</strong> : <em>string/null</em>
+      </td>
+    </tr>
+    <tr>
+      <td>public</td>
+      <td>
+        <strong>getProgramFilesX86Path()</strong> : <em>string/null</em>
+      </td>
+    </tr>
+    <tr>
+      <td>public</td>
+      <td>
+        <strong>getPublicPath()</strong> : <em>string/null</em>
+      </td>
+    </tr>
+    <tr>
+      <td>public</td>
+      <td>
+        <strong>getSystemDrivePath()</strong> : <em>string/null</em>
+      </td>
+    </tr>
+    <tr>
+      <td>public</td>
+      <td>
+        <strong>getSystemRootPath()</strong> : <em>string/null</em>
+      </td>
+    </tr>
+    <tr>
+      <td>public</td>
+      <td>
+        <strong>getTempPath()</strong> : <em>string/null</em>
+      </td>
+    </tr>
+    <tr>
+      <td>public</td>
+      <td>
+        <strong>getUserDomain()</strong> : <em>string/null</em>
+      </td>
+    </tr>
+    <tr>
+      <td>public</td>
+      <td>
+        <strong>getUserDomainRoaminProfile()</strong> : <em>string/null</em>
+      </td>
+    </tr>
+    <tr>
+      <td>public</td>
+      <td>
+        <strong>getUserProfilePath()</strong> : <em>string/null</em>
+      </td>
+    </tr>
+    <tr>
+      <td>public</td>
+      <td>
+        <strong>getUsername()</strong> : <em>string/null</em>
+      </td>
+    </tr>
+    <tr>
+      <td>public</td>
+      <td>
+        <strong>getWindirPath()</strong> : <em>string/null</em>
+      </td>
+    </tr>
+    <tr>
+      <td>public</td>
+      <td>
+        <strong>isWindowsEnvironment()</strong> : <em>bool</em>
+        <br>
+        <em>Determine if the current runtime environment is Windows</em>
+      </td>
+    </tr>
+  </tbody>
+</table>

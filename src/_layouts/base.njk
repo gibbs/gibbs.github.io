@@ -11,6 +11,7 @@
     </script>
     {% endif %}
     <style>{% css %}</style>
+    <script>document.documentElement.setAttribute('data-dark-mode', JSON.parse(window.sessionStorage.getItem('theme')) ?? false)</script>
   </head>
 
   <body class="layout__{{ layout|default('base') }}">

@@ -15,8 +15,10 @@
   --tertiary-color: #595FD9;
   --quaternary-color: #A663CC;
   --secondary-color-text: #8DA7BE;
-  --link-text-color: #595FD9; //#1D8A99; //#3E92CC;
+  --link-text-color: #595FD9;
   --link-text-hover-color: #E21A23;
+  --dark-link-text-color: var(--white-color);
+  --dark-link-text-hover-color: var(--secondary-color-text);
   --border-color: #e2dddd;
   --black-color: #444;
   --white-color: #fff;
@@ -60,8 +62,10 @@
   --tertiary-color: #595FD9;
   --quaternary-color: #A663CC;
   --secondary-color-text: #8DA7BE;
-  --link-text-color: #7176de; //#1D8A99; //#3E92CC;
+  --link-text-color: #7176de;
   --link-text-hover-color: #e9454d;
+  --dark-link-text-color: var(--text-color);
+  --dark-link-text-hover-color: #fff;
   --border-color: #1d2222;
   --black-color: #bbb;
   --white-color: #000;

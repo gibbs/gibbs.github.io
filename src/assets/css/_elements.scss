@@ -4,6 +4,11 @@ img {
   //content-visibility: auto;
 }
 
+.fallback--img {
+  background-size: cover;
+  background-image: none;
+}
+
 table {
   width: 100%;
   max-width: 100%;
@@ -17,6 +22,7 @@ thead {
 th {
   background-color: var(--table-heading-bg-color);
   padding: calc(var(--spacer) * .75);
+  text-align: left;
 }
 
 td {

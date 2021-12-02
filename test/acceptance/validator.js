@@ -36,11 +36,17 @@ for (const key in urls) {
   const url = new URL(urls[key].loc._text)
 
   const htmlvalidate = new HtmlValidate({
+    elements: [
+      'html5'
+    ],
     extends: [
-      'htmlvalidate:recommended'
+      'html-validate:recommended'
     ],
     rules: {
-      'no-trailing-whitespace': 'off'
+      'no-trailing-whitespace': 'off',
+      'no-raw-characters': ['warn', {
+        relaxed: true
+      }]
     }
   })
 

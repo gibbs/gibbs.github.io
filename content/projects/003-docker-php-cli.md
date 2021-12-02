@@ -78,7 +78,7 @@ Use the current working directory and execute a PHP script from a relative path:
 
 ```bash
 # Create a PHP file in the current working directory
-echo '<?php print_r(get_defined_constants());' > ./test.php
+echo '<?php print_r(get_defined_constants());' &gt; ./test.php
 
 # Run the created file
 docker run -v "$(pwd):/data/" genv/php-cli:5.6 test.php
