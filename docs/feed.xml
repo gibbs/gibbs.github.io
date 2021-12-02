@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Dan Gibbs Feed</title>
+  <subtitle>Posts and articles from dangibbs.uk</subtitle>
+  <link href="//feed.xml" rel="self" />
+  <link href="/" />
+  <updated>2021-12-02T13:12:41Z</updated>
+  <id>/</id>
+  <author>
+    <name>Dan Gibbs</name>
+    <email>dev@dangibbs.co.uk</email>
+  </author>
+</feed>

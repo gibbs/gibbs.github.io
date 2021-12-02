@@ -1,0 +1,15 @@
+{% extends "../_layouts/base.njk" %}
+
+{% block json_ld %}{{ jsonld | toJSONLDBlog | safe }}{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="hero">
+        {{ content | safe }}
+      </div>
+
+      {% include "projects.njk" %}
+    </div>
+  </div>
+{% endblock %}

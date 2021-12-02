@@ -1,0 +1,5 @@
+layout: project
+permalink: "projects/{{ uri | slug }}/index.html"
+changeFreq: weekly
+tags:
+  - projects

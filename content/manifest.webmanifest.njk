@@ -1,0 +1,21 @@
+---
+permalink: manifest.webmanifest
+eleventyExcludeFromCollections: true
+---
+{
+  "name": "Dan Gibbs",
+  "background_color": "{{ meta.manifest.color }}",
+  "theme_color": "{{ meta.manifest.color }}",
+  "icons": [
+    {
+      "src": "{{ site.url }}{% image 'assets/icons/icon-192.png' %}",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "{{ site.url }}{% image 'assets/icons/icon-512.png' %}",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}

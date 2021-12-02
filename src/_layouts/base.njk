@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="{{ meta.language }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title or meta.title }}</title>
+    {% include "meta.njk" %}
+    {% if jsonld %}
+    <script type="application/ld+json">
+      {% block json_ld %}{{ jsonld | toJSONLD | safe }}{% endblock %}
+    </script>
+    {% endif %}
+    <style>{% css %}</style>
+    <script>document.documentElement.setAttribute('data-dark-mode', JSON.parse(window.sessionStorage.getItem('theme')) ?? false)</script>
+  </head>
+
+  <body class="layout__{{ layout|default('base') }}">
+    {% block header %}
+    <header class="header">
+      <div class="container">
+        {% include "navigation.njk" %}
+      </div>
+    </header>
+    {% endblock %}
+
+    {% block banner %}{% endblock %}
+
+    <main id="content" class="content">
+      {% block content %}
+      <div class="container">
+        <div class="row">
+          {{ content | safe }}
+        </div>
+      </div>
+      {% endblock %}
+    </main>
+
+    {% block footer %}
+      {% include "footer.njk" %}
+    {% endblock %}
+
+    <script src="{{ site.url }}{% manifest 'main.js' %}" integrity="{% sri 'main.js', true %}"></script>
+  </body>
+</html>

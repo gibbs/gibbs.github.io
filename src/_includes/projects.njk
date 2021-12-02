@@ -1,0 +1,32 @@
+<div class="project__list">
+  {%- for project in collections.projects | reverse | limit(limit|default(3)) -%}
+
+    <div class="project__list__item">
+      <div class="project__list__image">
+        <a href="{{ site.url }}/projects/{{ project.data.uri }}">
+        {% responsiveImage project.data.image|default('assets/images/project-placeholder.png'), project.data.title, {
+          max: 540,
+          widths: [540, 430, 370, 310, 230],
+          width: 540,
+          height: 200
+        } %}
+        </a>
+      </div>
+
+      <div class="project__list__body">
+        <h3 class="project__list__heading">
+          <a href="{{ site.url }}/projects/{{ project.data.uri }}">{{ project.data.anchor }}</a>
+        </h3>
+
+        <div class="project__list__description">
+          <p>{{ project.data.description }}</p>
+        </div>
+
+        <div class="project__list__action">
+          <a href="{{ site.url }}/projects/{{ project.data.uri }}" class="button">View Details</a>
+        </div>
+      </div>
+    </div>
+
+  {%- endfor -%}
+</div>

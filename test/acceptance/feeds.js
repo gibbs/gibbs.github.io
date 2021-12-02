@@ -1,0 +1,45 @@
+const config = require('../config.js')
+const { before, describe, it } = require('mocha')
+
+const chai = require('chai')
+chai.use(require('chai-http'))
+
+const RSSParser = require('rss-parser')
+
+const expect = chai.expect
+const assert = chai.assert
+const request = chai.request(config.url)
+
+/*
+ * The favicon should exist for legacy purposes. They can still be used by some
+ * applications such as Atom feed readers. In addition this can reduce the
+ * number of unnecessary 404 responses logged.
+ */
+describe('Atom feed', () => {
+  let error, response
+
+  before('should load', (done) => {
+    request.get('/feed.xml').end((err, res) => {
+      error = err
+      response = res
+      done()
+    })
+  })
+
+  it('exists', () => {
+    assert.equal(error, null)
+    expect(response).to.have.status(200)
+  })
+
+  it('has the correct content-type', () => {
+    expect(response).to.have.header('content-type', /text\/xml/)
+  })
+
+  it('is a valid feed', () => {
+    const parser = new RSSParser()
+
+    parser.parseString(response.text, (err) => {
+      assert.equal(err, null)
+    })
+  })
+})

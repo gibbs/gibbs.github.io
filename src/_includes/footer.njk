@@ -1,0 +1,36 @@
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="footer__content">
+        <nav class="footer__icons">
+          <ul class="footer__icons__list">
+            <li>
+              <a href="{{ meta.links.github.url }}" title="Github" class="footer__icons__anchor">
+                <span class="icon icon-github"></span> GitHub
+              </a>
+            </li>
+            <li>
+              <a href="{{ site.url }}/feed.xml" title="Atom/RSS Feed"  class="footer__icons__anchor">
+                <span class="icon icon-feed"></span> Feed
+              </a>
+            </li>
+            <li>
+              <a href="{{ meta.links.twitter.url }}" title="@{{ meta.links.twitter.handle }}" class="footer__icons__anchor">
+                <span class="icon icon-twitter"></span> Twitter
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="footer__copyright">
+  <div class="container">
+    <div class="row">
+      <p class="footer__copyright-text"><small>Copyright &copy; 2007 - {{ site.year }} Dan Gibbs</small></p>
+    </div>
+  </div>
+</div>
+

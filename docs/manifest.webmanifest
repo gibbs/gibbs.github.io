@@ -1,0 +1,17 @@
+{
+  "name": "Dan Gibbs",
+  "background_color": "#E21A23",
+  "theme_color": "#E21A23",
+  "icons": [
+    {
+      "src": "https://dangibbs.uk/assets/images/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "https://dangibbs.uk/assets/images/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}

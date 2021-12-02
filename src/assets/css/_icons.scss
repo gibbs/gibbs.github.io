@@ -1,0 +1,97 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../fonts/icomoon.eot?enkrlx');
+  src:  url('../fonts/icomoon.eot?enkrlx#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?enkrlx') format('truetype'),
+    url('../fonts/icomoon.woff?enkrlx') format('woff'),
+    url('../fonts/icomoon.svg?enkrlx#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-docker:before {
+  content: "\e906";
+}
+.icon-linkedin:before {
+  content: "\e900";
+}
+.icon-linkedin-block:before {
+  content: "\e901";
+}
+.icon-github:before {
+  content: "\e902";
+}
+.icon-feed-block:before {
+  content: "\e903";
+}
+.icon-rss-block:before {
+  content: "\e903";
+}
+.icon-feed:before {
+  content: "\e904";
+}
+.icon-rss:before {
+  content: "\e904";
+}
+.icon-twitter:before {
+  content: "\e905";
+}
+.icon-brightness-contrast:before {
+  content: "\e9d6";
+}
+
+.icon-hamburger {
+  position: absolute;
+  display: block;
+  left: 12px;
+  top: 22px;
+  width: 24px;
+  height: 34px;
+}
+
+.icon-hamburger > span,
+.icon-hamburger > span::before,
+.icon-hamburger > span::after {
+  content: '';
+  border-radius: 1px;
+  height: 3px;
+  width: 24px;
+  background: var(--body-bg);
+  position: absolute;
+  display: block;
+}
+
+.icon-hamburger > span:before {
+  top: -10px;
+}
+
+.icon-hamburger > span:after {
+  bottom: -10px; 
+}
+
+.gravatar {
+  border-radius: 100%;
+  border: 1px solid var(--secondary-color-text);
+  padding: 1px;
+  background-color: transparent;
+
+  &--small {
+    border: 2px solid var(--secondary-color-text);
+  }
+}

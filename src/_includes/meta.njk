@@ -1,0 +1,10 @@
+<meta name="description" content="{{ description or meta.title }}">
+<link rel="canonical" href="{{ site.url }}{{ page.url }}">
+<link rel="manifest" href="{{ site.url }}/manifest.webmanifest">
+<link rel="icon" href="{{ site.url }}/favicon.ico">
+<link rel="icon" href="{{ site.url }}{% image 'assets/icons/icon.svg' %}">
+<link rel="apple-touch-icon" href="{{ site.url }}{% image 'assets/icons/apple-touch-icon.png' %}" >
+{% if metatag and metatag.robots %}
+<meta name="robots" content="{{ metatag.robots }}">
+{% endif %}
+<meta name="theme-color" content="{{ meta.manifest.color }}">
