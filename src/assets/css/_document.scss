@@ -136,7 +136,7 @@ body {
 
 .footer {
   color: var(--secondary-color-text);
-  background-color: var(--secondary-color);
+  background-color: var(--footer-bg);
 
   a {
     color: var(--dark-link-text-color);
@@ -157,10 +157,10 @@ body {
   }
 
   &__copyright {
-    color: var(--white-color);
+    color: var(--copyright-text-color);
     text-align: center;
     padding: .5rem;
-    background-color: var(--tertiary-color);
+    background-color: var(--copyright-bg);
 
     &-text {
       margin: 0;

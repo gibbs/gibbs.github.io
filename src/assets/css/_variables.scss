@@ -25,7 +25,12 @@
   --shadow-color: #efefef;
   --mask-dark: rgba(0, 0, 0, .1);
   --mask-light: rgba(255, 255, 255, .1);
+
+  // Sections
   --header-bg: #fff;
+  --footer-bg: var(--secondary-color);
+  --copyright-bg: #29293b;
+  --copyright-text-color: var(--white-color);
 
   // Animations
   --transition-speed: 0.1s;
@@ -39,6 +44,8 @@
   --heading-color: var(--secondary-color);
   --hero-title-color: var(--tertiary-color);
   --hero-subtitle-color: var(--secondary-color);
+  --code-bg: var(--mask-dark);
+  --code-text-color: var(--primary-color);
 
   // Grid
   --spacer: 1rem;
@@ -62,7 +69,7 @@
   --tertiary-color: #595FD9;
   --quaternary-color: #A663CC;
   --secondary-color-text: #8DA7BE;
-  --link-text-color: #7176de;
+  --link-text-color: #7087D4;
   --link-text-hover-color: #e9454d;
   --dark-link-text-color: var(--text-color);
   --dark-link-text-hover-color: #fff;
@@ -72,14 +79,21 @@
   --shadow-color: #101010;
   --mask-dark: rgba(255, 255, 255, .1);
   --mask-light: rgba(0, 0, 0, .1);
+
+  // Sections
   --header-bg: #34344A;
+  --footer-bg: var(--secondary-color);
+  --copyright-bg: #29293b;
+  --copyright-text-color: #999;
  
   // Typography
   --text-color: #ddd;
   --text-color-light: #999;
-  --heading-color: #595FD9;
-  --hero-title-color: var(--tertiary-color);
+  --heading-color: #f1f1f1;
+  --hero-title-color: var(--link-text-color);
   --hero-subtitle-color: #8DA7BE;
+  --code-bg: var(--mask-dark);
+  --code-text-color: #fff;
 
   // Elements
   --blockquote-bg-color: var(--mask-dark);

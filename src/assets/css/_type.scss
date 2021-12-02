@@ -48,9 +48,9 @@ a:focus {
 }
 
 p > code {
-  color: var(--primary-color);
+  color: var(--code-text-color);
   padding: calc(var(--spacer) * .25);
-  background-color: var(--white-color);
+  background-color: var(--code-bg);
 }
 
 blockquote {
