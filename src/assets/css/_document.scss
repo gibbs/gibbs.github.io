@@ -175,9 +175,10 @@ body {
 
     &__list {
       display: grid;
-      grid-auto-flow: column;
-      gap: var(--gutter-width);
+      grid-auto-flow: row;
+      gap: calc(var(--gutter-width) * .5);
       list-style-type: none;
+      padding: 0;
     }
 
     &__anchor {
@@ -185,5 +186,17 @@ body {
       padding: calc(var(--spacer) * .5);
       transition: color var(--transition-speed) linear;
     }
+  }
+
+  &__test-status {
+    display: flex;
+    justify-content: center;
+    margin: 0 0 var(--spacer) 0;
+  }
+}
+
+@media (min-width: map-get($breakpoints, 'sm')) {
+  .footer__icons__list {
+    grid-auto-flow: column;
   }
 }
