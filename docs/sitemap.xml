@@ -19,26 +19,8 @@
   
   
   <url>
-    <loc>https://dangibbs.uk/</loc>
-    <lastmod>2021-07-06T00:02:49.429Z</lastmod>
-    <changefreq>monthly</changefreq>
-  </url>
-  
-  
-  
-  
-  
-  <url>
     <loc>https://dangibbs.uk/projects/currency-datasets/</loc>
     <lastmod>2021-11-17T00:00:00.000Z</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  
-  
-  
-  <url>
-    <loc>https://dangibbs.uk/projects/</loc>
-    <lastmod>2021-11-17T21:22:47.199Z</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   
@@ -49,6 +31,24 @@
     <lastmod>2021-11-20T00:00:00.000Z</lastmod>
     <changefreq>weekly</changefreq>
   </url>
+  
+  
+  
+  <url>
+    <loc>https://dangibbs.uk/</loc>
+    <lastmod>2021-12-02T13:33:22.265Z</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  
+  
+  
+  <url>
+    <loc>https://dangibbs.uk/projects/</loc>
+    <lastmod>2021-12-02T13:33:22.265Z</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  
   
   
 </urlset>

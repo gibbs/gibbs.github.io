@@ -3,7 +3,7 @@
 
     <div class="project__list__item">
       <div class="project__list__image">
-        <a href="{{ site.url }}/projects/{{ project.data.uri }}">
+        <a href="{{ site.url }}/projects/{{ project.data.uri }}/">
         {% responsiveImage project.data.image|default('assets/images/project-placeholder.png'), project.data.title, {
           max: 540,
           widths: [540, 430, 370, 310, 230],
@@ -15,7 +15,7 @@
 
       <div class="project__list__body">
         <h3 class="project__list__heading">
-          <a href="{{ site.url }}/projects/{{ project.data.uri }}">{{ project.data.anchor }}</a>
+          <a href="{{ site.url }}/projects/{{ project.data.uri }}/">{{ project.data.anchor }}</a>
         </h3>
 
         <div class="project__list__description">
@@ -23,7 +23,7 @@
         </div>
 
         <div class="project__list__action">
-          <a href="{{ site.url }}/projects/{{ project.data.uri }}" class="button">View Details</a>
+          <a href="{{ site.url }}/projects/{{ project.data.uri }}/" class="button">View Details</a>
         </div>
       </div>
     </div>
