@@ -11,9 +11,7 @@ const assert = chai.assert
 const request = chai.request(config.url)
 
 /*
- * The favicon should exist for legacy purposes. They can still be used by some
- * applications such as Atom feed readers. In addition this can reduce the
- * number of unnecessary 404 responses logged.
+ * Test Atom/RSS feed
  */
 describe('Atom feed', () => {
   let error, response
