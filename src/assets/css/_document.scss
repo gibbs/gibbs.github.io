@@ -191,7 +191,13 @@ body {
   &__test-status {
     display: flex;
     justify-content: center;
+    align-content: center;
     margin: 0 0 var(--spacer) 0;
+    font-size: small;
+
+    a {
+      padding: 0 calc(var(--gutter-width) * .25);
+    }
   }
 }
 

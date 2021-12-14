@@ -13,6 +13,11 @@ module.exports = {
     path.resolve(__dirname, 'src', 'assets', 'js', 'index.js'),
     path.resolve(__dirname, 'src', 'assets', 'css', 'main.scss')
   ],
+  resolve: {
+    alias: {
+      '~': path.resolve(__dirname, 'node_modules/')
+    }
+  },
   output: {
     path: path.resolve(__dirname, 'docs', 'assets'),
     filename: filename + '.js',

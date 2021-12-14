@@ -58,6 +58,29 @@
   --table-heading-bg-color: var(--white-color);
   --table-row-bg-color: var(--body-bg);
   --table-row-bg-alt-color: var(--mask-dark);
+
+  // Cookie Consent
+  --cc-bg: var(--body-bg);
+  --cc-text: var(--text-color);
+  --cc-btn-primary-bg: var(--link-text-color);
+  --cc-btn-primary-text: var(--body-bg);
+  --cc-btn-primary-hover-bg: var(--link-text-hover-color);
+  --cc-btn-secondary-bg: var(--mask-dark);
+  --cc-btn-secondary-text: var(--cc-text);
+  --cc-btn-secondary-hover-bg: var(--mask-dark);
+  --cc-toggle-bg-off: var(--black-color);
+  --cc-toggle-bg-on: var(--cc-btn-primary-bg);
+  --cc-toggle-bg-readonly: var(--mask-dark);
+  --cc-toggle-knob-bg: #fff;
+  --cc-toggle-knob-icon-color: #ecf2fa;
+  --cc-block-text: var(--cc-text);
+  --cc-cookie-category-block-bg: var(--mask-dark);
+  --cc-cookie-category-block-bg-hover: var(--mask-dark);
+  --cc-section-border: var(--table-border-color);
+  --cc-cookie-table-border: var(--table-border-color);
+  --cc-overlay-bg: rgba(4, 6, 8, .85);
+  --cc-webkit-scrollbar-bg: #cfd5db;
+  --cc-webkit-scrollbar-bg-hover: #9199a0;
 }
 
 // Dark mode colours
@@ -102,6 +125,28 @@
   --table-heading-bg-color: #2f2f2f;
   --table-row-bg-color: var(--mask-light);
   --table-row-bg-alt-color: var(--mask-dark);
+
+  // Cookie Consent
+  --cc-bg: var(--body-bg);
+  --cc-text: var(--text-color);
+  --cc-btn-primary-bg: var(--link-text-color);
+  --cc-btn-primary-text: var(--body-bg);
+  --cc-btn-primary-hover-bg: var(--link-text-hover-color);
+  --cc-btn-secondary-bg: var(--mask-dark);
+  --cc-btn-secondary-text: var(--cc-text);
+  --cc-btn-secondary-hover-bg: var(--mask-dark);
+  --cc-toggle-bg-off: var(--black-color);
+  --cc-toggle-bg-on: var(--cc-btn-primary-bg);
+  --cc-toggle-bg-readonly: var(--mask-dark);
+  --cc-toggle-knob-bg: var(--cc-cookie-category-block-bg);
+  --cc-toggle-knob-icon-color: var(--cc-bg);
+  --cc-block-text: var(--cc-text);
+  --cc-cookie-category-block-bg: var(--mask-dark);
+  --cc-cookie-category-block-bg-hover: var(--mask-dark);
+  --cc-section-border: var(--table-border-color);
+  --cc-cookie-table-border: var(--table-border-color);
+  --cc-webkit-scrollbar-bg: #667481;
+  --cc-webkit-scrollbar-bg-hover: #9199a0;
 }
 
 // Containers and breakpoints
