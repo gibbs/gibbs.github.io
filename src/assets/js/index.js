@@ -1,4 +1,4 @@
-import '~/vanilla-cookieconsent/src/cookieconsent.js'
+import '~/vanilla-cookieconsent/dist/cookieconsent.js'
 
 window.addEventListener && window.addEventListener('load', () => {
   const systemDarkPreference = window.matchMedia('(prefers-color-scheme: dark)').matches
