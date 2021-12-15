@@ -46,6 +46,9 @@ for (const key in urls) {
       'no-trailing-whitespace': 'off',
       'no-raw-characters': ['warn', {
         relaxed: true
+      }],
+      'no-autoplay': ['warn', {
+        exclude: ['video']
       }]
     }
   })

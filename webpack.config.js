@@ -23,7 +23,7 @@ module.exports = {
     filename: filename + '.js',
     publicPath: '/assets/',
     clean: {
-      keep: /images/
+      keep: /images|videos/
     }
   },
   module: {
