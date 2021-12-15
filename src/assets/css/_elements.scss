@@ -172,3 +172,18 @@ li {
     color: var(--text-color-light);
   }
 }
+
+.intro__video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.2;
+  object-fit: cover;
+}
+
+[data-dark-mode="false"] .intro__video {
+  filter: invert(1);
+}
