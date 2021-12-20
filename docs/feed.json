@@ -1,0 +1,14 @@
+{
+  "version": "https://jsonfeed.org/version/1.1",
+  "title": "Dan Gibbs Feed",
+  "language": "en-GB",
+  "home_page_url": "https://dangibbs.uk",
+  "feed_url": "https://dangibbs.uk/feed.json",
+  "description": "Posts and articles from dangibbs.uk",
+  "author": {
+    "name": "Dan Gibbs",
+    "url": "https://dangibbs.uk"
+  },
+  "items": [
+  ]
+}

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Dan Gibbs Feed</title>
   <subtitle>Posts and articles from dangibbs.uk</subtitle>
-  <link href="//feed.xml" rel="self" />
-  <link href="/" />
-  <updated>2021-12-15T16:26:25Z</updated>
-  <id>/</id>
+  <link href="https://dangibbs.uk/feed.xml" rel="self" />
+  <link href="https://dangibbs.uk" />
+  <updated>2021-12-20T22:45:43Z</updated>
+  <id>https://dangibbs.uk</id>
   <author>
     <name>Dan Gibbs</name>
     <email>dev@dangibbs.co.uk</email>

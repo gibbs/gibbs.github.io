@@ -1,0 +1,38 @@
+---
+permalink: feed.json
+eleventyExcludeFromCollections: true
+feed:
+  title: Dan Gibbs Feed
+  description: Posts and articles from dangibbs.uk
+  url: /
+  author:
+    name: Dan Gibbs
+    email: dev@dangibbs.co.uk
+---
+{
+  "version": "https://jsonfeed.org/version/1.1",
+  "title": "{{ feed.title }}",
+  "language": "{{ meta.language }}",
+  "home_page_url": "{{ site.url }}",
+  "feed_url": "{{ site.url }}/{{ permalink }}",
+  "description": "{{ feed.description }}",
+  "author": {
+    "name": "{{ feed.author.name }}",
+    "url": "{{ site.url }}"
+  },
+  "items": [
+    {%- for post in collections.blog | reverse %}
+    {%- set absolutePostUrl %}{{ post.url | url | absoluteUrl(site.url) }}{% endset -%}
+    {
+      "id": "{{ absolutePostUrl }}",
+      "url": "{{ absolutePostUrl }}",
+      "title": "{{ post.data.title }}",
+      "content_html": {% if post.templateContent %}{{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) | dump | safe }}{% else %}""{% endif %},
+      "date_published": "{{ post.date | rssDate }}"
+    }
+    {%- if not loop.last -%}
+    ,
+    {%- endif -%}
+    {%- endfor %}
+  ]
+}
