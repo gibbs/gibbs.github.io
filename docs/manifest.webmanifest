@@ -13,5 +13,7 @@
       "type": "image/png",
       "sizes": "512x512"
     }
-  ]
+  ],
+  "display": "browser",
+  "start_url": "https://dangibbs.uk"
 }
