@@ -41,3 +41,31 @@ describe('Atom feed', () => {
     })
   })
 })
+
+/*
+ * Test JSON feed
+ */
+describe('JSON feed', () => {
+  let error, response
+
+  before('should load', (done) => {
+    request.get('/feed.json').end((err, res) => {
+      error = err
+      response = res
+      done()
+    })
+  })
+
+  it('exists', () => {
+    assert.equal(error, null)
+    expect(response).to.have.status(200)
+  })
+
+  it('has the correct content-type', () => {
+    expect(response).to.have.header('content-type', /application\/json/)
+  })
+
+  it('is a parsable feed', () => {
+    JSON.parse(response.text)
+  })
+})
