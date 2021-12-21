@@ -1,5 +1,15 @@
 const site = require('../_data/site')
 const meta = require('../_data/meta')
+const { DateTime } = require('luxon')
+
+/**
+ * Return local date
+ *
+ * @param {string} date
+ */
+function postDate (date) {
+  return DateTime.fromJSDate(date).toLocaleString(DateTime.DATE_FULL)
+}
 
 /**
  * Return basic JSON+LD
@@ -50,4 +60,5 @@ module.exports = (config) => {
   config.addFilter('limit', (list, limit) => list.slice(0, limit))
   config.addFilter('toJSONLD', jsonld)
   config.addFilter('toJSONLDBlog', jsonldBlog)
+  config.addFilter('postDate', postDate)
 }

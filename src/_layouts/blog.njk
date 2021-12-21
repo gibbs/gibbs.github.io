@@ -1,0 +1,14 @@
+{% extends "../_layouts/base.njk" %}
+
+{% block json_ld %}{{ jsonld | toJSONLDBlog | safe }}{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      {{ content | safe }}
+
+      {% set limit = collections.blog.length %}
+      {% include "posts.njk" %}
+    </div>
+  </div>
+{% endblock %}

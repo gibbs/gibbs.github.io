@@ -3,7 +3,9 @@ title: PHP Windows Base Directory Library
 description: A PHP library to get various Microsoft Windows runtime folder paths.
 anchor: Windows Base Directory
 uri: php-windows-base-folders
-image: assets/images/project-php-windows-base-folders.png
+image:
+    src: assets/images/projects/php-windows-base-folders.png
+    caption: PHP and Windows logos.
 tags:
     - php
     - windows

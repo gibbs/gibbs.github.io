@@ -8,6 +8,74 @@ const site = require('../_data/site')
 const sharp = require('sharp')
 
 /**
+ * Hash
+ *
+ * @param {string} content
+ * @param {*string} algo
+ * @returns
+ */
+function hash (content, algo = 'md5') {
+  const hashSum = crypto.createHash(algo)
+
+  hashSum.update(content)
+
+  return hashSum.digest('hex')
+}
+
+/**
+ * Scale Image
+ *
+ * @param {string} src
+ * @param {*string} format
+ * @param {*integer} width
+ * @param {*integer} height
+ */
+async function scaleImage (src, format = 'jpeg', width = null, height = null) {
+  const srcFileExtension = path.extname(src)
+  const srcBasename = path.basename(src, srcFileExtension)
+  let postfix = width
+
+  // Check source file exists
+  if (!fs.existsSync(src)) {
+    throw Error(`File does not exist ${src}`)
+  }
+
+  // Get the source file hash
+  const srcSum = hash(fs.readFileSync(src))
+
+  // Add the height to the filename
+  if (height !== null) {
+    postfix += height
+  }
+
+  // Generate a hash of source + dimensions
+  const destSum = hash(srcSum + postfix)
+  const destFilename = `${srcBasename}-${destSum}.${format}`
+  const destFilepath = path.join(site.path.public, '/assets/images/scaled/' + destFilename)
+
+  // Return existing file
+  if (fs.existsSync(destFilepath)) {
+    return '/assets/images/scaled/' + destFilename
+  }
+
+  // Image scale and write
+  if (width || height) {
+    await sharp(src)
+      .rotate()
+      .resize(width, height)[format]({
+        quality: 60,
+        reductionEffort: 6
+      })
+      .toFile(destFilepath)
+  } else {
+    await sharp(src).rotate().toFile(destFilepath)
+  }
+
+  // Return filename
+  return '/assets/images/scaled/' + destFilename
+}
+
+/**
  * Return a path from the public asset manifest
  *
  * @param {string} key
@@ -103,11 +171,7 @@ async function imageShortcode (src, algo = null, type = null) {
  * @param {object} options
  */
 async function responsiveImageShortcode (src, alt = '', options = {}) {
-  // Various paths
   const srcFilePath = path.join(site.path.src, src)
-  const srcFileExtension = path.extname(src)
-  const srcBasename = path.basename(src, srcFileExtension)
-  const publicPath = path.join(site.path.public, '/assets/images/')
 
   // MIME types for each conversion
   const mime = {
@@ -150,11 +214,10 @@ async function responsiveImageShortcode (src, alt = '', options = {}) {
   img.setAttribute('height', srcDimensions.height)
   img.setAttribute('alt', alt)
   img.setAttribute('class', 'fallback--img')
-  img.setAttribute('src', `/assets/images/${srcBasename}-${sizes.widths[0]}.jpeg`)
   img.setAttribute('decoding', 'async')
 
   // Traverse each image format
-  Object.keys(mime).forEach((format) => {
+  await Object.keys(mime).forEach(async (format) => {
     const srcset = []
 
     // Create the source element
@@ -162,22 +225,13 @@ async function responsiveImageShortcode (src, alt = '', options = {}) {
     sourceElement.setAttribute('type', mime[format])
     sourceElement.setAttribute('sizes', `(max-width: ${sizes.max}px) 100vw, ${sizes.max}px`)
 
-    sizes.widths.forEach(async (width) => {
-      const imageFileName = srcBasename + `-${width}.${format}`
-      const publicFilePath = path.join(publicPath, imageFileName)
+    await sizes.widths.forEach(async (width) => {
+      const scaledImagePath = await scaleImage(srcFilePath, format, width)
+      srcset.push(`${scaledImagePath} ${width}w`)
 
-      // Add the current file to the srcset
-      srcset.push(`/assets/images/${imageFileName} ${width}w`)
-
-      // @fixme Check the source md5sum for changes?
-      if (!fs.existsSync(publicFilePath)) {
-        await sharp(srcFilePath)
-          .rotate()
-          .resize(width)[format]({
-            quality: sizes.quality[format] || sizes.quality.default,
-            reductionEffort: 6
-          })
-          .toFile(publicFilePath)
+      // Set the fallback src attribute
+      if (format === 'jpeg' && !img.hasAttribute('src')) {
+        img.setAttribute('src', scaledImagePath)
       }
     })
 
@@ -191,13 +245,14 @@ async function responsiveImageShortcode (src, alt = '', options = {}) {
   // Append the fallback
   picture.appendChild(img)
 
+  // Return markup
   return picture.outerHTML
 }
 
 module.exports = (config) => {
   config.addShortcode('css', cssShortcode)
-  config.addAsyncShortcode('image', imageShortcode)
   config.addShortcode('manifest', manifestAssetPath)
+  config.addAsyncShortcode('image', imageShortcode)
   config.addAsyncShortcode('sri', sriShortcode)
   config.addAsyncShortcode('responsiveImage', responsiveImageShortcode)
 }

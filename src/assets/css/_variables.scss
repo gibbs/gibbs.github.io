@@ -26,6 +26,20 @@
   --mask-dark: rgba(0, 0, 0, .1);
   --mask-light: rgba(255, 255, 255, .1);
 
+  // Alert Colours
+  --alert-info-bg: #cfe2ff;
+  --alert-info-color: #084298;
+  --alert-info-border: #b6d4fe;
+  --alert-warning-bg: #fff3cd;
+  --alert-warning-color: #664d03;
+  --alert-warning-border: #ffecb5;
+  --alert-danger-bg: #f8d7da;
+  --alert-danger-color: #842029;
+  --alert-danger-border: #f5c2c7;
+  --alert-success-bg: #d1e7dd;
+  --alert-success-color: #0f5132;
+  --alert-success-border: #badbcc;
+
   // Sections
   --header-bg: #fff;
   --footer-bg: var(--secondary-color);
