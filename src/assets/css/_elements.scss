@@ -42,6 +42,38 @@ li {
   margin: calc(var(--spacer) * .5) 0 calc(var(--spacer) * .5) 0;
 }
 
+.alert {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: var(--gutter-width);
+  border: 1px solid;
+
+  &--danger {
+    background-color: var(--alert-danger-bg);
+    color: var(--alert-danger-color);
+    border-color: var(--alert-danger-border);
+  }
+
+  &--info {
+    background-color: var(--alert-info-bg);
+    color: var(--alert-info-color);
+    border-color: var(--alert-info-border);
+  }
+
+  &--warning {
+    background-color: var(--alert-warning-bg);
+    color: var(--alert-warning-color);
+    border-color: var(--alert-warning-border);
+  }
+
+  &--success {
+    background-color: var(--alert-success-bg);
+    color: var(--alert-success-color);
+    border-color: var(--alert-success-border);
+  }
+}
+
 .button {
   position: relative;
   display: inline-block;
@@ -104,86 +136,4 @@ li {
     content: "\e902";
     font-family: 'icomoon' !important;
   }
-}
-
-.project__list {
-  display: grid;
-  justify-content: center;
-  grid-template-columns: 1fr;
-  gap: var(--spacer);
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-
-  &__body {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    justify-content: space-between;
-    padding: var(--spacer);
-  }
-
-  &__item {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
-    margin: 0;
-    padding: 0;
-    box-shadow: 5px 5px 5px var(--shadow-color);
-    background-color: var(--card-bg-color);
-    margin: calc(var(--spacer) * .5) 0 calc(var(--spacer) * .5) 0;
-  }
-
-  &__heading {
-    margin: 0;
-    padding: 0;
-  }
-
-  &__description {
-    flex-grow: 1;
-  }
-}
-
-@media (min-width: map-get($breakpoints, 'md')) {
-  .project__list {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-}
-
-.hero {
-  padding: calc(var(--spacer) * 6) 0 calc(var(--spacer) * 6) 0;
-  margin: 0 0 var(--spacer) 0;
-
-  &--title {
-    margin: var(--spacer) 0 calc(var(--spacer) * .5) 0;
-    color: var(--hero-title-color);
-    font-weight: 500;
-  }
-
-  &--subtitle {
-    margin: calc(var(--spacer) * .5) 0 var(--spacer) 0;
-    color: var(--hero-subtitle-color);
-    font-weight: 400;
-  }
-
-  &--text {
-    margin: 0;
-    color: var(--text-color-light);
-  }
-}
-
-.intro__video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  opacity: 0.2;
-  object-fit: cover;
-}
-
-[data-dark-mode="false"] .intro__video {
-  filter: invert(1);
 }

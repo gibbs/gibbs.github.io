@@ -1,0 +1,36 @@
+<div class="blog__list">
+  {%- for post in collections.blog | reverse | limit(limit|default(3)) -%}
+
+    <div class="blog__list__item">
+      <div class="blog__list__image">
+        <a href="{{ site.url }}/blog/{{ post.data.uri }}/">
+        {% responsiveImage 
+          post.data.image.src|default('assets/images/blog/placeholder.png'),
+          post.data.image.caption|default(project.data.title),
+          {
+            max: 540,
+            widths: [540, 430, 370, 310, 230],
+            width: 540,
+            height: 200
+          }
+        %}
+        </a>
+      </div>
+
+      <div class="blog__list__body">
+        <h3 class="blog__list__heading">
+          <a href="{{ site.url }}/blog/{{ post.data.uri }}/">{{ post.data.anchor }}</a>
+        </h3>
+
+        <time class="blog__list__date" datetime="{{ post.date | postDate }}">
+          {{ post.date | postDate }}
+        </time>
+
+        <div class="blog__list__description">
+          <p>{{ post.data.description }}</p>
+        </div>
+      </div>
+    </div>
+
+  {%- endfor -%}
+</div>

@@ -3,7 +3,9 @@ title: Dockerised PHP CLI
 description: A minimal PHP CLI Docker image for local development and CI/CD pipelines.
 anchor: Docker PHP CLI
 uri: docker-php-cli
-image: assets/images/project-docker-phpunit.png
+image:
+    src: assets/images/projects/docker-phpunit.png
+    caption: PHP and Docker logos.
 tags:
     - docker
     - php

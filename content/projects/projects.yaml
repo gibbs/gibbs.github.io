@@ -3,3 +3,6 @@ permalink: "projects/{{ uri | slug }}/index.html"
 changeFreq: weekly
 tags:
   - projects
+
+jsonld:
+  "@type": Article

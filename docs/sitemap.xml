@@ -37,8 +37,24 @@
   
   
   <url>
+    <loc>https://dangibbs.uk/blog/running-systemd-docker-containers-archlinux/</loc>
+    <lastmod>2021-12-21T00:00:00.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  
+  
+  <url>
+    <loc>https://dangibbs.uk/blog/</loc>
+    <lastmod>2021-12-21T15:57:04.960Z</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  
+  
+  <url>
     <loc>https://dangibbs.uk/</loc>
-    <lastmod>2021-12-20T22:44:01.760Z</lastmod>
+    <lastmod>2021-12-21T15:57:04.960Z</lastmod>
     <changefreq>monthly</changefreq>
   </url>
   
@@ -46,7 +62,7 @@
   
   <url>
     <loc>https://dangibbs.uk/projects/</loc>
-    <lastmod>2021-12-20T22:44:01.760Z</lastmod>
+    <lastmod>2021-12-21T15:57:04.960Z</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   

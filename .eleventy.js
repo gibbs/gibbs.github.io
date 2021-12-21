@@ -22,7 +22,7 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addWatchTarget(path.join(__dirname, 'docs/assets/*.{css,js}'))
 
   // Copy the favicon
-  eleventyConfig.addPassthroughCopy('content/favicon.ico')
+  eleventyConfig.addPassthroughCopy({ 'src/assets/icons/favicon.ico': 'favicon.ico' })
 
   // Setup
   setPlugins(eleventyConfig)
@@ -57,10 +57,11 @@ module.exports = (eleventyConfig) => {
     dataTemplateEngine: 'njk',
     dir: {
       input: 'content',
+      output: 'docs',
+      // Relative to input dir
       data: '../src/_data',
       includes: '../src/_includes',
-      layouts: '../src/_layouts',
-      output: 'docs'
+      layouts: '../src/_layouts'
     },
     htmlOutputSuffix: '-o',
     htmlTemplateEngine: 'njk',

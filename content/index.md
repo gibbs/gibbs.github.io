@@ -1,7 +1,7 @@
 ---
 layout: home
 title: Dan Gibbs - Full Stack Web Developer
-description: The personal website of Dan Gibbs, website developer.
+description: The personal website of Dan Gibbs, full stack web developer.
 anchor: Home
 tags: page
 

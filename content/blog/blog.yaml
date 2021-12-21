@@ -1,0 +1,8 @@
+layout: post
+permalink: "blog/{{ uri | slug }}/index.html"
+changeFreq: weekly
+tags:
+  - blog
+
+jsonld:
+  "@type": BlogPosting

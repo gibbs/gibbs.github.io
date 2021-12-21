@@ -4,10 +4,43 @@
   <subtitle>Posts and articles from dangibbs.uk</subtitle>
   <link href="https://dangibbs.uk/feed.xml" rel="self" />
   <link href="https://dangibbs.uk" />
-  <updated>2021-12-20T22:45:43Z</updated>
+  <updated>2021-12-21T21:48:01Z</updated>
   <id>https://dangibbs.uk</id>
   <author>
     <name>Dan Gibbs</name>
     <email>dev@dangibbs.co.uk</email>
   </author>
+  
+  <entry>
+    <title>How to run systemd Docker containers in Arch Linux</title>
+    <link href="https://dangibbs.uk//blog/running-systemd-docker-containers-archlinux/"/>
+    <updated>2021-12-21T00:00:00Z</updated>
+    <id>/blog/running-systemd-docker-containers-archlinux/</id>
+    <content type="html">&lt;p&gt;Docker engine &lt;a href=&quot;https://docs.docker.com/engine/release-notes/#20106&quot;&gt;20.10.6&lt;/a&gt;
+recently moved its cgroup v2 support out of experimental but it does not
+support &lt;em&gt;hybrid&lt;/em&gt; hierarchies. Most modern systemd packages for Linux
+distributions are compiled and shipped with the hybrid hierarchy which is a
+systemd recommended default.&lt;/p&gt;
+&lt;p&gt;You can view what your host systemd environment is with:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;systemctl show -all &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;grep&lt;/span&gt; default-hierarchy&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If the default hierarchy is listed as hybrid &lt;code&gt;default-hierarchy=hybrid&lt;/code&gt; there
+will likely be issues (regardless of read/write permissions) when running
+systemd as an init system inside a Docker container.&lt;/p&gt;
+&lt;h2 id=&quot;goto-example&quot; tabindex=&quot;-1&quot;&gt;Example&lt;/h2&gt;
+&lt;p&gt;Running the following &lt;code&gt;litmusimage/ubuntu&lt;/code&gt; container fails to start.&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;docker run -it --privileged --volume /sys/fs/cgroup:/sys/fs/cgroup:ro --tmpfs /tmp:exec litmusimage/ubuntu:20.04&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Example init errors returned:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;Failed to create /init.scope control group: Read-only &lt;span class=&quot;token function&quot;&gt;file&lt;/span&gt; system&lt;br&gt;Failed to allocate manager object: Read-only &lt;span class=&quot;token function&quot;&gt;file&lt;/span&gt; system&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; Failed to allocate manager object.&lt;br&gt;Exiting PID &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;.&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;goto-workaround&quot; tabindex=&quot;-1&quot;&gt;Workaround&lt;/h2&gt;
+&lt;p&gt;Disable the hybrid hierarchy by setting the kernel parameter
+&lt;code&gt;systemd.unified_cgroup_hierarchy=0&lt;/code&gt; from your boot loader or during kernel
+compilation.&lt;/p&gt;
+&lt;h2 id=&quot;goto-grub-example&quot; tabindex=&quot;-1&quot;&gt;GRUB Example&lt;/h2&gt;
+&lt;p&gt;Kernel parameters can be set in GRUB 2 by appending the &lt;code&gt;GRUB_CMDLINE_LINUX&lt;/code&gt;
+or &lt;code&gt;GRUB_CMDLINE_LINUX_DEFAULT&lt;/code&gt; options.&lt;/p&gt;
+&lt;pre class=&quot;language-ini&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-ini&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# /etc/default/grub&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token key attr-name&quot;&gt;GRUB_CMDLINE_LINUX_DEFAULT&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token value attr-value&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token key attr-name&quot;&gt;GRUB_CMDLINE_LINUX&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token value attr-value&quot;&gt;&quot;&lt;span class=&quot;token inner-value&quot;&gt;quiet systemd.unified_cgroup_hierarchy=0&lt;/span&gt;&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Regenerate the GRUB configuration with:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;grub-mkconfig&lt;/span&gt; -o /boot/grub/grub.cfg&lt;/code&gt;&lt;/pre&gt;
+</content>
+  </entry>
 </feed>

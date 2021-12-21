@@ -13,9 +13,9 @@
       <li class="navigation__item" {% if page.url == '/' %} aria-current="page"{% endif %}>
         <a class="navigation__anchor{% if page.url == '/' %} navigation__anchor--active{% endif %}" href="{{ site.url }}/">Home</a>
       </li>
-      {#<li class="navigation__item" {% if '/blog/' in page.url %} aria-current="page"{% endif %}>
+      <li class="navigation__item" {% if '/blog/' in page.url %} aria-current="page"{% endif %}>
         <a class="navigation__anchor{% if '/blog/' in page.url %} navigation__anchor--active{% endif %}" href="{{ site.url }}/blog/">Blog</a>
-      </li>#}
+      </li>
       <li class="navigation__item" {% if page.url == '/projects/' %} aria-current="page"{% endif %}>
         <a class="navigation__anchor{% if '/projects/' in page.url %} navigation__anchor--active{% endif %}" href="{{ site.url }}/projects/">Projects</a>
       </li>

@@ -3,7 +3,9 @@ title: Open Currency Data
 description: Free currency dataset in CSV, JSON, Markdown, PHP and XML formats.
 anchor: Currency Datasets
 uri: currency-datasets
-image: assets/images/project-currency-data.png
+image:
+    src: assets/images/projects/currency-data.png
+    caption: Currency notes.
 tags:
     - currencies
     - data

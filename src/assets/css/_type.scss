@@ -55,6 +55,7 @@ p > code {
 
 blockquote {
   background-color: var(--blockquote-bg-color);
-  padding: calc(var(--spacer) * .5);
+  padding: calc(var(--spacer) * .5) var(--spacer);
   border-left: 5px solid var(--border-color);
+  margin: var(--spacer) calc((var(--spacer) * 2) - 5px);
 }

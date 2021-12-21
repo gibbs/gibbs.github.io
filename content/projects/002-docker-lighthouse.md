@@ -3,7 +3,9 @@ title: Lighthouse Docker Image
 description: An open source Lighthouse Docker image with the Chromium web browser.
 anchor: Docker Lighthouse
 uri: docker-lighthouse
-image: assets/images/project-docker-lighthouse.png
+image:
+    src: assets/images/projects/docker-lighthouse.png
+    caption: Docker and Lighthouse logos.
 tags:
     - docker
     - lighthouse

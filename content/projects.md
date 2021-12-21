@@ -11,4 +11,3 @@ jsonld:
     '@type': Table
     about: Projects
 ---
-

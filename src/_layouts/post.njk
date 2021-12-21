@@ -1,0 +1,31 @@
+{% extends "../_layouts/base.njk" %}
+
+{% block json_ld %}{{ jsonld | toJSONLDBlog | safe }}{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <article class="row post">
+      {% if archived %}
+      <div class="alert alert--warning">
+        {% if archived != true %}
+          {{ archived }}
+        {% else %}
+          This post has been archived
+        {% endif %}
+      </div>
+      {% endif %}
+
+      {% if heading %}
+      <h1 class="post__heading">{{ heading }}</h1>
+      {% endif %}
+
+      <time class="post__date" datetime="{{ page.date | postDate }}">
+        {{ page.date | postDate }}
+      </time>
+
+      <div class="post__content">
+        {{ content | safe }}
+      </div>
+    </article>
+  </div>
+{% endblock %}

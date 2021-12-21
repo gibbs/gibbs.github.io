@@ -50,6 +50,7 @@
     "image-size": "^1.0.0",
     "jsdom": "^16.7.0",
     "libxmljs2-xsd": "^0.26.5",
+    "luxon": "^2.2.0",
     "markdown-it": "^12.2.0",
     "markdown-it-anchor": "^8.4.1",
     "markdown-it-attrs": "^4.1.0",
