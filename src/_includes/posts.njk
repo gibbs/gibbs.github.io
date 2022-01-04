@@ -8,16 +8,18 @@
           post.data.image.src|default('assets/images/blog/placeholder.png'),
           post.data.image.caption|default(project.data.title),
           {
-            max: 540,
-            widths: [540, 430, 370, 310, 230],
-            width: 540,
-            height: 200
+            maxWidth: 540,
+            widths: [540, 430, 370, 310, 230]
           }
         %}
         </a>
       </div>
 
       <div class="blog__list__body">
+        <div class="blog__list__tag">
+          {{ post.data.tags | primaryTag }}
+        </div>
+
         <h3 class="blog__list__heading">
           <a href="{{ site.url }}/blog/{{ post.data.uri }}/">{{ post.data.anchor }}</a>
         </h3>

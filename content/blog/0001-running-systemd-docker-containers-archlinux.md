@@ -3,6 +3,9 @@ title: How to run systemd Docker containers in Arch Linux
 description: >-
     Changing the systemd default hierarchy to run systemd init containers on 
     Arch Linux.
+summary: >-
+    Run Docker containers using the systemd init system on hosts running 
+    Arch Linux.
 anchor: Running systemd Docker containers in Arch Linux
 uri: running-systemd-docker-containers-archlinux
 heading: How to run systemd Docker containers in Arch Linux
@@ -28,7 +31,7 @@ support *hybrid* hierarchies. Most modern systemd packages for Linux
 distributions are compiled and shipped with the hybrid hierarchy which is a 
 systemd recommended default.
 
-You can view what your host systemd environment is with:
+You can view your host systemd environment with:
 
 ```bash
 systemctl show -all | grep default-hierarchy

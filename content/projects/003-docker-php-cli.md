@@ -1,6 +1,11 @@
 ---
-title: Dockerised PHP CLI
-description: A minimal PHP CLI Docker image for local development and CI/CD pipelines.
+title: Docker Multi PHP CLI
+description: >-
+    A minimal PHP CLI Docker image for local development and CI/CD pipelines.
+summary: >-
+    A small PHP CLI Docker image useful for build pipelines and local 
+    testing. Based on Debian and frequently updated for PHP 5.6, 7.0, 7.1, 7.2, 
+    7.3, 7.4, 8.0 and 8.1.
 anchor: Docker PHP CLI
 uri: docker-php-cli
 image:

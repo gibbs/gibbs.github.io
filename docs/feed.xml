@@ -4,7 +4,7 @@
   <subtitle>Posts and articles from dangibbs.uk</subtitle>
   <link href="https://dangibbs.uk/feed.xml" rel="self" />
   <link href="https://dangibbs.uk" />
-  <updated>2021-12-21T21:48:01Z</updated>
+  <updated>2022-01-04T11:03:10Z</updated>
   <id>https://dangibbs.uk</id>
   <author>
     <name>Dan Gibbs</name>
@@ -21,7 +21,7 @@ recently moved its cgroup v2 support out of experimental but it does not
 support &lt;em&gt;hybrid&lt;/em&gt; hierarchies. Most modern systemd packages for Linux
 distributions are compiled and shipped with the hybrid hierarchy which is a
 systemd recommended default.&lt;/p&gt;
-&lt;p&gt;You can view what your host systemd environment is with:&lt;/p&gt;
+&lt;p&gt;You can view your host systemd environment with:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;systemctl show -all &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;grep&lt;/span&gt; default-hierarchy&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;If the default hierarchy is listed as hybrid &lt;code&gt;default-hierarchy=hybrid&lt;/code&gt; there
 will likely be issues (regardless of read/write permissions) when running

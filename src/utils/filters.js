@@ -7,7 +7,7 @@ const { DateTime } = require('luxon')
  *
  * @param {string} date
  */
-function postDate (date) {
+function postDateFilter (date) {
   return DateTime.fromJSDate(date).toLocaleString(DateTime.DATE_FULL)
 }
 
@@ -16,7 +16,7 @@ function postDate (date) {
  *
  * @param {string} value
  */
-function jsonld (value) {
+function jsonldFilter (value) {
   const json = {
     '@context': 'https://schema.org',
     url: site.url,
@@ -31,7 +31,7 @@ function jsonld (value) {
  *
  * @param {string} value
  */
-function jsonldBlog (value) {
+function jsonldBlogFilter (value) {
   const json = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -40,6 +40,10 @@ function jsonldBlog (value) {
     copyrightHolder: meta.author.name,
     inLanguage: meta.language,
     mainEntityOfPage: true,
+    sameAs: [
+      meta.links.github.url,
+      meta.links.twitter.url
+    ],
     creator: {
       '@type': 'Person',
       name: meta.author.name,
@@ -56,9 +60,24 @@ function jsonldBlog (value) {
   return JSON.stringify(json, null, site.environment === 'production' ? 0 : 2)
 }
 
+/**
+ * Primary Tag Filter
+ *
+ * @param {array} tags
+ * @returns mixed
+ */
+function primaryTagFilter (tags) {
+  if (tags.length >= 2) {
+    return tags.slice(1, 2)
+  }
+
+  return tags
+}
+
 module.exports = (config) => {
-  config.addFilter('limit', (list, limit) => list.slice(0, limit))
-  config.addFilter('toJSONLD', jsonld)
-  config.addFilter('toJSONLDBlog', jsonldBlog)
-  config.addFilter('postDate', postDate)
+  config.addFilter('limit', (list, limit, start = 0) => list.slice(start, limit))
+  config.addFilter('toJSONLD', jsonldFilter)
+  config.addFilter('postDate', postDateFilter)
+  config.addFilter('primaryTag', primaryTagFilter)
+  config.addFilter('toJSONLDBlog', jsonldBlogFilter)
 }

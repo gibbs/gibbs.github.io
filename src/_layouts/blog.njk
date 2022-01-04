@@ -7,8 +7,95 @@
     <div class="row">
       {{ content | safe }}
 
-      {% set limit = collections.blog.length %}
-      {% include "posts.njk" %}
+      {%- for latest in collections.blog | reverse | limit(1) -%}
+      <div class="blog blog--latest">
+        <div class="blog__image">
+          <a aria-hidden="true" href="{{ site.url }}/blog/{{ latest.data.uri }}/">
+            {% responsiveImage
+              latest.data.image.src | default('assets/images/projects/placeholder.png'),
+              latest.data.image.caption | default(latest.data.title),
+              {
+                maxWidth: 540,
+                widths: [[309, 360], [363, 414], [540, 768], [352, 992], 540]
+              }
+            %}
+          </a>
+        </div>
+
+        <div class="blog__content">
+          <h3 class="blog__heading">
+            <a href="{{ site.url }}/blog/{{ latest.data.uri }}/">{{ latest.data.anchor }}</a>
+          </h3>
+
+          <div class="blog__data">
+            <span class="blog__tag">
+              {{ latest.data.tags | primaryTag }}
+            </span>
+
+            <time class="blog__date" datetime="{{ latest.date | postDate }}">
+              &mdash; {{ latest.date | postDate }}
+            </time>
+          </div>
+
+          <div class="blog__summary">
+            <p>{{ latest.data.description }}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+      <div class="blog blog--columns">
+        {%- for post in collections.blog | reverse | limit(4, 1) -%}
+          <div class="blog__post">
+            <div class="blog__image">
+              <a aria-hidden="true" href="{{ site.url }}/blog/{{ post.data.uri }}/">
+                {% responsiveImage
+                  post.data.image.src | default('assets/images/projects/placeholder.png'),
+                  post.data.image.caption | default(post.data.title),
+                  {
+                    maxWidth: 429,
+                    widths: [[309, 360], [363, 414], [162, 768], [230, 992], [310, 1200], [370, 1400], 429]
+                  }
+                %}
+              </a>
+            </div>
+
+            <div class="blog__data">
+              <span class="blog__tag">
+                {{ post.data.tags | primaryTag }}
+              </span>
+
+              <time class="blog__date" datetime="{{ post.date | postDate }}">
+                &mdash; {{ post.date | postDate }}
+              </time>
+            </div>
+
+            <h3 class="blog__heading">
+              <a href="{{ site.url }}/blog/{{ post.data.uri }}/">{{ post.data.anchor }}</a>
+            </h3>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="blog blog--columns">
+        {%- for post in collections.blog | reverse | limit(96, 4) -%}
+          <div class="blog__post">
+            <div class="blog__data">
+              <span class="blog__tag">
+                {{ post.data.tags | primaryTag }}
+              </span>
+
+              <time class="blog__date" datetime="{{ post.date | postDate }}">
+                &mdash; {{ post.date | postDate }}
+              </time>
+            </div>
+
+            <h3 class="blog__heading">
+              <a href="{{ site.url }}/blog/{{ post.data.uri }}/">{{ post.data.anchor }}</a>
+            </h3>
+          </div>
+        {% endfor %}
+      </div>
     </div>
   </div>
 {% endblock %}

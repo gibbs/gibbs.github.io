@@ -19,7 +19,20 @@
     {% block header %}
     <header class="header">
       <div class="container">
-        {% include "navigation.njk" %}
+        <div class="row">
+          <nav class="navigation">
+
+            <span class="icon icon-brightness-contrast" id="change_theme_preference" title="Change colour preference"></span>
+
+            <input type="checkbox" id="navigation_menu">
+
+            <label for="navigation_menu" class="navigation__toggle">
+              <span class="icon-hamburger"><span></span></span>
+            </label>
+
+            {% include "navigation.njk" %}
+          </nav>
+        </div>
       </div>
     </header>
     {% endblock %}

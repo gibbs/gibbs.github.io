@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('../fonts/icomoon.eot?enkrlx');
-  src:  url('../fonts/icomoon.eot?enkrlx#iefix') format('embedded-opentype'),
-    url('../fonts/icomoon.ttf?enkrlx') format('truetype'),
-    url('../fonts/icomoon.woff?enkrlx') format('woff'),
-    url('../fonts/icomoon.svg?enkrlx#icomoon') format('svg');
+  src:  url('../fonts/icomoon.eot?8il86');
+  src:  url('../fonts/icomoon.eot?8il86#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?8il86') format('truetype'),
+    url('../fonts/icomoon.woff?8il86') format('woff'),
+    url('../fonts/icomoon.svg?8il86#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -24,9 +24,14 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+.icon-javascript:before {
+  content: "\e907";
+}
 .icon-docker:before {
   content: "\e906";
+}
+.icon-circle-up:before {
+  content: "\ea41";
 }
 .icon-linkedin:before {
   content: "\e900";
@@ -72,7 +77,7 @@
   border-radius: 1px;
   height: 3px;
   width: 24px;
-  background: var(--body-bg);
+  background: var(--navigation-toggle-color);
   position: absolute;
   display: block;
 }
