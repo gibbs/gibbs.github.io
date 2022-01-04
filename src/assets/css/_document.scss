@@ -159,12 +159,16 @@ body {
       display: inline-block;
       padding: .5rem 0 .5rem 0;
       text-decoration: none;
-      color: #ddd;
+      color: var(--dark-link-text-color);
       font-weight: 500;
 
       &--active {
-        color: var(--primary-color);
+        color: var(--dark-link-text-hover-color);
       }
+    }
+
+    &__anchor:hover {
+      color: var(--dark-link-text-hover-color);
     }
   }
 
