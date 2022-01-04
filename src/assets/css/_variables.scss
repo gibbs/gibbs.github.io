@@ -43,15 +43,17 @@
   // Sections
   --header-bg: #fff;
   --footer-bg: var(--secondary-color);
-  --copyright-bg: #29293b;
+  --copyright-bg: var(--footer-bg); //#29293b;
   --copyright-text-color: var(--white-color);
 
   // Animations
   --transition-speed: 0.1s;
 
   // Typography
-  --font-size-base: 1.15rem;
-  --font-size-scale: 2;
+  --font-size-base: 1.25rem;
+  //--font-size-scale: 2;
+  --paragraph-line-height: 1.95rem;
+  --paragraph-font-size: 1.25rem;
   --line-height: 1.5rem;
   --text-color: #444;
   --text-color-light: #666;
@@ -64,8 +66,10 @@
   // Grid
   --spacer: 1rem;
   --gutter-width: 1.5rem;
+  --gutter-width-half: 0.75rem;
 
   // Elements
+  --navigation-toggle-color: var(--body-bg);
   --blockquote-bg-color: var(--white-color);
   --card-bg-color: var(--white-color);
   --table-border-color: var(--border-color);
@@ -120,7 +124,7 @@
   // Sections
   --header-bg: #34344A;
   --footer-bg: var(--secondary-color);
-  --copyright-bg: #29293b;
+  --copyright-bg: var(--footer-bg); //#29293b;
   --copyright-text-color: #999;
  
   // Typography
@@ -133,6 +137,7 @@
   --code-text-color: #fff;
 
   // Elements
+  --navigation-toggle-color: var(--black-color);
   --blockquote-bg-color: var(--mask-dark);
   --card-bg-color: #1a2129;
   --table-border-color: var(--border-color);

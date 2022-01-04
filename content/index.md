@@ -12,12 +12,14 @@ jsonld:
     description: The personal website of Dan Gibbs
     publisher:
         "@type": ProfilePage
-        name: Dan Gibbs Website
+        name: Dan Gibbs
 ---
 
 # Dan Gibbs { .hero--title #goto-h1 }
 
-## Full Stack Web Developer and GNU/Linux Sysadmin{ .hero--subtitle #goto-h2 }
+## Full Stack Web Developer and Linux Sysadmin { .hero--subtitle #goto-h2 }
 
-Email: [dev@dangibbs.co.uk](mailto:dev@dangibbs.co.uk) {.hero--text}
-
+I'm Dan Gibbs &mdash; an experienced developer involved in all things web related. I 
+work on front and backend projects, development/operations,
+databases, testing, deployment, automation, infrastructure as code and 
+everything else in between.

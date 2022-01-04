@@ -9,9 +9,14 @@ img {
   background-image: none;
 }
 
+.table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+}
+
 table {
   width: 100%;
-  max-width: 100%;
   border-collapse: collapse;
 }
 
@@ -36,10 +41,6 @@ tbody tr {
 
 tbody tr:nth-child(2n) {
   background-color: var(--table-row-bg-alt-color);
-}
-
-li {
-  margin: calc(var(--spacer) * .5) 0 calc(var(--spacer) * .5) 0;
 }
 
 .alert {
@@ -74,6 +75,15 @@ li {
   }
 }
 
+.anchor__up {
+  font-size: 4rem;
+  color: var(--secondary-color-text);
+}
+
+.cookie__preferences {
+  color: var(--secondary-color-text);
+}
+
 .button {
   position: relative;
   display: inline-block;
@@ -87,7 +97,6 @@ li {
 
   &::before {
     position: absolute;
-    top: -1rem;
     left: -.75rem;
     font-size: 6rem;
     opacity: .25;
@@ -121,7 +130,7 @@ li {
   &--github {
     padding-left: 2rem;
     padding-right: 2rem;
-    background: linear-gradient(180deg, #fff 0%, #f0f0f0 100%);
+    background: #ddd;
     border: 2px solid #bbb;
     color: #333;
   }

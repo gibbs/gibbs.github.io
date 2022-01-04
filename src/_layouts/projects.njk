@@ -7,8 +7,44 @@
     <div class="row">
       {{ content | safe }}
 
-      {% set limit = collections.projects.length %}
-      {% include "projects.njk" %}
+      <div class="project-rows">
+        {%- for project in collections.projects | reverse -%}
+          <div class="project-rows__row">
+            <div class="project-rows__showcase">
+              <div class="project-rows__tag">
+                {{ project.data.tags | primaryTag }}
+              </div>
+
+              <div class="project-rows__image">
+                <a aria-hidden="true" href="{{ site.url }}/projects/{{ project.data.uri }}/" class="project-rows__anchor">
+                  {% responsiveImage
+                    project.data.image.src | default('assets/images/projects/placeholder.png'),
+                    project.data.image.caption | default(project.data.title),
+                    {
+                      maxWidth: 514,
+                      widths: [[309, 360], [363, 414], [540, 768], [352, 992], [370, 1200], [442, 1400], 514]
+                    }
+                  %}
+                </a>
+              </div>
+            </div>
+
+            <div class="project-rows__body">
+              <h3 class="project-rows__heading">
+                <a href="{{ site.url }}/projects/{{ project.data.uri }}/" class="project-rows__anchor">{{ project.data.anchor }}</a>
+              </h3>
+
+              <time class="project-rows__date" datetime="{{ project.date | postDate }}">
+                {{ project.date | postDate }}
+              </time>
+
+              <div class="project-rows__description">
+                <p>{{ project.data.summary }}</p>
+              </div>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
     </div>
   </div>
 {% endblock %}

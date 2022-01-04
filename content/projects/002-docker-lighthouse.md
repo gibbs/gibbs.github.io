@@ -1,6 +1,10 @@
 ---
 title: Lighthouse Docker Image
-description: An open source Lighthouse Docker image with the Chromium web browser.
+description: >-
+    An open source Lighthouse Docker image with the Chromium web browser.
+summary: >-
+    A frequently updated Docker image providing Google Lighthouse audits 
+    and reporting using open source packages.
 anchor: Docker Lighthouse
 uri: docker-lighthouse
 image:

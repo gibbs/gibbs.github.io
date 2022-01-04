@@ -1,36 +1,40 @@
-<div class="project__list">
+<div class="project-list">
   {%- for project in collections.projects | reverse | limit(limit|default(3)) -%}
-
-    <div class="project__list__item">
-      <div class="project__list__image">
+    <div class="project-list__item">
+      <div class="project-list__image">
         <a href="{{ site.url }}/projects/{{ project.data.uri }}/">
         {% responsiveImage
           project.data.image.src | default('assets/images/projects/placeholder.png'),
           project.data.image.caption | default(project.data.title),
           {
-            max: 540,
-            widths: [540, 430, 370, 310, 230],
-            width: 540,
-            height: 200
+            maxWidth: 540,
+            widths: [540, 430, 370, 310, 230]
           }
         %}
         </a>
       </div>
 
-      <div class="project__list__body">
-        <h3 class="project__list__heading">
+      <div class="project-list__body">
+        <div class="project-list__tag">
+          {{ project.data.tags | primaryTag }}
+        </div>
+
+        <h3 class="project-list__heading">
           <a href="{{ site.url }}/projects/{{ project.data.uri }}/">{{ project.data.anchor }}</a>
         </h3>
 
-        <div class="project__list__description">
+        <time class="project__date" datetime="{{ project.date | postDate }}">
+          {{ project.date | postDate }}
+        </time>
+
+        <div class="project-list__description">
           <p>{{ project.data.description }}</p>
         </div>
 
-        <div class="project__list__action">
+        <div class="project-list__action">
           <a href="{{ site.url }}/projects/{{ project.data.uri }}/" class="button">View Details</a>
         </div>
       </div>
     </div>
-
   {%- endfor -%}
 </div>
