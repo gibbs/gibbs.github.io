@@ -82,7 +82,15 @@ window.addEventListener && window.addEventListener('load', () => {
                 value: 'necessary',
                 enabled: true,
                 readonly: true
-              }
+              },
+              cookie_table: [
+                {
+                  col1: 'cookie_consent_preferences',
+                  col2: 'dangibbs.uk',
+                  col3: '1 year',
+                  col4: 'Used to remember a users choice about cookie preferences on this website'
+                }
+              ]
             }, {
               title: 'Performance and Analytics cookies',
               description: 'These cookies allow the website to remember the choices you have made in the past',
@@ -96,14 +104,14 @@ window.addEventListener && window.addEventListener('load', () => {
                   col1: '^_ga',
                   col2: 'google.com',
                   col3: '2 years',
-                  col4: 'description ...',
+                  col4: 'Used to distinguish users for Analytics',
                   is_regex: true
                 },
                 {
                   col1: '_gid',
                   col2: 'google.com',
-                  col3: '1 day',
-                  col4: 'description ...'
+                  col3: '24 hours',
+                  col4: 'Used to distinguish users for Analytics'
                 }
               ]
             }
