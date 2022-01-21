@@ -4,7 +4,7 @@
   <subtitle>Posts and articles from dangibbs.uk</subtitle>
   <link href="https://dangibbs.uk/feed.xml" rel="self" />
   <link href="https://dangibbs.uk" />
-  <updated>2022-01-21T14:00:39Z</updated>
+  <updated>2022-01-21T14:08:38Z</updated>
   <id>https://dangibbs.uk</id>
   <author>
     <name>Dan Gibbs</name>
@@ -41,6 +41,60 @@ or &lt;code&gt;GRUB_CMDLINE_LINUX_DEFAULT&lt;/code&gt; options.&lt;/p&gt;
 &lt;pre class=&quot;language-ini&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-ini&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# /etc/default/grub&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token key attr-name&quot;&gt;GRUB_CMDLINE_LINUX_DEFAULT&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token value attr-value&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token key attr-name&quot;&gt;GRUB_CMDLINE_LINUX&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token value attr-value&quot;&gt;&quot;&lt;span class=&quot;token inner-value&quot;&gt;quiet systemd.unified_cgroup_hierarchy=0&lt;/span&gt;&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Regenerate the GRUB configuration with:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;grub-mkconfig&lt;/span&gt; -o /boot/grub/grub.cfg&lt;/code&gt;&lt;/pre&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <title>Setting Grafana Roles with Keycloak over OAuth</title>
+    <link href="https://dangibbs.uk//blog/using-oauth-roles-in-grafana-with-keycloak/"/>
+    <updated>2022-01-21T00:00:00Z</updated>
+    <id>/blog/using-oauth-roles-in-grafana-with-keycloak/</id>
+    <content type="html">&lt;p&gt;When signing in to Grafana via OAuth the dashboard will default to the &amp;quot;Viewer&amp;quot;
+role if a specific role can not be matched. Roles need to be supplied to the
+OAuth UserInfo endpoint to support logging in as an Admin or Editor.&lt;/p&gt;
+&lt;p&gt;See the &lt;a href=&quot;https://grafana.com/docs/grafana/latest/auth/generic-oauth/&quot;&gt;Generic OAuth authentication&lt;/a&gt;
+documentation for useful information.&lt;/p&gt;
+&lt;h2 id=&quot;goto-matching-keycloak-roles-with-grafana&quot; tabindex=&quot;-1&quot;&gt;Matching Keycloak Roles with Grafana&lt;/h2&gt;
+&lt;p&gt;Set the &lt;code&gt;role_attribute_path&lt;/code&gt; property to match &lt;code&gt;roles.admin&lt;/code&gt; and &lt;code&gt;roles.editor&lt;/code&gt;.
+If OAuth contains neither role the attribute will fallback to the viewer role
+(matching the default Grafana behaviour):&lt;/p&gt;
+&lt;pre class=&quot;language-ini&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-ini&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# /etc/grafana/grafana.ini&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token header&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token section-name selector&quot;&gt;auth.generic_oauth&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token key attr-name&quot;&gt;role_attribute_path&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token value attr-value&quot;&gt;contains(roles[*], &#39;admin&#39;) &amp;amp;&amp;amp; &#39;Admin&#39; || contains(roles[*], &#39;editor&#39;) &amp;amp;&amp;amp; &#39;Editor&#39; || &#39;Viewer&#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;goto-setup-the-keycloak-roles&quot; tabindex=&quot;-1&quot;&gt;Setup the Keycloak Roles&lt;/h2&gt;
+&lt;p&gt;In the Keycloak admin area create 2 new roles under &lt;mark&gt;Configure &amp;gt; Roles&lt;/mark&gt;
+named &lt;code&gt;admin&lt;/code&gt; and &lt;code&gt;editor&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Under &lt;mark&gt;Configure &amp;gt; Clients&lt;/mark&gt; select the client and go to the &lt;mark&gt;Mappers&lt;/mark&gt; tab.
+Create a new protocol mapper with the following settings:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Name&lt;/strong&gt;: roles&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Mapper Type&lt;/strong&gt;: User Realm Role&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Multivalued&lt;/strong&gt;: on&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Token Claim Name&lt;/strong&gt;: roles&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Claim JSON Type&lt;/strong&gt;: String&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Add to ID token&lt;/strong&gt;: on&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Add to access token&lt;/strong&gt;: on&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Add to userinfo&lt;/strong&gt;: on&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;picture&gt;&lt;source type=&quot;image/avif&quot; sizes=&quot;749px&quot; srcset=&quot;/assets/images/scaled/keycloak-create-protocol-mapper-4f5e1cc09df75feb41e06922cac7b77e.avif 749w&quot;&gt;&lt;source type=&quot;image/webp&quot; sizes=&quot;749px&quot; srcset=&quot;/assets/images/scaled/keycloak-create-protocol-mapper-4f5e1cc09df75feb41e06922cac7b77e.webp 749w&quot;&gt;&lt;source type=&quot;image/jpeg&quot; sizes=&quot;749px&quot; srcset=&quot;/assets/images/scaled/keycloak-create-protocol-mapper-4f5e1cc09df75feb41e06922cac7b77e.jpeg 749w&quot;&gt;&lt;img width=&quot;749&quot; height=&quot;553&quot; alt=&quot;Keycloak Create Grafana Role Protocol Mapper&quot; class=&quot;fallback--img&quot; decoding=&quot;async&quot; src=&quot;/assets/images/scaled/keycloak-create-protocol-mapper-4f5e1cc09df75feb41e06922cac7b77e.jpeg&quot;&gt;&lt;/picture&gt;&lt;/p&gt;
+&lt;p&gt;After creating this mapper the roles data should now be added to the UserInfo
+endpoint.&lt;/p&gt;
+&lt;p&gt;Finally, under &lt;mark&gt;Manage &amp;gt; Users&lt;/mark&gt; select a user, go to the &lt;mark&gt;Role Mappings&lt;/mark&gt;
+tab and assign one of the newly added roles. Sign in to Grafana with the
+selected user and they should now have the relevant role.&lt;/p&gt;
+&lt;h2 id=&quot;goto-testing-the-userinfo-endpoint-in-keycloak&quot; tabindex=&quot;-1&quot;&gt;Testing the UserInfo Endpoint in Keycloak&lt;/h2&gt;
+&lt;p&gt;The Keycloak admin area provides an interface for evaluating a users UserInfo
+endpoint data. This can be used to check that roles are being returned to
+Grafana as intended.&lt;/p&gt;
+&lt;p&gt;Under &lt;mark&gt;Configure &amp;gt; Clients&lt;/mark&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Select the client and go to the &lt;mark&gt;Client Scopes&lt;/mark&gt; tab&lt;/li&gt;
+&lt;li&gt;Select the nested &lt;mark&gt;Evaluate&lt;/mark&gt; tab&lt;/li&gt;
+&lt;li&gt;Go to the &lt;mark&gt;Select a user...&lt;/mark&gt; dropdown, enter a user and click &lt;mark&gt;Evaluate&lt;/mark&gt;&lt;/li&gt;
+&lt;li&gt;Select the &lt;mark&gt;Generated User Info&lt;/mark&gt; tab&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;picture&gt;&lt;source type=&quot;image/avif&quot; sizes=&quot;1375px&quot; srcset=&quot;/assets/images/scaled/keycloak-generate-user-info-ecbdb7763a10ab661fe082ebfb721ac7.avif 1375w&quot;&gt;&lt;source type=&quot;image/webp&quot; sizes=&quot;1375px&quot; srcset=&quot;/assets/images/scaled/keycloak-generate-user-info-ecbdb7763a10ab661fe082ebfb721ac7.webp 1375w&quot;&gt;&lt;source type=&quot;image/jpeg&quot; sizes=&quot;1375px&quot; srcset=&quot;/assets/images/scaled/keycloak-generate-user-info-ecbdb7763a10ab661fe082ebfb721ac7.jpeg 1375w&quot;&gt;&lt;img width=&quot;1375&quot; height=&quot;852&quot; alt=&quot;Keycloak View Generated UserInfo Endpoint&quot; class=&quot;fallback--img&quot; decoding=&quot;async&quot; src=&quot;/assets/images/scaled/keycloak-generate-user-info-ecbdb7763a10ab661fe082ebfb721ac7.jpeg&quot;&gt;&lt;/picture&gt;&lt;/p&gt;
+&lt;p&gt;Setting the Grafana log level to &lt;code&gt;debug&lt;/code&gt; can also be used to log information
+returned from OAuth requests.&lt;/p&gt;
+&lt;pre class=&quot;language-ini&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-ini&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# /etc/grafana/grafana.ini&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token header&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token section-name selector&quot;&gt;log.file&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token key attr-name&quot;&gt;level&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token value attr-value&quot;&gt;debug&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 </content>
   </entry>
 </feed>

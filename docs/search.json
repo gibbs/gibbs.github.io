@@ -25,4 +25,7 @@
 },{
   "url": "https://dangibbs.uk/",
   "title": "Dan Gibbs - Full Stack Web Developer"
+},{
+  "url": "https://dangibbs.uk/blog/using-oauth-roles-in-grafana-with-keycloak/",
+  "title": "Setting Grafana Roles with Keycloak over OAuth"
 }]
