@@ -17,3 +17,12 @@
 .pull-right {
   float: right;
 }
+
+.token.header {
+  border-top: inherit;
+  border-image: inherit;
+  background-color: inherit;
+  padding: inherit;
+  z-index: inherit;
+  box-shadow: inherit;
+}

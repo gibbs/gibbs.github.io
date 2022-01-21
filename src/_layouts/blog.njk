@@ -38,7 +38,7 @@
           </div>
 
           <div class="blog__summary">
-            <p>{{ latest.data.description }}</p>
+            <p>{{ latest.data.summary }}</p>
           </div>
         </div>
       </div>
@@ -47,7 +47,7 @@
       <div class="blog blog--columns">
         {%- for post in collections.blog | reverse | limit(4, 1) -%}
           <div class="blog__post">
-            <div class="blog__image">
+            {# <div class="blog__image">
               <a aria-hidden="true" href="{{ site.url }}/blog/{{ post.data.uri }}/">
                 {% responsiveImage
                   post.data.image.src | default('assets/images/projects/placeholder.png'),
@@ -58,7 +58,11 @@
                   }
                 %}
               </a>
-            </div>
+            </div> #}
+
+            <h3 class="blog__heading">
+              <a href="{{ site.url }}/blog/{{ post.data.uri }}/">{{ post.data.anchor }}</a>
+            </h3>
 
             <div class="blog__data">
               <span class="blog__tag">
@@ -70,9 +74,9 @@
               </time>
             </div>
 
-            <h3 class="blog__heading">
-              <a href="{{ site.url }}/blog/{{ post.data.uri }}/">{{ post.data.anchor }}</a>
-            </h3>
+            <div class="blog__summary">
+              <p>{{ post.data.summary }}</p>
+            </div>
           </div>
         {% endfor %}
       </div>

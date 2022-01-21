@@ -61,10 +61,19 @@ a:hover {
   color: var(--link-text-hover-color);
 }
 
-p > code {
+* > code {
   color: var(--code-text-color);
   padding: calc(var(--spacer) * .25);
   background-color: var(--code-bg);
+}
+
+mark {
+  color: var(--mark-text-color);
+  padding: calc(var(--spacer) * .25);
+  background-color: var(--mark-bg);
+  border-radius: 5px;
+  font-size: calc(var(--paragraph-font-size) * 0.9);
+  border: 1px solid var(--mark-border-color);
 }
 
 blockquote {

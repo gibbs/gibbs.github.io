@@ -62,6 +62,9 @@
   --hero-subtitle-color: var(--secondary-color);
   --code-bg: var(--mask-dark);
   --code-text-color: var(--primary-color);
+  --mark-bg: #fffdd0;
+  --mark-border-color: #fff516;
+  --mark-text-color: black;
 
   // Grid
   --spacer: 1rem;
@@ -135,6 +138,9 @@
   --hero-subtitle-color: #8DA7BE;
   --code-bg: var(--mask-dark);
   --code-text-color: #fff;
+  --mark-bg: #8DA7BE;
+  --mark-border-color: #3c5469;
+  --mark-text-color: black;
 
   // Elements
   --navigation-toggle-color: var(--black-color);

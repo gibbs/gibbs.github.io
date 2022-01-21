@@ -167,7 +167,7 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--spacer);
-  margin-top: var(--spacer);
+  margin-top: var(--gutter-width);
 }
 
 @media (min-width: map-get($breakpoints, 'sm')) {
