@@ -33,8 +33,8 @@ documentation for useful information.
 ## Matching Keycloak Roles with Grafana
 
 Set the `role_attribute_path` property to match `roles.admin` and `roles.editor`.
-If OAuth contains neither role the attribute will fallback to the viewer role 
-(matching the default Grafana behaviour):
+If the OAuth response contains neither role the attribute will fallback to the 
+viewer role (matching the default Grafana behaviour):
 
 ```ini
 # /etc/grafana/grafana.ini
@@ -71,15 +71,15 @@ Create a new protocol mapper with the following settings:
 After creating this mapper the roles data should now be added to the UserInfo
 endpoint.
 
-Finally, under ==Manage > Users== select a user, go to the ==Role Mappings== 
+Finally, under ==Manage > Users==, select a user, go to the ==Role Mappings== 
 tab and assign one of the newly added roles. Sign in to Grafana with the 
-selected user and they should now have the relevant role.
+selected user and they should now have the relevant role assigned.
 
 ## Testing the UserInfo Endpoint in Keycloak
 
-The Keycloak admin area provides an interface for evaluating a users UserInfo 
-endpoint data. This can be used to check that roles are being returned to 
-Grafana as intended.
+The Keycloak admin area provides an interface for evaluating the users data 
+returned on from the `UserInfo` endpoint. This can be used to check that roles 
+are being sent to Grafana as intended.
 
 Under ==Configure > Clients==:
 
