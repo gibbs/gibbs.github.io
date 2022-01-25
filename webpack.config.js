@@ -9,10 +9,18 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const filename = '[name]' + (site.environment === 'production' ? '.[contenthash]' : '')
 
 module.exports = {
-  entry: [
-    path.resolve(__dirname, 'src', 'assets', 'js', 'index.js'),
-    path.resolve(__dirname, 'src', 'assets', 'css', 'main.scss')
-  ],
+  entry: {
+    main: {
+      import: [
+        path.resolve(__dirname, 'src/assets/js', 'index.js'),
+        path.resolve(__dirname, 'src/assets/css', 'main.scss')
+      ]
+    },
+    homepage: {
+      filename: filename + '.js',
+      import: path.resolve(__dirname, 'src/assets/js', 'homepage.js')
+    }
+  },
   resolve: {
     alias: {
       '~': path.resolve(__dirname, 'node_modules/')

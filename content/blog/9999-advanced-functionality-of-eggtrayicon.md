@@ -2,7 +2,7 @@
 archived: true
 title: PyGTK Tutorial – Advanced functionality of EggTrayIcon
 description: >-
-    Advanced functionality of EggTrayIcon in Python.
+    Advanced functionality example of EggTrayIcon in PyGTK for Python.
 summary: >-
     Advanced functionality of EggTrayIcon in Python.
 anchor: PyGTK Tutorial – Advanced functionality of EggTrayIcon

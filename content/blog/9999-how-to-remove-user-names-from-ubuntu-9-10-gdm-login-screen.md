@@ -1,6 +1,6 @@
 ---
 archived: true
-title: How to Remove User Names from Ubuntu (9.10+) GDM Login Screen
+title: Remove Usernames from Ubuntu GDM Login Screen
 description: >-
     How to Remove User Names from Ubuntu (9.10+) GDM Login Screen
 summary: >-

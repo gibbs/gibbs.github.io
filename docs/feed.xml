@@ -4,12 +4,212 @@
   <subtitle>Posts and articles from dangibbs.uk</subtitle>
   <link href="https://dangibbs.uk/feed.xml" rel="self" />
   <link href="https://dangibbs.uk" />
-  <updated>2022-01-21T14:15:29Z</updated>
+  <updated>2022-01-25T15:01:46Z</updated>
   <id>https://dangibbs.uk</id>
   <author>
     <name>Dan Gibbs</name>
     <email>dev@dangibbs.co.uk</email>
   </author>
+  
+  <entry>
+    <title>KDE Default Cursor After Installing Kubuntu on Ubuntu</title>
+    <link href="https://dangibbs.uk//blog/kde-default-cursor-after-installing-kubuntu-on-ubuntu/"/>
+    <updated>2010-01-17T00:00:00Z</updated>
+    <id>/blog/kde-default-cursor-after-installing-kubuntu-on-ubuntu/</id>
+    <content type="html">&lt;p&gt;When you install Kubuntu from inside Ubuntu KDE will automatically overwrite
+the default (Ubuntu) cursor theme. If you use GDM a lot you’ll probably want to
+revert back.&lt;/p&gt;
+&lt;h2 id=&quot;goto-kde-and-gdm-cursors-on-ubuntu&quot; tabindex=&quot;-1&quot;&gt;KDE and GDM cursors on Ubuntu&lt;/h2&gt;
+&lt;p&gt;This will require you to restart GDM which will log you out so finish what
+you’re doing. Then fire up the terminal
+&lt;mark&gt;Applications &amp;gt; Accessories &amp;gt; Terminal&lt;/mark&gt; and enter the following command:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; update-alternatives --config x-cursor-theme&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The default Ubuntu cursor theme is &lt;code&gt;DMZ-White/cursor.theme&lt;/code&gt; (typically listed
+as &lt;code&gt;/usr/share/icons/DMZ-White/cursor.theme&lt;/code&gt;)&lt;/p&gt;
+&lt;p&gt;Enter the selection number to the left and hit Enter.&lt;/p&gt;
+&lt;p&gt;Now you’ll need to restart GDM for it to take effect. Via the terminal enter:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; /etc/init.d/gdm restart&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You will be logged out and the once GDM starts again you should have the
+default cursor theme back.&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <title>Text-based location (address) bar Ubuntu Lucid Lynx</title>
+    <link href="https://dangibbs.uk//blog/text-based-location-address-bar-ubuntu-lucid-lynx/"/>
+    <updated>2010-05-03T00:00:00Z</updated>
+    <id>/blog/text-based-location-address-bar-ubuntu-lucid-lynx/</id>
+    <content type="html">&lt;p&gt;One of the first things I noticed when using the latest GNOME GUI on Ubuntu
+Lucid Lynx was that there was no button to change the location bar from
+button based to text based.&lt;/p&gt;
+&lt;p&gt;In older version you had a “pencil” icon in Nautilus that allowed you to switch
+back freely but it’s now been removed. Unfortunately there is no standard
+method of reverting to the pencil icon.&lt;/p&gt;
+&lt;p&gt;There are two ways you can. To instantly toggle between button-mode and
+text-mode use &lt;mark&gt;CTRL+L&lt;/mark&gt;.&lt;/p&gt;
+&lt;p&gt;If, like me, you never use button mode you can set the location to text mode
+permenantly via the gconf editor. The easiest way to do this is to
+&lt;mark&gt;ALT+F2&lt;/mark&gt;, type in &lt;code&gt;gconf-editor&lt;/code&gt; and hit Run.&lt;/p&gt;
+&lt;p&gt;In the configuration editor go to &lt;code&gt;apps &amp;gt; nautilus &amp;gt; preferences&lt;/code&gt; then tick
+(check) &lt;strong&gt;always_use_location_entry&lt;/strong&gt;. With that checked you’ll permenantly
+have the text based location bar.&lt;/p&gt;
+&lt;p&gt;You can also use &lt;code&gt;/&lt;/code&gt; to open up a fresh (empty) location bar.&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <title>Insecure Directory Error in Postgres</title>
+    <link href="https://dangibbs.uk//blog/insecure-directory-in-envpath-while-running-with-t-switch-at-usrbinpg_ctlcluster/"/>
+    <updated>2010-09-04T00:00:00Z</updated>
+    <id>/blog/insecure-directory-in-envpath-while-running-with-t-switch-at-usrbinpg_ctlcluster/</id>
+    <content type="html">&lt;p&gt;I received this error with PostgreSQL when using APT on Ubuntu Server 10.04.
+I still don’t know what triggered it (most likely permission related) but
+here’s an a quick cleanup.&lt;/p&gt;
+&lt;p&gt;Exact error output:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;Preparing to replace postgresql-8.4 &lt;span class=&quot;token number&quot;&gt;8.4&lt;/span&gt;.3-1 &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;using &lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;./postgresql-8.4_8.4.3-1_amd64.deb&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;.&lt;br&gt; * Stopping PostgreSQL &lt;span class=&quot;token number&quot;&gt;8.4&lt;/span&gt; database server&lt;br&gt; * Insecure directory &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;$ENV&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token environment constant&quot;&gt;PATH&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;while&lt;/span&gt; running with -T switch at /usr/bin/pg_ctlcluster line &lt;span class=&quot;token number&quot;&gt;63&lt;/span&gt;.&lt;br&gt;                                                                                                                                                                                                      &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;fail&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;br&gt;invoke-rc.d: initscript postgresql-8.4, action &lt;span class=&quot;token string&quot;&gt;&quot;stop&quot;&lt;/span&gt; failed.&lt;br&gt;dpkg: warning: old pre-removal script returned error &lt;span class=&quot;token builtin class-name&quot;&gt;exit&lt;/span&gt; status &lt;span class=&quot;token number&quot;&gt;9&lt;/span&gt;&lt;br&gt;dpkg - trying script from the new package instead &lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;.&lt;br&gt; * Stopping PostgreSQL &lt;span class=&quot;token number&quot;&gt;8.4&lt;/span&gt; database server&lt;br&gt; * Insecure directory &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;$ENV&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token environment constant&quot;&gt;PATH&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;while&lt;/span&gt; running with -T switch at /usr/bin/pg_ctlcluster line &lt;span class=&quot;token number&quot;&gt;63&lt;/span&gt;.&lt;br&gt;                                                                                                                                                                                                      &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;fail&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;br&gt;invoke-rc.d: initscript postgresql-8.4, action &lt;span class=&quot;token string&quot;&gt;&quot;stop&quot;&lt;/span&gt; failed.&lt;br&gt;dpkg: error processing /var/cache/apt/archives/postgresql-8.4_8.4.3-1_amd64.deb &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;--unpack&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;:&lt;br&gt; subprocess new pre-removal script returned error &lt;span class=&quot;token builtin class-name&quot;&gt;exit&lt;/span&gt; status &lt;span class=&quot;token number&quot;&gt;9&lt;/span&gt;&lt;br&gt; * Starting PostgreSQL &lt;span class=&quot;token number&quot;&gt;8.4&lt;/span&gt; database server&lt;br&gt; * Insecure directory &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;$ENV&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token environment constant&quot;&gt;PATH&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;while&lt;/span&gt; running with -T switch at /usr/bin/pg_ctlcluster line &lt;span class=&quot;token number&quot;&gt;63&lt;/span&gt;.&lt;br&gt;                                                                                                                                                                                                      &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;fail&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;br&gt;invoke-rc.d: initscript postgresql-8.4, action &lt;span class=&quot;token string&quot;&gt;&quot;start&quot;&lt;/span&gt; failed.&lt;br&gt;dpkg: error &lt;span class=&quot;token keyword&quot;&gt;while&lt;/span&gt; cleaning up:&lt;br&gt; subprocess installed post-installation script returned error &lt;span class=&quot;token builtin class-name&quot;&gt;exit&lt;/span&gt; status &lt;span class=&quot;token number&quot;&gt;9&lt;/span&gt;&lt;br&gt;Errors were encountered &lt;span class=&quot;token keyword&quot;&gt;while&lt;/span&gt; processing:&lt;br&gt; /var/cache/apt/archives/postgresql-8.4_8.4.3-1_amd64.deb&lt;br&gt;E: Sub-process /usr/bin/dpkg returned an error code &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To clean this up remove the postmaster and reset the group and general
+permissions.&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;rm&lt;/span&gt; /var/lib/postgresql/8.4/main/postmaster.pid&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;chown&lt;/span&gt; postgres:postgres /etc/postgresql/8.4/main/environment&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;chmod&lt;/span&gt; u+rw,g+rw /etc/postgresql/8.4/main/environment&lt;/code&gt;&lt;/pre&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <title>Python Wait Function – Alternative to Sleep for GTK</title>
+    <link href="https://dangibbs.uk//blog/python-wait-function-alternative-to-sleep-for-gtk/"/>
+    <updated>2010-09-16T00:00:00Z</updated>
+    <id>/blog/python-wait-function-alternative-to-sleep-for-gtk/</id>
+    <content type="html">&lt;p&gt;I hate sleep functions. In GTK, for example, they lock the UI making it
+unusable and even make some systems think that the program is hanging
+(which in essence it is). Here is a quick “wait” function written in Python.&lt;/p&gt;
+&lt;p&gt;As I was waiting for something to install I came up with this idea and quickly
+decided to write it. Instead of sleeping it runs an unproductive while loop.
+This has so far stopped programs and UI such as GTK locking up.&lt;/p&gt;
+&lt;h3 id=&quot;goto-gtk-example&quot; tabindex=&quot;-1&quot;&gt;GTK Example&lt;/h3&gt;
+&lt;pre class=&quot;language-python&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;wait&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;time_lapse&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;	time_start &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; time&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;time&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;	time_end &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;time_start &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; time_lapse&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;br&gt;	&lt;span class=&quot;token keyword&quot;&gt;while&lt;/span&gt; time_end &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; time&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;time&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;		&lt;span class=&quot;token keyword&quot;&gt;while&lt;/span&gt; gtk&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;events_pending&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;			gtk&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;main_iteration&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <title>Remove Usernames from Ubuntu GDM Login Screen</title>
+    <link href="https://dangibbs.uk//blog/how-to-remove-user-names-from-ubuntu-9-10-gdm-login-screen/"/>
+    <updated>2010-10-25T00:00:00Z</updated>
+    <id>/blog/how-to-remove-user-names-from-ubuntu-9-10-gdm-login-screen/</id>
+    <content type="html">&lt;p&gt;If you have lots of users on your Linux system, or are looking for added local
+security, you might want to remove the user list from the GDM login screen.&lt;/p&gt;
+&lt;p&gt;GDM has, for a while now, has defaulted to showing usernames at the login
+screen. Instead of actually typing your username you just click it then enter
+the password – very similar to some Windows login screens.&lt;/p&gt;
+&lt;p&gt;However not everybody wants their usernames shown. To access a computer you
+typically need a username and password. If someone is physically at your
+machine they’re already half way to gaining access if they know your username.
+A lot of Linux systems typically have multiple separate users for FTP, HTTP,
+MySQL etc so the login screen can also get very cluttered.&lt;/p&gt;
+&lt;h3 id=&quot;goto-disable-usernames-from-login-screen-via-the-terminal&quot; tabindex=&quot;-1&quot;&gt;Disable usernames from login screen via the terminal&lt;/h3&gt;
+&lt;p&gt;Reverting to the old login screen is easy. One method is to fire up the
+terminal and use:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; -u gdm gconftool-2 --set --type boolean /apps/gdm/simple-greeter/disable_user_list &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;goto-enable-usernames-from-login-screen&quot; tabindex=&quot;-1&quot;&gt;Enable usernames from login screen&lt;/h3&gt;
+&lt;p&gt;It can be enabled again by setting it false:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; -u gdm gconftool-2 --set --type boolean /apps/gdm/simple-greeter/disable_user_list &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Alternatively (for Ubuntu 10.04+) you can go to
+&lt;mark&gt;System &amp;gt; Preferences &amp;gt; Login Screen&lt;/mark&gt; and uncheck Show list of users. You
+will need to unlock it first to make changes.&lt;/p&gt;
+&lt;p&gt;That’s it. The next time you login you should have to enter your username
+manually as well as your password.&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <title>PyGTK Tutorial – Advanced functionality of EggTrayIcon</title>
+    <link href="https://dangibbs.uk//blog/advanced-functionality-of-eggtrayicon/"/>
+    <updated>2011-03-31T00:00:00Z</updated>
+    <id>/blog/advanced-functionality-of-eggtrayicon/</id>
+    <content type="html">&lt;p&gt;EggTrayIcon provides a StatusIcon style widget with advanced functionality.
+It is displayed in the Notification Area / Taskbar of the desktop and can be
+used to position widgets such as Buttons.&lt;/p&gt;
+&lt;h2 id=&quot;goto-example&quot; tabindex=&quot;-1&quot;&gt;Example&lt;/h2&gt;
+&lt;pre class=&quot;language-python&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;#! /usr/bin/python&lt;/span&gt;&lt;br&gt;&lt;br&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; gtk&lt;br&gt;&lt;span class=&quot;token keyword&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; egg&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;trayicon&lt;br&gt;&lt;span class=&quot;token keyword&quot;&gt;except&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token keyword&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;You need to install the python-eggtrayicon package&quot;&lt;/span&gt;&lt;br&gt;&lt;br&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;EggTrayIcon&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;self&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;        self&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;tray &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; egg&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;trayicon&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;TrayIcon&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;TrayIcon&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;br&gt;        eventbox &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; gtk&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;EventBox&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;        image &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; gtk&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Image&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;        image&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;set_from_stock&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;gtk&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;STOCK_HOME&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; gtk&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;ICON_SIZE_SMALL_TOOLBAR&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;br&gt;        eventbox&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;connect&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;button-press-event&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; self&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;icon_clicked&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;br&gt;        eventbox&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;add&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;image&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;        self&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;tray&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;add&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;eventbox&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;        self&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;tray&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;show_all&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;br&gt;    &lt;span class=&quot;token keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;icon_clicked&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;self&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; widget&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; event&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;        &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; event&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;button &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;            menu &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; gtk&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Menu&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;            menuitem_about &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; gtk&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;MenuItem&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;About&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;            menuitem_exit &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; gtk&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;MenuItem&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;Exit&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;            menu&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;append&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;menuitem_about&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;            menu&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;append&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;menuitem_exit&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;            menuitem_about&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;connect&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;activate&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; self&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;aboutdialog&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;            menuitem_exit&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;connect&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;activate&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;lambda&lt;/span&gt; w&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; gtk&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;main_quit&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;            menu&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;show_all&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;            menu&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;popup&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; event&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;button&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; event&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;time&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; self&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;tray&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;br&gt;    &lt;span class=&quot;token keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;aboutdialog&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;self&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; widget&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;        aboutdialog &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; gtk&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;AboutDialog&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;        aboutdialog&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;set_name&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;EggTrayIcon&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;        aboutdialog&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;set_version&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;1.0&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;br&gt;        aboutdialog&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;run&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;        aboutdialog&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;destroy&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;br&gt;EggTrayIcon&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;gtk&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;main&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <title>GNOME 3 Shell YouTube Search Provider</title>
+    <link href="https://dangibbs.uk//blog/gnome-3-youtube-search-provider/"/>
+    <updated>2011-04-22T00:00:00Z</updated>
+    <id>/blog/gnome-3-youtube-search-provider/</id>
+    <content type="html">&lt;p&gt;&lt;a href=&quot;/apps/gnome/youtube.xml&quot;&gt;This XML file&lt;/a&gt; adds a search button for YouTube in
+GNOME 3.&lt;/p&gt;
+&lt;p&gt;To install you need to download the
+&lt;a href=&quot;/apps/gnome/youtube.xml&quot;&gt;YouTube XML file&lt;/a&gt;, move it to
+&lt;code&gt;/usr/share/gnome-shell/search_providers/&lt;/code&gt; and restart the gnome shell.&lt;/p&gt;
+&lt;p&gt;This can be done easily via the terminal with:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;wget&lt;/span&gt; https://dangibbs.uk/apps/gnome/youtube.xml&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;mv&lt;/span&gt; youtube.xml /usr/share/gnome-shell/search_providers/&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Finally you need to restart the gnome shell by using &lt;mark&gt;ALT+F2&lt;/mark&gt; and entering
+&lt;code&gt;restart&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;goto-how-to-search-in-gnome-3&quot; tabindex=&quot;-1&quot;&gt;How to search in Gnome 3&lt;/h2&gt;
+&lt;p&gt;If you aren’t familiar with how to search using Gnome 3 then here’s a
+brief overview. First of all you need to enter the &lt;mark&gt;Activities Overview&lt;/mark&gt; by
+either moving your mouse cursor to the top left of the screen, clicking
+&lt;mark&gt;Activities&lt;/mark&gt; in the top left of the screen or by using the special key.&lt;/p&gt;
+&lt;p&gt;Once you are in “Activites mode” you can start typing your search query
+straight away. At the bottom of the screen are buttons of search providers
+you can use which, by default, includes Google and Wikipedia. If the default
+search provider, which is highlighted, is what you want to use you can just
+hit enter instead of clicking a button.&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <title>Finding Missing Fonts in GIMP (XCF)</title>
+    <link href="https://dangibbs.uk//blog/finding-missing-fonts-in-gimp-xcf/"/>
+    <updated>2011-08-04T00:00:00Z</updated>
+    <id>/blog/finding-missing-fonts-in-gimp-xcf/</id>
+    <content type="html">&lt;p&gt;Have you ever opened up an XCF in GIMP to find that the original font used
+was missing? As far as I can tell GIMP doesn’t give any indication as to the
+font name. The font name itself is stored inside the XCF file as plain text
+though so you can open the XCF and find it.&lt;/p&gt;
+&lt;h2 id=&quot;goto-text-editor-%2F-hex-editor&quot; tabindex=&quot;-1&quot;&gt;Text Editor / Hex Editor&lt;/h2&gt;
+&lt;p&gt;An easy, but not very elegant, method is to open up the file in a text
+editor (such as Kate or Notepad++) or a hex editor. From there you can shift
+through and do a search for &#39;font&#39;.&lt;/p&gt;
+&lt;h2 id=&quot;goto-terminal&quot; tabindex=&quot;-1&quot;&gt;Terminal&lt;/h2&gt;
+&lt;p&gt;There are plenty of ways to do this via a terminal but this is probably the
+easiest:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;grep&lt;/span&gt; -aPo &lt;span class=&quot;token string&quot;&gt;&#39;font &quot;(.*?)&quot;&#39;&lt;/span&gt; thefile.xcf&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To find fonts in multiple XCF files just add a wildcard:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;grep&lt;/span&gt; -aPo &lt;span class=&quot;token string&quot;&gt;&#39;font &quot;(.*?)&quot;&#39;&lt;/span&gt; *.xcf&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Of course you can get creative and recursively search inside a directory,
+return only unique matches etc:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;grep&lt;/span&gt; -aPor -m &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;font &quot;(.*?)&quot;&#39;&lt;/span&gt; *.xcf&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;All three commands will output the actual font names and the file they are in.&lt;/p&gt;
+&lt;p&gt;If anyone knows a more elegant method that can be done inside GIMP itself feel
+free to share in the comments below (although personally the terminal method
+works fine for me and likely much more flexible).&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <title>MODX Manager Preview Logouts and Varnish</title>
+    <link href="https://dangibbs.uk//blog/modx-manager-preview-logouts-and-varnish/"/>
+    <updated>2012-02-11T00:00:00Z</updated>
+    <id>/blog/modx-manager-preview-logouts-and-varnish/</id>
+    <content type="html">&lt;p&gt;If you using MODX in a server environment that runs Varnish you may
+experience weird logging out issues, in particular when using the “preview”
+feature from the manager.&lt;/p&gt;
+&lt;p&gt;This is due to cookie conflicts resulting in MODX forcing a logout and can
+easily be resolved by adding a rule to prevent caching Manager requests under
+&lt;code&gt;vcl_recv&lt;/code&gt; VCL.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sub vcl_recv {
+    ...
+    # MODX Manager
+    if (req.url ~ &amp;quot;^/manager/&amp;quot;) {
+        return(pass);
+    }
+    ...
+}
+&lt;/code&gt;&lt;/pre&gt;
+</content>
+  </entry>
   
   <entry>
     <title>How to run systemd Docker containers in Arch Linux</title>

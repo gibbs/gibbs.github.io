@@ -2,7 +2,7 @@
 archived: true
 title: MODX Manager Preview Logouts and Varnish
 description: >-
-    Varnish rule to prevent caching Manager requests
+    A Varnish VCL rule to prevent caching MODX Manager preview requests
 summary: >-
     Varnish rule to prevent caching Manager requests
 anchor: MODX Manager Preview Logouts and Varnish

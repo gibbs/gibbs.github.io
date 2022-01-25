@@ -146,3 +146,84 @@ tbody tr:nth-child(2n) {
     font-family: 'icomoon' !important;
   }
 }
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: calc(var(--spacer) * 2) 0 calc(var(--spacer) * 2) 0;
+  width: 100%;
+
+  &__activity {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 var(--spacer) 0 0;
+    width: 100%;
+  }
+
+  &__group {
+    position: relative;
+    display: block;
+    margin: calc(var(--spacer) * 2) 0 0 0;
+    border-left: 2px solid var(--secondary-color);
+    width: 100%;
+  }
+
+  &__group:nth-child(1n) {
+    margin: 0;
+  }
+
+  &__date {
+    display: inline-block;
+    padding: calc(var(--spacer) * .75);
+    background-color: var(--secondary-color);
+    color: var(--dark-link-text-color);
+    font-size: smaller;
+    border-radius: 5px;
+    margin: 0 0 0 calc(var(--spacer) * -1);
+  }
+
+  &__entries {
+    list-style-type: none;
+    margin: 0;
+    padding: var(--spacer);
+  }
+
+  &__entry {
+    display: flex;
+    border: 1px solid var(--mask-dark);
+    border-radius: 5px;
+    align-items: center;
+    margin: 0 0 calc(var(--spacer) * .5) 0;
+  }
+
+  &__entry:last-of-type {
+    margin: 0;
+  }
+
+  &__information {
+    flex: 1;
+    padding: calc(var(--spacer) * .75);
+  }
+
+  &__entry-heading {
+    font-size: smaller;
+    margin: 0;
+  }
+
+  &__authored {
+    font-size: smaller;
+    margin: 0;
+    color: var(--text-color-light);
+  }
+
+  &__hash-button {
+    font-size: smaller;
+    border-radius: 5px 0 0 5px;
+    text-align: center;
+    width: 85px;
+  }
+}

@@ -1,7 +1,13 @@
 .layout__home .content {
+  padding: 0;
+}
+
+.homepage--intro {
   position: relative;
   display: flex;
   align-items: center;
+  padding-top: calc(var(--spacer) * 2);
+  padding-bottom: calc(var(--spacer) * 2);
 }
 
 .hero {
@@ -163,11 +169,25 @@
   margin-bottom: var(--spacer);
 }
 
+.blog--rows {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
 .blog--columns {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--spacer);
   margin-top: var(--gutter-width);
+}
+
+.blog--item {
+  margin: var(--gutter-width) 0 0 0;
+}
+
+.blog__summary__paragraph {
+  margin: var(--spacer) 0 0 0;
 }
 
 @media (min-width: map-get($breakpoints, 'sm')) {

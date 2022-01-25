@@ -2,7 +2,7 @@
 archived: true
 title: Finding Missing Fonts in GIMP (XCF)
 description: >-
-    How to find a missing font in a GIMP XCF file.
+    A look at finding missing fonts in GIMP XCF files.
 summary: >-
     How to find a missing font in a GIMP XCF file.
 anchor: Finding Missing Fonts in GIMP (XCF)

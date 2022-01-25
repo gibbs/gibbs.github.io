@@ -28,14 +28,24 @@ function manifestAssetPath (key) {
 }
 
 /**
+ * Asset Content
+ *
+ * @param {string} filename
+ * @returns mixed
+ */
+function assetContent (filename) {
+  const filePath = path.join(site.path.public, manifestAssetPath(filename))
+
+  return fs.readFileSync(filePath, { encoding: 'utf8' })
+}
+
+/**
  * CSS Shortcode
  *
  * @returns {string}
  */
 function cssShortcode () {
-  const filePath = path.join(site.path.public, manifestAssetPath('main.css'))
-
-  return fs.readFileSync(filePath, { encoding: 'utf8' })
+  return assetContent('main.css')
 }
 
 /**
@@ -195,6 +205,7 @@ async function responsiveImageShortcode (src, alt = '', options = {}) {
 }
 
 module.exports = (config) => {
+  config.addShortcode('asset', assetContent)
   config.addShortcode('css', cssShortcode)
   config.addShortcode('manifest', manifestAssetPath)
   config.addAsyncShortcode('image', imageShortcode)

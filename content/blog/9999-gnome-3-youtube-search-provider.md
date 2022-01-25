@@ -4,7 +4,7 @@ archived: >-
     time ago!
 title: GNOME 3 Shell YouTube Search Provider
 description: >-
-    YouTube search support for GNOME 3
+    YouTube search provider support example for GNOME 3
 summary: >-
     YouTube search support for GNOME 3
 anchor: GNOME 3 Shell YouTube Search Provider 

@@ -1,6 +1,6 @@
 ---
 archived: true
-title: Insecure directory in $ENV{PATH} while running with -T switch at /usr/bin/pg_ctlcluster
+title: Insecure Directory Error in Postgres
 description: >-
     PostgreSQL Insecure directory in $ENV{PATH} error.
 summary: >-

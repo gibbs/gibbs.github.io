@@ -44,62 +44,31 @@
       </div>
       {% endfor %}
 
-      <div class="blog blog--columns">
-        {%- for post in collections.blog | reverse | limit(4, 1) -%}
-          <div class="blog__post">
-            {# <div class="blog__image">
-              <a aria-hidden="true" href="{{ site.url }}/blog/{{ post.data.uri }}/">
-                {% responsiveImage
-                  post.data.image.src | default('assets/images/projects/placeholder.png'),
-                  post.data.image.caption | default(post.data.title),
-                  {
-                    maxWidth: 429,
-                    widths: [[309, 360], [363, 414], [162, 768], [230, 992], [310, 1200], [370, 1400], 429]
-                  }
-                %}
-              </a>
-            </div> #}
+      <ol class="blog blog--rows">
+        {%- for post in collections.blog | reverse | limit(999, 1) -%}
+          <li class="blog--item">
+            <div>
+              <h3 class="blog__heading">
+                <a href="{{ site.url }}/blog/{{ post.data.uri }}/">{{ post.data.anchor }}</a>
+              </h3>
 
-            <h3 class="blog__heading">
-              <a href="{{ site.url }}/blog/{{ post.data.uri }}/">{{ post.data.anchor }}</a>
-            </h3>
+              <div class="blog__data">
+                <span class="blog__tag">
+                  {{ post.data.tags | primaryTag }}
+                </span>
 
-            <div class="blog__data">
-              <span class="blog__tag">
-                {{ post.data.tags | primaryTag }}
-              </span>
+                <time class="blog__date" datetime="{{ post.date | postDate }}">
+                  &mdash; {{ post.date | postDate }}
+                </time>
+              </div>
 
-              <time class="blog__date" datetime="{{ post.date | postDate }}">
-                &mdash; {{ post.date | postDate }}
-              </time>
+              <div class="blog__summary">
+                <p class="blog__summary__paragraph">{{ post.data.summary }}</p>
+              </div>
             </div>
-
-            <div class="blog__summary">
-              <p>{{ post.data.summary }}</p>
-            </div>
-          </div>
+          </li>
         {% endfor %}
-      </div>
-
-      <div class="blog blog--columns">
-        {%- for post in collections.blog | reverse | limit(96, 4) -%}
-          <div class="blog__post">
-            <div class="blog__data">
-              <span class="blog__tag">
-                {{ post.data.tags | primaryTag }}
-              </span>
-
-              <time class="blog__date" datetime="{{ post.date | postDate }}">
-                &mdash; {{ post.date | postDate }}
-              </time>
-            </div>
-
-            <h3 class="blog__heading">
-              <a href="{{ site.url }}/blog/{{ post.data.uri }}/">{{ post.data.anchor }}</a>
-            </h3>
-          </div>
-        {% endfor %}
-      </div>
+      </ol>
     </div>
   </div>
 {% endblock %}

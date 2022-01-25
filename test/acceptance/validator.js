@@ -74,7 +74,7 @@ for (const key in urls) {
 
     it('should contain content', () => {
       const document = new JSDOM(response.text)
-      const selector = document.window.document.querySelector('#content > .container > .row')
+      const selector = document.window.document.querySelector('#content')
 
       // Assert not empty
       assert.isTrue(selector.textContent.replace(/[\n\r]+|[\s]{2,}/g, '').trim() !== '')

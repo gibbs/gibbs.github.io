@@ -54,5 +54,6 @@
     {% endblock %}
 
     <script src="{{ site.url }}{% manifest 'main.js' %}" integrity="{% sri 'main.js', true %}"></script>
+    {% block scripts %}{% endblock %}
   </body>
 </html>
