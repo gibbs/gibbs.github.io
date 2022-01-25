@@ -55,4 +55,7 @@
 },{
   "url": "https://dangibbs.uk/blog/using-oauth-roles-in-grafana-with-keycloak/",
   "title": "Setting Grafana Roles with Keycloak over OAuth"
+},{
+  "url": "https://dangibbs.uk/projects/puppet-systemd-journal-remote/",
+  "title": "systemd Journal Remote Puppet Module"
 }]
