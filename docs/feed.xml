@@ -4,7 +4,7 @@
   <subtitle>Posts and articles from dangibbs.uk</subtitle>
   <link href="https://dangibbs.uk/feed.xml" rel="self" />
   <link href="https://dangibbs.uk" />
-  <updated>2022-01-25T18:21:02Z</updated>
+  <updated>2022-01-26T09:52:46Z</updated>
   <id>https://dangibbs.uk</id>
   <author>
     <name>Dan Gibbs</name>
@@ -228,7 +228,7 @@ will likely be issues (regardless of read/write permissions) when running
 systemd as an init system inside a Docker container.&lt;/p&gt;
 &lt;h2 id=&quot;goto-example&quot; tabindex=&quot;-1&quot;&gt;Example&lt;/h2&gt;
 &lt;p&gt;Running the following &lt;code&gt;litmusimage/ubuntu&lt;/code&gt; container fails to start.&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;docker run -it --privileged --volume /sys/fs/cgroup:/sys/fs/cgroup:ro --tmpfs /tmp:exec litmusimage/ubuntu:20.04&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; run -it --privileged --volume /sys/fs/cgroup:/sys/fs/cgroup:ro --tmpfs /tmp:exec litmusimage/ubuntu:20.04&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Example init errors returned:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;Failed to create /init.scope control group: Read-only &lt;span class=&quot;token function&quot;&gt;file&lt;/span&gt; system&lt;br&gt;Failed to allocate manager object: Read-only &lt;span class=&quot;token function&quot;&gt;file&lt;/span&gt; system&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; Failed to allocate manager object.&lt;br&gt;Exiting PID &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;.&lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&quot;goto-workaround&quot; tabindex=&quot;-1&quot;&gt;Workaround&lt;/h2&gt;
