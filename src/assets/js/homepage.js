@@ -10,7 +10,7 @@ function getLatestActivity () {
     sort: 'author-date',
     order: 'desc',
     page: 1,
-    per_page: 5
+    per_page: 8
   }).toString()
 
   fetch(url, {

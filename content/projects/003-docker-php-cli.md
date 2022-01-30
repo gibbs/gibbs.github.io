@@ -22,6 +22,9 @@ jsonld:
     datePublished: "2021-07-06"
     dateCreated: "2021-07-06"
     dateModified: "2021-07-06"
+    sameAs:
+        - https://hub.docker.com/r/genv/php-cli
+        - https://github.com/gibbs/docker-php-cli
 ---
 
 # Docker: PHP CLI

@@ -21,6 +21,9 @@ jsonld:
     datePublished: "2021-05-08"
     dateCreated: "2021-05-08"
     dateModified: "2021-05-08"
+    sameAs:
+        - https://github.com/gibbs/docker-lighthouse
+        - https://hub.docker.com/r/genv/lighthouse
 ---
 
 # Docker Lighthouse

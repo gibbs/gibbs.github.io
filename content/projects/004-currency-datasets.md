@@ -21,6 +21,8 @@ jsonld:
     datePublished: "2021-11-17"
     dateCreated: "2021-11-17"
     dateModified: "2021-11-17"
+    sameAs:
+        - https://github.com/gibbs/currency-data
 ---
 
 # Open Currency Dataset

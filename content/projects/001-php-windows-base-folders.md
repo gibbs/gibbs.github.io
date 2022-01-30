@@ -20,6 +20,9 @@ jsonld:
     datePublished: "2021-04-18"
     dateCreated: "2021-11-18"
     dateModified: "2021-11-18"
+    sameAs:
+        - https://github.com/gibbs/php-windows-base-dir
+        - https://packagist.org/packages/gibbs/php-windows-base-dir
 ---
 
 # PHP Library: Windows Base Directory
