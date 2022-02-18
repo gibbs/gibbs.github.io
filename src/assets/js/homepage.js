@@ -5,13 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 function getLatestActivity () {
-  const url = new URL('https://api.github.com/search/commits?') + new URLSearchParams({
-    q: 'author:gibbs is:public',
-    sort: 'author-date',
-    order: 'desc',
-    page: 1,
-    per_page: 8
-  }).toString()
+  const url = new URL('https://app.dangibbs.uk/data/activity-feed.json').toString()
 
   fetch(url, {
     method: 'GET',
