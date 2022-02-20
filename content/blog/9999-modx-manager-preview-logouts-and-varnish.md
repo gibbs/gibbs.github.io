@@ -20,7 +20,7 @@ jsonld:
     dateModified: "2012-02-11"
 ---
 
-If you using MODX in a server environment that runs Varnish you may 
+If you are using MODX in a server environment that runs Varnish you may 
 experience weird logging out issues, in particular when using the “preview” 
 feature from the manager.
 
@@ -28,13 +28,13 @@ This is due to cookie conflicts resulting in MODX forcing a logout and can
 easily be resolved by adding a rule to prevent caching Manager requests under 
 `vcl_recv` VCL.
 
-```
+```hcl
 sub vcl_recv {
-    ...
+
     # MODX Manager
     if (req.url ~ "^/manager/") {
         return(pass);
     }
-    ...
+
 }
 ```

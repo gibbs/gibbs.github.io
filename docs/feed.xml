@@ -4,7 +4,7 @@
   <subtitle>Posts and articles from dangibbs.uk</subtitle>
   <link href="https://dangibbs.uk/feed.xml" rel="self" />
   <link href="https://dangibbs.uk" />
-  <updated>2022-02-18T18:10:14Z</updated>
+  <updated>2022-02-20T19:33:20Z</updated>
   <id>https://dangibbs.uk</id>
   <author>
     <name>Dan Gibbs</name>
@@ -193,21 +193,13 @@ works fine for me and likely much more flexible).&lt;/p&gt;
     <link href="https://dangibbs.uk//blog/modx-manager-preview-logouts-and-varnish/"/>
     <updated>2012-02-11T00:00:00Z</updated>
     <id>/blog/modx-manager-preview-logouts-and-varnish/</id>
-    <content type="html">&lt;p&gt;If you using MODX in a server environment that runs Varnish you may
+    <content type="html">&lt;p&gt;If you are using MODX in a server environment that runs Varnish you may
 experience weird logging out issues, in particular when using the “preview”
 feature from the manager.&lt;/p&gt;
 &lt;p&gt;This is due to cookie conflicts resulting in MODX forcing a logout and can
 easily be resolved by adding a rule to prevent caching Manager requests under
 &lt;code&gt;vcl_recv&lt;/code&gt; VCL.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;sub vcl_recv {
-    ...
-    # MODX Manager
-    if (req.url ~ &amp;quot;^/manager/&amp;quot;) {
-        return(pass);
-    }
-    ...
-}
-&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&quot;language-hcl&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-hcl&quot;&gt;sub &lt;span class=&quot;token keyword&quot;&gt;vcl_recv&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;&lt;br&gt;    &lt;span class=&quot;token comment&quot;&gt;# MODX Manager&lt;/span&gt;&lt;br&gt;    if (req.url ~ &lt;span class=&quot;token string&quot;&gt;&quot;^/manager/&quot;&lt;/span&gt;) &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;        return(pass);&lt;br&gt;    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;br&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 </content>
   </entry>
   

@@ -129,16 +129,18 @@ body {
 }
 
 .content {
+  position: relative;
   z-index: 1;
   padding-top: calc(var(--spacer) * 2);
   padding-bottom: calc(var(--spacer) * 2);
   max-width: 100%;
+  overflow-wrap: break-word;
 }
 
 .footer {
   color: var(--secondary-color-text);
   background-color: var(--footer-bg);
-  padding: var(--spacer) 0;
+  padding: calc(var(--spacer) * 2) 0;
 
   &__right {
     display: flex;
@@ -181,8 +183,10 @@ body {
 
 .copyright {
   color: var(--copyright-text-color);
-  padding: 0 0 .5rem 0;
+  padding: var(--spacer) 0 var(--spacer) 0;
   background-color: var(--copyright-bg);
+  // background-image: linear-gradient(var(--copyright-bg), var(--footer-bg));
+  border-bottom: 5px solid var(--primary-color);
 
   &__grid {
     display: grid;
@@ -200,6 +204,7 @@ body {
   &__test-status {
     display: flex;
     justify-content: center;
+    align-items: center;
     align-self: center;
     margin: 0;
     font-size: small;

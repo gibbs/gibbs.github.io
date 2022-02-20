@@ -190,6 +190,13 @@
   margin: var(--spacer) 0 0 0;
 }
 
+.post {
+  &__date {
+    color: var(--text-color-light);
+    font-size: smaller;
+  }
+}
+
 @media (min-width: map-get($breakpoints, 'sm')) {
   .project-list {
     grid-template-columns: 1fr 1fr;
