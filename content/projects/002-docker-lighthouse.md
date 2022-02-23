@@ -68,7 +68,7 @@ be done by passing `--cap-add=SYS_ADMIN` for each command.
 ### Generate a HTML Report
 
 Reports are generated in the container under `/home/lighthouse/reports/`. Using
-a volume reports can be written to the hosts current working directory with:
+a volume, reports can be written to the host's current working directory with:
 
 ```bash
 docker run --cap-add=SYS_ADMIN -v "$(pwd):/home/lighthouse/reports/" genv/lighthouse:latest https://example.com/
@@ -112,7 +112,7 @@ This will return something similar to:
 
 ### JSON Reports
 
-Using stdout with a volume you can save full JSON reports;
+Using stdout with a volume, you can save full JSON reports;
 
 ```bash
 docker run --cap-add=SYS_ADMIN genv/lighthouse https://example.com/ --output=json --output-path=stdout > $(date +%s)_report.json
@@ -120,7 +120,7 @@ docker run --cap-add=SYS_ADMIN genv/lighthouse https://example.com/ --output=jso
 
 ### Multiple Reports
 
-Reports can be generated in HTML, CSV and JSON. To create multiple reports
+Reports can be generated in HTML, CSV and JSON. To create multiple reports,
 set the `--output` flag and use a volume in the current working directory:
 
 ```bash
@@ -136,7 +136,7 @@ typically the IP on Linux hosts);
 docker run --cap-add=SYS_ADMIN -v "$(pwd):/home/lighthouse/reports/" genv/lighthouse:latest http://172.17.0.1:8080/
 ```
 
-Alternatively a wildcard DNS service like [nip.io](https://nip.io/) should work
+Alternatively, a wildcard DNS service like [nip.io](https://nip.io/) should work
 for testing other sites within your local network.
 
 ### All Options

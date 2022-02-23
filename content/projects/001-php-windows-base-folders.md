@@ -44,7 +44,7 @@ Install the package via the Composer package manager:
 composer require gibbs/php-windows-base-dir
 ```
 
-Using the Composer autoloader print all available paths:
+Using the Composer autoloader, print all available paths:
 
 ```php
 // Path to the Composer autoloader

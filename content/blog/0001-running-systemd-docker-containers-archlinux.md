@@ -26,7 +26,7 @@ jsonld:
 ---
 
 Docker engine [20.10.6](https://docs.docker.com/engine/release-notes/#20106)
-recently moved its cgroup v2 support out of experimental but it does not 
+recently moved its cgroup v2 support out of experimental, but it does not 
 support *hybrid* hierarchies. Most modern systemd packages for Linux 
 distributions are compiled and shipped with the hybrid hierarchy which is a 
 systemd recommended default.
@@ -61,7 +61,7 @@ Exiting PID 1...
 ## Workaround
 
 Disable the hybrid hierarchy by setting the kernel parameter 
-`systemd.unified_cgroup_hierarchy=0` from your boot loader or during kernel 
+`systemd.unified_cgroup_hierarchy=0` from your bootloader or during kernel 
 compilation.
 
 ## GRUB Example

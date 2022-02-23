@@ -33,12 +33,12 @@ jsonld:
 
 The `genv/php-cli` Docker images contain multiple PHP CLI versions that can
 be used for local testing, development and CI/CD pipelines. These images are 
-intended to be minimal with a small footprint and are typically between ~55MB 
-and ~70MB in size.
+intended to be minimal with a small footprint and are typically between ~55 MB 
+and ~70 MB in size.
 
 Images are frequently built on various Debian releases to provide all major 
 releases and security updates after 5.6. Old, unsupported, PHP versions are 
-still provided allowing work to be performed on legacy codebases and old 
+still provided, allowing work to be performed on legacy codebases and old 
 library versions. Tags are available for PHP versions 5.6, 7.0, 7.1, 7.2, 7.3, 
 7.4, 8.0 and 8.1 with the Composer package manager being included in all 
 releases.
@@ -81,7 +81,7 @@ docker run genv/php-cli:5.6 -r 'print_r(new DateTime);'
 
 ### Execute Files
 
-To execute a file you will need to use a docker volume. PHP will execute scripts
+To execute a file, you will need to use a docker volume. PHP will execute scripts
 in the container path `/data/` by default.
 
 Use the current working directory and execute a PHP script from a relative path:
@@ -103,7 +103,7 @@ docker run -v "$(pwd):/data/" genv/php-cli:5.6 /data/test.php
 ### Using Composer
 
 Using Composer via Docker can allow you to install packages locked in upstream
-for a PHP version you don't have installed. This is useful if you need run or 
+for a PHP version you don't have installed. This is useful if you need to run or 
 test against older or newer versions.
 
 ```bash

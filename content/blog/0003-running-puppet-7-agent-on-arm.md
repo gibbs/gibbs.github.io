@@ -25,7 +25,7 @@ jsonld:
 
 The Puppet open source repositories for Debian are not currently packaged
 with a `puppet-agent` for ARM architectures. If you need to run a specific 
-Puppet agent version (>=6) you can manually setup the agent and run it with
+Puppet agent version (>=6) you can manually set up the agent and run it with
 Ruby.
 
 ## Installing the Puppet Agent via Ruby
@@ -79,25 +79,25 @@ result in errors such as:
 
 ==Warning: Found multiple default providers for service: init, systemd; using init==
 
-If the distro you are using is part of a well supported family you can 
+If the distro you are using is part of a well-supported family, you can 
 manually set the OS facts. In the following example the OS is set to Debian
 under `/etc/puppetlabs/facter/facts.d/os.yaml`:
 
 ```yaml
-operatingsystem: Debian
+operatingsystem: Debian # Raspbian
 os:
   architecture: armv7l
   distro:
     codename: buster
     description: "Raspbian GNU/Linux 10 (buster)"
-    id: "Debian"
+    id: "Debian" # "Raspbian"
     release:
       full: '10.11'
       major: '10'
       minor: '11'
   family: "Debian"
   hardware: armv7l
-  name: "Debian"
+  name: "Debian" # "Raspbian"
   release:
     full: '10.11'
     major: '10'
