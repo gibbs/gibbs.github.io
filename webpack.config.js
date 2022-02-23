@@ -12,13 +12,13 @@ module.exports = {
   entry: {
     main: {
       import: [
-        path.resolve(__dirname, 'src/assets/js', 'index.js'),
-        path.resolve(__dirname, 'src/assets/css', 'main.scss')
+        path.resolve(__dirname, 'src/js', 'index.js'),
+        path.resolve(__dirname, 'src/css', 'main.scss')
       ]
     },
     homepage: {
       filename: filename + '.js',
-      import: path.resolve(__dirname, 'src/assets/js', 'homepage.js')
+      import: path.resolve(__dirname, 'src/js', 'homepage.js')
     }
   },
   resolve: {

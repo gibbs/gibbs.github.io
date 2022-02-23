@@ -5,7 +5,7 @@
       <div class="blog__list__image">
         <a href="{{ site.url }}/blog/{{ post.data.uri }}/">
         {% responsiveImage 
-          post.data.image.src|default('assets/images/blog/placeholder.png'),
+          post.data.image.src|default('images/blog/placeholder.png'),
           post.data.image.caption|default(project.data.title),
           {
             maxWidth: 540,

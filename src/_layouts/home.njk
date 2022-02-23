@@ -8,13 +8,11 @@
       <div class="hero">
         {{ content | safe }}
       </div>
-
-      <!-- {% include "projects.njk" %} -->
     </div>
 
-    <video autoplay muted loop class="intro__video">
+    {#<video autoplay muted loop class="intro__video">
       <source src="{{ site.url }}/assets/videos/intro.mp4" type="video/mp4">
-    </video>
+    </video>#}
   </div>
 
   <div class="row homepage--activity">
@@ -32,6 +30,14 @@
 
     </div>
   </div>
+
+  {#<div class="row">
+    <div class="container">
+      <h3>Latest Projects</h3>
+
+      {% include "projects.njk" %}
+    </div>
+  </div>#}
 {% endblock %}
 
 {% block scripts %}

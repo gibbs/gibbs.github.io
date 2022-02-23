@@ -9,7 +9,7 @@ summary: >-
 anchor: Currency Datasets
 uri: currency-datasets
 image:
-    src: assets/images/projects/currency-data.png
+    src: images/projects/currency-data.png
     caption: Currency notes.
 tags:
     - data

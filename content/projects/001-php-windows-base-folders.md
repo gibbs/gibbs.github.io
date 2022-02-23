@@ -8,7 +8,7 @@ summary: >-
 anchor: Windows Base Directory
 uri: php-windows-base-folders
 image:
-    src: assets/images/projects/php-windows-base-folders.png
+    src: images/projects/php-windows-base-folders.png
     caption: PHP and Windows logos.
 tags:
     - php

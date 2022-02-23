@@ -20,7 +20,7 @@ feed:
     <name>{{ feed.author.name }}</name>
     <email>{{ feed.author.email }}</email>
   </author>
-  {%- for post in collections.blog %}
+  {%- for post in collections.blog | reverse %}
   {% set absolutePostUrl %}{{ post.url | url | absoluteUrl(feed.url) }}{% endset %}
   <entry>
     <title>{{ post.data.title }}</title>

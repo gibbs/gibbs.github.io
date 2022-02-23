@@ -9,7 +9,7 @@ summary: >-
 anchor: Docker PHP CLI
 uri: docker-php-cli
 image:
-    src: assets/images/projects/docker-phpunit.png
+    src: images/projects/docker-phpunit.png
     caption: PHP and Docker logos.
 tags:
     - docker

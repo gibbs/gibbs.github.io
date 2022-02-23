@@ -8,7 +8,7 @@ summary: >-
 anchor: Puppet systemd journal remote Module
 uri: puppet-systemd-journal-remote
 image:
-    src: assets/images/projects/puppet-systemd-journal-remote.png
+    src: images/projects/puppet-systemd-journal-remote.png
     caption: Puppet systemd journal remote graphic.
 tags:
     - puppet

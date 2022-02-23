@@ -10,7 +10,7 @@ anchor: Running Puppet 7 on ARM
 uri: running-puppet-7-agent-on-arm
 heading: Running Puppet 7 on Raspberry Pi OS (armhf/armv7)
 # image:
-#     src: assets/images/blog/puppet-pi.png
+#     src: images/blog/puppet-pi.png
 #     caption: puppet 7 raspberry pi
 tags:
     - puppet

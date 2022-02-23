@@ -4,7 +4,7 @@
       <div class="project-list__image">
         <a href="{{ site.url }}/projects/{{ project.data.uri }}/">
         {% responsiveImage
-          project.data.image.src | default('assets/images/projects/placeholder.png'),
+          project.data.image.src | default('images/projects/placeholder.png'),
           project.data.image.caption | default(project.data.title),
           {
             maxWidth: 540,

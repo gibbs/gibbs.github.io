@@ -3,7 +3,7 @@ permalink: search.json
 eleventyExcludeFromCollections: true
 ---
 [
-{%- for page in collections.all -%}
+{%- for page in collections.all | reverse -%}
 {
   "url": "{{ site.url}}{{ page.url }}",
   "title": "{{ page.data.title }}"
