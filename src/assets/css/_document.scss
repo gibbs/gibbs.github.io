@@ -208,6 +208,8 @@ body {
     align-self: center;
     margin: 0;
     font-size: small;
+    flex-direction: column;
+    gap: var(--spacer);
 
     a {
       padding: 0 calc(var(--gutter-width) * .25);
@@ -241,6 +243,8 @@ body {
 
   .copyright__test-status {
     justify-content: flex-end;
+    flex-direction: row;
+    gap: unset;
   }
 }
 

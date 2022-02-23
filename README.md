@@ -1,5 +1,6 @@
 # dangibbs.uk
 
+![Build](https://github.com/gibbs/gibbs.github.io/actions/workflows/deploy.yml/badge.svg)
 ![Tests](https://github.com/gibbs/gibbs.github.io/actions/workflows/test.yml/badge.svg)
 
 Dan Gibbs's personal website repository built with 
@@ -14,12 +15,16 @@ npm run build
 ## Develop
 
 ```bash
-APP_URL="http://localhost:8080" npm run serve
+npm run serve
+```
+
+## Lint
+
+```bash
+npm run lint
 ```
 
 ## Test
-
-Run all tests:
 
 ```bash
 npm run test
