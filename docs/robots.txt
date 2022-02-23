@@ -1,5 +1,0 @@
-Sitemap: https://dangibbs.uk/sitemap.xml
-
-User-agent: *
-Allow:
-Disallow:
