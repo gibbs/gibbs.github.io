@@ -4,7 +4,7 @@
   <subtitle>Posts and articles from dangibbs.uk</subtitle>
   <link href="https://dangibbs.uk/feed.xml" rel="self" />
   <link href="https://dangibbs.uk" />
-  <updated>2022-02-20T19:33:20Z</updated>
+  <updated>2022-02-23T12:04:36Z</updated>
   <id>https://dangibbs.uk</id>
   <author>
     <name>Dan Gibbs</name>
@@ -287,6 +287,44 @@ are being sent to Grafana as intended.&lt;/p&gt;
 &lt;p&gt;Setting the Grafana log level to &lt;code&gt;debug&lt;/code&gt; can also be used to log information
 returned from OAuth requests.&lt;/p&gt;
 &lt;pre class=&quot;language-ini&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-ini&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# /etc/grafana/grafana.ini&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token header&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token section-name selector&quot;&gt;log.file&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token key attr-name&quot;&gt;level&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token value attr-value&quot;&gt;debug&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <title>Running Puppet 7 Agent on ARM</title>
+    <link href="https://dangibbs.uk//blog/running-puppet-7-agent-on-arm/"/>
+    <updated>2022-02-22T00:00:00Z</updated>
+    <id>/blog/running-puppet-7-agent-on-arm/</id>
+    <content type="html">&lt;p&gt;The Puppet open source repositories for Debian are not currently packaged
+with a &lt;code&gt;puppet-agent&lt;/code&gt; for ARM architectures. If you need to run a specific
+Puppet agent version (&amp;gt;=6) you can manually setup the agent and run it with
+Ruby.&lt;/p&gt;
+&lt;h2 id=&quot;goto-installing-the-puppet-agent-via-ruby&quot; tabindex=&quot;-1&quot;&gt;Installing the Puppet Agent via Ruby&lt;/h2&gt;
+&lt;p&gt;Install Ruby 2.7.2 with &lt;a href=&quot;https://rvm.io/rvm/install&quot;&gt;rvm&lt;/a&gt; or an equivalent
+environment manager:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;rvm &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2.7&lt;/span&gt;.2&lt;br&gt;rvm use &lt;span class=&quot;token number&quot;&gt;2.7&lt;/span&gt;.2&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Install the &lt;code&gt;puppet&lt;/code&gt; and &lt;code&gt;facter&lt;/code&gt; gems:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;gem &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; puppet facter&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If your codebase uses Augeas you will likely receive the error
+&lt;mark&gt;Error: Could not find a suitable provider for augeas&lt;/mark&gt;. Install the
+development library and ruby wrapper with:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;apt-get&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; libaugeas-dev&lt;br&gt;gem &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; ruby-augeas&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;goto-initial-configuration&quot; tabindex=&quot;-1&quot;&gt;Initial Configuration&lt;/h2&gt;
+&lt;p&gt;Create an initial directory structure for Puppet/Facter:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;mkdir&lt;/span&gt; -p /etc/puppetlabs/puppet/ /etc/puppetlabs/facter/facts.d/&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Add a minimal Puppet configuration file:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;EOF&lt;span class=&quot;token bash punctuation&quot;&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; /etc/puppetlabs/puppet/puppet.conf&lt;/span&gt;&lt;br&gt;[main]&lt;br&gt;server = puppetserver.example.local&lt;br&gt;environment = production&lt;br&gt;EOF&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;goto-set-the-system-facts&quot; tabindex=&quot;-1&quot;&gt;Set the System Facts&lt;/h2&gt;
+&lt;p&gt;The distro and ARM architecture are unlikely to be supported by Puppet
+(including any forge modules you may be using). Running Puppet now can
+result in errors such as:&lt;/p&gt;
+&lt;p&gt;&lt;mark&gt;Warning: Found multiple default providers for service: init, systemd; using init&lt;/mark&gt;&lt;/p&gt;
+&lt;p&gt;If the distro you are using is part of a well supported family you can
+manually set the OS facts. In the following example the OS is set to Debian
+under &lt;code&gt;/etc/puppetlabs/facter/facts.d/os.yaml&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&quot;language-yaml&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;operatingsystem&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Debian&lt;br&gt;&lt;span class=&quot;token key atrule&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token key atrule&quot;&gt;architecture&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; armv7l&lt;br&gt;  &lt;span class=&quot;token key atrule&quot;&gt;distro&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token key atrule&quot;&gt;codename&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; buster&lt;br&gt;    &lt;span class=&quot;token key atrule&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Raspbian GNU/Linux 10 (buster)&quot;&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token key atrule&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Debian&quot;&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token key atrule&quot;&gt;release&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;      &lt;span class=&quot;token key atrule&quot;&gt;full&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;10.11&#39;&lt;/span&gt;&lt;br&gt;      &lt;span class=&quot;token key atrule&quot;&gt;major&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;10&#39;&lt;/span&gt;&lt;br&gt;      &lt;span class=&quot;token key atrule&quot;&gt;minor&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;11&#39;&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token key atrule&quot;&gt;family&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Debian&quot;&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token key atrule&quot;&gt;hardware&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; armv7l&lt;br&gt;  &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Debian&quot;&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token key atrule&quot;&gt;release&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token key atrule&quot;&gt;full&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;10.11&#39;&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token key atrule&quot;&gt;major&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;10&#39;&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token key atrule&quot;&gt;minor&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;11&#39;&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token key atrule&quot;&gt;selinux&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token key atrule&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean important&quot;&gt;false&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;OS facts resolved by facter can be queried with:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;facter operatingsystem os&lt;/code&gt;&lt;/pre&gt;
 </content>
   </entry>
 </feed>

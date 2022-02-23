@@ -58,4 +58,7 @@
 },{
   "url": "https://dangibbs.uk/projects/puppet-systemd-journal-remote/",
   "title": "systemd Journal Remote Puppet Module"
+},{
+  "url": "https://dangibbs.uk/blog/running-puppet-7-agent-on-arm/",
+  "title": "Running Puppet 7 Agent on ARM"
 }]

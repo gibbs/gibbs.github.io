@@ -194,6 +194,12 @@
   &__date {
     color: var(--text-color-light);
     font-size: smaller;
+    display: inline-flex;
+    align-items: center;
+
+    .icon {
+      padding-right: 5px;
+    }
   }
 }
 

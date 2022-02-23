@@ -1,10 +1,12 @@
+$code: '767113';
+
 @font-face {
   font-family: 'icomoon';
-  src:  url('../fonts/icomoon.eot?8il86');
-  src:  url('../fonts/icomoon.eot?8il86#iefix') format('embedded-opentype'),
-    url('../fonts/icomoon.ttf?8il86') format('truetype'),
-    url('../fonts/icomoon.woff?8il86') format('woff'),
-    url('../fonts/icomoon.svg?8il86#icomoon') format('svg');
+  src:  url('../fonts/icomoon.eot?#{$code}');
+  src:  url('../fonts/icomoon.eot?#{$code}#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?#{$code}') format('truetype'),
+    url('../fonts/icomoon.woff?#{$code}') format('woff'),
+    url('../fonts/icomoon.svg?#{$code}#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -59,6 +61,21 @@
 }
 .icon-brightness-contrast:before {
   content: "\e9d6";
+}
+.icon-price-tag:before {
+  content: "\e935";
+}
+.icon-price-tags:before {
+  content: "\e936";
+}
+.icon-clock:before {
+  content: "\e94e";
+}
+.icon-clock-inverse:before {
+  content: "\e94f";
+}
+.icon-calendar:before {
+  content: "\e953";
 }
 
 .icon-hamburger {
