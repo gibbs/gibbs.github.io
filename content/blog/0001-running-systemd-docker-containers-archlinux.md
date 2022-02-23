@@ -10,7 +10,7 @@ anchor: Running systemd Docker containers in Arch Linux
 uri: running-systemd-docker-containers-archlinux
 heading: How to run systemd Docker containers in Arch Linux
 image:
-    src: assets/images/blog/systemd-arch-docker.png
+    src: images/blog/systemd-arch-docker.png
     caption: systemd docker
 tags:
     - arch linux

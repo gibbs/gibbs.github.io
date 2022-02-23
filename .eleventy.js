@@ -22,7 +22,7 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addWatchTarget(path.join(__dirname, 'docs/assets/*.{css,js}'))
 
   // Copy the favicon
-  eleventyConfig.addPassthroughCopy({ 'src/assets/icons/favicon.ico': 'favicon.ico' })
+  eleventyConfig.addPassthroughCopy({ 'src/icons/favicon.ico': 'favicon.ico' })
 
   // Setup
   setPlugins(eleventyConfig)

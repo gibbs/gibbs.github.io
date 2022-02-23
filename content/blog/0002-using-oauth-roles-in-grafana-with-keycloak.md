@@ -9,7 +9,7 @@ anchor: Setting Grafana User Roles with Keycloak
 uri: using-oauth-roles-in-grafana-with-keycloak
 heading: Setting Grafana User Roles in Keycloak
 image:
-    src: assets/images/blog/grafana-keycloak.png
+    src: images/blog/grafana-keycloak.png
     caption: grafana keycloak
 tags:
     - grafana
@@ -60,7 +60,7 @@ Create a new protocol mapper with the following settings:
 - **Add to userinfo**: on
 
 {% responsiveImage 
-    'assets/images/blog/keycloak-create-protocol-mapper.png',
+    'images/blog/keycloak-create-protocol-mapper.png',
     'Keycloak Create Grafana Role Protocol Mapper',
     {
     maxWidth: 749,
@@ -89,7 +89,7 @@ Under ==Configure > Clients==:
 - Select the ==Generated User Info== tab
 
 {% responsiveImage 
-    'assets/images/blog/keycloak-generate-user-info.png',
+    'images/blog/keycloak-generate-user-info.png',
     'Keycloak View Generated UserInfo Endpoint',
     {
     maxWidth: 1375,
