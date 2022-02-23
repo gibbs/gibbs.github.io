@@ -59,7 +59,7 @@ a:hover {
   color: var(--link-text-hover-color);
 }
 
-* > code {
+*:not(pre) > code {
   color: var(--code-text-color);
   padding: calc(var(--spacer) * .25);
   background-color: var(--code-bg);
