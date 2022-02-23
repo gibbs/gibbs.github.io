@@ -20,7 +20,9 @@ jobs:
         run: npm install
 
       - name: Build
-        run: npm run build
+        run: |
+          npm run build
+          npm run build
         env:
           APP_ENV: production
           APP_URL: https://dangibbs.uk
