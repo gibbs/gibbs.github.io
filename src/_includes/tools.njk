@@ -1,0 +1,23 @@
+<div class="tools-list">
+  {%- for tool in collections.tools | reverse | limit(limit|default(3)) -%}
+    <div class="tool-list__item">
+      <div class="tool-list__body">
+        <div class="tool-list__tag">
+          {{ tool.data.tags | primaryTag }}
+        </div>
+
+        <h3 class="tool-list__heading">
+          <a href="{{ site.url }}/tools/{{ tool.data.uri }}/">{{ tool.data.anchor }}</a>
+        </h3>
+
+        <div class="tool-list__description">
+          <p>{{ tool.data.description }}</p>
+        </div>
+
+        <div class="tool-list__action">
+          <a href="{{ site.url }}/tools/{{ tool.data.uri }}/" class="button">View Details</a>
+        </div>
+      </div>
+    </div>
+  {%- endfor -%}
+</div>

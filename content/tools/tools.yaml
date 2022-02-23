@@ -1,0 +1,9 @@
+layout: tool
+permalink: "tools/{{ uri | slug }}/index.html"
+changeFreq: weekly
+tags:
+  - tools
+
+jsonld:
+  "@type": SoftwareApplication
+  applicationCategory: DeveloperApplication

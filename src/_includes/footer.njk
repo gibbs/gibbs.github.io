@@ -18,6 +18,11 @@
               Projects
             </a>
           </li>
+          <li class="footer__navigation__item" {% if page.url == '/tools/' %} aria-current="page"{% endif %}>
+            <a class="footer__navigation__anchor{% if '/tools/' in page.url %} footer__navigation__anchor--active{% endif %}" href="{{ site.url }}/tools/">
+              Tools
+            </a>
+          </li>
         </ul>
       </nav>
 

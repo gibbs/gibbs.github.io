@@ -8,6 +8,9 @@
   <li class="navigation__item" {% if page.url == '/projects/' %} aria-current="page"{% endif %}>
     <a class="navigation__anchor{% if '/projects/' in page.url %} navigation__anchor--active{% endif %}" href="{{ site.url }}/projects/">Projects</a>
   </li>
+  <li class="navigation__item" {% if page.url == '/tools/' %} aria-current="page"{% endif %}>
+    <a class="navigation__anchor{% if '/tools/' in page.url %} navigation__anchor--active{% endif %}" href="{{ site.url }}/tools/">Tools</a>
+  </li>
   {#<li class="navigation__item" {% if page.url == '/contact/' %} aria-current="page"{% endif %}>
     <a class="navigation__anchor{% if page.url == '/contact/' %} navigation__anchor--active{% endif %}" href="{{ site.url }}/contact/">Contact</a>
   </li>#}

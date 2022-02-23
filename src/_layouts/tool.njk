@@ -1,0 +1,14 @@
+{% extends "../_layouts/base.njk" %}
+
+{% block json_ld %}{{ jsonld | toJSONLDBlog | safe }}{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <article class="row">
+      {{ content | safe }}
+
+      {% block tool %}{% endblock %}
+    </article>
+  </div>
+{% endblock %}
+
