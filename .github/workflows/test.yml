@@ -3,7 +3,7 @@ name: Tests
 on:
   push:
     branches:
-      - '*'
+      - 'master'
   pull_request:
     branches:
       - 'master'
@@ -17,10 +17,18 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '16'
-      - run: npm install
-      - run: npm run lint
-      - run: APP_ENV=production APP_URL=https://dangibbs.uk npm run build
-      - run: |
-          APP_ENV=production APP_URL=https://dangibbs.uk npm run serve &
-          sleep 15 &&
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build and Test
+        run: |
+          npm run build
+          npm run serve &
+          sleep 15
           npm run test:acceptance
+        env:
+          APP_ENV: development
+          APP_URL: http://localhost:8080/
