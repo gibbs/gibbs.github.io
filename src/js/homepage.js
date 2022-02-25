@@ -71,7 +71,8 @@ function setActivityFeed (data) {
       timelineEntries += `<li class="timeline__entry">
         <div class="timeline__information">
           <p class="timeline__entry-heading">${item.commit.message.replace(/(?:\r\n|\r|\n)/g, '<br>').replace(/(<br\s*\/?>){2,}/gi, '<br>')}</p>
-
+        </div>
+        <div class="timeline__repository">
           <p class="timeline__authored">
             <a href="${item.repository.url}">${item.repository.name}</a>
           </p>

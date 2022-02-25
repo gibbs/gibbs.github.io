@@ -185,13 +185,14 @@ tbody tr:nth-child(2n) {
   }
 
   &__date {
-    display: inline-block;
+    display: block;
     padding: calc(var(--spacer) * .75);
     background-color: var(--secondary-color);
     color: var(--dark-link-text-color);
     font-size: smaller;
-    border-radius: 5px;
-    margin: 0 0 0 calc(var(--spacer) * -1);
+    margin: 0 calc(var(--spacer) * -1.5) 0 calc(var(--spacer) * -1);
+    text-align: center;
+    font-weight: 500;
   }
 
   &__entries {
@@ -215,8 +216,15 @@ tbody tr:nth-child(2n) {
   }
 
   &__information {
-    flex: 1;
+    flex: 3;
     padding: calc(var(--spacer) * .75);
+  }
+
+  &__repository {
+    flex: 2;
+    text-align: left;
+    padding: calc(var(--spacer) * .5) 0;
+    align-self: center;
   }
 
   &__entry-heading {
@@ -230,11 +238,16 @@ tbody tr:nth-child(2n) {
     color: var(--text-color-light);
   }
 
+  &__actions {
+    display: flex;
+    align-self: center;
+  }
+
   &__hash-button {
     font-size: smaller;
-    border-radius: 5px ;
+    border-radius: 5px 5px 0 0;
     text-align: center;
-    width: 85px;
+    min-width: 105px;
   }
 }
 
@@ -243,11 +256,26 @@ tbody tr:nth-child(2n) {
 }
 
 @media (min-width: map-get($breakpoints, 'md')) {
+  .timeline__date {
+    display: inline-block;
+    margin: 0 0 0 calc(var(--spacer) * -1);
+    border-radius: 5px;
+  }
+
+  .timeline__information {
+    flex: 5;
+  }
+
   .timeline__entry {
     flex-direction: row;
   }
 
+  .timeline__repository {
+    flex: 1;
+    padding: 0 calc(var(--spacer) * .75);
+  }
+
   .timeline__hash-button {
-    border-radius: 5px 0 0 5px;
+    border-radius: 0;
   }
 }
