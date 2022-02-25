@@ -3,4 +3,4 @@
 # shellcheck disable=SC1091
 source .env || exit 1
 
-webpack --mode "${APP_ENV}"
+APP_ENV="${APP_ENV}" APP_URL="${APP_URL}" APP_SERVICE_URL="${APP_SERVICE_URL}" webpack --mode "${APP_ENV}"
