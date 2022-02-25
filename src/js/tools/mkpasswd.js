@@ -78,6 +78,7 @@ module.exports = () => {
 
       // Set rounds field
       rounds.value = 0
+      rounds.removeAttribute('disabled')
       rounds.setAttribute('max', 11)
     }
 
