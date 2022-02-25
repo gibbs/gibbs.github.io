@@ -1,6 +1,7 @@
 // Stolen from Bootstrap
 .form-label {
   margin-bottom: var(--spacer);
+  font-weight: 500;
 }
 
 .col-form-label {
@@ -31,6 +32,7 @@
 
 .form-control {
   display: block;
+  max-width: 100%;
   width: 100%;
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
@@ -62,7 +64,7 @@
   background-color: #fff;
   border-color: #86b7fe;
   outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  box-shadow: 0 0 0 0.25rem rgba(35, 37, 85, 0.25);
 }
 .form-control::-webkit-date-and-time-value {
   height: 1.5em;
@@ -273,7 +275,7 @@ textarea.form-control-lg {
 .form-select:focus {
   border-color: #86b7fe;
   outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  box-shadow: 0 0 0 0.25rem rgba(35, 37, 85, 0.25);
 }
 .form-select[multiple], .form-select[size]:not([size="1"]) {
   padding-right: 0.75rem;
@@ -323,12 +325,13 @@ textarea.form-control-lg {
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  border: 1px solid rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(35, 37, 85, 0.25);
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   -webkit-print-color-adjust: exact;
   color-adjust: exact;
+  transition: opacity linear var(--transition-speed);
 }
 .form-check-input[type=checkbox] {
   border-radius: 0.25em;
@@ -342,7 +345,7 @@ textarea.form-control-lg {
 .form-check-input:focus {
   border-color: #86b7fe;
   outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  box-shadow: 0 0 0 0.25rem rgba(35, 37, 85, 0.25);
 }
 .form-check-input:checked {
   background-color: var(--tertiary-color);
@@ -421,10 +424,10 @@ textarea.form-control-lg {
   outline: 0;
 }
 .form-range:focus::-webkit-slider-thumb {
-  box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem rgba(35, 37, 85, 0.25);
 }
 .form-range:focus::-moz-range-thumb {
-  box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem rgba(35, 37, 85, 0.25);
 }
 .form-range::-moz-focus-outer {
   border: 0;
@@ -820,3 +823,13 @@ textarea.form-control-lg {
   z-index: 3;
 }
 
+.form-helper {
+  display: block;
+  width: 100%;
+  font-size: smaller;
+  padding: calc(var(--spacer) * .5) 0 calc(var(--spacer) * .5) 0;
+}
+
+.form-helper:not(.form-helper--active) {
+  display: none;
+}

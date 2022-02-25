@@ -5,7 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 function getLatestActivity () {
-  const url = new URL('https://app.dangibbs.uk/data/activity-feed.json').toString()
+  // eslint-disable-next-line no-undef
+  const url = new URL(APP_SERVICE_URL.replace(/\/+$/, '') + '/data/activity-feed.json').toString()
 
   fetch(url, {
     method: 'GET',

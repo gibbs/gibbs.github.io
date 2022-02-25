@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# shellcheck disable=SC1091
+source .env || exit 1
+
+npx @11ty/eleventy

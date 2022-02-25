@@ -2,8 +2,9 @@
  * Credit to https://github.com/sindresorhus/modern-normalize
  */
 
-::before,
-::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 

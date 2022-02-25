@@ -21,6 +21,7 @@ jobs:
 
       - name: Build
         run: |
+          cp -f .env.production .env
           npm run build
           npm run build
         env:
