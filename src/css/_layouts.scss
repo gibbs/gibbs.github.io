@@ -213,12 +213,21 @@
   }
 }
 
+.tool-rows {
+  display: grid;
+  gap: var(--spacer);
+}
+
 @media (min-width: map-get($breakpoints, 'md')) {
   .project-rows__row {
     grid-template-columns: 1fr 1fr;
   }
 
   .blog--latest {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .tool-rows {
     grid-template-columns: 1fr 1fr;
   }
 }
@@ -235,5 +244,9 @@
 
   .blog--latest {
     grid-template-columns: 540px auto;
+  }
+
+  .tool-rows {
+    grid-template-columns: 1fr 1fr 1fr;
   }
 }

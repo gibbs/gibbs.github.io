@@ -1,5 +1,6 @@
 const path = require('path')
 const site = require('./src/_data/site.js')
+const webpack = require('webpack')
 
 // Plugins
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin')
@@ -19,6 +20,10 @@ module.exports = {
     homepage: {
       filename: filename + '.js',
       import: path.resolve(__dirname, 'src/js', 'homepage.js')
+    },
+    tools: {
+      filename: filename + '.js',
+      import: path.resolve(__dirname, 'src/js', 'tools.js')
     }
   },
   resolve: {
@@ -32,6 +37,10 @@ module.exports = {
     publicPath: '/assets/',
     clean: {
       keep: /images|videos/
+    },
+    library: {
+      name: 'tools',
+      type: 'assign-properties'
     }
   },
   module: {
@@ -74,6 +83,9 @@ module.exports = {
     new WebpackManifestPlugin({
       fileName: 'manifest.json',
       publicPath: '/assets/'
+    }),
+    new webpack.DefinePlugin({
+      APP_SERVICE_URL: JSON.stringify(process.env.APP_SERVICE_URL)
     })
   ]
 }

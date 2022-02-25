@@ -1,0 +1,28 @@
+{% extends "../_layouts/base.njk" %}
+
+{% block json_ld %}{{ jsonld | toJSONLDBlog | safe }}{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      {{ content | safe }}
+
+      <div class="tool-rows">
+        {%- for tool in collections.tools | reverse -%}
+          <div class="tool-rows__row">
+            <div class="tool-rows__body">
+              <h3 class="tool-rows__heading">
+                <a href="{{ site.url }}/tools/{{ tool.data.uri }}/" class="tool-rows__anchor">{{ tool.data.anchor }}</a>
+              </h3>
+
+              <div class="tool-rows__description">
+                <p>{{ tool.data.summary }}</p>
+              </div>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+{% endblock %}
+

@@ -1,0 +1,32 @@
+{% extends "../../_layouts/tool.njk" %}
+
+
+{% block tool %}
+  <form method="post" id="uuid_generator">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" name="random" value="1" id="uuid_random">
+      <label class="form-check-label" for="uuid_random">
+        <strong>Random</strong> random-based UUID created mostly of random bits.
+      </label>
+    </div>
+
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" name="time" value="1" id="uuid_time">
+      <label class="form-check-label" for="uuid_time">
+        <strong>Time</strong> time-based UUID based on the remote system clock.
+      </label>
+    </div>
+
+    <button type="submit" id="uuid_generate" class="button">Generate</button>
+  </form>
+
+  <div id="uuid_result" class="result"></div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+{% asset 'tools.js' %}
+document.addEventListener('DOMContentLoaded', () => { tools.uuidgen() })
+</script>
+{% endblock %}
+

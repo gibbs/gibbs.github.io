@@ -93,7 +93,11 @@ tbody tr:nth-child(2n) {
   border-radius: 2px;
   font-weight: 500;
   overflow: hidden;
-  transition: background calc(var(--transition-speed) * 2) ease;
+  border: 0;
+  border-radius: 4px;
+  transition:
+    background calc(var(--transition-speed) * 2) ease,
+    opacity linear var(--transition-speed);
 
   &::before {
     position: absolute;
@@ -102,8 +106,8 @@ tbody tr:nth-child(2n) {
     opacity: .25;
   }
 
-  &:focus,
-  &:hover {
+  &:not([disabled]):focus,
+  &:not([disabled]):hover {
     color: var(--white-color);
     background-color: var(--link-text-hover-color);
   }
@@ -145,6 +149,10 @@ tbody tr:nth-child(2n) {
     content: "\e902";
     font-family: 'icomoon' !important;
   }
+}
+
+.button:is([disabled]) {
+  opacity: 0.5;
 }
 
 .timeline {
@@ -228,6 +236,10 @@ tbody tr:nth-child(2n) {
     text-align: center;
     width: 85px;
   }
+}
+
+.result {
+  margin-top: var(--gutter-width);
 }
 
 @media (min-width: map-get($breakpoints, 'md')) {
