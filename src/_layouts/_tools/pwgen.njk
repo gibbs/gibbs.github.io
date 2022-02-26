@@ -1,0 +1,124 @@
+{% extends "../../_layouts/tool.njk" %}
+
+{% block tool %}
+  <form method="post" id="pwgen_generator">
+    <section class="fieldset pwgen-generator">
+      <div class="row">
+        <label for="length" class="form-label">Length</label>
+        <input type="number" class="form-control" id="length" name="length" min="1" max="1024" value="16" required>
+        <span class="form-helper form-helper--active all">
+          Password length (max 1024)
+        </span>
+      </div>
+
+      <div class="row">
+        <label for="num-passwords" class="form-label">Number</label>
+        <input type="number" class="form-control" id="num-passwords" name="num-passwords" min="1" max="100" value="5" required>
+        <span class="form-helper form-helper--active all">
+          Number of passwords (max 100)
+        </span>
+      </div>
+
+      <div class="row">
+        <label for="remove-chars" class="form-label">Remove Characters</label>
+        <input 
+          type="text" class="form-control" id="remove-chars" name="remove-chars"
+          minlength="0" maxlength="65" value="" placeholder="e.g. !£$%^&*()">
+        <span class="form-helper form-helper--active all">
+          Ignore the specified characters
+        </span>
+      </div>
+
+      <div class="row--block">
+        <label class="form-label">&nbsp;</label>
+        <button type="button" id="pwgen-options-toggle" class="button button--secondary button--form">More</button>
+      </div>
+    </section>
+
+    <section class="fieldset pwgen-options hidden" id="pwgen_options">
+      <div class="row">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" name="secure" value="1" id="secure">
+          <label class="form-check-label" for="secure">
+            <strong>Secure</strong> - completely randomise output (hard-to-memorise)
+          </label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" name="numerals" value="1" id="numerals">
+          <label class="form-check-label" for="numerals">
+            <strong>Include Numerals</strong> - include at least one number in the password
+          </label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" name="symbols" value="1" id="symbols">
+          <label class="form-check-label" for="symbols">
+            <strong>Include Symbols</strong> - include at least one special character in the password
+          </label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" name="capitalize" value="1" id="capitalize">
+          <label class="form-check-label" for="capitalize">
+            <strong>Include Capitals</strong> - include at least one capital letter in the password
+          </label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" name="ambiguous" value="1" id="ambiguous">
+          <label class="form-check-label" for="ambiguous">
+            <strong>No Ambiguity</strong> - don't use characters that could be confused when printed, such as 'l' and '1', or '0' or 'O'
+          </label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" name="no-capitalize" value="1" id="no-capitalize">
+          <label class="form-check-label" for="no-capitalize">
+            <strong>No Capitals</strong> - stops passwords including capitalisation
+          </label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" name="no-numerals" value="1" id="no-numerals">
+          <label class="form-check-label" for="no-numerals">
+            <strong>No Numerals</strong> - don't include numbers in the generated passwords
+          </label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" name="no-vowels" value="1" id="no-vowels">
+          <label class="form-check-label" for="no-vowels">
+            <strong>No Vowels</strong> - do not include vowels or numbers that might be mistaken for vowels
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <button type="submit" id="pwgen_generate" class="button">Generate</button>
+  </form>
+
+  <div id="pwgen_result" class="result"></div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+{% asset 'tools.js' %}
+document.addEventListener('DOMContentLoaded', () => { tools.pwgen() })
+</script>
+{% endblock %}
+

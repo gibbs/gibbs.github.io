@@ -17,3 +17,13 @@
 .row {
   width: 100%;
 }
+
+/* @fixme - Hacks to save time*/
+.row--block > * {
+  display: block;
+  width: 100%;
+}
+
+.row--block > .form-label {
+  margin: 0;
+}

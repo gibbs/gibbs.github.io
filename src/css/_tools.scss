@@ -1,0 +1,82 @@
+
+.result {
+  position: relative;
+  display: block;
+}
+
+.result.alert--success {
+  font-family: monospace;
+}
+
+.result.alert:before {
+  position: absolute;
+  content: '';
+  border-radius: 5px;
+  font-size: small;
+  padding: calc(var(--spacer) * .5);
+  right: calc(var(--spacer) * .5);
+  top: calc(var(--spacer) * -1);
+  font-weight: 600;
+  font-family: sans-serif;
+}
+
+.result.alert--success:before {
+  content: 'RESULT';
+  background-color: var(--alert-success-color);
+  color: var(--white-color);
+}
+
+.result.alert--warning:before {
+  content: 'WARNING';
+  background-color: var(--alert-warning-color);
+  color: var(--white-color);
+}
+
+.result.alert--danger:before {
+  content: 'ERROR';
+  background-color: var(--alert-danger-color);
+  color: var(--white-color);
+}
+
+.mkpasswd-generator {
+  display: grid;
+  grid-template-columns: auto;
+  gap: var(--gutter-width);
+}
+
+.pwgen-generator {
+  display: grid;
+  grid-template-columns: auto;
+  gap: calc(var(--gutter-width) * .5);
+  margin: 0 0 var(--gutter-width) 0;
+}
+
+.pwgen-options {
+  display: grid;
+  grid-template-columns: auto;
+  gap: calc(var(--gutter-width) * .5);
+}
+
+@media (min-width: map-get($breakpoints, 'sm')) {
+  .pwgen-generator {
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .mkpasswd-generator {
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: map-get($breakpoints, 'lg')) {
+  .pwgen-generator {
+    grid-template-rows: 1fr;
+    grid-template-columns: 2fr 2fr 4fr minmax(0, 1fr);
+  }
+
+  .mkpasswd-generator {
+    grid-template-rows: 1fr min-content;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+  }
+}

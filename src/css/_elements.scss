@@ -149,10 +149,36 @@ tbody tr:nth-child(2n) {
     content: "\e902";
     font-family: 'icomoon' !important;
   }
+
+  &--primary {
+    background-color: var(--primary-color);
+  }
+
+  &--secondary {
+    background-color: var(--secondary-color);
+  }
+
+  &--secondary:not([disabled]):hover {
+    background-color: var(--secondary-color-text);
+  }
+
+  &--secondary:not([disabled]):focus {
+    background-color: var(--secondary-color);
+  }
+
+  &--tertiary {
+    background-color: var(--tertiary-color);
+  }
 }
 
 .button:is([disabled]) {
   opacity: 0.5;
+}
+
+.button--form {
+  padding: calc(var(--spacer) * 0.6) calc(var(--spacer) * 0.75);
+  font-weight: 400;
+  font-size: smaller;
 }
 
 .timeline {

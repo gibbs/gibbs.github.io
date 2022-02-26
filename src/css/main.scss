@@ -3,7 +3,6 @@
 
 // Normalise
 @import "_normalise.scss";
-@import "_utility.scss";
 @import "_type.scss"; 
 
 // Utilities / Components
@@ -17,7 +16,10 @@
 @import "_forms.scss";
 @import "_elements.scss";
 @import "_layouts.scss";
+@import "_tools.scss";
 
 // Vendor
 @import "vendor/prism.scss";
 @import "vendor/cookieconsent.scss";
+
+@import "_utility.scss";
