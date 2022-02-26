@@ -23,19 +23,19 @@
 .result.alert--success:before {
   content: 'RESULT';
   background-color: var(--alert-success-color);
-  color: var(--white-color);
+  color: #efefef;
 }
 
 .result.alert--warning:before {
   content: 'WARNING';
   background-color: var(--alert-warning-color);
-  color: var(--white-color);
+  color: #efefef;
 }
 
 .result.alert--danger:before {
   content: 'ERROR';
   background-color: var(--alert-danger-color);
-  color: var(--white-color);
+  color: #efefef;
 }
 
 .mkpasswd-generator {
