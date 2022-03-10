@@ -8,8 +8,8 @@ summary: >-
 anchor: Puppet login.defs Module
 uri: puppet-login-defs
 image:
-    src: images/projects/puppet-login-defs.png
-    caption: Puppet login.defs graphic.
+    src: images/projects/puppet.png
+    caption: Puppet graphic
 tags:
     - puppet
     - shadow
