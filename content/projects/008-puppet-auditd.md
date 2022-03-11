@@ -15,7 +15,7 @@ tags:
     - auditd
 project:
     repository: https://github.com/gibbs/puppet-auditd
-date: "2022-03-01"
+date: "2022-03-10"
 jsonld:
     datePublished: "2022-03-10"
     dateCreated: "2022-03-10"

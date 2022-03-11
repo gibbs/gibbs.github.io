@@ -4,7 +4,8 @@ title: Tools
 description: |-
     Web based interfaces for development tools and utilities
 anchor: Tools
-tags: page
+tags:
+    - page
 changeFreq: weekly
 
 jsonld:

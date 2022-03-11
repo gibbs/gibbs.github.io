@@ -2,7 +2,7 @@
 layout: base
 title: Test
 draft: true
-description: Markdown style testing
+description: Markdown styling examples and rendering for testing
 metatag:
     robots: noindex, nofollow
 jsonld:

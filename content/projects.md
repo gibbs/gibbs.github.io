@@ -4,7 +4,8 @@ title: Projects
 description: |
     Projects being contributed to and worked on by Dan Gibbs
 anchor: Projects
-tags: page
+tags:
+    - page
 changeFreq: weekly
 
 jsonld:
