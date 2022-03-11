@@ -3,8 +3,8 @@ layout: home
 title: Dan Gibbs - Full Stack Web Developer
 description: The personal website of Dan Gibbs, full stack web developer.
 anchor: Home
-tags: page
-
+tags:
+    - page
 jsonld:
     "@type": Website
     name: Dan Gibbs
