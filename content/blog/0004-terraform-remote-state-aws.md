@@ -14,7 +14,7 @@ heading: Remote Terraform State File (with Locking) Using AWS S3 and DynamoDB
 tags:
     - terraform
     - aws
-date: "2022-02-22"
+date: "2022-03-17"
 jsonld:
     headline: "Remote Terraform state file with locking using AWS S3 and DynamoDB"
     datePublished: "2022-03-17"
