@@ -80,6 +80,10 @@ tbody tr:nth-child(2n) {
   color: var(--secondary-color-text);
 }
 
+.anchor__up:hover {
+  color: var(--dark-link-text-hover-color);
+}
+
 .cookie__preferences {
   color: var(--secondary-color-text);
 }
@@ -279,6 +283,68 @@ tbody tr:nth-child(2n) {
   }
 }
 
+.homepage--blog {
+  padding: calc(var(--gutter-width) * 2) 0 calc(var(--gutter-width) * 2) 0;
+  background-color: var(--header-bg);
+  background-image: url(../images/blueprint-dark.png);
+
+  &__heading {
+    margin: 0;
+    font-weight: 500;
+  }
+
+  &__summary__paragraph {
+    margin-top: calc(var(--gutter-width) * .5);
+    margin-bottom: var(--gutter-width);
+  }
+}
+
+.homepage--blog__container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gutter-width);
+}
+
+.insights {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: calc(var(--gutter-width)) 0 calc(var(--gutter-width)) 0;
+  width: 100%;
+
+  &__data {
+    display: grid;
+    grid-template-columns: 1fr;
+    max-width: 100%;
+    overflow: hidden;
+    gap: var(--spacer);
+  }
+
+  &__chart {
+    text-align: center;
+    max-width: 100%;
+  }
+
+  &__chart-heading {
+    margin: var(--spacer) 0 calc(var(--spacer) * 2) 0;
+  }
+
+  &__languages {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0 0 0 0;
+    padding: 0;
+    list-style-type: none;
+  }
+
+  &--language {
+    border: 1px solid #ff9900;
+    border-radius: 4px;
+  }
+}
+
 .result {
   margin-top: var(--gutter-width);
 }
@@ -307,3 +373,14 @@ tbody tr:nth-child(2n) {
     border-radius: 0;
   }
 }
+
+@media (min-width: map-get($breakpoints, 'lg')) {
+  .homepage--blog__container {
+    grid-template-columns: 1fr 2fr;
+  }
+
+  .insights__data {
+    grid-template-columns: 46% 54%;
+  }
+}
+

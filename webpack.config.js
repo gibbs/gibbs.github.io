@@ -66,6 +66,15 @@ module.exports = {
         }]
       },
       {
+        test: /\.(jpg|jpeg|gif|png)(\?[a-z0-9]+)?$/,
+        use: [{
+          loader: 'file-loader',
+          options: {
+            name: 'images/[name].[ext]'
+          }
+        }]
+      },
+      {
         test: /\.(ttf|eot|svg)(\?[a-z0-9]+)?$/,
         use: [{
           loader: 'file-loader',

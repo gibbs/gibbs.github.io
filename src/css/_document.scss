@@ -140,6 +140,7 @@ body {
 .footer {
   color: var(--secondary-color-text);
   background-color: var(--footer-bg);
+  background-image: url(../images/blueprint-dark.png);
   padding: calc(var(--spacer) * 2) 0;
 
   &__right {
@@ -185,8 +186,7 @@ body {
   color: var(--copyright-text-color);
   padding: var(--spacer) 0 var(--spacer) 0;
   background-color: var(--copyright-bg);
-  // background-image: linear-gradient(var(--copyright-bg), var(--footer-bg));
-  border-bottom: 5px solid var(--primary-color);
+  background-image: url(../images/blueprint-dark.png);
 
   &__grid {
     display: grid;

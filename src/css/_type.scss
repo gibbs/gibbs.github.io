@@ -31,7 +31,6 @@ h4, h5, h6 {
   margin: calc(var(--gutter-width) * 1.25) 0 var(--gutter-width) 0;
 }
 
-
 h4 {
   font-size: calc(var(--font-size-base) * 2);
 }
@@ -42,6 +41,7 @@ h5 {
 
 h6 {
   font-size: var(--font-size-base);
+  font-size: calc(var(--font-size-base) * 1.25);
 }
 
 p {
