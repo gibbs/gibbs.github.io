@@ -1,4 +1,26 @@
 import { format, formatISO, parseISO } from 'date-fns'
+import {
+  Chart,
+  ArcElement,
+  BarElement,
+  BarController,
+  PieController,
+  CategoryScale,
+  LinearScale,
+  Tooltip
+} from 'chart.js'
+
+Chart.register(
+  ArcElement,
+  BarElement,
+  BarController,
+  PieController,
+  CategoryScale,
+  LinearScale,
+  Tooltip
+)
+
+const githubLanguages = require('./utils/github-language-colors')
 
 document.addEventListener('DOMContentLoaded', () => {
   getLatestActivity()
@@ -16,8 +38,111 @@ function getLatestActivity () {
   })
     .then(response => response.json())
     .then(data => {
-      setActivityFeed(data)
+      setInsightsFeed(data.insights)
+      setActivityFeed(data.activity)
     })
+}
+
+function setInsightsFeed (data) {
+  const $languages = document.getElementById('insights_languages')
+
+  // Languages
+  for (const i in data.languages) {
+    const language = data.languages[i]
+    const $item = document.createElement('li')
+    $item.classList = `insight--language github--language github--language__${language.toLowerCase().replace(' ', '-')}`
+    $item.appendChild(document.createTextNode(language))
+
+    // Append the list item
+    $languages.appendChild($item)
+  }
+
+  const totals = { count: 0, bytes: 0 }
+
+  // Get totals
+  for (const i in data.usage) {
+    totals.count += data.usage[i].count
+    totals.bytes += data.usage[i].bytes
+  }
+
+  // Get popularity/workload
+  const chartData = {
+    popularity: {
+      labels: [],
+      datasets: [{
+        label: 'Language Popularity',
+        data: [],
+        backgroundColor: []
+      }]
+    },
+    workload: {
+      labels: [],
+      datasets: [{
+        label: 'Language Usage',
+        data: [],
+        backgroundColor: []
+      }]
+    }
+  }
+
+  for (const i in data.usage) {
+    const languageKey = data.usage[i].name.toLowerCase().replace(' ', '-')
+
+    // Add labels
+    chartData.popularity.labels.push(data.usage[i].name)
+    chartData.workload.labels.push(data.usage[i].name)
+
+    // Add values
+    chartData.popularity.datasets[0].data.push((data.usage[i].count / totals.count * 100))
+    chartData.workload.datasets[0].data.push((data.usage[i].bytes / totals.bytes * 100))
+
+    // Add background colours
+    if (languageKey in githubLanguages) {
+      chartData.popularity.datasets[0].backgroundColor.push(githubLanguages[languageKey])
+      chartData.workload.datasets[0].backgroundColor.push(githubLanguages[languageKey])
+    }
+  }
+
+  // Popularity chart
+  const chartPopularity = new Chart(document.getElementById('insights_popularity'), {
+    type: 'bar',
+    data: chartData.popularity,
+    options: {
+      indexAxis: 'y',
+      plugins: {
+        legend: {
+          display: false
+        },
+        tooltip: {
+          callbacks: {
+            label: (item) => `${item.formattedValue}%`
+          }
+        }
+      }
+    }
+  })
+
+  // Workload chart
+  const chartWorkload = new Chart(document.getElementById('insights_workload'), {
+    type: 'pie',
+    data: chartData.workload,
+    options: {
+      plugins: {
+        legend: {
+          display: false
+        },
+        tooltip: {
+          callbacks: {
+            label: (item) => `${item.label} ${item.formattedValue}%`
+          }
+        }
+      }
+    }
+  })
+
+  // Draw charts
+  chartPopularity.draw()
+  chartWorkload.draw()
 }
 
 function setActivityFeed (data) {
