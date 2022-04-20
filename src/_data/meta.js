@@ -20,6 +20,6 @@ module.exports = {
     }
   },
   manifest: {
-    color: '#E21A23'
+    color: '#34344A'
   }
 }
