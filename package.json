@@ -30,7 +30,7 @@
   },
   "bugs": "https://github.com/gibbs/gibbs.github.io/issues",
   "devDependencies": {
-    "@11ty/eleventy": "^1.0.0",
+    "@11ty/eleventy": "^1.0.1",
     "@11ty/eleventy-plugin-rss": "^1.1.2",
     "@11ty/eleventy-plugin-syntaxhighlight": "^3.2.2",
     "@babel/core": "^7.16.0",
