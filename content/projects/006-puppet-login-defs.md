@@ -19,7 +19,7 @@ date: "2022-03-01"
 jsonld:
     datePublished: "2022-03-01"
     dateCreated: "2022-03-01"
-    dateModified: "2022-03-01"
+    dateModified: "2022-04-26"
     sameAs:
         - https://github.com/gibbs/puppet-login_defs
         - https://forge.puppet.com/modules/genv/login_defs
@@ -27,12 +27,13 @@ jsonld:
 
 # Puppet Module for login.defs
 
+[![Build Status](https://img.shields.io/github/workflow/status/gibbs/puppet-login_defs/CI?style=flat-square)](https://github.com/gibbs/puppet-login_defs/actions?query=workflow%3ACI)
+[![Release](https://img.shields.io/github/workflow/status/gibbs/puppet-login_defs/Release?label=release&style=flat-square)](https://github.com/gibbs/puppet-login_defs/actions?query=workflow%3ARelease)
+[![Puppet Forge](https://img.shields.io/puppetforge/v/genv/login_defs.svg?maxAge=2592000&style=flat-square)](https://forge.puppet.com/genv/login_defs)
+[![Apache-2 License](https://img.shields.io/github/license/gibbs/puppet-login_defs.svg?style=flat-square)](https://github.com/gibbs/puppet-login_defs/blob/master/LICENSE)
+
 A Puppet module for managing and configuring `/etc/login.defs` on CentOS,
 Debian, RedHat, Ubuntu, Rocky and AlmaLinux.
-
-[![Build Status](https://github.com/gibbs/puppet-login_defs/workflows/CI/badge.svg)](https://github.com/gibbs/puppet-login_defs/actions?query=workflow%3ACI)
-[![Release](https://github.com/gibbs/puppet-login_defs/workflows/Release/badge.svg)](https://github.com/gibbs/puppet-login_defs/actions?query=workflow%3ARelease)
-[![Apache-2 License](https://img.shields.io/github/license/gibbs/puppet-login_defs.svg)](LICENSE)
 
 [Source available on GitHub]({{ project.repository }}){.button .button--github}
 
@@ -87,102 +88,41 @@ login_defs::options:
       of the user.
 ```
 
-## Reference
+## Default Configuration
 
-#### Classes
-
-* [`login_defs`](#login_defs): Manage the configuration control definitions for the login package
-
-#### Data types
-
-* [`Login_Defs::Option`](#login_defsoption): login.defs option
-
-## Classes
-
-### `login_defs` { #login_defs }
-
-Manage the configuration control definitions for the login package
-
-#### Parameters
-
-The following parameters are available in the `login_defs` class:
-
-* [`options`](#options)
-* [`package_ensure`](#package_ensure)
-* [`package_manage`](#package_manage)
-* [`package_name`](#package_name)
-* [`owner`](#owner)
-* [`group`](#group)
-* [`mode`](#mode)
-
-##### ==options== { #options }
-
-Data type: `Hash[String, Login_Defs::Option]`
-
-A hash of options to configure /etc/login.defs
-
-Default value: ``undef``
-
-##### ==package_ensure== { #package_ensure }
-
-Data type: `String`
-
-The login/shadow util package state to use when using $package_manage
-
-Default value: `'installed'`
-
-##### ==package_manage== { #package_manage }
-
-Data type: `Boolean`
-
-Set to true to manage the login/shadow utility package
-
-Default value: ``false``
-
-#####  ==package_name== { #package_name }
-
-Data type: `String[1]`
-
-The package name to use when managing the login/shadow utility package
-
-Default value: ``undef``
-
-##### ==owner== { #owner }
-
-Data type: `Variant[String[1], Integer]`
-
-The owner to set on /etc/login.defs
-
-Default value: `'root'`
-
-##### ==group== { #group }
-
-Data type: `Variant[String[1], Integer]`
-
-The group to set on /etc/login.defs
-
-Default value: `0`
-
-##### ==mode== { #mode }
-
-Data type: `String[3,4]`
-
-The mode to set on /etc/login.defs
-
-Default value: `'0644'`
-
-## Data types
-
-### ==Login_Defs::Option== { #login_defsoption }
-
-login.defs option
-
-Alias of
-
-```puppet
-Struct[{
-    Optional['comment'] => String,
-    Optional['enabled'] => Boolean,
-    'value'             => Variant[String, Integer],
-  }]
+```yaml [g1:Common]
+!!!include(puppet-login_defs/data/common.yaml)!!!
 ```
+
+```yaml [g1:Debian Family]
+!!!include(puppet-login_defs/data/Debian.yaml)!!!
+```
+
+```yaml [g1:Debian 10]
+!!!include(puppet-login_defs/data/Debian-10.yaml)!!!
+```
+
+```yaml [g1:Debian 10]
+!!!include(puppet-login_defs/data/Debian-11.yaml)!!!
+```
+
+```yaml [g1:Ubuntu 1804]
+!!!include(puppet-login_defs/data/Ubuntu-18.04.yaml)!!!
+```
+
+```yaml [g1:Ubuntu 2004]
+!!!include(puppet-login_defs/data/Ubuntu-20.04.yaml)!!!
+```
+
+```yaml [g1:RedHat Family]
+!!!include(puppet-login_defs/data/RedHat.yaml)!!!
+```
+
+```yaml [g1:CentOS 7]
+!!!include(puppet-login_defs/data/CentOS-7.yaml)!!!
+```
+
+#!!!include(puppet-login_defs/CHANGELOG.md)!!!
+
+#!!!include(puppet-login_defs/REFERENCE.md)!!!
+

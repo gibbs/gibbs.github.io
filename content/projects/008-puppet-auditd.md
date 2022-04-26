@@ -19,7 +19,7 @@ date: "2022-03-10"
 jsonld:
     datePublished: "2022-03-10"
     dateCreated: "2022-03-10"
-    dateModified: "2022-03-10"
+    dateModified: "2022-04-26"
     sameAs:
         - https://github.com/gibbs/puppet-auditd
         - https://forge.puppet.com/modules/genv/auditd
@@ -27,15 +27,28 @@ jsonld:
 
 # Puppet Module for auditd
 
-A Puppet module for managing and configuring `auditd` on Debian and Ubuntu.
+[![Build Status](https://img.shields.io/github/workflow/status/gibbs/puppet-auditd/CI?style=flat-square)](https://github.com/gibbs/puppet-auditd/actions?query=workflow%3ACI)
+[![Release](https://img.shields.io/github/workflow/status/gibbs/puppet-auditd/Release?label=release&style=flat-square)](https://github.com/gibbs/puppet-auditd/actions?query=workflow%3ARelease)
+[![Puppet Forge](https://img.shields.io/puppetforge/v/genv/auditd.svg?maxAge=2592000&style=flat-square)](https://forge.puppet.com/genv/auditd)
+[![Apache-2 License](https://img.shields.io/github/license/gibbs/puppet-auditd.svg?style=flat-square)](https://github.com/gibbs/puppet-auditd/blob/master/LICENSE)
 
-[![Build Status](https://github.com/gibbs/puppet-auditd/workflows/CI/badge.svg)](https://github.com/gibbs/puppet-auditd/actions?query=workflow%3ACI)
-[![Release](https://github.com/gibbs/puppet-auditd/workflows/Release/badge.svg)](https://github.com/gibbs/puppet-auditd/actions?query=workflow%3ARelease)
-[![Apache-2 License](https://img.shields.io/github/license/gibbs/puppet-auditd.svg)](LICENSE)
+A Puppet module for managing and configuring the Linux Audit Daemon `auditd` on 
+Debian and RedHat family distros.
+
+- [Example Usage](#goto-example-usage)
+  - [Daemon Configuration](#goto-daemon-configuration)
+  - [Rules](#goto-rules)
+  - [Plugins](#goto-plugins)
+  - [Dispatcher](#goto-dispatcher)
+- [Default Configuration](#goto-default-configuration)
+- [Changelog](#goto-change-log)
+- [Reference](#goto-reference)
 
 [Source available on GitHub]({{ project.repository }}){.button .button--github}
 
-## Daemon Configuration
+## Example Usage
+
+### Daemon Configuration
 
 The `config` parameter is used to configure `auditd.conf`.
 
@@ -53,7 +66,7 @@ class { 'auditd':
 
 By default the values shipped with the Debian and Ubuntu packages are used.
 
-## Rules
+### Rules
 
 The `auditd::rules` parameter can be used to pass a hash of rules to the 
 defined type.
@@ -96,301 +109,108 @@ auditd::rules:
     content: '-a always,exit -F arch=b32 -S unlink -S unlinkat -S rename -S renameat -F auid>=1000 -F auid!=4294967295 -k delete'
 ```
 
-## Reference
+### Plugins
 
-### Classes
-
-#### Public Classes
-
-* [`auditd`](#auditd): audit daemon
-
-#### Private Classes
-
-* `auditd::config`: auditd configuration
-* `auditd::package`: auditd package management
-* `auditd::service`: auditd service management
-
-### Defined types
-
-* [`auditd::rule`](#auditdrule): Creates auditd rules
-
-### Data types
-
-* [`Auditd::Conf`](#auditdconf): auditd.conf configuration file parameters
-* [`Auditd::Rules`](#auditdrules): auditd rule parameters
-
-## Classes
-
-### `auditd` { #auditd }
-
-audit daemon
-
-#### Parameters
-
-The following parameters are available in the `auditd` class:
-
-* [`package_name`](#package_name)
-* [`package_ensure`](#package_ensure)
-* [`service_enable`](#service_enable)
-* [`service_name`](#service_name)
-* [`rules`](#rules)
-* [`rules_file`](#rules_file)
-* [`config`](#config)
-* [`buffer_size`](#buffer_size)
-* [`failure_mode`](#failure_mode)
-* [`immutable`](#immutable)
-* [`syslog_output`](#syslog_output)
-* [`service_ensure`](#service_ensure)
-
-##### ==package_name== { #package_name }
-
-Data type: `String[1]`
-
-The package name to use
-
-Default value: `'auditd'`
-
-##### ==package_ensure== { #package_ensure }
-
-Data type: `String`
-
-The package state to set
-
-Default value: `'installed'`
-
-##### ==service_enable== { #service_enable }
-
-Data type: `Boolean`
-
-The service enable state
-
-Default value: ``true``
-
-##### ==service_name== { #service_name }
-
-Data type: `String[1]`
-
-The service name to use
-
-Default value: `'auditd'`
-
-##### ==rules== { #rules }
-
-Data type: `Optional[Hash[String, Auditd::Rules]]`
-
-Hash of auditd rules to set
-
-Default value: `{}`
-
-##### ==rules_file== { #rules_file }
-
-Data type: `Stdlib::Absolutepath`
-
-The rules file to use
-
-Default value: `'/etc/audit/rules.d/audit.rules'`
-
-##### ==config== { #config }
-
-Data type: `Auditd::Conf`
-
-auditd.conf configuration hash
-
-Default value: `{}`
-
-##### ==buffer_size== { #buffer_size }
-
-Data type: `Integer`
-
-The buffer size to use
-
-Default value: `8192`
-
-##### ==failure_mode== { #failure_mode }
-
-Data type: `Integer`
-
-The failure mode (defaults to printing failure message)
-
-Default value: `1`
-
-##### ==immutable== { #immutable }
-
-Data type: `Boolean`
-
-Make the configuration immutable
-
-Default value: `false`
-
-##### ==syslog_output== { #syslog_output }
-
-Data type: `Boolean`
-
-Enable syslog output
-
-Default value: `true`
-
-##### ==service_ensure== { #service_ensure }
-
-Data type: `Stdlib::Ensure::Service`
-
-
-
-Default value: `'running'`
-
-## Defined types
-
-### `auditd::rule` { #auditdrule }
-
-Creates auditd rules
-
-#### Parameters
-
-The following parameters are available in the `auditd::rule` defined type:
-
-* [`content`](#rule_content)
-* [`order`](#order)
-
-##### ==content== { #rule_content }
-
-Data type: `String`
-
-The rule content
-
-Default value: `''`
-
-##### ==order== { #order }
-
-Data type: `Integer[1, 100]`
-
-The rule priority order (between 1 and 100)
-
-Default value: `10`
-
-## Data types
-
-### `Auditd::Conf` { #auditdconf }
-
-auditd.conf configuration file parameters
-
-Alias of
+Plugins are managed usig the `auditd::plugin` type.
 
 ```puppet
-Struct[{
-    Optional['local_events']            => Enum['yes', 'no'],
-    Optional['log_file']                => Stdlib::Absolutepath,
-    Optional['write_logs']              => Enum['yes', 'no'],
-    Optional['log_format']              => Enum[
-      'raw', 'RAW',
-      'enriched', 'ENRICHED',
-    ],
-    Optional['log_group']               => Variant[Integer, String[1]],
-    Optional['priority_boost']          => Integer[0],
-    Optional['flush']                   => Enum[
-      'none', 'NONE',
-      'incremental', 'INCREMENTAL',
-      'incremental_async', 'INCREMENTAL_ASYNC',
-      'data', 'DATA',
-      'sync', 'SYNC',
-    ],
-    Optional['freq']                    => Integer[0],
-    Optional['dispatcher']              => String,
-    Optional['disp_qos']                => Enum[
-      'lossy', 'LOSSY',
-      'lossless', 'LOSSLESS'
-    ],
-    Optional['num_logs']                => Integer[0, 999],
-    Optional['name_format']             => Enum[
-      'none', 'NONE',
-      'hostname', 'HOSTNAME',
-      'fqd', 'FQD',
-      'numeric', 'NUMERIC',
-      'user', 'USER',
-    ],
-    Optional['name']                    => String,
-    Optional['max_log_file']            => Integer,
-    Optional['max_log_file_action']     => Enum[
-      'ignore', 'IGNORE',
-      'syslog', 'SYSLOG',
-      'suspend', 'SUSPEND',
-      'rotate', 'ROTATE',
-      'keep_logs', 'KEEP_LOGS',
-    ],
-    Optional['verify_email']            => Enum['yes', 'no'],
-    Optional['action_mail_acct']        => Variant[String, Stdlib::Email],
-    Optional['space_left']              => Integer,
-    Optional['space_left_action']       => Enum[
-      'ignore', 'IGNORE',
-      'syslog', 'SYSLOG',
-      'rotate', 'ROTATE',
-      'email', 'EMAIL',
-      'exec', 'EXEC',
-      'suspend', 'SUSPEND',
-      'single', 'SINGLE',
-      'halt', 'HALT',
-    ],
-    Optional['admin_space_left']        => Variant[Integer, String],
-    Optional['admin_space_left_action'] => Enum[
-      'ignore', 'IGNORE',
-      'syslog', 'SYSLOG',
-      'rotate', 'ROTATE',
-      'email', 'EMAIL',
-      'exec', 'EXEC',
-      'suspend', 'SUSPEND',
-      'single', 'SINGLE',
-      'halt', 'HALT',
-    ],
-    Optional['disk_full_action']        => Enum[
-      'ignore', 'IGNORE',
-      'syslog', 'SYSLOG',
-      'rotate', 'ROTATE',
-      'exec', 'EXEC',
-      'suspend', 'SUSPEND',
-      'single', 'SINGLE',
-      'halt', 'HALT',
-    ],
-    Optional['disk_error_action']       => Enum[
-      'ignore', 'IGNORE',
-      'syslog', 'SYSLOG',
-      'exec', 'EXEC',
-      'suspend', 'SUSPEND',
-      'single', 'SINGLE',
-      'halt', 'HALT',
-    ],
-    Optional['tcp_listen_port']         => Integer[1,65535],
-    Optional['tcp_listen_queue']        => Integer,
-    Optional['tcp_max_per_addr']        => Integer[1,1024],
-    Optional['use_libwrap']             => Enum['yes', 'no'],
-    Optional['tcp_client_ports']        => Variant[Integer, String],
-    Optional['tcp_client_max_idle']     => Integer,
-    Optional['transport']               => Enum['tcp', 'TCP', 'krb5', 'KRB5'],
-    Optional['enable_krb5']             => Enum['yes', 'no'],
-    Optional['krb5_principal']          => String,
-    Optional['krb5_key_file']           => Stdlib::Absolutepath,
-    Optional['distribute_network']      => Enum['yes', 'no'],
-    Optional['q_depth']                 => Integer,
-    Optional['overflow_action']         => Enum[
-      'ignore', 'IGNORE',
-      'syslog', 'SYSLOG',
-      'suspend', 'SUSPEND',
-      'single', 'SINGLE',
-      'halt', 'HALT',
-    ],
-    Optional['max_restarts']            => Integer[0],
-    Optional['plugin_dir']              => Stdlib::Absolutepath,
-    Optional['end_of_event_timeout']    => Integer[0],
-  }]
+auditd::plugin { 'clickhouse':
+  active    => 'yes',
+  direction => 'out',
+  path      => '/usr/libexec/auditd-plugin-clickhouse',
+  type      => 'always',
+  args      => '/etc/audit/auditd-clickhouse.conf',
+  format    => 'string',
+}
 ```
 
-### `Auditd::Rules` { #auditdrules }
+Alternatively, with Hiera;
 
-auditd rule parameters
+```yaml
+auditd:
+  plugins:
+    clickhouse:
+      active: 'yes'
+      direction: 'out'
+      path: /usr/libexec/auditd-plugin-clickhouse
+      args: /etc/audit/auditd-clickhouse.conf
+```
 
-Alias of
+### Dispatcher
+
+In modern versions of auditd (>= 3) audisp can be configured in `/etc/audit`.
+Older versions can use `auditd::audisp`.
 
 ```puppet
-Struct[{
-    Optional['content'] => String,
-    Optional['order']   => Integer[1, 99],
-  }]
+class { 'auditd::audisp':
+  config => {
+    q_depth     => 250,
+    name_format => 'hostname',
+  },
+}
 ```
+
+```yaml
+auditd::audisp::config:
+  q_depth: 250
+  overflow_action: syslog
+  priority_boost: 4
+  max_restarts: 10
+  name_format: hostname
+  plugin_dir: /etc/audisp/plugins.d/
+```
+
+## Default Configuration
+
+```yaml [g1:Common]
+!!!include(puppet-auditd/data/common.yaml)!!!
+```
+
+```yaml [g1:AlmaLinux 8]
+!!!include(puppet-auditd/data/AlmaLinux-8.yaml)!!!
+```
+
+```yaml [g1:CentOS 7]
+!!!include(puppet-auditd/data/CentOS-7.yaml)!!!
+```
+
+```yaml [g1:Debian 10]
+!!!include(puppet-auditd/data/Debian-10.yaml)!!!
+```
+
+```yaml [g1:Debian 11]
+!!!include(puppet-auditd/data/Debian-11.yaml)!!!
+```
+
+```yaml [g1:RedHat 7]
+!!!include(puppet-auditd/data/RedHat-7.yaml)!!!
+```
+
+```yaml [g1:RedHat 8]
+!!!include(puppet-auditd/data/RedHat-8.yaml)!!!
+```
+
+```yaml [g1:Rocky 8]
+!!!include(puppet-auditd/data/Rocky-8.yaml)!!!
+```
+
+```yaml [g1:Scientific 7]
+!!!include(puppet-auditd/data/Scientific-7.yaml)!!!
+```
+
+```yaml [g1:Ubuntu 1804]
+!!!include(puppet-auditd/data/Ubuntu-18.04.yaml)!!!
+```
+
+```yaml [g1:Ubuntu 2004]
+!!!include(puppet-auditd/data/Ubuntu-20.04.yaml)!!!
+```
+
+```yaml [g1:Ubuntu 2204]
+!!!include(puppet-auditd/data/Ubuntu-22.04.yaml)!!!
+```
+
+#!!!include(puppet-auditd/CHANGELOG.md)!!!
+
+#!!!include(puppet-auditd/REFERENCE.md)!!!
+
