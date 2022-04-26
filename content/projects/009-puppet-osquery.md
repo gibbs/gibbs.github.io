@@ -19,7 +19,7 @@ date: "2022-03-18"
 jsonld:
     datePublished: "2022-03-18"
     dateCreated: "2022-03-18"
-    dateModified: "2022-03-18"
+    dateModified: "2022-04-26"
     sameAs:
         - https://github.com/gibbs/puppet-osquery
         - https://forge.puppet.com/modules/genv/osquery
@@ -27,11 +27,12 @@ jsonld:
 
 # Puppet Module for osquery
 
-A minimal Puppet module for installing and managing the `osquery` service.
+[![Build Status](https://img.shields.io/github/workflow/status/gibbs/puppet-osquery/CI?style=flat-square)](https://github.com/gibbs/puppet-osquery/actions?query=workflow%3ACI)
+[![Release](https://img.shields.io/github/workflow/status/gibbs/puppet-osquery/Release?label=release&style=flat-square)](https://github.com/gibbs/puppet-osquery/actions?query=workflow%3ARelease)
+[![Puppet Forge](https://img.shields.io/puppetforge/v/genv/osquery.svg?maxAge=2592000&style=flat-square)](https://forge.puppet.com/genv/osquery)
+[![Apache-2 License](https://img.shields.io/github/license/gibbs/puppet-osquery.svg?style=flat-square)](https://github.com/gibbs/puppet-osquery/blob/master/LICENSE)
 
-[![Build Status](https://github.com/gibbs/puppet-osquery/workflows/CI/badge.svg)](https://github.com/gibbs/puppet-osquery/actions?query=workflow%3ACI)
-[![Release](https://github.com/gibbs/puppet-auditd/workflows/Release/badge.svg)](https://github.com/gibbs/puppet-osquery/actions?query=workflow%3ARelease)
-[![Apache-2 License](https://img.shields.io/github/license/gibbs/puppet-osquery.svg)](LICENSE)
+A minimal Puppet module for installing and managing the `osquery` service.
 
 Supported Linux flavours include;
 
@@ -147,144 +148,21 @@ JSON result:
 }
 ```
 
-## Reference
+## Default Configuration
 
-### Classes
+```yaml [g1:Common]
+!!!include(puppet-osquery/data/common.yaml)!!!
+```
 
-#### Public Classes
+```yaml [g1:Debian Family]
+!!!include(puppet-osquery/data/Debian.yaml)!!!
+```
 
-* [`osquery`](#osquery): osquery
+```yaml [g1:RedHat Family]
+!!!include(puppet-osquery/data/RedHat.yaml)!!!
+```
 
-#### Private Classes
+#!!!include(puppet-osquery/CHANGELOG.md)!!!
 
-* `osquery::config`: osquery configuration
-* `osquery::package`: osquery package management
-* `osquery::service`: osquery service management
+#!!!include(puppet-osquery/REFERENCE.md)!!!
 
-## Classes
-
-### `osquery` { #osquery }
-
-osquery
-
-#### Parameters
-
-The following parameters are available in the `osquery` class:
-
-* [`config_path`](#config_path)
-* [`config_owner`](#config_owner)
-* [`config_group`](#config_group)
-* [`package_name`](#package_name)
-* [`package_ensure`](#package_ensure)
-* [`service_name`](#service_name)
-* [`service_enable`](#service_enable)
-* [`service_ensure`](#service_ensure)
-* [`manage_repo`](#manage_repo)
-* [`repo_url`](#repo_url)
-* [`repo_key_id`](#repo_key_id)
-* [`repo_key_server`](#repo_key_server)
-* [`settings`](#settings)
-
-##### ==config_path== { #config_path }
-
-Data type: `Stdlib::AbsolutePath`
-
-The absolute path to the osquery configuration file
-
-Default value: `'/etc/osquery/osquery.conf'`
-
-##### ==config_owner== { #config_owner }
-
-Data type: `Variant[Integer[0], String[1]]`
-
-The owner to set on the osquery configuration file
-
-Default value: `0`
-
-##### ==config_group== { #config_group }
-
-Data type: `Variant[Integer[0], String[1]]`
-
-The group to set on the osquery configuration file
-
-Default value: `0`
-
-##### ==package_name== { #package_name }
-
-Data type: `String[1]`
-
-The osquery package name
-
-Default value: `'osquery'`
-
-##### ==package_ensure== { #package_ensure }
-
-Data type: `String`
-
-The osquery package ensure state
-
-Default value: `'installed'`
-
-##### ==service_name== { #service_name }
-
-Data type: `String[1]`
-
-The osquery service name
-
-Default value: `'osqueryd'`
-
-##### ==service_enable== { #service_enable }
-
-Data type: `Boolean`
-
-The osquery service enable state
-
-Default value: ``true``
-
-##### ==service_ensure== { #service_ensure }
-
-Data type: `Stdlib::Ensure::Service`
-
-The osquery service ensure state
-
-Default value: `'running'`
-
-##### ==manage_repo== { #manage_repo }
-
-Data type: `Boolean`
-
-Set to true to manage the osquery repository
-
-Default value: ``true``
-
-##### ==repo_url== { #repo_url }
-
-Data type: `String`
-
-The osquery repository URL to use
-
-Default value: ``undef``
-
-##### ==repo_key_id== { #repo_key_id }
-
-Data type: `Optional[String]`
-
-The osquery repository GPG key id (apt)
-
-Default value: ``undef``
-
-##### ==repo_key_server== { #repo_key_server }
-
-Data type: `Optional[String]`
-
-The osquery GPG key server (apt) or GPG URL (yum)
-
-Default value: ``undef``
-
-##### ==settings== { #settings }
-
-Data type: `Hash`
-
-A hash of settings to set in the osquery configuration file
-
-Default value: `{}`

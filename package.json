@@ -58,6 +58,8 @@
     "markdown-it": "^12.3.2",
     "markdown-it-anchor": "^8.4.1",
     "markdown-it-attrs": "^4.1.0",
+    "markdown-it-codetabs": "^1.2.0",
+    "markdown-it-include": "^2.0.0",
     "markdown-it-mark": "^3.0.1",
     "mini-css-extract-plugin": "^2.4.4",
     "mkdirp": "^1.0.4",
