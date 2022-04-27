@@ -35,6 +35,11 @@ jsonld:
 A Puppet module for managing and configuring `/etc/login.defs` on CentOS,
 Debian, RedHat, Ubuntu, Rocky and AlmaLinux.
 
+- [Example Usage](#goto-example-usage)
+- [Default Configuration](#goto-default-configuration)
+- [Changelog](#goto-changelog)
+- [Reference](#goto-reference)
+
 [Source available on GitHub]({{ project.repository }}){.button .button--github}
 
 ## Example Usage
@@ -122,7 +127,14 @@ login_defs::options:
 !!!include(puppet-login_defs/data/CentOS-7.yaml)!!!
 ```
 
-#!!!include(puppet-login_defs/CHANGELOG.md)!!!
+<div class="puppet--changelog">
 
-#!!!include(puppet-login_defs/REFERENCE.md)!!!
+!!!include(puppet-login_defs/CHANGELOG.md)!!!
+
+</div>
+<div class="puppet--reference">
+
+!!!include(puppet-login_defs/REFERENCE.md)!!!
+
+</div>
 

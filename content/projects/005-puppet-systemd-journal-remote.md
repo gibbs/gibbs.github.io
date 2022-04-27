@@ -38,6 +38,11 @@ A Puppet module for managing the `systemd-journal-remote`,
 `systemd-journal-upload` and `systemd-journal-gatewayd` services on CentOS,
 Debian, RedHat, Ubuntu and ArchLinux.
 
+- [Example Usage](#goto-example-usage)
+- [Default Configuration](#goto-default-configuration)
+- [Changelog](#goto-changelog)
+- [Reference](#goto-reference)
+
 [Source available on GitHub]({{ project.repository }}){.button .button--github}
 
 ## Example Usage
@@ -98,6 +103,13 @@ See [data types](#goto-data-types-1) for the available options.
 !!!include(puppet-systemd_journal_remote/data/CentOS-7.yaml)!!!
 ```
 
-#!!!include(puppet-systemd_journal_remote/CHANGELOG.md)!!!
+<div class="puppet--changelog">
 
-#!!!include(puppet-systemd_journal_remote/REFERENCE.md)!!!
+!!!include(puppet-systemd_journal_remote/CHANGELOG.md)!!!
+
+</div>
+<div class="puppet--reference">
+
+!!!include(puppet-systemd_journal_remote/REFERENCE.md)!!!
+
+</div>

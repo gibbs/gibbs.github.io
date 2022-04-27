@@ -210,7 +210,13 @@ auditd::audisp::config:
 !!!include(puppet-auditd/data/Ubuntu-22.04.yaml)!!!
 ```
 
-#!!!include(puppet-auditd/CHANGELOG.md)!!!
+<div class="puppet--changelog">
 
-#!!!include(puppet-auditd/REFERENCE.md)!!!
+!!!include(puppet-auditd/CHANGELOG.md)!!!
 
+</div>
+<div class="puppet--reference">
+
+!!!include(puppet-auditd/REFERENCE.md)!!!
+
+</div>

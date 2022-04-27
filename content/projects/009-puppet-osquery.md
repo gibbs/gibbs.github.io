@@ -34,15 +34,10 @@ jsonld:
 
 A minimal Puppet module for installing and managing the `osquery` service.
 
-Supported Linux flavours include;
-
-- Debian 10, 11
-- Ubuntu 18.04, 20.04
-- CentOS 7
-- AlmaLinux 8.5
-- Rocky Linux 8.5
-- RedHat 8
-- Scientific Linux 6, 7
+- [Example Usage](#goto-example-usage)
+- [Default Configuration](#goto-default-configuration)
+- [Changelog](#goto-changelog)
+- [Reference](#goto-reference)
 
 [Source available on GitHub]({{ project.repository }}){.button .button--github}
 
@@ -162,7 +157,14 @@ JSON result:
 !!!include(puppet-osquery/data/RedHat.yaml)!!!
 ```
 
-#!!!include(puppet-osquery/CHANGELOG.md)!!!
+<div class="puppet--changelog">
 
-#!!!include(puppet-osquery/REFERENCE.md)!!!
+!!!include(puppet-osquery/CHANGELOG.md)!!!
+
+</div>
+<div class="puppet--reference">
+
+!!!include(puppet-osquery/REFERENCE.md)!!!
+
+</div>
 
