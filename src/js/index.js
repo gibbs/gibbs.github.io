@@ -139,4 +139,16 @@ window.addEventListener && window.addEventListener('load', () => {
   }
 })
 
+document.addEventListener('keyup', (e) => {
+  const keyName = e.key
+
+  if (['/', 'f'].includes(keyName)) {
+    document.getElementById('search').focus()
+  }
+
+  if (['Escape'].includes(keyName)) {
+    document.getElementById('search').blur()
+  }
+})
+
 console.log('%c sudo rm -rf /', 'color: red')
