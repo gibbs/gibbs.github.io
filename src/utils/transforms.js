@@ -89,8 +89,8 @@ module.exports = (config) => {
     })
 
     // Prefix goto anchors
-    content = content.replace(/a href="#(((?!goto-).)*)"/g, (m, g) => {
-      return `a href="#goto-${g}"`
+    content = content.replace(/a href="#(((?!goto-).)*?)"/g, (m, g) => {
+      return g ? `a href="#goto-${g}"` : m
     })
 
     if (site.environment === 'production' && output && output.endsWith('.html')) {
