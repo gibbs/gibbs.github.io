@@ -11,21 +11,7 @@
     </script>
     {% endif %}
     <style>{% css %}</style>
-    <noscript>
-      <style>
-        .js-required { display: none; }
-
-        /* Reverse navigation when theme preference element isn't visible */
-        .navigation {
-          flex-direction: row-reverse;
-        }
-        @media (min-width: 768px) {
-          .navigation {
-            flex-direction: row;
-          }
-        }
-      </style>
-    </noscript>
+    <noscript><style>.js-required{display:none}.navigation{flex-direction:row-reverse}@media (min-width:768px){.navigation{flex-direction:row}}</style></noscript>
     <script>document.documentElement.setAttribute('data-dark-mode', JSON.parse(window.sessionStorage.getItem('theme')) ?? false)</script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-K3R0CR8HLY"></script>
   </head>

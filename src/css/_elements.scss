@@ -317,6 +317,10 @@ tbody tr:nth-child(2n) {
     font-weight: 500;
   }
 
+  &__heading--h6 {
+    font-size: calc(var(--font-size-base) * 1.25);
+  }
+
   &__summary__paragraph {
     margin-top: calc(var(--gutter-width) * .5);
     margin-bottom: var(--gutter-width);

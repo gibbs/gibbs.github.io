@@ -21,6 +21,10 @@ module.exports = {
       filename: filename + '.js',
       import: path.resolve(__dirname, 'src/js', 'homepage.js')
     },
+    homepage_worker: {
+      filename: filename + '.js',
+      import: path.resolve(__dirname, 'src/js/homepage', 'worker.js')
+    },
     tools: {
       filename: filename + '.js',
       import: path.resolve(__dirname, 'src/js', 'tools.js')
