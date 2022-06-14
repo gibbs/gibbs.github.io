@@ -400,12 +400,12 @@ textarea.form-control-lg {
   margin-right: 1rem;
 }
 
-.btn-check {
+.button--check {
   position: absolute;
   clip: rect(0, 0, 0, 0);
   pointer-events: none;
 }
-.btn-check[disabled] + .btn, .btn-check:disabled + .btn {
+.button--check[disabled] + .btn, .button--check:disabled + .btn {
   pointer-events: none;
   filter: none;
   opacity: 0.65;

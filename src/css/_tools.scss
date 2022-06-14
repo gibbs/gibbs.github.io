@@ -57,6 +57,13 @@
   gap: calc(var(--gutter-width) * .5);
 }
 
+.tool--dig {
+  display: grid;
+  grid-template-columns: auto;
+  gap: calc(var(--gutter-width) * .5);
+  margin: 0 0 var(--gutter-width) 0;
+}
+
 @media (min-width: map-get($breakpoints, 'sm')) {
   .pwgen-generator {
     grid-template-rows: 1fr;
@@ -66,6 +73,21 @@
   .mkpasswd-generator {
     grid-template-rows: 1fr;
     grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: map-get($breakpoints, 'md')) {
+  .tool--dig {
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(4, 1fr);
+
+    .row:first-of-type {
+      grid-column: span 3;
+    }
+
+    .row:last-of-type {
+      grid-column: span 4;
+    }
   }
 }
 

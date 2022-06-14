@@ -26,6 +26,10 @@
   --mask-dark: rgba(0, 0, 0, .1);
   --mask-light: rgba(255, 255, 255, .1);
 
+  // Toggle
+  --toggle-inactive: #d6cfcf;
+  --toggle-active: #34344A;
+
   // Alert Colours
   --alert-info-bg: #cfe2ff;
   --alert-info-color: #084298;
@@ -122,6 +126,10 @@
   --shadow-color: #101010;
   --mask-dark: rgba(255, 255, 255, .1);
   --mask-light: rgba(0, 0, 0, .1);
+
+  // Toggle
+  --toggle-inactive: #3e3e3e;
+  --toggle-active: #34344A;
 
   // Sections
   --header-bg: #34344A;
