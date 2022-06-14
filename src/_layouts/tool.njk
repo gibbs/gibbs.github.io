@@ -7,7 +7,11 @@
     <article class="row">
       {{ content | safe }}
 
-      {% block tool %}{% endblock %}
+      <div class="js-required">{% block tool %}{% endblock %}</div>
+
+      <noscript>
+        <div class="alert alert--warning">Javascript is required to use this tool. See <a href="https://www.enable-javascript.com/">How to enable JavaScript in your browser</a>.</div>
+      </noscript>
     </article>
   </div>
 {% endblock %}
