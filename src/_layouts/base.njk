@@ -16,23 +16,19 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-K3R0CR8HLY"></script>
   </head>
 
-  <body class="layout__{{ layout|default('base') }}">
+  <body class="layout-{{ layout|default('base') }}">
     {% block header %}
     <header class="header">
       <div class="container">
-        <div class="row">
-          <nav class="navigation">
-            <span class="icon icon-brightness-contrast js-required" id="change_theme_preference" title="Change colour preference"></span>
+        <nav class="navigation">
+          <span class="navigation__theme-preference icon icon-brightness-contrast js-required" id="change_theme_preference" title="Change colour preference"></span>
+          <input class="navigation__menu" type="checkbox" id="navigation_menu">
 
-            <input type="checkbox" id="navigation_menu">
-
-            <label for="navigation_menu" class="navigation__toggle">
-              <span class="icon-hamburger"><span></span></span>
-            </label>
-
-            {% include "navigation.njk" %}
-          </nav>
-        </div>
+          <label class="navigation__toggle" for="navigation_menu">
+            <span class="icon-hamburger"><span></span></span>
+          </label>
+          {% include "navigation.njk" %}
+        </nav>
       </div>
     </header>
     {% endblock %}

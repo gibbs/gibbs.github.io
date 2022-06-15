@@ -1,0 +1,78 @@
+a {
+  color: var(--link-text-color);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--link-text-hover-color);
+}
+
+*:not(pre) > code {
+  color: var(--code-text-color);
+  padding: calc(var(--gap) * .25);
+  background-color: var(--code-bg);
+}
+
+mark {
+  color: var(--mark-text-color);
+  padding: calc(var(--gap) * .25);
+  background-color: var(--mark-bg);
+  border-radius: 5px;
+  font-size: calc(var(--font-size) * 0.9);
+  border: 1px solid var(--mark-border-color);
+}
+
+blockquote {
+  background-color: var(--blockquote-bg-color);
+  padding: calc(var(--gap) * .5) var(--gap);
+  border-left: 5px solid var(--border-color);
+  margin: var(--gap) calc((var(--gap) * 2) - 5px);
+}
+
+li {
+  margin: calc(var(--gap) * .5) 0 calc(var(--gap) * .5) 0;
+  line-height: var(--line-height);
+  font-size: var(--font-size);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  border: 1px solid var(--table-border-color);
+}
+
+th {
+  background-color: var(--table-heading-bg-color);
+  padding: calc(var(--spacer) * .75);
+  text-align: left;
+  font-size: calc(var(--paragraph-font-size) * .9);
+  font-weight: 500;
+}
+
+td {
+  padding: calc(var(--spacer) * .75);
+  font-size: calc(var(--paragraph-font-size) * .9);
+}
+
+tbody tr {
+  background-color: var(--table-row-bg-color);
+  border-bottom: 1px solid var(--table-border-color);
+}
+
+tbody tr:nth-child(2n) {
+  background-color: var(--table-row-bg-alt-color);
+}

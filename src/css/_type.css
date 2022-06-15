@@ -1,0 +1,51 @@
+h1 {
+  color: var(--primary-color);
+  font-weight: 600;
+  font-size: calc(var(--font-size) * 2.6);
+  letter-spacing: -.15rem;
+  margin: var(--gutter) 0;
+}
+
+h2 {
+  color: var(--heading-color);
+  font-weight: 500;
+  font-size: calc(var(--font-size) * 2);
+  margin: var(--gutter) 0;
+  letter-spacing: -.045rem;
+  line-height: calc(var(--font-line-height) * 2);
+}
+
+h3 {
+  color: var(--heading-color);
+  font-weight: 500;
+  font-size: calc(var(--font-size) * 1.75);
+  margin: calc(var(--gutter) * 0.8) 0;
+  line-height: calc(var(--font-line-height) * 1.75);
+}
+
+h4 {
+  color: var(--heading-color);
+  font-weight: 400;
+  font-size: calc(var(--font-size) * 1.5);
+  margin: calc(var(--gutter) * 0.6) 0;
+}
+
+h5 {
+  color: var(--heading-color);
+  font-weight: 400;
+  font-size: calc(var(--font-size) * 1.25);
+  margin: calc(var(--gutter) * 0.4) 0;
+}
+
+h6 {
+  color: var(--heading-color);
+  font-weight: 400;
+  font-size: calc(var(--font-size) * 1.1);
+  margin: calc(var(--gutter) * 0.25) 0;
+}
+
+p {
+  line-height: var(--font-line-height);
+  font-size: var(--font-size);
+  margin: var(--gutter) 0;
+}

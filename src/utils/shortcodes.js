@@ -151,7 +151,7 @@ async function responsiveImageShortcode (src, alt = '', options = {}) {
   img.setAttribute('width', srcDimensions.width)
   img.setAttribute('height', srcDimensions.height)
   img.setAttribute('alt', alt)
-  img.setAttribute('class', 'fallback--img')
+  img.setAttribute('class', 'img-fallback')
   img.setAttribute('decoding', 'async')
 
   // Traverse each image format

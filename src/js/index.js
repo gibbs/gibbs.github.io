@@ -130,7 +130,7 @@ window.addEventListener && window.addEventListener('load', () => {
   })
 
   // Cookie consent preferences
-  const preferences = document.getElementsByClassName('cookie__preferences')
+  const preferences = document.getElementsByClassName('cookie-preferences')
 
   for (const el of preferences) {
     el.addEventListener('click', () => {

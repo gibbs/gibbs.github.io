@@ -48,45 +48,47 @@
     </div>
   </div>
 
-  <div class="row js-required homepage--insights">
-    <div class="container">
+  <template id="hompage_insights">
+    <div class="row js-required homepage--insights">
+      <div class="container">
 
-      <div class="insights">
-        <div class="insights__data">
-          <div class="insights__chart">
-            <h3 class="insights__chart-heading">Language Usage</h3>
-            <canvas id="insights_workload" width="552" height="500" aria-label="Languages by Usage" role="img"></canvas>
+        <div class="insights">
+          <div class="insights__data">
+            <div class="insights__chart">
+              <h3 class="insights__chart-heading">Language Usage</h3>
+              <canvas id="insights_workload" width="552" height="500" aria-label="Languages by Usage" role="img"></canvas>
+            </div>
+
+            <div class="insights__chart">
+              <h3 class="insights__chart-heading">Language Popularity</h3>
+              <canvas id="insights_popularity" width="552" height="500" aria-label="Languages by Popularity" role="img"></canvas>
+            </div>
           </div>
 
-          <div class="insights__chart">
-            <h3 class="insights__chart-heading">Language Popularity</h3>
-            <canvas id="insights_popularity" width="552" height="500" aria-label="Languages by Popularity" role="img"></canvas>
+          <p><small>Data sourced from public repositories</small></p>
+
+          <ul class="insights__languages" id="insights_languages"></ul>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row js-required homepage--activity">
+      <div class="container">
+
+        <div class="timeline">
+          <h3 class="timeline__heading">Activity</h3>
+
+          <div class="timeline__activity">
+            <a href="https://github.com/gibbs?tab=overview" class="button button__homepage--timeline">
+              View on GitHub
+            </a>
           </div>
         </div>
 
-        <p><small>Data sourced from public repositories</small></p>
-
-        <ul class="insights__languages" id="insights_languages"></ul>
       </div>
-
     </div>
-  </div>
-
-  <div class="row js-required homepage--activity">
-    <div class="container">
-
-      <div class="timeline">
-        <h3 class="timeline__heading">Activity</h3>
-
-        <div class="timeline__activity">
-          <a href="https://github.com/gibbs?tab=overview" class="button button__homepage--timeline">
-            View on GitHub
-          </a>
-        </div>
-      </div>
-
-    </div>
-  </div>
+  </template>
 
   {#<div class="row">
     <div class="container">

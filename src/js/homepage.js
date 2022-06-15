@@ -26,7 +26,7 @@ function populateInsightsFeed (data) {
   for (const i in data.languages) {
     const language = data.languages[i]
     const $item = document.createElement('li')
-    $item.classList = `insight--language github--language github--language__${language.toLowerCase().replace(' ', '-')}`
+    $item.classList = `insight--language gh-language gh-language--${language.toLowerCase().replace(' ', '-')}`
     $item.appendChild(document.createTextNode(language))
 
     // Append the list item

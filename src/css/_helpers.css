@@ -1,0 +1,8 @@
+.hidden {
+  display: none;
+}
+
+.img-fallback {
+  background-size: cover;
+  background-image: none;
+}
