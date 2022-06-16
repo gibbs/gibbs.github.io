@@ -48,6 +48,15 @@
   max-width: 100%;
   padding: var(--gutter);
   border: 1px solid;
+  margin: 0 0 var(--gap) 0;
+}
+
+.alert > p:first-of-type {
+  margin-top: 0;
+}
+
+.alert > p:last-of-type {
+  margin-bottom: 0;
 }
 
 .alert--danger {
@@ -75,6 +84,95 @@
 }
 
 /*
+ * Code Tabs
+ */
+.code-tabs {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: var(--gap) 0;
+  box-shadow: 5px 5px 5px var(--shadow-color);
+}
+
+.code-tabs pre, input {
+  display: none;
+}
+
+.code-tabs input:checked + pre {
+  display: block;
+  margin: 0;
+  border-radius: 0;
+  max-height: 80vh;
+}
+
+.code-tabs label {
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+.code-tabs input:checked + label {
+  color: var(--primary-color);
+}
+
+.code-tabs ul {
+  display: flex;
+  flex-direction: row;
+  font-size: 0;
+  padding: 0;
+  white-space: nowrap;
+  overflow: auto;
+  user-select: none;
+  background-color: var(--header-bg);
+}
+
+.code-tabs li {
+  list-style: none;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+.code-tabs label {
+  cursor: pointer;
+  user-select: none;
+  display: inline-block;
+  font-size: smaller;
+  padding: calc(var(--gap) * .75) calc(var(--gap) * 1.5);
+}
+
+.code-tabs li ~ li::before {
+  content: "";
+  height: 12px;
+  width: 1px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/*
+ * Hero
+ */
+.hero {
+  padding: calc(var(--gap) * 6) 0 calc(var(--gap) * 6) 0;
+  margin: 0;
+}
+
+.hero__title {
+  margin: var(--gap) 0 0 0;
+  font-weight: 600;
+}
+
+.hero__subtitle {
+  margin: calc(var(--gap) * .5) 0 0 0;
+  color: var(--hero-subtitle-color);
+  font-weight: 300;
+}
+
+.hero__text {
+  margin: 0;
+  color: var(--text-color-light);
+}
+
+/*
  * Other
  */
 .cookie-preferences {
@@ -88,4 +186,23 @@
 
 .anchor-up:hover {
   color: var(--dark-link-text-hover-color);
+}
+
+@media (--breakpoint-lg) {
+  .code-tabs {
+    grid-template-columns: 1fr 4fr;
+  }
+
+  .code-tabs ul {
+    flex-direction: column;
+  }
+
+  .code-tabs label {
+    width: 100%;
+  }
+
+  .code-tabs input:checked + label {
+    border-left: 4px solid var(--primary-color);
+    padding: calc(var(--gap) * 0.75) calc(var(--gap) * 1.5) calc(var(--gap) * 0.75) calc(var(--gap) * 1.5 - 4px);
+  }
 }

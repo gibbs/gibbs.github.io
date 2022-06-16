@@ -19,16 +19,20 @@ jsonld:
     headline: "Let's Encrypt ACME with HAProxy"
     datePublished: "2022-04-11"
     dateCreated: "2022-04-11"
-    dateModified: "2022-04-11"
+    dateModified: "2022-06-16"
 ---
 
 HAProxy can be used to flexibly manage multiple Let's Encrypt certificates. This
  is useful when reverse proxying microservices without the need for a web server
  or exposing `certbot` publicly.
 
-## Example HAProxy Frontend
+## Challenge ACL
 
-```nginx
+The following example creates an ACME challenge ACL that is excluded from an 
+example HTTPS redirect and routes `/.well-known/acme-challenge/` requests to a 
+`certbot` backend.
+
+```nginx [g1:Frontend]
 frontend default
   bind 0.0.0.0:443 ssl crt /etc/ssl/haproxy/
   bind 0.0.0.0:80
@@ -49,9 +53,7 @@ frontend default
   use_backend certbot if is_acme_challenge
 ```
 
-## Example HAProxy Backend
-
-```nginx
+```nginx [g1:Backend]
 backend certbot
   mode http
   server local 127.0.0.1:10081

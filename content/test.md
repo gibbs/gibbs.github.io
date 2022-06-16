@@ -11,49 +11,28 @@ jsonld:
     url: https://dangibbs.uk/
 ---
 
-{{ site.environment }}
+# Test Page
 
-# Markdown: Syntax
-
-*   [Overview](#overview)
-    *   [Philosophy](#philosophy)
-    *   [Inline HTML](#html)
-    *   [Automatic Escaping for Special Characters](#autoescape)
-*   [Block Elements](#block)
-    *   [Paragraphs and Line Breaks](#p)
-    *   [Headers](#header)
-    *   [Blockquotes](#blockquote)
-    *   [Lists](#list)
-    *   [Code Blocks](#precode)
-    *   [Horizontal Rules](#hr)
-*   [Span Elements](#span)
-    *   [Links](#link)
-    *   [Emphasis](#em)
-    *   [Code](#code)
-    *   [Images](#img)
-*   [Miscellaneous](#misc)
-    *   [Backslash Escapes](#backslash)
-    *   [Automatic Links](#autolink)
-
-
-**Note:** This document is itself written using Markdown; you
-can [see the source for it by adding '.text' to the URL](/projects/markdown/syntax.text).
-
-----
+*   [Overview](#goto-overview)
+*   [Block Elements](#goto-block-elements)
+    *   [Paragraphs and Line Breaks](#goto-paragraphs-and-line-breaks)
+    *   [Headers](#goto-headers)
+    *   [Blockquotes](#goto-blockquotes)
+    *   [Lists](#goto-lists)
+    *   [Code Blocks](#goto-code-blocks)
+*   [Span Elements](#goto-span-elements)
+    *   [Links](#goto-links)
+    *   [Emphasis](#goto-emphasis)
+    *   [Code](#goto-code)
+    *   [Mark](#goto-mark)
+    *   [Images](#goto-imgages)
+*   [Components](#goto-components)
+    *   [Alerts](#goto-alerts)
+    *   [Code Tabs](#goto-code-tabs)
 
 ## Overview
 
-### Philosophy
-
-Markdown is intended to be as easy-to-read and easy-to-write as is feasible.
-
-Readability, however, is emphasized above all else. A Markdown-formatted
-document should be publishable as-is, as plain text, without looking
-like it's been marked up with tags or formatting instructions. While
-Markdown's syntax has been influenced by several existing text-to-HTML
-filters -- including [Setext](http://docutils.sourceforge.net/mirror/setext.html), [atx](http://www.aaronsw.com/2002/atx/), [Textile](http://textism.com/tools/textile/), [reStructuredText](http://docutils.sourceforge.net/rst.html),
-[Grutatext](http://www.triptico.com/software/grutatxt.html), and [EtText](http://ettext.taint.org/doc/) -- the single biggest source of
-inspiration for Markdown's syntax is the format of plain text email.
+This page is used to test markdown rendering and CSS styling.
 
 ## Block Elements
 
@@ -75,14 +54,15 @@ end a line with two or more spaces, then type return.
 
 ### Headers
 
-Markdown supports two styles of headers, [Setext] [1] and [atx] [2].
+# Heading One (h1)
 
-Optionally, you may "close" atx-style headers. This is purely
-cosmetic -- you can use this if you think it looks better. The
-closing hashes don't even need to match the number of hashes
-used to open the header. (The number of opening hashes
-determines the header level.)
+## Heading Two (h2)
 
+### Heading Three (h3)
+
+#### Heading Four (h4)
+
+##### Heading Five (h5)
 
 ### Blockquotes
 
@@ -128,11 +108,6 @@ and code blocks:
 > Here's some example code:
 > 
 >     return shell_exec("echo $input | $markdown_script");
-
-Any decent text editor should make email-style quoting easy. For
-example, with BBEdit, you can make a selection and choose Increase
-Quote Level from the Text menu.
-
 
 ### Lists
 
@@ -278,7 +253,7 @@ Regular Markdown syntax is not processed within code blocks. E.g.,
 asterisks are just literal asterisks within a code block. This means
 it's also easy to use Markdown to write about Markdown's own syntax.
 
-```
+```applescript
 tell application "Foo"
     beep
 end tell
@@ -316,6 +291,12 @@ _single underscores_
 
 __double underscores__
 
+### Mark
+
+Double `=` can be used to `<mark>`
+
+This is a ==marked (highlighted)== example.
+
 ### Code
 
 To indicate a span of code, wrap it with backtick quotes (`` ` ``).
@@ -323,3 +304,56 @@ Unlike a pre-formatted code block, a code span indicates code within a
 normal paragraph. For example:
 
 Use the `printf()` function.
+
+
+## Components
+
+### Alerts
+
+<div class="alert alert--danger">
+    <p>Danger alert with the modifier <code>alert--danger</code></p>
+</div>
+
+
+<div class="alert alert--warning">
+    Warning alert with the modifier <code>alert--warning</code>
+</div>
+
+
+<div class="alert alert--info">
+    Info alert with the modifier <code>alert--info</code>
+</div>
+
+
+<div class="alert alert--success">
+    <p>First paragraph</p>
+    <p>Second paragraph</p>
+    <p>Success alert with the modifier <code>alert--success</code></p>
+</div>
+
+### Code Tabs
+
+Display multiple code sources using minimal real estate.
+
+```css [g1:CSS]
+h1 {
+  color: #ff9900;
+  font-size: 2rem;
+}
+
+p {
+    margin: 1rem 0.5rem;
+}
+```
+
+```html [g1:HTML]
+<h1>HTML Block</h1>
+
+<p>This is the HTML block example.</p>
+```
+
+```javascript [g1:Javascript]
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('DOMContentLoaded event fired')
+})
+```

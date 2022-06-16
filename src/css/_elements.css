@@ -57,14 +57,14 @@ thead {
 
 th {
   background-color: var(--table-heading-bg-color);
-  padding: calc(var(--spacer) * .75);
+  padding: calc(var(--gap) * .75);
   text-align: left;
   font-size: calc(var(--paragraph-font-size) * .9);
   font-weight: 500;
 }
 
 td {
-  padding: calc(var(--spacer) * .75);
+  padding: calc(var(--gap) * .75);
   font-size: calc(var(--paragraph-font-size) * .9);
 }
 

@@ -11,6 +11,7 @@
 
 /* The document layout */
 @import "_layout.css";
+@import "_pages.css";
 
 /* Vendor based CSS */
 @import "vendor/_cookieconsent.css";

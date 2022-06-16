@@ -3,7 +3,7 @@
 {% block json_ld %}{{ jsonld | toJSONLDBlog | safe }}{% endblock %}
 
 {% block content %}
-  <div class="row homepage--intro">
+  <div class="home-hero">
     <div class="container">
       <div class="hero">
         {{ content | safe }}
@@ -15,33 +15,28 @@
     </video>#}
   </div>
 
-  <div class="row homepage--blog">
+  <div class="home-posts">
     <div class="container">
-
-      <div class="homepage--blog__container">
+      <div class="home-posts__container">
         <div>
-          <h3 class="homepage--blog__heading">Latest Blog Posts</h3>
+          <h3 class="home-posts__heading">Latest Posts</h3>
         </div>
 
         <div>
           {%- for post in collections.blog | reverse | limit(limit|default(3)) -%}
-          <h4 class="homepage--blog__heading homepage--blog__heading--h6">
+          <h4 class="home-posts__heading home-posts__heading--small">
             <a href="{{ site.url }}/blog/{{ post.data.uri }}/">{{ post.data.anchor }}</a>
           </h4>
 
           <div class="blog__data">
-            <span class="blog__tag">
-              {{ post.data.tags | primaryTag }}
-            </span>
+            <span class="blog__tag">{{ post.data.tags | primaryTag }}</span>
 
             <time class="blog__date" datetime="{{ post.date | postDate }}">
               &mdash; {{ post.date | postDate }}
             </time>
           </div>
 
-          <div class="homepage--blog__summary">
-            <p class="homepage--blog__summary__paragraph">{{ post.data.summary }}</p>
-          </div>
+          <p class="home-posts__summary">{{ post.data.summary }}</p>
         {%- endfor -%}
         </div>
       </div>

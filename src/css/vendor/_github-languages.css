@@ -5,7 +5,7 @@
   width: 20px;
   height: 20px;
   border-radius: 4px;
-  margin: 0 calc(var(--spacer) * .25) 0 calc(var(--spacer) * .5);
+  margin: 0 calc(var(--gap) * .25) 0 calc(var(--gap) * .5);
   background-color: #aaa;
 }
 .gh-language {

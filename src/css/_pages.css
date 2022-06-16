@@ -1,0 +1,129 @@
+/*
+ * Homepage
+ */
+.layout-home .content {
+  padding: 0;
+}
+
+.home-hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-top: calc(var(--gap) * 2);
+  padding-bottom: calc(var(--gap) * 2);
+}
+
+.home-posts {
+  padding: calc(var(--gutter) * 2) 0 calc(var(--gutter) * 2) 0;
+  background-color: var(--header-bg);
+  /*background-image: url(../images/blueprint-dark.png);*/
+}
+
+.home-posts__heading {
+  margin: 0;
+  font-weight: 500;
+}
+
+.home-posts__heading--small {
+  font-size: calc(var(--font-size) * 1.6);
+  margin-bottom: calc(var(--gap) * .25);
+}
+
+.home-posts__summary {
+  margin-top: calc(var(--gutter) * .5);
+}
+
+.home-posts__summary:last-of-type {
+  margin-bottom: 0;
+}
+
+.home-posts__container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gutter);
+}
+
+/*
+ * Blog posts
+ */
+.blog {
+  display: grid;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  gap: 0;
+}
+
+.blog__heading {
+  margin: 0;
+}
+
+.blog__anchor {
+  display: block;
+}
+
+.blog__tag {
+  text-transform: capitalize;
+  background-color: var(--quaternary-color);
+  color: #eee;
+  padding: calc(var(--gap) * .25);
+  font-size: smaller;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.blog__date {
+  color: var(--text-color-light);
+  font-size: smaller;
+}
+
+.blog__item--first {
+  padding: calc(var(--gap) * 2) 0;
+}
+
+.blog__item--wide {
+  grid-column: span 1;
+}
+
+.blog__item {
+  margin: calc(var(--gutter) * .5) 0 calc(var(--gutter) * .5) 0;
+}
+
+.post__date {
+  color: var(--text-color-light);
+  font-size: smaller;
+  display: inline-flex;
+  align-items: center;
+}
+
+.post__date .icon {
+  padding-right: calc(var(--gap) * .5);
+}
+
+@media (--breakpoint-md) {
+  .blog {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gap);
+  }
+
+  .blog__item--wide {
+    grid-column: span 2;
+  }
+}
+
+@media (--breakpoint-lg) {
+  .home-posts__container {
+    grid-template-columns: 1fr 3fr;
+  }
+}
+
+@media (--breakpoint-xl) {
+  .blog {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: var(--gap);
+  }
+
+  .blog__item--wide {
+    grid-column: span 3;
+  }
+}
