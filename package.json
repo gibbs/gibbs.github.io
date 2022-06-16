@@ -21,6 +21,7 @@
     "serve:build": "scripty",
     "serve:watch": "scripty",
     "test:acceptance": "scripty",
+    "test:e2e": "scripty",
     "test": "scripty"
   },
   "license": "MIT",
