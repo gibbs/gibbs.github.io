@@ -11,7 +11,7 @@ const request = chai.request(config.url)
 /*
  * Check a web app manifest exists with valid icon URLs
  */
-describe('Web app manifest', function () {
+describe('Web app manifest', () => {
   let error, response
 
   before('should load', (done) => {
