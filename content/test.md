@@ -28,6 +28,7 @@ jsonld:
     *   [Images](#goto-imgages)
 *   [Components](#goto-components)
     *   [Alerts](#goto-alerts)
+    *   [Buttons](#goto-buttons)
     *   [Code Tabs](#goto-code-tabs)
 
 ## Overview
@@ -329,6 +330,83 @@ Use the `printf()` function.
     <p>First paragraph</p>
     <p>Second paragraph</p>
     <p>Success alert with the modifier <code>alert--success</code></p>
+</div>
+
+## Buttons
+
+```html
+<a href="javascript:" class="button">Button</a>
+```
+
+<a href="javascript:" class="button">Button</a>
+
+```html
+<a href="javascript:" class="button" disabled>Disabled Button</a>
+```
+
+<a href="javascript:" class="button" disabled>Disabled Button</a>
+
+```html
+<a href="javascript:" class="button button--image">Button Image</a>
+```
+
+<a href="javascript:" class="button button--image">Button Image</a>
+
+```html
+<a href="javascript:" class="button button--primary">Primary Button</a>
+```
+
+<a href="javascript:" class="button button--primary">Primary Button</a>
+
+```html
+<a href="javascript:" class="button button--secondary button--lg">Secondary Button (lg)</a>
+```
+
+<a href="javascript:" class="button button--secondary button--lg">Secondary Button (lg)</a>
+
+```html
+<a href="javascript:" class="button button--tertiary button--sm">Tertiary Button (sm)</a>
+```
+
+<a href="javascript:" class="button button--tertiary button--sm">Tertiary Button (sm)</a>
+
+```html
+<a href="javascript:" class="button button--image button--github">GitHub Button</a>
+```
+
+<a href="javascript:" class="button button--image button--github">GitHub Button</a>
+
+```html
+<a href="javascript:" class="button button--image button--docker">Docker Button</a>
+```
+
+<a href="javascript:" class="button button--image button--docker">Docker Button</a>
+
+```html
+<div class="row">
+  <input type="checkbox" name="item[]" value="a" class="button--check" id="item_a">
+  <label class="button button--toggle button--sm" for="item_a">Item A</label>
+
+  <input type="checkbox" name="item[]" value="b" class="button--check" id="item_b">
+  <label class="button button--toggle button--sm" for="item_b" checked>Item B</label>
+
+  <input type="checkbox" name="item[]" value="c" class="button--check" id="item_c" >
+  <label class="button button--toggle button--sm" for="item_c">Item C</label>
+</div>
+```
+
+<div class="row">
+  <input type="checkbox" name="item[]" value="a" class="button--check" id="item_a">
+  <label class="button button--toggle button--sm" for="item_a">Item A</label>
+
+  <input type="checkbox" name="item[]" value="b" class="button--check" id="item_b" checked>
+  <label class="button button--toggle button--sm" for="item_b">Item B</label>
+
+  <input type="checkbox" name="item[]" value="c" class="button--check" id="item_c" >
+  <label class="button button--toggle button--sm" for="item_c">Item C</label>
+</div>
+
+
 </div>
 
 ### Code Tabs

@@ -2,11 +2,12 @@
 
 /* Normalise */
 @import "_normalise.css";
+@import "_elements.css";
 @import "_type.css";
 
+@import "_forms.css";
 @import "_helpers.css";
 @import "_components.css";
-@import "_elements.css";
 @import "_icons.css";
 
 /* The document layout */

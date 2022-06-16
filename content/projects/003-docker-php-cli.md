@@ -50,8 +50,8 @@ releases.
 5. [Github Workflow Example](#goto-github-workflow-example)
 6. [BitBucket Pipelines Example](#goto-bitbucket-pipelines-example)
 
-[View on Docker Hub]({{ project.dockerhub }}){.button .button--docker}
-[Source available on GitHub]({{ project.repository }}){.button .button--github}
+[View on Docker Hub]({{ project.dockerhub }}){.button .button--image .button--docker}
+[Source available on GitHub]({{ project.repository }}){.button .button--image .button--github}
 
 ## Example Usage
 

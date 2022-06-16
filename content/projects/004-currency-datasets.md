@@ -38,7 +38,7 @@ Markdown, PHP and XML formats for easy programmatic usage.
 - [PHP](https://raw.githubusercontent.com/gibbs/currency-data/master/dist/currencies.php)
 - [XML](https://raw.githubusercontent.com/gibbs/currency-data/master/dist/currencies.xml)
 
-[Source available on GitHub]({{ project.repository }}){.button .button--github}
+[Source available on GitHub]({{ project.repository }}){.button .button--image .button--github}
 
 ## Current Data
 

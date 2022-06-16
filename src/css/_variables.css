@@ -5,13 +5,13 @@
   --primary-color: #E21A23; /* BCFC */
   --secondary-color: #34344A;
   --tertiary-color: #595FD9;
-  --quaternary-color: #A663CC;
+  --quaternary-color: #8137ab;
 
   --secondary-color-text: #8DA7BE;
   --link-text-color: #595FD9;
   --link-text-hover-color: #E21A23;
   --dark-link-text-color: var(--white-color);
-  --dark-link-text-hover-color: #ED6A5A; /* #76E5FC; */
+  --dark-link-text-hover-color: #f2968b; /* #76E5FC; */
   --border-color: #e2dddd;
   --black-color: #444;
   --white-color: #fff;
@@ -44,7 +44,7 @@
   --mark-text-color: black;
 
   /* Animations */
-  --transition-speed: 0.1s;
+  --transition-speed: 0.06s;
 
   /* Elements */
   --blockquote-bg-color: var(--white-color);

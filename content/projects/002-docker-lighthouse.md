@@ -45,8 +45,8 @@ reports.
 5. [Generating Host Reports](#goto-generating-host-reports)
 6. [All Options](#goto-all-options)
 
-[View on Docker Hub]({{ project.dockerhub }}){.button .button--docker}
-[Source available on GitHub]({{ project.repository }}){.button .button--github}
+[View on Docker Hub]({{ project.dockerhub }}){.button .button--image .button--docker}
+[Source available on GitHub]({{ project.repository }}){.button .button--image .button--github}
 
 ## Usage
 

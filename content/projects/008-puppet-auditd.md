@@ -44,7 +44,7 @@ Debian and RedHat family distros.
 - [Changelog](#goto-change-log)
 - [Reference](#goto-reference)
 
-[Source available on GitHub]({{ project.repository }}){.button .button--github}
+[Source available on GitHub]({{ project.repository }}){.button .button--image .button--github}
 
 ## Example Usage
 
