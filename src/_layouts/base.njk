@@ -18,9 +18,9 @@
 
   <body class="layout-{{ layout|default('base') }}">
     {% block header %}
-    <header class="header">
+    <header id="header" class="header">
       <div class="container">
-        <nav class="navigation">
+        <nav id="navigation" class="navigation">
           <span class="navigation__theme-preference icon icon-brightness-contrast js-required" id="change_theme_preference" title="Change colour preference"></span>
           <input class="navigation__menu" type="checkbox" id="navigation_menu">
 

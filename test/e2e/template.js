@@ -13,4 +13,16 @@ describe('Template and Layout', () => {
         .assert.not.attributeEquals('html', 'data-dark-mode', result.value)
     })
   })
+
+  it('Should always display template elements', (browser) => {
+    const context = browser.page.home()
+
+    context.navigate()
+      .waitForElementVisible('body')
+      .assert.visible('@header')
+      .assert.visible('@navigation')
+      .assert.visible('@content')
+      .assert.visible('@footer')
+      .assert.visible('@copyright')
+  })
 })

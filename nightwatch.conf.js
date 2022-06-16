@@ -10,6 +10,7 @@ module.exports = {
   test_settings: {
     default: {
       disable_error_log: false,
+      // eslint-disable-next-line no-template-curly-in-string
       launch_url: '${APP_URL}',
       screenshots: {
         enabled: false,

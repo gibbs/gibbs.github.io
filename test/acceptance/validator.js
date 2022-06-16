@@ -44,10 +44,10 @@ for (const key in urls) {
     ],
     rules: {
       'no-trailing-whitespace': 'off',
-      'no-raw-characters': ['warn', {
+      'no-raw-characters': ['off', {
         relaxed: true
       }],
-      'no-autoplay': ['warn', {
+      'no-autoplay': ['off', {
         exclude: ['video']
       }]
     }
