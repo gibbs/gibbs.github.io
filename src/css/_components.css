@@ -122,17 +122,13 @@
   opacity: 0.5;
 }
 
-.button--lg {
-  padding: calc(var(--gap) * 1.2) calc(var(--gap));
-  font-size: larger;
-}
-
 .button--toggle {
   background-color: var(--toggle-inactive);
   color: var(--text-color);
   border: 2px solid var(--toggle-inactive);
   user-select: none;
   font-weight: 500;
+  box-shadow: none;
 }
 
 .button--toggle:not([disabled]):hover,
@@ -196,6 +192,17 @@
 
 .button--sm {
   padding: calc(var(--gap) * 0.6) calc(var(--gap) * 0.75);
+  font-weight: 400;
+  font-size: smaller;
+}
+
+.button--lg {
+  padding: calc(var(--gap) * 1.2) calc(var(--gap));
+  font-size: larger;
+}
+
+.button--form {
+  padding: calc(var(--gap) * 0.613) calc(var(--gap) * 0.75);
   font-weight: 400;
   font-size: smaller;
 }
@@ -323,10 +330,6 @@
 
 .anchor-up:hover {
   color: var(--dark-link-text-hover-color);
-}
-
-.result {
-  margin-top: var(--gutter);
 }
 
 @media (--breakpoint-lg) {

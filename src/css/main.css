@@ -6,13 +6,13 @@
 @import "_type.css";
 
 @import "_forms.css";
-@import "_helpers.css";
 @import "_components.css";
 @import "_icons.css";
 
 /* The document layout */
 @import "_layout.css";
 @import "_pages.css";
+@import "_tools.css";
 
 /* Vendor based CSS */
 @import "vendor/_cookieconsent.css";

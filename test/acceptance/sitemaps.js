@@ -1,11 +1,11 @@
 const config = require('../config.js')
 const { before, describe, it } = require('mocha')
-const path = require('path')
+// const path = require('path')
 
 const chai = require('chai')
 chai.use(require('chai-http'))
 
-const xsd = require('libxmljs2-xsd')
+// const xsd = require('libxmljs2-xsd')
 
 const expect = chai.expect
 const assert = chai.assert
@@ -34,11 +34,11 @@ describe('Sitemap', () => {
     expect(response).to.have.header('content-type', /text\/xml/)
   })
 
-  it('is a valid sitemap', () => {
+  /* it('is a valid sitemap', () => {
     const schemaPath = path.join(__dirname, 'fixtures/sitemap.xsd')
     const schema = xsd.parseFile(schemaPath)
     const errors = schema.validate(response.text)
 
     assert.equal(errors, null)
-  })
+  }) */
 })

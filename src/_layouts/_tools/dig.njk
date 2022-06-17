@@ -1,8 +1,8 @@
 {% extends "../../_layouts/tool.njk" %}
 
 {% block tool %}
-  <form method="post" id="dig_form">
-    <section class="fieldset tool--dig">
+  <form method="post" class="tool-{{ uri }}__form" id="dig_form">
+    <section class="fieldset tool-{{ uri }}__section">
       <div class="row">
         <label for="input" class="form-label">Name</label>
         <input type="text" id="name" name="name" placeholder="e.g. google.com" class="form-control" value="" minlength="1" maxlength="256" required>
@@ -33,7 +33,7 @@
   </form>
 
   <template id="dig_records">
-    <div class="table">
+    <div class="table result">
       <table id="dig_table">
         <thead>
           <tr>

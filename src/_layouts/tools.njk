@@ -7,15 +7,15 @@
     <div class="row">
       {{ content | safe }}
 
-      <div class="tool-rows">
+      <div class="tools">
         {%- for tool in collections.tools | reverse -%}
-          <div class="tool-rows__row">
-            <div class="tool-rows__body">
-              <h3 class="tool-rows__heading">
-                <a href="{{ site.url }}/tools/{{ tool.data.uri }}/" class="tool-rows__anchor">{{ tool.data.anchor }}</a>
+          <div class="tool">
+            <div class="tool__body">
+              <h3 class="tool__heading">
+                <a href="{{ site.url }}/tools/{{ tool.data.uri }}/" class="tool__anchor">{{ tool.data.anchor }}</a>
               </h3>
 
-              <div class="tool-rows__description">
+              <div class="tool__description">
                 <p>{{ tool.data.summary }}</p>
               </div>
             </div>

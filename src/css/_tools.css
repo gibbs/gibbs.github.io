@@ -1,0 +1,102 @@
+.result {
+  margin-top: var(--gutter);
+}
+
+.table.result {
+  margin-top: 0;
+  margin-bottom: var(--gutter);
+}
+
+.result.alert:before {
+  position: absolute;
+  content: '';
+  border-radius: 5px;
+  font-size: small;
+  padding: calc(var(--gap) * .5);
+  right: calc(var(--gap) * .5);
+  top: calc(var(--gap) * -1);
+  font-weight: 600;
+}
+
+.result.alert--success:before {
+  content: 'RESULT';
+  background-color: var(--alert-success-color);
+  color: #efefef;
+}
+
+.result.alert--warning:before {
+  content: 'WARNING';
+  background-color: var(--alert-warning-color);
+  color: #efefef;
+}
+
+.result.alert--danger:before {
+  content: 'ERROR';
+  background-color: var(--alert-danger-color);
+  color: #efefef;
+}
+
+.tool-dns__section {
+  display: grid;
+  grid-template-columns: auto;
+  gap: calc(var(--gutter) * .5);
+  margin: 0 0 var(--gutter) 0;
+}
+
+.tool-mkpasswd__form {
+  display: grid;
+  grid-template-columns: auto;
+  gap: var(--gutter);
+}
+
+.tool-pwgen__section {
+  display: grid;
+  grid-template-columns: auto;
+  gap: var(--gutter);
+  margin: 0 0 var(--gutter) 0;
+}
+
+.tool-pwgen__options {
+  display: grid;
+  grid-template-columns: auto;
+  gap: calc(var(--gutter) * .5);
+}
+
+@media (--breakpoint-sm) {
+  .tool-mkpasswd__form {
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .tool-pwgen__section {
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (--breakpoint-md) {
+  .tool-dns__section {
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .tool-dns__section .row:first-of-type {
+    grid-column: span 3;
+  }
+
+  .tool-dns__section .row:last-of-type {
+    grid-column: span 4;
+  }
+}
+
+@media (--breakpoint-lg) {
+  .tool-mkpasswd__form {
+    grid-template-rows: 1fr min-content;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+  }
+
+  .tool-pwgen__section {
+    grid-template-rows: 1fr;
+    grid-template-columns: 2fr 2fr 4fr minmax(0, 1fr);
+  }
+}

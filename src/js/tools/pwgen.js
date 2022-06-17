@@ -3,7 +3,7 @@ module.exports = () => {
   const result = document.getElementById('pwgen_result')
   const options = document.getElementById('pwgen_options')
 
-  document.getElementById('pwgen-options-toggle').addEventListener('click', (el) => {
+  document.getElementById('pwgen_options_toggle').addEventListener('click', (el) => {
     // Yeah...
     options.classList[options.classList.contains('hidden') ? 'remove' : 'add']('hidden')
     el.target.textContent = (el.target.textContent === 'More' ? 'Less' : 'More')
