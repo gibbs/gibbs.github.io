@@ -43,6 +43,12 @@
     </div>
   </div>
 
+  <div class="home-insights js-required" id="insights">
+    <div class="container">
+      <div class="loading--bars"><div></div><div></div><div></div></div>
+    </div>
+  </div>
+
   <template id="hompage_insights">
     <div class="row js-required homepage--insights">
       <div class="container">
@@ -68,19 +74,16 @@
       </div>
     </div>
 
-    <div class="row js-required homepage--activity">
+    <div class="row js-required">
       <div class="container">
-
         <div class="timeline">
           <h3 class="timeline__heading">Activity</h3>
-
           <div class="timeline__activity">
-            <a href="https://github.com/gibbs?tab=overview" class="button button__homepage--timeline">
+            <a href="https://github.com/gibbs?tab=overview" class="button">
               View on GitHub
             </a>
           </div>
         </div>
-
       </div>
     </div>
   </template>
@@ -94,4 +97,5 @@
 
 {% block scripts %}
   <script>{% asset 'homepage.js' %}</script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 {% endblock %}

@@ -1,0 +1,127 @@
+/*
+ * Git Timeline
+ */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: calc(var(--gap) * 2) 0 calc(var(--gap) * 2) 0;
+  width: 100%;
+}
+
+.timeline__activity {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 var(--gap) 0 0;
+  width: 100%;
+}
+
+.timeline__group {
+  position: relative;
+  display: block;
+  margin: calc(var(--gap) * 2) 0 0 0;
+  border-left: 2px solid var(--secondary-color);
+  width: 100%;
+}
+
+.timeline__group:nth-child(1n) {
+  margin: 0;
+}
+
+.timeline__date {
+  display: block;
+  padding: calc(var(--gap) * .75);
+  background-color: var(--secondary-color);
+  color: var(--dark-link-text-color);
+  font-size: smaller;
+  margin: 0 calc(var(--gap) * -1.5) 0 calc(var(--gap) * -1);
+  text-align: center;
+  font-weight: 500;
+}
+
+.timeline__entries {
+  list-style-type: none;
+  margin: 0;
+  padding: var(--gap);
+}
+
+.timeline__entry {
+  display: flex;
+  flex-direction: column;
+  flex-direction: column;
+  border: 1px solid var(--mask-dark);
+  border-radius: 5px;
+  align-items: center;
+  margin: 0 0 calc(var(--gap) * .5) 0;
+}
+
+.timeline__entry:last-of-type {
+  margin: 0;
+}
+
+.timeline__information {
+  flex: 3;
+  padding: calc(var(--gap) * .75);
+}
+
+.timeline__repository {
+  flex: 2;
+  text-align: left;
+  padding: calc(var(--gap) * .5) 0;
+  align-self: center;
+}
+
+.timeline__entry-heading {
+  font-size: smaller;
+  margin: 0;
+}
+
+.timeline__authored {
+  font-size: smaller;
+  margin: 0;
+  color: var(--text-color-light);
+}
+
+.timeline__actions {
+  display: flex;
+  align-self: center;
+}
+
+.timeline__hash-button {
+  font-size: smaller;
+  border-radius: 5px 5px 0 0;
+  text-align: center;
+  min-width: 105px;
+}
+
+@media (--breakpoint-md) {
+  .timeline__date {
+    display: inline-block;
+    margin: 0 0 0 calc(var(--gap) * -1);
+    border-radius: 5px;
+  }
+
+  .timeline__information {
+    flex: 5;
+  }
+
+  .timeline__entry {
+    flex: 5;
+  }
+
+  .timeline__entry {
+    flex-direction: row;
+  }
+
+  .timeline__repository {
+    flex: 1;
+    padding: 0 calc(var(--gap) * .75);
+  }
+
+  .timeline__hash-button {
+    border-radius: 0;
+  }
+}

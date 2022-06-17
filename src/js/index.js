@@ -39,6 +39,9 @@ window.addEventListener && window.addEventListener('load', () => {
   // Cookie Consent
   const cookieconsent = window.initCookieConsent()
 
+  // Enable analytics
+  enableAnalytics(cookieconsent.allowedCategory('analytics'))
+
   cookieconsent.run({
     auto_language: null,
     current_lang: 'en',

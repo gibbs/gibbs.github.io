@@ -20,9 +20,21 @@ function getLatestActivity () {
   })
     .then(response => response.json())
     .then(data => {
-      setInsightsFeed(data.insights)
-      setActivityFeed(data.activity)
+      processFeed(data)
     })
+}
+
+function processFeed (data) {
+  const insights = setInsightsFeed(data.insights)
+  const activity = setActivityFeed(data.activity)
+
+  postMessage({
+    type: 'insights',
+    data: {
+      insights: insights,
+      activity: activity
+    }
+  })
 }
 
 function setInsightsFeed (data) {
@@ -99,14 +111,11 @@ function setInsightsFeed (data) {
     }
   }
 
-  postMessage({
-    type: 'insights',
-    data: {
-      languages: data.languages,
-      workload: chartWorkloadData,
-      popularity: chartPopularityData
-    }
-  })
+  return {
+    languages: data.languages,
+    workload: chartWorkloadData,
+    popularity: chartPopularityData
+  }
 }
 
 function setActivityFeed (data) {
@@ -138,5 +147,30 @@ function setActivityFeed (data) {
     })
   }
 
-  postMessage({ type: 'commits', data: commits })
+  let entries = ''
+
+  for (const group in commits) {
+    commits[group].forEach(item => {
+      entries += `<li class="timeline__entry">
+        <div class="timeline__information">
+          <p class="timeline__entry-heading">${item.commit.message.replace(/(?:\r\n|\r|\n)/g, '<br>').replace(/(<br\s*\/?>){2,}/gi, '<br>')}</p>
+        </div>
+        <div class="timeline__repository">
+          <p class="timeline__authored">
+            <a href="${item.repository.url}">${item.repository.name}</a>
+          </p>
+        </div>
+        <div class="timeline__actions">
+          <a class="button timeline__hash-button" href="${item.commit.url}">
+            ${item.commit.hash}
+          </a>
+        </div>
+      </li>`
+    })
+  }
+
+  return {
+    commits: commits,
+    entries: entries
+  }
 }

@@ -8,6 +8,7 @@
   margin: 0 calc(var(--gap) * .25) 0 calc(var(--gap) * .5);
   background-color: #aaa;
 }
+
 .gh-language {
   position: relative;
   display: flex;
