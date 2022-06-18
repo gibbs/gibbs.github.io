@@ -4,15 +4,15 @@
 
 {% block content %}
   <div class="container">
-    <article class="row">
+    <div class="row">
       {{ content | safe }}
 
-      <div class="js-required">{% block tool %}{% endblock %}</div>
+      <div class="tool-{{ uri }} js-required">{% block tool %}{% endblock %}</div>
 
       <noscript>
         <div class="alert alert--warning">Javascript is required to use this tool. See <a href="https://www.enable-javascript.com/">How to enable JavaScript in your browser</a>.</div>
       </noscript>
-    </article>
+    </div>
   </div>
 {% endblock %}
 

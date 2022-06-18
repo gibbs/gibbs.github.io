@@ -1,0 +1,142 @@
+/*
+ * Buttons
+ */
+.button {
+  position: relative;
+  display: inline-block;
+  padding: calc(var(--gap) * 0.75);
+  background-color: var(--link-text-color);
+  color: var(--body-bg);
+  border-radius: 2px;
+  font-weight: 500;
+  overflow: hidden;
+  border: 0;
+  border-radius: 3px;
+  box-shadow: 3px 3px 0 var(--shadow-color);
+  user-select: none;
+  transition:
+    background calc(var(--transition-speed) * 2) ease,
+    opacity linear var(--transition-speed);
+}
+
+.button::before {
+  position: absolute;
+  left: -.5rem;
+  font-size: 4rem;
+  opacity: .25;
+}
+
+.button:not([disabled]):focus,
+.button:not([disabled]):hover {
+  color: var(--white-color);
+  background-color: var(--black-color);
+}
+
+.button:is([disabled]) {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.button--toggle {
+  background-color: var(--toggle-inactive);
+  color: var(--text-color);
+  border: 2px solid var(--toggle-inactive);
+  user-select: none;
+  font-weight: 500;
+  box-shadow: none;
+}
+
+.button--toggle:not([disabled]):hover,
+.button--toggle:not([disabled]):focus {
+  background-color: var(--toggle-inactive);
+  color: var(--text-color);
+  border: 2px solid var(--text-color);
+}
+
+.button--check:checked + .button {
+  background-color: var(--toggle-active);
+  border: 2px solid var(--toggle-active);
+  color: var(--body-bg);
+}
+
+.button--image {
+  padding: calc((var(--gap) * 0.75) - 4px);
+  padding-left: 2rem;
+  padding-right: 2rem;
+  border: 2px solid var(--link-text-color);
+}
+
+.button--image:not([disabled]):focus,
+.button--image:not([disabled]):hover {
+  border: 2px solid var(--black-color);
+}
+
+.button--github {
+  background: #ddd;
+  border-color: #bbb;
+  color: #333;
+}
+
+.button--github:not([disabled]):focus,
+.button--github:not([disabled]):hover {
+  background: #fff;
+  color: #333;
+}
+
+.button--github::before {
+  content: "\e902";
+  font-family: 'icomoon' !important;
+}
+
+.button--docker {
+  background: #1e7dc5;
+  border-color: #1e7dc5;
+  color: #fff;
+}
+
+.button--docker:not([disabled]):focus,
+.button--docker:not([disabled]):hover {
+  background: #2496ed;
+  color: #fff;
+}
+
+.button--docker::before {
+  content: "\e906";
+  font-family: 'icomoon' !important;
+}
+
+.button--sm {
+  padding: calc(var(--gap) * 0.6) calc(var(--gap) * 0.75);
+  font-weight: 400;
+  font-size: smaller;
+}
+
+.button--lg {
+  padding: calc(var(--gap) * 1.2) calc(var(--gap));
+  font-size: larger;
+}
+
+.button--form {
+  padding: calc(var(--gap) * 0.613) calc(var(--gap) * 0.75);
+  font-weight: 400;
+  font-size: smaller;
+}
+
+.button--primary {
+  background-color: var(--primary-color);
+}
+
+.button--secondary {
+  color: #efefef;
+  background-color: var(--secondary-color);
+}
+
+.button--secondary:not([disabled]):focus,
+.button--secondary:not([disabled]):hover {
+  color: #efefef;
+  background-color: var(--secondary-color-text);
+}
+
+.button--tertiary {
+  background-color: var(--tertiary-color);
+}

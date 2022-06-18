@@ -3,7 +3,7 @@
 {% block json_ld %}{{ jsonld | toJSONLDBlog | safe }}{% endblock %}
 
 {% block content %}
-  <div class="row homepage--intro">
+  <div class="home-hero">
     <div class="container">
       <div class="hero">
         {{ content | safe }}
@@ -15,78 +15,80 @@
     </video>#}
   </div>
 
-  <div class="row homepage--blog">
+  <div class="home-posts">
     <div class="container">
-
-      <div class="homepage--blog__container">
+      <div class="home-posts__container">
         <div>
-          <h3 class="homepage--blog__heading">Latest Blog Posts</h3>
+          <h3 class="home-posts__heading">Latest Posts</h3>
         </div>
 
         <div>
           {%- for post in collections.blog | reverse | limit(limit|default(3)) -%}
-          <h4 class="homepage--blog__heading homepage--blog__heading--h6">
+          <h4 class="home-posts__heading home-posts__heading--small">
             <a href="{{ site.url }}/blog/{{ post.data.uri }}/">{{ post.data.anchor }}</a>
           </h4>
 
           <div class="blog__data">
-            <span class="blog__tag">
-              {{ post.data.tags | primaryTag }}
-            </span>
+            <span class="blog__tag">{{ post.data.tags | primaryTag }}</span>
 
             <time class="blog__date" datetime="{{ post.date | postDate }}">
               &mdash; {{ post.date | postDate }}
             </time>
           </div>
 
-          <div class="homepage--blog__summary">
-            <p class="homepage--blog__summary__paragraph">{{ post.data.summary }}</p>
-          </div>
+          <p class="home-posts__summary">{{ post.data.summary }}</p>
         {%- endfor -%}
         </div>
       </div>
     </div>
   </div>
 
-  <div class="row js-required homepage--insights">
+  <div class="home-insights js-required" id="insights">
     <div class="container">
-
-      <div class="insights">
-        <div class="insights__data">
-          <div class="insights__chart">
-            <h3 class="insights__chart-heading">Language Usage</h3>
-            <canvas id="insights_workload" width="552" height="500" aria-label="Languages by Usage" role="img"></canvas>
-          </div>
-
-          <div class="insights__chart">
-            <h3 class="insights__chart-heading">Language Popularity</h3>
-            <canvas id="insights_popularity" width="552" height="500" aria-label="Languages by Popularity" role="img"></canvas>
-          </div>
-        </div>
-
-        <p><small>Data sourced from public repositories</small></p>
-
-        <ul class="insights__languages" id="insights_languages"></ul>
+      <div class="loading">
+        <div class="loading--bars"><div></div><div></div><div></div></div>
       </div>
-
     </div>
   </div>
 
-  <div class="row js-required homepage--activity">
-    <div class="container">
+  <template id="hompage_insights">
+    <div class="row js-required homepage--insights">
+      <div class="container">
 
-      <div class="timeline">
-        <h3 class="timeline__heading">Activity</h3>
+        <div class="insights">
+          <div class="insights__data">
+            <div class="insights__chart">
+              <h3 class="insights__chart-heading">Language Usage</h3>
+              <canvas id="insights_workload" width="552" height="500" aria-label="Languages by Usage" role="img"></canvas>
+            </div>
 
-        <div class="timeline__activity">
-          <a href="https://github.com/gibbs?tab=overview" class="button button__homepage--timeline">
-            View on GitHub
-          </a>
+            <div class="insights__chart">
+              <h3 class="insights__chart-heading">Language Popularity</h3>
+              <canvas id="insights_popularity" width="552" height="500" aria-label="Languages by Popularity" role="img"></canvas>
+            </div>
+          </div>
+
+          <p><small>Data sourced from public repositories</small></p>
+
+          <ul class="insights__languages" id="insights_languages"></ul>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row js-required">
+      <div class="container">
+        <div class="timeline">
+          <h3 class="timeline__heading">Activity</h3>
+          <div class="timeline__activity">
+            <a href="https://github.com/gibbs?tab=overview" class="button">
+              View on GitHub
+            </a>
+          </div>
         </div>
       </div>
-
     </div>
-  </div>
+  </template>
 
   {#<div class="row">
     <div class="container">
@@ -97,4 +99,5 @@
 
 {% block scripts %}
   <script>{% asset 'homepage.js' %}</script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 {% endblock %}

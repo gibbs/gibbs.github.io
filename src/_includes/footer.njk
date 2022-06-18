@@ -1,80 +1,76 @@
-<footer class="footer">
-  <div class="container">
-    <div class="footer__grid">
-      <nav class="footer__navigation">
-        <ul class="footer__navigation__list">
-          <li class="footer__navigation__item" {% if page.url == '/' %} aria-current="page"{% endif %}>
-            <a class="footer__navigation__anchor{% if page.url == '/' %} footer__navigation__anchor--active{% endif %}" href="{{ site.url }}/">
-              Home
-            </a>
-          </li>
-          <li class="footer__navigation__item" {% if '/blog/' in page.url %} aria-current="page"{% endif %}>
-            <a class="footer__navigation__anchor{% if '/blog/' in page.url %} footer__navigation__anchor--active{% endif %}" href="{{ site.url }}/blog/">
-              Blog
-            </a>
-          </li>
-          <li class="footer__navigation__item" {% if page.url == '/projects/' %} aria-current="page"{% endif %}>
-            <a class="footer__navigation__anchor{% if '/projects/' in page.url %} footer__navigation__anchor--active{% endif %}" href="{{ site.url }}/projects/">
-              Projects
-            </a>
-          </li>
-          <li class="footer__navigation__item" {% if page.url == '/tools/' %} aria-current="page"{% endif %}>
-            <a class="footer__navigation__anchor{% if '/tools/' in page.url %} footer__navigation__anchor--active{% endif %}" href="{{ site.url }}/tools/">
-              Tools
-            </a>
-          </li>
-        </ul>
-      </nav>
+<footer id="footer" class="footer">
+  <div class="container footer-grid">
+    <nav class="footer-navigation">
+      <ul class="footer-navigation__list">
+        <li class="footer-navigation__item" {% if page.url == '/' %} aria-current="page"{% endif %}>
+          <a class="footer-navigation__anchor{% if page.url == '/' %} footer-navigation__anchor--active{% endif %}" href="{{ site.url }}/">
+            Home
+          </a>
+        </li>
+        <li class="footer-navigation__item" {% if '/blog/' in page.url %} aria-current="page"{% endif %}>
+          <a class="footer-navigation__anchor{% if '/blog/' in page.url %} footer-navigation__anchor--active{% endif %}" href="{{ site.url }}/blog/">
+            Blog
+          </a>
+        </li>
+        <li class="footer-navigation__item" {% if page.url == '/projects/' %} aria-current="page"{% endif %}>
+          <a class="footer-navigation__anchor{% if '/projects/' in page.url %} footer-navigation__anchor--active{% endif %}" href="{{ site.url }}/projects/">
+            Projects
+          </a>
+        </li>
+        <li class="footer-navigation__item" {% if page.url == '/tools/' %} aria-current="page"{% endif %}>
+          <a class="footer-navigation__anchor{% if '/tools/' in page.url %} footer-navigation__anchor--active{% endif %}" href="{{ site.url }}/tools/">
+            Tools
+          </a>
+        </li>
+      </ul>
+    </nav>
 
-      <nav class="footer__navigation">
-        <ul class="footer__navigation__list">
-          <li>
-            <a href="{{ meta.links.github.url }}" title="Github" class="footer__navigation__anchor">
-              <span class="icon icon-github"></span> GitHub
-            </a>
-          </li>
-          <li>
-            <a href="{{ site.url }}/feed.xml" title="Atom/RSS Feed"  class="footer__navigation__anchor">
-              <span class="icon icon-feed"></span> Atom/RSS Feed
-            </a>
-          </li>
-          <li>
-            <a href="{{ site.url }}/feed.json" title="JSON Feed"  class="footer__navigation__anchor">
-              <span class="icon icon-javascript"></span> JSON Feed
-            </a>
-          </li>
-        </ul>
-      </nav>
+    <nav class="footer-navigation">
+      <ul class="footer-navigation__list">
+        <li>
+          <a href="{{ meta.links.github.url }}" title="Github" class="footer-navigation__anchor">
+            <span class="icon icon-github"></span> GitHub
+          </a>
+        </li>
+        <li>
+          <a href="{{ site.url }}/feed.xml" title="Atom/RSS Feed"  class="footer-navigation__anchor">
+            <span class="icon icon-feed"></span> Atom/RSS Feed
+          </a>
+        </li>
+        <li>
+          <a href="{{ site.url }}/feed.json" title="JSON Feed"  class="footer-navigation__anchor">
+            <span class="icon icon-javascript"></span> JSON Feed
+          </a>
+        </li>
+      </ul>
+    </nav>
 
-      <div class="footer__right">
-        <a href="#" class="anchor__up" aria-label="Jump to top of page">
-          <span class="icon icon-circle-up"></span>
-        </a>
-      </div>
+    <div class="footer-actions">
+      <a href="#" class="anchor-up" aria-label="Jump to top of page">
+        <span class="icon icon-circle-up"></span>
+      </a>
     </div>
   </div>
 </footer>
 
-<div class="copyright">
-  <div class="container">
-    <div class="copyright__grid row">
-      <div class="copyright__test-status">
-        <a href="javascript:" class="cookie__preferences" title="Cookie Preferences">
-          Cookie Preferences
-        </a>
+<footer id="copyright" class="copyright">
+  <div class="container copyright__grid">
+    <div class="copyright-status">
+      <a href="javascript:" class="cookie-preferences" title="Cookie Preferences">
+        Cookie Preferences
+      </a>
 
-        <a href="https://github.com/gibbs/gibbs.github.io/" class="copyright__test-status">
-          <img src="https://github.com/gibbs/gibbs.github.io/actions/workflows/deploy.yml/badge.svg" width="105" height="20" alt="Build Status">
-        </a>
+      <a href="https://github.com/gibbs/gibbs.github.io/" class="copyright-status copyright-status__anchor">
+        <img src="https://github.com/gibbs/gibbs.github.io/actions/workflows/deploy.yml/badge.svg" width="105" height="20" alt="Build Status">
+      </a>
 
-        <a href="https://github.com/gibbs/gibbs.github.io/" class="copyright__test-status">
-          <img src="https://github.com/gibbs/gibbs.github.io/actions/workflows/test.yml/badge.svg" width="107" height="20" alt="Test Status">
-        </a>
-      </div>
-
-      <p class="copyright__text">
-        <small>Copyright &copy; 2007 - {{ site.year }} Dan Gibbs</small>
-      </p>
+      <a href="https://github.com/gibbs/gibbs.github.io/" class="copyright-status copyright-status__anchor">
+        <img src="https://github.com/gibbs/gibbs.github.io/actions/workflows/test.yml/badge.svg" width="107" height="20" alt="Test Status">
+      </a>
     </div>
+
+    <p class="copyright__text">
+      <small>Copyright &copy; 2007 - {{ site.year }} Dan Gibbs</small>
+    </p>
   </div>
-</div>
+</footer>

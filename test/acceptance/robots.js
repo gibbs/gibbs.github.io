@@ -12,7 +12,7 @@ const request = chai.request(config.url)
  * Check that a robots.txt text file has been created with explicit "allow"
  * and "disallow" instructions
  */
-describe('Robots.txt file', function () {
+describe('Robots.txt file', () => {
   let error, response
 
   before('should load', (done) => {

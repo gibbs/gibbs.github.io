@@ -9,6 +9,7 @@ summary: >-
 anchor: Password Creator
 uri: pwgen
 tags:
+    - password
     - pwgen
 date: "2022-02-25"
 jsonld:

@@ -8,7 +8,8 @@ summary: >-
 anchor: mkpasswd
 uri: mkpasswd
 tags:
-    - uuid
+    - password
+    - mkpasswd
 date: "2022-02-24"
 jsonld:
     datePublished: "2022-02-24"

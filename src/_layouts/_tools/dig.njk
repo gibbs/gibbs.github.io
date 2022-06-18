@@ -1,16 +1,16 @@
 {% extends "../../_layouts/tool.njk" %}
 
 {% block tool %}
-  <form method="post" id="dig_form">
-    <section class="fieldset tool--dig">
+  <form method="post" class="tool-{{ uri }}__form" id="dig_form">
+    <section class="fieldset tool-{{ uri }}__section">
       <div class="row">
         <label for="input" class="form-label">Name</label>
         <input type="text" id="name" name="name" placeholder="e.g. google.com" class="form-control" value="" minlength="1" maxlength="256" required>
       </div>
 
       <div class="row">
-        <label for="nameserver" class="form-label">Nameserver</label>
-        <select class="form-control" id="nameserver" name="nameserver">
+        <label for="nameserver" aria-label="Nameserver" class="form-label">Nameserver</label>
+        <select class="form-select" id="nameserver" name="nameserver">
           <option value="cloudflare">Cloudflare</option>
           <option value="google" selected>Google</option>
           <option value="quad9">Quad9</option>
@@ -22,7 +22,7 @@
       <div class="row">
         {% for type in ['a', 'aaaa', 'any', 'caa', 'cname', 'dnskey', 'ds', 'mx', 'ns', 'ptr', 'soa', 'srv', 'tlsa', 'tsig', 'txt'] %}
         <input type="checkbox" name="types[]" value="{{ type }}" class="button--check" id="type_{{ type }}" {% if loop.first %} checked{% endif %}>
-        <label class="button button--toggle button--form" for="type_{{ type }}">{{ type|upper }}</label>
+        <label class="button button--toggle button--sm" for="type_{{ type }}">{{ type|upper }}</label>
         {% endfor %}
       </div>
     </section>
@@ -33,7 +33,7 @@
   </form>
 
   <template id="dig_records">
-    <div class="table">
+    <div class="table result">
       <table id="dig_table">
         <thead>
           <tr>

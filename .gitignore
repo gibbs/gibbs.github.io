@@ -4,3 +4,5 @@
 /backup/
 /docs/
 /.env
+/tests_output/
+/logs/

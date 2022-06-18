@@ -14,7 +14,7 @@ module.exports = {
     main: {
       import: [
         path.resolve(__dirname, 'src/js', 'index.js'),
-        path.resolve(__dirname, 'src/css', 'main.scss')
+        path.resolve(__dirname, 'src/css', 'main.css')
       ]
     },
     homepage: {
@@ -50,13 +50,17 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.s[ac]ss$/i,
+        test: /\.css$/i,
         use: [
           MiniCssExtractPlugin.loader,
           {
-            loader: 'css-loader'
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              sourceMap: true
+            }
           },
-          'sass-loader'
+          'postcss-loader'
         ],
         exclude: /node_modules/
       },

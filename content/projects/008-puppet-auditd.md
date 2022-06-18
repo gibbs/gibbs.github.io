@@ -19,7 +19,7 @@ date: "2022-03-10"
 jsonld:
     datePublished: "2022-03-10"
     dateCreated: "2022-03-10"
-    dateModified: "2022-04-26"
+    dateModified: "2022-06-16"
     sameAs:
         - https://github.com/gibbs/puppet-auditd
         - https://forge.puppet.com/modules/genv/auditd
@@ -44,7 +44,7 @@ Debian and RedHat family distros.
 - [Changelog](#goto-change-log)
 - [Reference](#goto-reference)
 
-[Source available on GitHub]({{ project.repository }}){.button .button--github}
+[Source available on GitHub]({{ project.repository }}){.button .button--image .button--github}
 
 ## Example Usage
 
@@ -71,7 +71,9 @@ By default the values shipped with the Debian and Ubuntu packages are used.
 The `auditd::rules` parameter can be used to pass a hash of rules to the 
 defined type.
 
-```puppet
+Alternatively, the `auditd::rule` defined type can be used in a manifest.
+
+```puppet [g1:Class]
 class { 'auditd':
   rules => {
     non_root_mounting => {
@@ -84,9 +86,7 @@ class { 'auditd':
 }
 ```
 
-Alternatively, the `auditd::rule` defined type can be used in a manifest.
-
-```puppet
+```puppet [g1:Define]
 auditd::rule { 'unauthorised_file_access':
   content => '-a always,exit -F arch=b64 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EACCES -F auid>=1000 -F auid!=4294967295 -k access',
   order   => 10,
@@ -95,9 +95,7 @@ auditd::rule { 'unauthorised_file_access':
 auditd::rule { '-w /var/log/tallylog -p wa -k logins': }
 ```
 
-A better approach could be to use Hiera:
-
-```yaml
+```yaml [g1:Hiera]
 auditd::rules:
   sudoers_changes:
     content: '-w /etc/sudoers -p wa -k scope'
@@ -113,7 +111,7 @@ auditd::rules:
 
 Plugins are managed usig the `auditd::plugin` type.
 
-```puppet
+```puppet [g2:Manifest Example]
 auditd::plugin { 'clickhouse':
   active    => 'yes',
   direction => 'out',
@@ -124,9 +122,7 @@ auditd::plugin { 'clickhouse':
 }
 ```
 
-Alternatively, with Hiera;
-
-```yaml
+```yaml [g2:Hiera Example]
 auditd:
   plugins:
     clickhouse:
@@ -141,7 +137,7 @@ auditd:
 In modern versions of auditd (>= 3) audisp can be configured in `/etc/audit`.
 Older versions can use `auditd::audisp`.
 
-```puppet
+```puppet [g3:Manifest]
 class { 'auditd::audisp':
   config => {
     q_depth     => 250,
@@ -150,7 +146,7 @@ class { 'auditd::audisp':
 }
 ```
 
-```yaml
+```yaml [g3:Hiera]
 auditd::audisp::config:
   q_depth: 250
   overflow_action: syslog

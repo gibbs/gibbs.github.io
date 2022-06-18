@@ -1,8 +1,8 @@
 {% extends "../../_layouts/tool.njk" %}
 
 {% block tool %}
-  <form method="post" id="pwgen_generator">
-    <section class="fieldset pwgen-generator">
+  <form method="post" class="tool-{{ uri }}__form" id="pwgen_generator">
+    <section class="fieldset tool-{{ uri }}__section">
       <div class="row">
         <label for="length" class="form-label">Length</label>
         <input type="number" class="form-control" id="length" name="length" min="1" max="1024" value="16" required>
@@ -31,11 +31,11 @@
 
       <div class="row--block">
         <label class="form-label">&nbsp;</label>
-        <button type="button" id="pwgen-options-toggle" class="button button--secondary button--form">More</button>
+        <button type="button" id="pwgen_options_toggle" class="button button--secondary button--form">More</button>
       </div>
     </section>
 
-    <section class="fieldset pwgen-options hidden" id="pwgen_options">
+    <section class="fieldset hidden tool-pwgen__options" id="pwgen_options">
       <div class="row">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" name="secure" value="1" id="secure">

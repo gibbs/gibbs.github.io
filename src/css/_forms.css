@@ -1,6 +1,6 @@
-// Stolen from Bootstrap
 .form-label {
-  margin-bottom: var(--spacer);
+  display: inline-block;
+  margin-bottom: calc(var(--gap) * .5);
   font-weight: 500;
 }
 
@@ -13,8 +13,8 @@
 }
 
 .col-form-label-lg {
-  padding-top: calc(var(--spacer) + 1px);
-  padding-bottom: calc(var(--spacer) + 1px);
+  padding-top: calc(var(--gap) + 1px);
+  padding-bottom: calc(var(--gap) + 1px);
   font-size: 1.25rem;
 }
 
@@ -64,7 +64,7 @@
   background-color: #fff;
   border-color: #86b7fe;
   outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(35, 37, 85, 0.25);
+  box-shadow: 0 0 0 0.25rem var(--form-box-shadow-color);
 }
 .form-control::-webkit-date-and-time-value {
   height: 1.5em;
@@ -170,51 +170,51 @@
 }
 
 .form-control-sm {
-  min-height: calc(1.5em + var(--spacer) + 2px);
-  padding: 0.25rem var(--spacer);
+  min-height: calc(1.5em + var(--gap) + 2px);
+  padding: 0.25rem var(--gap);
   font-size: 0.875rem;
   border-radius: 0.2rem;
 }
 .form-control-sm::-webkit-file-upload-button {
-  padding: 0.25rem var(--spacer);
-  margin: -0.25rem -var(--spacer);
-  -webkit-margin-end: var(--spacer);
-  margin-inline-end: var(--spacer);
+  padding: 0.25rem var(--gap);
+  margin: -0.25rem -var(--gap);
+  -webkit-margin-end: var(--gap);
+  margin-inline-end: var(--gap);
 }
 .form-control-sm::file-selector-button {
-  padding: 0.25rem var(--spacer);
-  margin: -0.25rem -var(--spacer);
-  -webkit-margin-end: var(--spacer);
-  margin-inline-end: var(--spacer);
+  padding: 0.25rem var(--gap);
+  margin: -0.25rem -var(--gap);
+  -webkit-margin-end: var(--gap);
+  margin-inline-end: var(--gap);
 }
 .form-control-sm::-webkit-file-upload-button {
-  padding: 0.25rem var(--spacer);
-  margin: -0.25rem -var(--spacer);
-  -webkit-margin-end: var(--spacer);
-  margin-inline-end: var(--spacer);
+  padding: 0.25rem var(--gap);
+  margin: -0.25rem -var(--gap);
+  -webkit-margin-end: var(--gap);
+  margin-inline-end: var(--gap);
 }
 
 .form-control-lg {
   min-height: calc(1.5em + 1rem + 2px);
-  padding: var(--spacer) 1rem;
+  padding: var(--gap) 1rem;
   font-size: 1.25rem;
   border-radius: 0.3rem;
 }
 .form-control-lg::-webkit-file-upload-button {
-  padding: var(--spacer) 1rem;
-  margin: -var(--spacer) -1rem;
+  padding: var(--gap) 1rem;
+  margin: -var(--gap) -1rem;
   -webkit-margin-end: 1rem;
   margin-inline-end: 1rem;
 }
 .form-control-lg::file-selector-button {
-  padding: var(--spacer) 1rem;
-  margin: -var(--spacer) -1rem;
+  padding: var(--gap) 1rem;
+  margin: -var(--gap) -1rem;
   -webkit-margin-end: 1rem;
   margin-inline-end: 1rem;
 }
 .form-control-lg::-webkit-file-upload-button {
-  padding: var(--spacer) 1rem;
-  margin: -var(--spacer) -1rem;
+  padding: var(--gap) 1rem;
+  margin: -var(--gap) -1rem;
   -webkit-margin-end: 1rem;
   margin-inline-end: 1rem;
 }
@@ -223,7 +223,7 @@ textarea.form-control {
   min-height: calc(1.5em + 0.75rem + 2px);
 }
 textarea.form-control-sm {
-  min-height: calc(1.5em + var(--spacer) + 2px);
+  min-height: calc(1.5em + var(--gap) + 2px);
 }
 textarea.form-control-lg {
   min-height: calc(1.5em + 1rem + 2px);
@@ -275,7 +275,7 @@ textarea.form-control-lg {
 .form-select:focus {
   border-color: #86b7fe;
   outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(35, 37, 85, 0.25);
+  box-shadow: 0 0 0 0.25rem var(--form-box-shadow-color);
 }
 .form-select[multiple], .form-select[size]:not([size="1"]) {
   padding-right: 0.75rem;
@@ -292,14 +292,14 @@ textarea.form-control-lg {
 .form-select-sm {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
-  padding-left: var(--spacer);
+  padding-left: var(--gap);
   font-size: 0.875rem;
   border-radius: 0.2rem;
 }
 
 .form-select-lg {
-  padding-top: var(--spacer);
-  padding-bottom: var(--spacer);
+  padding-top: var(--gap);
+  padding-bottom: var(--gap);
   padding-left: 1rem;
   font-size: 1.25rem;
   border-radius: 0.3rem;
@@ -309,7 +309,7 @@ textarea.form-control-lg {
   display: block;
   min-height: 1.5rem;
   padding-left: 1.5em;
-  margin-bottom: var(--spacer);
+  margin-bottom: var(--gap);
 }
 .form-check .form-check-input {
   float: left;
@@ -325,7 +325,7 @@ textarea.form-control-lg {
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  border: 1px solid rgba(35, 37, 85, 0.25);
+  border: 1px solid var(--form-box-shadow-color);
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -345,7 +345,7 @@ textarea.form-control-lg {
 .form-check-input:focus {
   border-color: #86b7fe;
   outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(35, 37, 85, 0.25);
+  box-shadow: 0 0 0 0.25rem var(--form-box-shadow-color);
 }
 .form-check-input:checked {
   background-color: var(--tertiary-color);
@@ -424,10 +424,10 @@ textarea.form-control-lg {
   outline: 0;
 }
 .form-range:focus::-webkit-slider-thumb {
-  box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem rgba(35, 37, 85, 0.25);
+  box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem var(--form-box-shadow-color);
 }
 .form-range:focus::-moz-range-thumb {
-  box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem rgba(35, 37, 85, 0.25);
+  box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem var(--form-box-shadow-color);
 }
 .form-range::-moz-focus-outer {
   border: 0;
@@ -455,7 +455,7 @@ textarea.form-control-lg {
 }
 .form-range::-webkit-slider-runnable-track {
   width: 100%;
-  height: var(--spacer);
+  height: var(--gap);
   color: transparent;
   cursor: pointer;
   background-color: #dee2e6;
@@ -484,7 +484,7 @@ textarea.form-control-lg {
 }
 .form-range::-moz-range-track {
   width: 100%;
-  height: var(--spacer);
+  height: var(--gap);
   color: transparent;
   cursor: pointer;
   background-color: #dee2e6;
@@ -552,17 +552,17 @@ textarea.form-control-lg {
 }
 .form-floating > .form-control:not(:-moz-placeholder-shown) ~ label {
   opacity: 0.65;
-  transform: scale(0.85) translateY(-var(--spacer)) translateX(0.15rem);
+  transform: scale(0.85) translateY(-var(--gap)) translateX(0.15rem);
 }
 .form-floating > .form-control:focus ~ label,
 .form-floating > .form-control:not(:placeholder-shown) ~ label,
 .form-floating > .form-select ~ label {
   opacity: 0.65;
-  transform: scale(0.85) translateY(-var(--spacer)) translateX(0.15rem);
+  transform: scale(0.85) translateY(-var(--gap)) translateX(0.15rem);
 }
 .form-floating > .form-control:-webkit-autofill ~ label {
   opacity: 0.65;
-  transform: scale(0.85) translateY(-var(--spacer)) translateX(0.15rem);
+  transform: scale(0.85) translateY(-var(--gap)) translateX(0.15rem);
 }
 
 .input-group {
@@ -610,7 +610,7 @@ textarea.form-control-lg {
 .input-group-lg > .form-select,
 .input-group-lg > .input-group-text,
 .input-group-lg > .btn {
-  padding: var(--spacer) 1rem;
+  padding: var(--gap) 1rem;
   font-size: 1.25rem;
   border-radius: 0.3rem;
 }
@@ -619,7 +619,7 @@ textarea.form-control-lg {
 .input-group-sm > .form-select,
 .input-group-sm > .input-group-text,
 .input-group-sm > .btn {
-  padding: 0.25rem var(--spacer);
+  padding: 0.25rem var(--gap);
   font-size: 0.875rem;
   border-radius: 0.2rem;
 }
@@ -659,7 +659,7 @@ textarea.form-control-lg {
   z-index: 5;
   display: none;
   max-width: 100%;
-  padding: 0.25rem var(--spacer);
+  padding: 0.25rem var(--gap);
   margin-top: 0.1rem;
   font-size: 0.875rem;
   color: #fff;
@@ -720,7 +720,7 @@ textarea.form-control-lg {
 }
 
 .form-check-inline .form-check-input ~ .valid-feedback {
-  margin-left: var(--spacer);
+  margin-left: var(--gap);
 }
 
 .was-validated .input-group .form-control:valid, .input-group .form-control.is-valid,
@@ -748,7 +748,7 @@ textarea.form-control-lg {
   z-index: 5;
   display: none;
   max-width: 100%;
-  padding: 0.25rem var(--spacer);
+  padding: 0.25rem var(--gap);
   margin-top: 0.1rem;
   font-size: 0.875rem;
   color: #fff;
@@ -809,7 +809,7 @@ textarea.form-control-lg {
 }
 
 .form-check-inline .form-check-input ~ .invalid-feedback {
-  margin-left: var(--spacer);
+  margin-left: var(--gap);
 }
 
 .was-validated .input-group .form-control:invalid, .input-group .form-control.is-invalid,
@@ -827,7 +827,7 @@ textarea.form-control-lg {
   display: block;
   width: 100%;
   font-size: smaller;
-  padding: calc(var(--spacer) * .5) 0 calc(var(--spacer) * .5) 0;
+  padding: calc(var(--gap) * .5) 0 calc(var(--gap) * .5) 0;
 }
 
 .form-helper:not(.form-helper--active) {

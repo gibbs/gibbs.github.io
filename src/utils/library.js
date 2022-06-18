@@ -5,6 +5,7 @@ const markdownItCodetabs = require('markdown-it-codetabs')
 const markdownItInclude = require('markdown-it-include')
 const markdownItMark = require('markdown-it-mark')
 const path = require('path')
+const slugify = require('@sindresorhus/slugify')
 
 module.exports = (config) => {
   // Set markdown library
@@ -13,7 +14,7 @@ module.exports = (config) => {
     html: true
   })
     .use(markdownItAnchor, {
-      slugify: s => `goto-${markdownItAnchor.defaults.slugify(s)}`
+      slugify: s => `goto-${slugify(s)}`
     })
     .use(markdownItAttrs, {
       leftDelimiter: '{',

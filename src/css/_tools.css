@@ -1,11 +1,10 @@
-
 .result {
-  position: relative;
-  display: block;
+  margin-top: var(--gutter);
 }
 
-.result.alert--success {
-  font-family: monospace;
+.table.result {
+  margin-top: 0;
+  margin-bottom: var(--gutter);
 }
 
 .result.alert:before {
@@ -13,11 +12,10 @@
   content: '';
   border-radius: 5px;
   font-size: small;
-  padding: calc(var(--spacer) * .5);
-  right: calc(var(--spacer) * .5);
-  top: calc(var(--spacer) * -1);
+  padding: calc(var(--gap) * .5);
+  right: calc(var(--gap) * .5);
+  top: calc(var(--gap) * -1);
   font-weight: 600;
-  font-family: sans-serif;
 }
 
 .result.alert--success:before {
@@ -38,67 +36,67 @@
   color: #efefef;
 }
 
-.mkpasswd-generator {
+.tool-dns__section {
   display: grid;
   grid-template-columns: auto;
-  gap: var(--gutter-width);
+  gap: calc(var(--gutter) * .5);
+  margin: 0 0 var(--gutter) 0;
 }
 
-.pwgen-generator {
+.tool-mkpasswd__form {
   display: grid;
   grid-template-columns: auto;
-  gap: calc(var(--gutter-width) * .5);
-  margin: 0 0 var(--gutter-width) 0;
+  gap: var(--gutter);
 }
 
-.pwgen-options {
+.tool-pwgen__section {
   display: grid;
   grid-template-columns: auto;
-  gap: calc(var(--gutter-width) * .5);
+  gap: var(--gutter);
+  margin: 0 0 var(--gutter) 0;
 }
 
-.tool--dig {
+.tool-pwgen__options {
   display: grid;
   grid-template-columns: auto;
-  gap: calc(var(--gutter-width) * .5);
-  margin: 0 0 var(--gutter-width) 0;
+  gap: calc(var(--gutter) * .5);
 }
 
-@media (min-width: map-get($breakpoints, 'sm')) {
-  .pwgen-generator {
+@media (--breakpoint-sm) {
+  .tool-mkpasswd__form {
     grid-template-rows: 1fr;
     grid-template-columns: 1fr 1fr;
   }
 
-  .mkpasswd-generator {
+  .tool-pwgen__section {
     grid-template-rows: 1fr;
     grid-template-columns: 1fr 1fr;
   }
 }
 
-@media (min-width: map-get($breakpoints, 'md')) {
-  .tool--dig {
+@media (--breakpoint-md) {
+  .tool-dns__section {
     grid-template-rows: 1fr;
     grid-template-columns: repeat(4, 1fr);
+  }
 
-    .row:first-of-type {
-      grid-column: span 3;
-    }
+  .tool-dns__section .row:first-of-type {
+    grid-column: span 3;
+  }
 
-    .row:last-of-type {
-      grid-column: span 4;
-    }
+  .tool-dns__section .row:last-of-type {
+    grid-column: span 4;
   }
 }
 
-@media (min-width: map-get($breakpoints, 'lg')) {
-  .pwgen-generator {
-    grid-template-rows: 1fr;
-    grid-template-columns: 2fr 2fr 4fr minmax(0, 1fr);
-  }
-
-  .mkpasswd-generator {
+@media (--breakpoint-lg) {
+  .tool-mkpasswd__form {
     grid-template-rows: 1fr min-content;
     grid-template-columns: 2fr 1fr 1fr 1fr;
+  }
+
+  .tool-pwgen__section {
+    grid-template-rows: 1fr;
+    grid-template-columns: 2fr 2fr 4fr minmax(0, 1fr);
   }
 }

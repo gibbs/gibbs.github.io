@@ -15,9 +15,9 @@ jsonld:
         name: Dan Gibbs
 ---
 
-# Dan Gibbs { .hero--title #goto-h1 }
+# Dan Gibbs { .hero__title #goto-h1 }
 
-## Full Stack Web Developer and Linux Sysadmin { .hero--subtitle #goto-h2 }
+## Full Stack Web Developer and Linux Sysadmin { .hero__subtitle #goto-h2 }
 
 I'm Dan Gibbs &mdash; an experienced developer involved in all things web related. I 
 work on front and backend projects, development/operations,

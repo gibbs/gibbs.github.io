@@ -1,0 +1,272 @@
+/*
+ * Homepage
+ */
+.layout-home .content {
+  padding: 0;
+}
+
+.home-hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-top: calc(var(--gap) * 2);
+  padding-bottom: calc(var(--gap) * 2);
+}
+
+.home-posts {
+  padding: calc(var(--gutter) * 2) 0 calc(var(--gutter) * 2) 0;
+  background-color: var(--header-bg);
+  /*background-image: url(../images/blueprint-dark.png);*/
+}
+
+.home-posts__heading {
+  margin: 0;
+  font-weight: 500;
+}
+
+.home-posts__heading--small {
+  font-size: calc(var(--font-size) * 1.6);
+  margin-bottom: calc(var(--gap) * .25);
+}
+
+.home-posts__summary {
+  margin-top: calc(var(--gutter) * .5);
+}
+
+.home-posts__summary:last-of-type {
+  margin-bottom: 0;
+}
+
+.home-posts__container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gutter);
+}
+
+/*
+ * Insights
+ */
+.insights {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: calc(var(--gutter)) 0 calc(var(--gutter)) 0;
+  width: 100%;
+}
+
+.insights__data {
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: 100%;
+  overflow: hidden;
+  gap: var(--gap);
+}
+
+.insights__chart {
+  text-align: center;
+  max-width: 100%;
+}
+
+.insights__chart-heading {
+  margin: var(--gap) 0 calc(var(--gap) * 2) 0;
+}
+
+.insights__languages {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0 0 0 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.insights--language {
+  border: 1px solid #ff9900;
+  border-radius: 4px;
+}
+
+/*
+ * Blog posts
+ */
+.blog {
+  display: grid;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  gap: 0;
+}
+
+.blog__heading {
+  margin: 0;
+}
+
+.blog__anchor {
+  display: block;
+}
+
+.blog__tag {
+  color: var(--primary-color);
+  font-size: smaller;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.blog__date {
+  color: var(--text-color-light);
+  font-size: smaller;
+}
+
+.blog__column {
+  display: flex;
+  flex-direction: column;
+}
+
+.blog__item--first {
+  padding: calc(var(--gap) * 2) 0;
+}
+
+.blog__item--wide {
+  grid-column: span 1;
+}
+
+.blog__item {
+  margin: calc(var(--gutter) * .5) 0 calc(var(--gutter) * .5) 0;
+}
+
+.post__date {
+  color: var(--text-color-light);
+  font-size: smaller;
+  display: inline-flex;
+  align-items: center;
+}
+
+.post__date .icon {
+  padding-right: calc(var(--gap) * .5);
+}
+
+/*
+ * Projects
+ */
+.projects {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 1fr;
+  gap: calc(var(--gap) * 2);
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.project {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 1fr;
+  gap: var(--gap);
+}
+
+.project__anchor {
+  position: relative;
+  display: inline-block;
+}
+
+.project__showcase {
+  position: relative;
+}
+
+.project__tag {
+  position: absolute;
+  font-size: calc(var(--font-size) * .8);
+  top: calc((var(--gutter) * .5) * -.5);
+  left: calc((var(--gutter) * .5) * -.5);
+  display: inline-flex;
+  text-transform: uppercase;
+  color: var(--white-color);
+  background-color: var(--primary-color);
+  padding: calc(var(--gutter) * .5);
+  font-weight: 500;
+  z-index: 1;
+}
+
+.project__heading {
+  margin: 0;
+}
+
+.project__description p {
+  font-size: calc(var(--font-size) * .9);
+}
+
+.project__date {
+  font-size: smaller;
+  color: var(--text-color-light);
+}
+
+.project__image {
+  position: relative;
+}
+
+/*
+ * Tools
+ */
+.tools {
+  display: grid;
+  gap: var(--gap);
+  margin: var(--gap) 0;
+}
+
+.tool__heading {
+  margin: 0;
+}
+
+.tool__description p:first-of-type {
+  margin-top: calc(var(--gutter) * .5);
+}
+
+@media (--breakpoint-md) {
+  .blog {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gap);
+  }
+
+  .blog__item--wide {
+    grid-column: span 2;
+  }
+
+  .project {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .tools {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (--breakpoint-lg) {
+  .home-posts__container {
+    grid-template-columns: 1fr 3fr;
+  }
+
+  .insights__data {
+    grid-template-columns: 46% 54%;
+  }
+
+  .project {
+    grid-template-columns: 2fr 3fr;
+    gap: calc(var(--gutter) * 1.5);
+  }
+
+  .tools {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (--breakpoint-xl) {
+  .blog {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: var(--gap);
+  }
+
+  .blog__item--wide {
+    grid-column: span 3;
+  }
+}

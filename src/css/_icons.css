@@ -1,12 +1,12 @@
-$code: '767113';
+/* code: 767113 */
 
 @font-face {
   font-family: 'icomoon';
-  src:  url('../fonts/icomoon.eot?#{$code}');
-  src:  url('../fonts/icomoon.eot?#{$code}#iefix') format('embedded-opentype'),
-    url('../fonts/icomoon.ttf?#{$code}') format('truetype'),
-    url('../fonts/icomoon.woff?#{$code}') format('woff'),
-    url('../fonts/icomoon.svg?#{$code}#icomoon') format('svg');
+  src:  url('../fonts/icomoon.eot?#767113');
+  src:  url('../fonts/icomoon.eot?#767113#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?#767113') format('truetype'),
+    url('../fonts/icomoon.woff?#767113') format('woff'),
+    url('../fonts/icomoon.svg?#767113#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -112,8 +112,8 @@ $code: '767113';
   border: 1px solid var(--secondary-color-text);
   padding: 1px;
   background-color: transparent;
+}
 
-  &--small {
-    border: 2px solid var(--secondary-color-text);
-  }
+.gravatar--small {
+  border: 2px solid var(--secondary-color-text);
 }

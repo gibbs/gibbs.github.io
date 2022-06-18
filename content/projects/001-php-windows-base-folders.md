@@ -34,7 +34,7 @@ A small PHP library for accessing Windows directory paths.
 1. [Example Usage](#goto-example-usage)
 2. [API](#goto-api)
 
-[Source available on GitHub]({{ project.repository }}){.button .button--github}
+[Source available on GitHub]({{ project.repository }}){.button .button--image .button--github}
 
 ## Example Usage
 

@@ -35,7 +35,7 @@ jsonld:
 An Ansible role for managing the dynamic MOTD scripts on Debian 9, 10, 11 
 and Ubuntu 14.04, 16.04, 18.04 and 20.04.
 
-[Source available on GitHub]({{ project.repository }}){.button .button--github}
+[Source available on GitHub]({{ project.repository }}){.button .button--image .button--github}
 
 ## Example Usage
 

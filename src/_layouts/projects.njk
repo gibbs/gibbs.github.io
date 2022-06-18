@@ -7,16 +7,16 @@
     <div class="row">
       {{ content | safe }}
 
-      <div class="project-rows">
+      <div class="projects">
         {%- for project in collections.projects | reverse -%}
-          <div class="project-rows__row">
-            <div class="project-rows__showcase">
-              <div class="project-rows__tag">
+          <div class="project">
+            <div class="project__showcase">
+              <div class="project__tag">
                 {{ project.data.tags | primaryTag }}
               </div>
 
-              <div class="project-rows__image">
-                <a aria-hidden="true" href="{{ site.url }}/projects/{{ project.data.uri }}/" class="project-rows__anchor">
+              <div class="project__image">
+                <a aria-hidden="true" href="{{ site.url }}/projects/{{ project.data.uri }}/" class="project__anchor">
                   {% responsiveImage
                     project.data.image.src | default('images/projects/placeholder.png'),
                     project.data.image.caption | default(project.data.title),
@@ -29,16 +29,16 @@
               </div>
             </div>
 
-            <div class="project-rows__body">
-              <h3 class="project-rows__heading">
+            <div class="project__body">
+              <h3 class="project__heading">
                 <a href="{{ site.url }}/projects/{{ project.data.uri }}/" class="project-rows__anchor">{{ project.data.anchor }}</a>
               </h3>
 
-              <time class="project-rows__date" datetime="{{ project.date | postDate }}">
+              <time class="project__date" datetime="{{ project.date | postDate }}">
                 {{ project.date | postDate }}
               </time>
 
-              <div class="project-rows__description">
+              <div class="project__description">
                 <p>{{ project.data.summary }}</p>
               </div>
             </div>

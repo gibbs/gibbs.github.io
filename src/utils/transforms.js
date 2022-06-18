@@ -18,24 +18,12 @@ module.exports = (config) => {
         content: '<h3 id="goto-table-of-contents" tabindex="-1">Table of Contents</h3>'
       },
       {
-        search: /<h4 id="goto-public-classes" tabindex="-1">Public Classes<\/h4>/,
-        content: '<h5 id="goto-public-classes" tabindex="-1">Public Classes</h5>'
-      },
-      {
-        search: /<h4 id="goto-public-classes" tabindex="-1">Private Classes<\/h4>/,
-        content: '<h5 id="goto-public-classes" tabindex="-1">Private Classes</h5>'
-      },
-      {
         search: /<h3 id="goto-defined-types" tabindex="-1">Defined types<\/h3>/,
         content: '<h4 id="goto-defined-types" tabindex="-1">Defined types</h4>'
       },
       {
         search: /<h3 id="goto-defined-types" tabindex="-1">Data types<\/h3>/,
         content: '<h4 id="goto-defined-types" tabindex="-1">Data types</h4>'
-      },
-      {
-        search: /<h4 id="goto-parameters" tabindex="-1">Parameters<\/h4>/,
-        content: '<h5 id="goto-parameters" tabindex="-1">Parameters</h5>'
       },
       {
         search: /<h3 id="goto-data-types" tabindex="-1">Data types<\/h3>/,
@@ -46,20 +34,8 @@ module.exports = (config) => {
         content: '<h4 id="goto-classes-1" tabindex="-1">Classes</h4>'
       },
       {
-        search: /<h4 id="goto-parameters-1" tabindex="-1">Parameters<\/h4>/,
-        content: '<h5 id="goto-parameters-1" tabindex="-1">Parameters</h5>'
-      },
-      {
         search: /<h2 id="goto-defined-types-1" tabindex="-1">Defined types<\/h2>/,
         content: '<h3 id="goto-defined-types-1" tabindex="-1">Defined types</h3>'
-      },
-      {
-        search: /<h4 id="goto-parameters-2" tabindex="-1">Parameters<\/h4>/,
-        content: '<h5 id="goto-parameters-2" tabindex="-1">Parameters</h5>'
-      },
-      {
-        search: /<h4 id="goto-parameters-3" tabindex="-1">Parameters<\/h4>/,
-        content: '<h5 id="goto-parameters-3" tabindex="-1">Parameters</h5>'
       },
       {
         search: /<h2 id="goto-data-types-1" tabindex="-1">Data types<\/h2>/,

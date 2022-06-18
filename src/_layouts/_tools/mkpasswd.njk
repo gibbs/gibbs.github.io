@@ -2,7 +2,7 @@
 
 
 {% block tool %}
-  <form method="post" class="mkpasswd-generator" id="mkpasswd_generator">
+  <form method="post" class="tool-{{ uri }}__form" id="mkpasswd_generator">
     <div class="row">
       <label for="input" class="form-label">Input</label>
       <input type="text" id="input" name="input" class="form-control" value="" pattern="([A-z0-9À-ž\s]){1,}" required>
@@ -59,4 +59,3 @@
 document.addEventListener('DOMContentLoaded', () => { tools.mkpasswd() })
 </script>
 {% endblock %}
-

@@ -6,6 +6,11 @@
     "standard",
     "plugin:yml/standard"
   ],
+  "globals": {
+    "it": "readonly",
+    "describe": "readonly",
+    "Chart": "readonly"
+  },
   "rules": {
     "yml/key-spacing": "off"
   }

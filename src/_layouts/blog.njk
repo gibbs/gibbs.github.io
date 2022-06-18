@@ -4,34 +4,30 @@
 
 {% block content %}
   <div class="container">
-    <div class="row">
-      {{ content | safe }}
+    {{ content | safe }}
 
-      <ol class="blog blog--rows">
-        {%- for post in collections.blog | reverse | limit(999, 0) -%}
-          <li class="blog--item">
-            <div>
-              <h3 class="blog__heading">
-                <a href="{{ site.url }}/blog/{{ post.data.uri }}/">{{ post.data.anchor }}</a>
-              </h3>
+    <ol class="blog row">
+      {%- for post in collections.blog | reverse | limit(999, 0) -%}
+        <li class="blog__item{% if loop.first %} blog__item--first blog__item--wide{% endif %}{% if loop.index > 1 and loop.index < 4 %} blog__item--recent{% endif %}">
+          <div class="blog__column">
+            <h{% if loop.first %}2{% else %}3{% endif %} class="blog__heading">
+              <a class="blog__anchor" href="{{ site.url }}/blog/{{ post.data.uri }}/">{{ post.data.anchor }}</a>
+            </h{% if loop.first %}2{% else %}3{% endif %}>
 
-              <div class="blog__data">
-                <span class="blog__tag">
-                  {{ post.data.tags | primaryTag }}
-                </span>
+            <div class="blog__data">
+              <span class="blog__tag">{{ post.data.tags | primaryTag }}</span>
 
-                <time class="blog__date" datetime="{{ post.date | postDate }}">
-                  &mdash; {{ post.date | postDate }}
-                </time>
-              </div>
-
-              <div class="blog__summary">
-                <p class="blog__summary__paragraph">{{ post.data.summary }}</p>
-              </div>
+              <time class="blog__date" datetime="{{ post.date | postDate }}">
+                &mdash; {{ post.date | postDate }}
+              </time>
             </div>
-          </li>
-        {% endfor %}
-      </ol>
-    </div>
+
+            <div class="blog__summary">
+              <p class="blog__summary__paragraph">{{ post.data.summary }}</p>
+            </div>
+          </div>
+        </li>
+      {% endfor %}
+    </ol>
   </div>
 {% endblock %}
