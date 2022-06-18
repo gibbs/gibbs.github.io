@@ -103,7 +103,7 @@
   --body-bg: #1C1C1C;
 
   /* Main colour palette */
-  --primary-color: #EDE243;
+  --primary-color: #C3E21A;
 
   --secondary-color-text: #A0BDD8;
   --link-text-color: #B1CBD9;
@@ -149,6 +149,7 @@
   --navigation-toggle-color: var(--black-color);
 
   /* Cookie consent */
+  --cc-btn-secondary-text: #eee;
   --cc-text: #eee;
   --cc-toggle-knob-bg: var(--cc-cookie-category-block-bg);
   --cc-toggle-knob-icon-color: var(--cc-bg);
