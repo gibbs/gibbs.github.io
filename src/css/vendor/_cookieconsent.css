@@ -204,7 +204,6 @@
 }
 
 .cc_div .c-bn{
-  color: #40505a;
   color: var(--cc-btn-secondary-text);
   background: #e5ebef;
   background: var(--cc-btn-secondary-bg);

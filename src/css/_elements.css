@@ -31,7 +31,7 @@ blockquote {
 
 li {
   margin: calc(var(--gap) * .5) 0 calc(var(--gap) * .5) 0;
-  line-height: var(--line-height);
+  line-height: var(--font-line-height);
   font-size: var(--font-size);
 }
 
@@ -59,13 +59,13 @@ th {
   background-color: var(--table-heading-bg-color);
   padding: calc(var(--gap) * .75);
   text-align: left;
-  font-size: calc(var(--paragraph-font-size) * .9);
+  font-size: calc(var(--font-size) * .9);
   font-weight: 500;
 }
 
 td {
   padding: calc(var(--gap) * .75);
-  font-size: calc(var(--paragraph-font-size) * .9);
+  font-size: calc(var(--font-size) * .9);
 }
 
 tbody tr {

@@ -20,6 +20,12 @@
   animation-delay: -0.5s;
 }
 
+.loading {
+  display: flex;
+  margin: calc(var(--gutter) * 2) 0;
+  justify-content: center;
+}
+
 .loading--bars {
   display: inline-block;
   position: relative;

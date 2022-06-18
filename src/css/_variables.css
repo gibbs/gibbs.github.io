@@ -7,11 +7,11 @@
   --tertiary-color: #595FD9;
   --quaternary-color: #8137ab;
 
-  --secondary-color-text: #8DA7BE;
+  --secondary-color-text: #A0BDD8;
   --link-text-color: #595FD9;
   --link-text-hover-color: #E21A23;
   --dark-link-text-color: var(--white-color);
-  --dark-link-text-hover-color: #f2968b; /* #76E5FC; */
+  --dark-link-text-hover-color: #F2BBD6; /* #76E5FC; */
   --border-color: #e2dddd;
   --black-color: #444;
   --white-color: #fff;
@@ -52,6 +52,7 @@
   --table-heading-bg-color: var(--white-color);
   --table-row-bg-color: var(--body-bg);
   --table-row-bg-alt-color: var(--mask-dark);
+  --form-box-shadow-color: rgba(35, 37, 85, 0.25);
 
   /* Components */
   --alert-info-bg: #cfe2ff;
@@ -80,7 +81,7 @@
   --cc-btn-primary-text: var(--body-bg);
   --cc-btn-primary-hover-bg: var(--link-text-hover-color);
   --cc-btn-secondary-bg: var(--mask-dark);
-  --cc-btn-secondary-text: var(--cc-text);
+  --cc-btn-secondary-text: #111;
   --cc-btn-secondary-hover-bg: var(--mask-dark);
   --cc-toggle-bg-off: var(--black-color);
   --cc-toggle-bg-on: var(--cc-btn-primary-bg);
@@ -102,12 +103,13 @@
   --body-bg: #1C1C1C;
 
   /* Main colour palette */
-  --primary-color: #e9454d; /* BCFC */
+  --primary-color: #EDE243;
 
-  --secondary-color-text: #8DA7BE;
-  --link-text-color: #7087D4;
-  --link-text-hover-color: #e9454d;
+  --secondary-color-text: #A0BDD8;
+  --link-text-color: #B1CBD9;
+  --link-text-hover-color: #E9A1A5;
   --dark-link-text-color: var(--text-color);
+  --dark-link-text-hover-color: #EDE243;
   --border-color: #1d2222;
   --black-color: #bbb;
   --white-color: #000;
@@ -119,11 +121,11 @@
   --header-bg: #34344A;
   --footer-bg: var(--secondary-color);
   --copyright-bg: #242433;
-  --copyright-text-color: #aaa;
+  --copyright-text-color: #C4C4C4;
 
   /* Typography */
   --text-color: #ccc;
-  --text-color-light: #999;
+  --text-color-light: #CDCDCD;
   --heading-color: #f1f1f1;
   --hero-title-color: var(--link-text-color);
   --hero-subtitle-color: #8DA7BE;
@@ -138,6 +140,7 @@
   --table-heading-bg-color: #2f2f2f;
   --table-row-bg-color: var(--mask-light);
   --table-row-bg-alt-color: var(--mask-dark);
+  --form-box-shadow-color: rgba(213, 214, 245, .25);
 
   /* Components */
   --toggle-inactive: #3e3e3e;
@@ -146,6 +149,7 @@
   --navigation-toggle-color: var(--black-color);
 
   /* Cookie consent */
+  --cc-text: #eee;
   --cc-toggle-knob-bg: var(--cc-cookie-category-block-bg);
   --cc-toggle-knob-icon-color: var(--cc-bg);
   --cc-webkit-scrollbar-bg: #667481;

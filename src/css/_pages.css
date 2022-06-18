@@ -106,10 +106,7 @@
 }
 
 .blog__tag {
-  text-transform: capitalize;
-  background-color: var(--quaternary-color);
-  color: #eee;
-  padding: calc(var(--gap) * .25);
+  color: var(--primary-color);
   font-size: smaller;
   text-transform: uppercase;
   font-weight: 500;
@@ -118,6 +115,11 @@
 .blog__date {
   color: var(--text-color-light);
   font-size: smaller;
+}
+
+.blog__column {
+  display: flex;
+  flex-direction: column;
 }
 
 .blog__item--first {
@@ -144,19 +146,80 @@
 }
 
 /*
+ * Projects
+ */
+.projects {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 1fr;
+  gap: calc(var(--gap) * 2);
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.project {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 1fr;
+  gap: var(--gap);
+}
+
+.project__anchor {
+  position: relative;
+  display: inline-block;
+}
+
+.project__showcase {
+  position: relative;
+}
+
+.project__tag {
+  position: absolute;
+  font-size: calc(var(--font-size) * .8);
+  top: calc((var(--gutter) * .5) * -.5);
+  left: calc((var(--gutter) * .5) * -.5);
+  display: inline-flex;
+  text-transform: uppercase;
+  color: var(--white-color);
+  background-color: var(--primary-color);
+  padding: calc(var(--gutter) * .5);
+  font-weight: 500;
+  z-index: 1;
+}
+
+.project__heading {
+  margin: 0;
+}
+
+.project__description p {
+  font-size: calc(var(--font-size) * .9);
+}
+
+.project__date {
+  font-size: smaller;
+  color: var(--text-color-light);
+}
+
+.project__image {
+  position: relative;
+}
+
+/*
  * Tools
  */
 .tools {
   display: grid;
   gap: var(--gap);
-}
-
-.tool {
-  padding: var(--gap) 0;
+  margin: var(--gap) 0;
 }
 
 .tool__heading {
-  margin-top: 0;
+  margin: 0;
+}
+
+.tool__description p:first-of-type {
+  margin-top: calc(var(--gutter) * .5);
 }
 
 @media (--breakpoint-md) {
@@ -167,6 +230,10 @@
 
   .blog__item--wide {
     grid-column: span 2;
+  }
+
+  .project {
+    grid-template-columns: 1fr 1fr;
   }
 
   .tools {
@@ -181,6 +248,11 @@
 
   .insights__data {
     grid-template-columns: 46% 54%;
+  }
+
+  .project {
+    grid-template-columns: 2fr 3fr;
+    gap: calc(var(--gutter) * 1.5);
   }
 
   .tools {

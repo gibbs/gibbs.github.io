@@ -98,18 +98,18 @@ document.addEventListener('DOMContentLoaded', () => {
       $languages.appendChild($item)
     }
 
-    // Insights charts
-    const chartPopularity = new Chart(template.querySelector('#insights_popularity'), data.insights.popularity)
-    const chartWorkload = new Chart(template.querySelector('#insights_workload'), data.insights.workload)
-
-    // Draw charts
-    chartPopularity.draw()
-    chartWorkload.draw()
-
     // Clear the insight HTML
     $insight.innerHTML = ''
 
     // Append the timeline
     $insight.append(template)
+
+    // Insights charts
+    const chartPopularity = new Chart(document.querySelector('#insights_popularity'), data.insights.popularity)
+    const chartWorkload = new Chart(document.querySelector('#insights_workload'), data.insights.workload)
+
+    // Draw charts
+    chartPopularity.draw()
+    chartWorkload.draw()
   }
 })

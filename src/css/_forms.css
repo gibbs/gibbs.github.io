@@ -1,5 +1,6 @@
 .form-label {
-  margin-bottom: var(--gap);
+  display: inline-block;
+  margin-bottom: calc(var(--gap) * .5);
   font-weight: 500;
 }
 
@@ -63,7 +64,7 @@
   background-color: #fff;
   border-color: #86b7fe;
   outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(35, 37, 85, 0.25);
+  box-shadow: 0 0 0 0.25rem var(--form-box-shadow-color);
 }
 .form-control::-webkit-date-and-time-value {
   height: 1.5em;
@@ -274,7 +275,7 @@ textarea.form-control-lg {
 .form-select:focus {
   border-color: #86b7fe;
   outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(35, 37, 85, 0.25);
+  box-shadow: 0 0 0 0.25rem var(--form-box-shadow-color);
 }
 .form-select[multiple], .form-select[size]:not([size="1"]) {
   padding-right: 0.75rem;
@@ -324,7 +325,7 @@ textarea.form-control-lg {
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  border: 1px solid rgba(35, 37, 85, 0.25);
+  border: 1px solid var(--form-box-shadow-color);
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -344,7 +345,7 @@ textarea.form-control-lg {
 .form-check-input:focus {
   border-color: #86b7fe;
   outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(35, 37, 85, 0.25);
+  box-shadow: 0 0 0 0.25rem var(--form-box-shadow-color);
 }
 .form-check-input:checked {
   background-color: var(--tertiary-color);
@@ -423,10 +424,10 @@ textarea.form-control-lg {
   outline: 0;
 }
 .form-range:focus::-webkit-slider-thumb {
-  box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem rgba(35, 37, 85, 0.25);
+  box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem var(--form-box-shadow-color);
 }
 .form-range:focus::-moz-range-thumb {
-  box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem rgba(35, 37, 85, 0.25);
+  box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem var(--form-box-shadow-color);
 }
 .form-range::-moz-focus-outer {
   border: 0;
