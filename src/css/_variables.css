@@ -103,13 +103,13 @@
   --body-bg: #1C1C1C;
 
   /* Main colour palette */
-  --primary-color: #C3E21A;
+  --primary-color: #FFC168;
 
   --secondary-color-text: #A0BDD8;
   --link-text-color: #B1CBD9;
-  --link-text-hover-color: #E9A1A5;
+  --link-text-hover-color: #FFC168;
   --dark-link-text-color: var(--text-color);
-  --dark-link-text-hover-color: #EDE243;
+  --dark-link-text-hover-color: #FFC168;
   --border-color: #1d2222;
   --black-color: #bbb;
   --white-color: #000;
