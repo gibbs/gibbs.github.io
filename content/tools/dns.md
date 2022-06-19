@@ -1,6 +1,6 @@
 ---
 layout: _tools/dig
-title: Online Dig DNS Lookup
+title: DNS Lookups with Dig
 description: >-
     Web based DNS lookup utility using the BIND 9 Dig utility.
 summary: >-

@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
 
-nightwatch test/e2e/*.js --env "${APP_ENV:="chrome"}"
+for FILE in ./test/e2e/*.js
+do
+  nightwatch "$FILE" --env "${APP_ENV:="chrome"}"
+done
+

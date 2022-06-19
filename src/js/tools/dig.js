@@ -44,6 +44,7 @@ module.exports = () => {
       .then(response => response.json())
       .then(data => {
         if (data.output.length === 0) {
+          table.classList = 'hidden'
           result.classList = 'result alert alert--info'
           result.textContent = 'No results returned'
         }

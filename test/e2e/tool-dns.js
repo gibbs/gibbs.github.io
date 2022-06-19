@@ -1,0 +1,98 @@
+describe('DNS Lookup Tool', () => {
+  it('Should be visible', (browser) => {
+    const context = browser.page.toolDns()
+
+    context.navigate()
+      .waitForElementVisible('body')
+      .assert.visible('@inputName')
+      .assert.visible('@selectNameserver')
+      .assert.visible('@checkboxTypeA')
+      .assert.visible('@checkboxTypeAAAA')
+      .assert.visible('@checkboxTypeANY')
+      .assert.visible('@checkboxTypeCAA')
+      .assert.visible('@checkboxTypeCNAME')
+      .assert.visible('@checkboxTypeDNSKEY')
+      .assert.visible('@checkboxTypeDS')
+      .assert.visible('@checkboxTypeMX')
+      .assert.visible('@checkboxTypeNS')
+      .assert.visible('@checkboxTypePTR')
+      .assert.visible('@checkboxTypeSOA')
+      .assert.visible('@checkboxTypeSRV')
+      .assert.visible('@checkboxTypeTLSA')
+      .assert.visible('@checkboxTypeTSIG')
+      .assert.visible('@checkboxTypeTXT')
+      .assert.visible('@buttonSubmit')
+  })
+
+  it('Should require name input', (browser) => {
+    const context = browser.page.toolDns()
+
+    context.navigate()
+      .waitForElementVisible('body')
+      .click('@buttonSubmit')
+      .assert.not.visible('@result')
+  })
+
+  it('Should return result when input provided', (browser) => {
+    const context = browser.page.toolDns()
+
+    context.navigate()
+      .waitForElementVisible('body')
+      .setValue('@inputName', 'google.com')
+      .click('@buttonSubmit')
+      .pause(2000)
+      .assert.visible('@result')
+  })
+
+  it('Should return different results', (browser) => {
+    const context = browser.page.toolDns()
+
+    context.navigate()
+      .waitForElementVisible('body')
+      .setValue('@inputName', 'google.com')
+      .click('[for="type_aaaa"]')
+      .click('@buttonSubmit')
+      .pause(2000)
+      .assert.visible('@result')
+      .click('[for="type_any"]')
+      .click('@buttonSubmit')
+      .pause(2000)
+      .assert.visible('@result')
+  })
+
+  it('Should return results for each nameserver selected', (browser) => {
+    const context = browser.page.toolDns()
+
+    context.navigate()
+      .waitForElementVisible('body')
+      .setValue('@inputName', 'google.com')
+      .click('select[name=nameserver] option[value=cloudflare]')
+      .click('@buttonSubmit')
+      .pause(2000)
+      .assert.visible('@result')
+
+    context.navigate()
+      .waitForElementVisible('body')
+      .setValue('@inputName', 'google.com')
+      .click('select[name=nameserver] option[value=quad9]')
+      .click('@buttonSubmit')
+      .pause(2000)
+      .assert.visible('@result')
+
+    context.navigate()
+      .waitForElementVisible('body')
+      .setValue('@inputName', 'google.com')
+      .click('select[name=nameserver] option[value=opendns]')
+      .click('@buttonSubmit')
+      .pause(2000)
+      .assert.visible('@result')
+
+    context.navigate()
+      .waitForElementVisible('body')
+      .setValue('@inputName', 'google.com')
+      .click('select[name=nameserver] option[value=comodo]')
+      .click('@buttonSubmit')
+      .pause(2000)
+      .assert.visible('@result')
+  })
+})
