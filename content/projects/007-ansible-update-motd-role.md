@@ -10,7 +10,7 @@ anchor: Ansible Update MOTD Role
 uri: ansible-update-motd-role
 image:
     src: images/projects/ansible.png
-    caption: Ansible logo banner.
+    caption: Ansible logo graphic.
 tags:
     - ansible
     - linux

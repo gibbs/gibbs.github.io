@@ -145,6 +145,82 @@
   padding-right: calc(var(--gap) * .5);
 }
 
+.post-more {
+  margin: var(--gap) 0 0 0;
+  /*background-color: var(--shadow-color);*/
+  padding: calc(var(--gap) * 1.5);
+}
+
+.post-more__nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: var(--gap);
+}
+
+.post-more__anchor {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  color: var(--primary-color);
+}
+
+.post-more__content {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+}
+
+.post-more__title {
+  display: block;
+  font-size: smaller;
+}
+
+.post-more__title--previous {
+  text-align: left;
+}
+
+.post-more__title--next {
+  text-align: right;
+}
+
+.post-more__text {
+  display: none;
+  margin-top: calc(var(--gap) * .2);
+}
+
+.post-more__text--next {
+  text-align: right;
+}
+
+.post-more__text--prev {
+  text-align: left;
+}
+
+.post-more__content--previous {
+  justify-content: flex-start;
+}
+
+.post-more__content--next {
+  justify-content: flex-end;
+}
+
+.post-more__icon--previous {
+  margin-right: var(--gap);
+}
+
+.post-more__icon--next {
+  margin-left: var(--gap);
+}
+
+.post-more__icon svg {
+  fill: currentcolor;
+  display: block;
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
 /*
  * Projects
  */
@@ -167,18 +243,32 @@
 
 .project__anchor {
   position: relative;
-  display: inline-block;
+  display: block;
+  line-height: 0;
 }
 
 .project__showcase {
   position: relative;
 }
 
+.project__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.project__description p:last-of-type {
+  margin-bottom: 0;
+}
+
 .project__tag {
   position: absolute;
   font-size: calc(var(--font-size) * .8);
-  top: calc((var(--gutter) * .5) * -.5);
-  left: calc((var(--gutter) * .5) * -.5);
+  /*top: calc((var(--gutter) * .5) * -.5);
+  left: calc((var(--gutter) * .5) * -.5);*/
+  height: 44px;
+  top: calc(50% - 22px);
+  right: 0;
   display: inline-flex;
   text-transform: uppercase;
   color: var(--white-color);
@@ -203,6 +293,10 @@
 
 .project__image {
   position: relative;
+}
+
+.layout-post .content {
+  padding-bottom: 0;
 }
 
 /*
@@ -248,6 +342,10 @@
 
   .insights__data {
     grid-template-columns: 46% 54%;
+  }
+
+  .post-more__text {
+    display: block;
   }
 
   .project {

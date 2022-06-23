@@ -9,7 +9,7 @@ anchor: Puppet login.defs Module
 uri: puppet-login-defs
 image:
     src: images/projects/puppet.png
-    caption: Puppet graphic
+    caption: Puppet logo graphic.
 tags:
     - puppet
     - shadow

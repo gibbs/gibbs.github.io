@@ -8,8 +8,8 @@ summary: >-
 anchor: Docker Lighthouse
 uri: docker-lighthouse
 image:
-    src: images/projects/docker-lighthouse.png
-    caption: Docker and Lighthouse logos.
+    src: images/projects/docker.png
+    caption: Docker logo graphic.
 tags:
     - docker
     - lighthouse
