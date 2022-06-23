@@ -9,7 +9,7 @@ anchor: Puppet osquery Module
 uri: puppet-osquery
 image:
     src: images/projects/puppet.png
-    caption: Puppet graphic
+    caption: Puppet logo graphic.
 tags:
     - puppet
     - osquery

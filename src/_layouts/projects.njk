@@ -11,11 +11,10 @@
         {%- for project in collections.projects | reverse -%}
           <div class="project">
             <div class="project__showcase">
-              <div class="project__tag">
-                {{ project.data.tags | primaryTag }}
-              </div>
-
               <div class="project__image">
+                <div class="project__tag">
+                  {{ project.data.tags | primaryTag }}
+                </div>
                 <a aria-hidden="true" href="{{ site.url }}/projects/{{ project.data.uri }}/" class="project__anchor">
                   {% responsiveImage
                     project.data.image.src | default('images/projects/placeholder.png'),

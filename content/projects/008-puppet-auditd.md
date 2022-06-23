@@ -9,7 +9,7 @@ anchor: Puppet auditd Module
 uri: puppet-auditd
 image:
     src: images/projects/puppet.png
-    caption: Puppet graphic
+    caption: Puppet logo graphic.
 tags:
     - puppet
     - auditd

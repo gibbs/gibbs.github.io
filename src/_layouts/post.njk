@@ -2,6 +2,9 @@
 
 {% block json_ld %}{{ jsonld | toJSONLDBlog | safe }}{% endblock %}
 
+{% set previous = collections.blog | getPreviousCollectionItem(page) %}
+{% set next = collections.blog | getNextCollectionItem(page) %}
+
 {% block content %}
   <div class="container">
     <article class="row post">
@@ -19,14 +22,45 @@
       {% if heading %}
       <h1 class="post__heading">{{ heading }}</h1>
       {% endif %}
-
+      
       <time class="post__date" datetime="{{ page.date | postDate }}">
         <span class="icon icon-clock"></span> {{ page.date | postDate }}
       </time>
+
+      {{ tags }}
 
       <div class="post__content">
         {{ content | safe }}
       </div>
     </article>
+  </div>
+
+  <div class="post-more">
+    <div class="container">
+      <nav class="post-more__nav">
+        {% if previous %}
+        <a href="{{ previous.url }}" class="post-more__anchor">
+          <span class="post-more__icon post-more__icon--previous">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+          </span>
+          <span class="post-more__content post-more__content--previous">
+            <span class="post-more__title post-more__title--previous">Previous</span>
+            <span class="post-more__text post-more__text--previous">{{ previous.data.anchor }}</span>
+          </span>
+        </a>
+        {% endif %}
+        {% if next %}
+        <a href="{{ next.url }}" class="post-more__anchor">
+          <span class="post-more__content post-more__content--next">
+            <span class="post-more__title post-more__title--next">Next</span>
+            <span class="post-more__text post-more__text--next">{{ next.data.anchor }}</span>
+          </span>
+          <span class="post-more__icon post-more__icon--next">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
+          </span>
+        </a>
+        {% endif %}
+      </nav>
+    </div>
   </div>
 {% endblock %}
