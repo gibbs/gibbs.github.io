@@ -147,11 +147,13 @@ function setActivityFeed (data) {
     })
   }
 
-  let entries = ''
+  const entries = {}
 
   for (const group in commits) {
+    entries[group] = ''
+
     commits[group].forEach(item => {
-      entries += `<li class="timeline__entry">
+      entries[group] += `<li class="timeline__entry">
         <div class="timeline__information">
           <p class="timeline__entry-heading">${item.commit.message.replace(/(?:\r\n|\r|\n)/g, '<br>').replace(/(<br\s*\/?>){2,}/gi, '<br>')}</p>
         </div>

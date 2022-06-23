@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Timeline entries element
       const $entries = document.createElement('ol')
       $entries.className = 'timeline__entries'
-      $entries.innerHTML = data.activity.entries
+      $entries.innerHTML = data.activity.entries[group]
 
       // Append children to group
       $group.appendChild($date)
