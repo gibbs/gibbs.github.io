@@ -7,6 +7,7 @@ summary: >-
     Microsoft Windows environments.
 anchor: Windows Base Directory
 uri: php-windows-base-folders
+heading: 'PHP Library: Windows Base Directory'
 image:
     src: images/projects/php.png
     caption: PHP logo graphic.

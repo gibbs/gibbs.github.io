@@ -8,6 +8,7 @@ summary: >-
     7.3, 7.4, 8.0 and 8.1.
 anchor: Docker PHP CLI
 uri: docker-php-cli
+heading: 'Docker: PHP CLI'
 image:
     src: images/projects/docker.png
     caption: Docker logo graphic.

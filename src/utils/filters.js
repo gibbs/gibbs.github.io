@@ -44,12 +44,17 @@ function jsonldBlogFilter (value) {
       meta.links.github.url,
       meta.links.twitter.url
     ],
+    author: {
+      '@type': 'Person',
+      name: meta.author.name,
+      url: site.url
+    },
     creator: {
       '@type': 'Person',
       name: meta.author.name,
       url: site.url
     },
-    author: {
+    publisher: {
       '@type': 'Person',
       name: meta.author.name,
       url: site.url

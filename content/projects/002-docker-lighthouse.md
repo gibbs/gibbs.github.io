@@ -7,6 +7,7 @@ summary: >-
     and reporting using open source packages.
 anchor: Docker Lighthouse
 uri: docker-lighthouse
+heading: Docker Lighthouse
 image:
     src: images/projects/docker.png
     caption: Docker logo graphic.

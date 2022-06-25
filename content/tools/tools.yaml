@@ -7,3 +7,8 @@ tags:
 jsonld:
   "@type": SoftwareApplication
   applicationCategory: DeveloperApplication
+
+eleventyComputed:
+  jsonld:
+    name: "{{ anchor }}"
+    description: "{{ summary }}"

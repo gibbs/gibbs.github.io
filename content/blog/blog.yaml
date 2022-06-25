@@ -6,3 +6,9 @@ tags:
 
 jsonld:
   "@type": BlogPosting
+
+eleventyComputed:
+  jsonld:
+    headline: "{{ heading }}"
+    description: "{{ summary }}"
+    mainEntityOfPage: "{{ site.url }}{{ page.url }}"

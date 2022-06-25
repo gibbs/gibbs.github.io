@@ -7,6 +7,7 @@ summary: >-
     flavours.
 anchor: Puppet osquery Module
 uri: puppet-osquery
+heading: Puppet Module for osquery
 image:
     src: images/projects/puppet.png
     caption: Puppet logo graphic.

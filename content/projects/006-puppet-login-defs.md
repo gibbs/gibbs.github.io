@@ -7,6 +7,7 @@ summary: >-
     password suite.
 anchor: Puppet login.defs Module
 uri: puppet-login-defs
+heading: 'Puppet Module for login.defs'
 image:
     src: images/projects/puppet.png
     caption: Puppet logo graphic.

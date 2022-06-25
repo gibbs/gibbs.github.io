@@ -8,6 +8,7 @@ summary: >-
     distributions.
 anchor: Ansible Update MOTD Role
 uri: ansible-update-motd-role
+heading: 'Ansible Update MOTD Role'
 image:
     src: images/projects/ansible.png
     caption: Ansible logo graphic.

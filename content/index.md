@@ -11,7 +11,6 @@ jsonld:
     url: https://dangibbs.uk/
     description: The personal website of Dan Gibbs
     publisher:
-        "@type": ProfilePage
         name: Dan Gibbs
 ---
 

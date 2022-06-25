@@ -7,6 +7,7 @@ summary: >-
     active and passive journal events over the network.
 anchor: Puppet systemd journal remote Module
 uri: puppet-systemd-journal-remote
+heading: 'Puppet Module for systemd journal remote'
 image:
     src: images/projects/puppet.png
     caption: Puppet logo graphic.

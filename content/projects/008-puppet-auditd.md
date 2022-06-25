@@ -7,6 +7,7 @@ summary: >-
     and Ubuntu.
 anchor: Puppet auditd Module
 uri: puppet-auditd
+heading: Puppet Module for auditd
 image:
     src: images/projects/puppet.png
     caption: Puppet logo graphic.

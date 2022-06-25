@@ -8,6 +8,7 @@ summary: >-
     for convenience.
 anchor: Currency Datasets
 uri: currency-datasets
+heading: 'Open Currency Dataset'
 image:
     src: images/projects/currencies.png
     caption: Currency dataset graphic.
