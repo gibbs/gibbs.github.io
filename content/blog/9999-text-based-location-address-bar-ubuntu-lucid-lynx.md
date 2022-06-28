@@ -8,9 +8,7 @@ summary: >-
 anchor: Text-based location (address) bar Ubuntu Lucid Lynx
 uri: text-based-location-address-bar-ubuntu-lucid-lynx
 heading: Text-based location (address) bar Ubuntu Lucid Lynx
-tags:
-    - ubuntu
-    - nautilus
+tags: [ubuntu, nautilus]
 date: "2010-05-03"
 jsonld:
     headline: >-

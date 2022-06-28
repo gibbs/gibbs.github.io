@@ -8,9 +8,7 @@ summary: >-
 anchor: PostgreSQL Insecure directory in $ENV{PATH} error
 uri: insecure-directory-in-envpath-while-running-with-t-switch-at-usrbinpg_ctlcluster
 heading: Insecure directory in $ENV{PATH} while running with -T switch at /usr/bin/pg_ctlcluster
-tags:
-    - ubuntu
-    - postgresql
+tags: [ubuntu, postgresql]
 date: "2010-09-04"
 jsonld:
     headline: >-

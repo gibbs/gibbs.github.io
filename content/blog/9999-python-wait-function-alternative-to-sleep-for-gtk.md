@@ -8,10 +8,7 @@ summary: >-
 anchor: Python Wait Function – Alternative to Sleep for GTK
 uri: python-wait-function-alternative-to-sleep-for-gtk
 heading: Python Wait Function – Alternative to Sleep for GTK
-tags:
-    - python
-    - pygtk
-    - gtk
+tags: [python, pygtk, gtk]
 date: "2010-09-16"
 jsonld:
     headline: >-

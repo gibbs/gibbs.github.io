@@ -8,8 +8,7 @@ summary: >-
 anchor: Finding Missing Fonts in GIMP (XCF)
 uri: finding-missing-fonts-in-gimp-xcf
 heading: Finding Missing Fonts in GIMP (XCF)
-tags:
-    - gimp
+tags: [gimp]
 date: "2011-08-04"
 jsonld:
     headline: >-

@@ -10,8 +10,7 @@ summary: >-
 anchor: Removing User Names from Ubuntu (9.10+) GDM Login Screen
 uri: how-to-remove-user-names-from-ubuntu-9-10-gdm-login-screen
 heading: How to Remove User Names from Ubuntu (9.10+) GDM Login Screen
-tags:
-    - ubuntu
+tags: [ubuntu]
 date: "2010-10-25"
 jsonld:
     headline: >-

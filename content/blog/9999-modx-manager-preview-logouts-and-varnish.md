@@ -8,9 +8,7 @@ summary: >-
 anchor: MODX Manager Preview Logouts and Varnish
 uri: modx-manager-preview-logouts-and-varnish
 heading: MODX Manager Preview Logouts and Varnish
-tags:
-    - modx
-    - varnish
+tags: [modx, varnish]
 date: "2012-02-11"
 jsonld:
     headline: >-

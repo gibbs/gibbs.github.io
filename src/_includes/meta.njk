@@ -10,3 +10,21 @@
 <meta name="robots" content="{{ metatag.robots }}">
 {% endif %}
 <meta name="theme-color" content="{{ meta.manifest.color }}">
+<meta property="og:title" content="{{ heading or title or meta.title }}">
+<meta property="og:description" content="{{ summary or description }}">
+<meta property="og:url" content="{{ site.url }}{{ page.url }}">
+<meta property="og:type" content="{{ type or 'website' }}">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:title" content="{{ heading or title or meta.title }}">
+<meta name="twitter:description" content="{{ summary or description }}">
+{% if type == 'article' and image %}
+<meta property="og:image" content="{{ site.url }}{% image image.src %}">
+<meta property="og:image:alt" content="{{ image.caption }}">
+<meta name="twitter:image" content="{{ site.url }}{% image image.src %}">
+<meta name="twitter:image:alt" content="{{ image.caption }}">
+{% else %}
+<meta property="og:image" content="{{ site.url }}{% image 'icons/social-1200x630.png' %}">
+<meta property="og:image:alt" content="{{ summary or description }}">
+<meta name="twitter:image" content="{{ site.url }}{% image 'icons/social-1200x630.png' %}">
+<meta name="twitter:image:alt" content="{{ summary or description }}">
+{% endif %}

@@ -8,13 +8,10 @@ summary: >-
 anchor: Setting Grafana User Roles with Keycloak
 uri: using-oauth-roles-in-grafana-with-keycloak
 heading: Setting Grafana User Roles in Keycloak
-image:
-    src: images/blog/grafana-keycloak.png
-    caption: grafana keycloak
-tags:
-    - grafana
-    - keycloak
-    - oauth
+# image:
+#     src: images/blog/grafana-keycloak.png
+#     caption: grafana keycloak
+tags: [grafana, keycloak, oauth]
 date: "2022-01-21"
 jsonld:
     headline: "How to run use Grafana roles with OAuth and Keycloak"

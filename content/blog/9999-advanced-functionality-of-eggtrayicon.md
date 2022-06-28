@@ -8,10 +8,7 @@ summary: >-
 anchor: PyGTK Tutorial – Advanced functionality of EggTrayIcon
 uri: advanced-functionality-of-eggtrayicon
 heading: PyGTK Tutorial – Advanced functionality of EggTrayIcon
-tags:
-    - python
-    - pygtk
-    - gtk
+tags: [python, pygtk, gtk]
 date: "2011-03-31"
 jsonld:
     headline: >-

@@ -56,6 +56,9 @@ module.exports = {
       type: 'string',
       maxLength: 60
     },
+    type: {
+      type: 'string'
+    },
     uri: {
       type: 'string'
     }

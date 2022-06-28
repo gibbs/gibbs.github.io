@@ -11,9 +11,7 @@ heading: Remote Terraform State File (with Locking) Using AWS S3 and DynamoDB
 # image:
 #     src: images/blog/puppet-pi.png
 #     caption: puppet 7 raspberry pi
-tags:
-    - terraform
-    - aws
+tags: [terraform, aws]
 date: "2022-03-17"
 jsonld:
     headline: "Remote Terraform state file with locking using AWS S3 and DynamoDB"

@@ -10,9 +10,7 @@ summary: >-
 anchor: KDE Default Cursor After Installing Kubuntu on Ubuntu
 uri: kde-default-cursor-after-installing-kubuntu-on-ubuntu
 heading: KDE Default Cursor After Installing Kubuntu on Ubuntu
-tags:
-    - ubuntu
-    - kde
+tags: [ubuntu, kde]
 date: "2010-01-17"
 jsonld:
     headline: >-

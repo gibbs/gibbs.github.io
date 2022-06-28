@@ -10,8 +10,7 @@ heading: Overriding Puppet Resources
 # image:
 #     src: images/blog/puppet-pi.png
 #     caption: puppet 7 raspberry pi
-tags:
-    - puppet
+tags: [puppet]
 date: "2022-03-18"
 jsonld:
     headline: "Overriding Puppet Resources"

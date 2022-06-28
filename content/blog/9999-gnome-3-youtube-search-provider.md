@@ -10,8 +10,7 @@ summary: >-
 anchor: GNOME 3 Shell YouTube Search Provider 
 uri: gnome-3-youtube-search-provider
 heading: GNOME 3 YouTube Search Provider
-tags:
-    - gnome
+tags: [gnome]
 date: "2011-04-22"
 jsonld:
     headline: >-

@@ -12,9 +12,7 @@ heading: Running Puppet 7 on Raspberry Pi OS (armhf/armv7)
 # image:
 #     src: images/blog/puppet-pi.png
 #     caption: puppet 7 raspberry pi
-tags:
-    - puppet
-    - arm
+tags: [puppet, arm]
 date: "2022-02-22"
 jsonld:
     headline: "Running the Puppet 7 agent on Raspberry Pi OS (armhf/armv7)"

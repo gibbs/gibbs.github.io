@@ -3,6 +3,7 @@ permalink: "blog/{{ uri | slug }}/index.html"
 changeFreq: weekly
 tags:
   - blog
+type: article
 
 jsonld:
   "@type": BlogPosting
