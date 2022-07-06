@@ -1,18 +1,18 @@
 h1 {
   color: var(--primary-color);
   font-weight: 600;
-  font-size: calc(var(--font-size) * 2.6);
+  font-size: calc(var(--font-size) * 3);
   letter-spacing: -.15rem;
   margin: var(--gutter) 0;
 }
 
 h2 {
   color: var(--heading-color);
-  font-weight: 500;
-  font-size: calc(var(--font-size) * 2);
-  margin: var(--gutter) 0;
+  font-weight: 600;
+  font-size: calc(var(--font-size) * 2.25);
+  margin: calc(var(--gutter) * 1.25) 0 calc(var(--gutter) * .5) 0;
   letter-spacing: -.045rem;
-  line-height: calc(var(--font-line-height) * 2);
+  line-height: calc(var(--font-line-height) * 2.25);
 }
 
 h3 {

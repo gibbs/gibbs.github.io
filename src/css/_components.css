@@ -158,12 +158,13 @@
 }
 
 .hero__title {
-  margin: var(--gap) 0 0 0;
+  margin: calc(var(--gap) * .5) 0 calc(var(--gap) * .5) 0;
+  font-size: calc(var(--font-size) * 3.25);
   font-weight: 600;
 }
 
 .hero__subtitle {
-  margin: calc(var(--gap) * .5) 0 0 0;
+  margin: calc(var(--gap) * .25) 0 0 0;
   color: var(--hero-subtitle-color);
   font-weight: 300;
 }
