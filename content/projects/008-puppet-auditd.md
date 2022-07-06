@@ -24,14 +24,20 @@ jsonld:
     sameAs:
         - https://github.com/gibbs/puppet-auditd
         - https://forge.puppet.com/modules/genv/auditd
+badges:
+    - text: Build Status
+      src: https://img.shields.io/github/workflow/status/gibbs/puppet-auditd/CI?style=flat-square
+      url: https://github.com/gibbs/puppet-auditd/actions?query=workflow%3ACI
+    - text: Release
+      src: https://img.shields.io/github/workflow/status/gibbs/puppet-auditd/Release?label=release&style=flat-square
+      url: https://github.com/gibbs/puppet-auditd/actions?query=workflow%3ARelease
+    - text: Puppet Forge
+      src: https://img.shields.io/puppetforge/v/genv/auditd.svg?maxAge=2592000&style=flat-square
+      url: https://forge.puppet.com/genv/auditd
+    - text: Apache-2 License
+      src: https://img.shields.io/github/license/gibbs/puppet-auditd.svg?style=flat-square
+      url: https://github.com/gibbs/puppet-auditd/blob/master/LICENSE
 ---
-
-# Puppet Module for auditd
-
-[![Build Status](https://img.shields.io/github/workflow/status/gibbs/puppet-auditd/CI?style=flat-square)](https://github.com/gibbs/puppet-auditd/actions?query=workflow%3ACI)
-[![Release](https://img.shields.io/github/workflow/status/gibbs/puppet-auditd/Release?label=release&style=flat-square)](https://github.com/gibbs/puppet-auditd/actions?query=workflow%3ARelease)
-[![Puppet Forge](https://img.shields.io/puppetforge/v/genv/auditd.svg?maxAge=2592000&style=flat-square)](https://forge.puppet.com/genv/auditd)
-[![Apache-2 License](https://img.shields.io/github/license/gibbs/puppet-auditd.svg?style=flat-square)](https://github.com/gibbs/puppet-auditd/blob/master/LICENSE)
 
 A Puppet module for managing and configuring the Linux Audit Daemon `auditd` on 
 Debian and RedHat family distros.
