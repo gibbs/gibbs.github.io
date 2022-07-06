@@ -26,11 +26,11 @@ jsonld:
     sameAs:
         - https://hub.docker.com/r/genv/php-cli
         - https://github.com/gibbs/docker-php-cli
+badges:
+    - text: Build Status
+      src: https://github.com/gibbs/docker-php-cli/actions/workflows/build.yml/badge.svg
+      url: https://github.com/Gibbs/docker-php-cli/actions
 ---
-
-# Docker: PHP CLI
-
-![Build Status](https://github.com/Gibbs/docker-php-cli/actions/workflows/build.yml/badge.svg)
 
 The `genv/php-cli` Docker images contain multiple PHP CLI versions that can
 be used for local testing, development and CI/CD pipelines. These images are 

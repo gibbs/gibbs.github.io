@@ -25,13 +25,17 @@ jsonld:
     sameAs:
         - https://github.com/gibbs/ansible-role-update-motd
         - https://galaxy.ansible.com/gibbs/update_motd
+badges:
+    - text: Build
+      src: https://github.com/gibbs/ansible-role-update-motd/actions/workflows/test.yml/badge.svg
+      url: https://github.com/gibbs/ansible-role-update-motd/
+    - text: Ansible Role
+      src: https://img.shields.io/badge/Ansible%20Role-gibbs.update__motd-blue.svg
+      url: https://galaxy.ansible.com/gibbs/update_motd
+    - text: License
+      src: https://img.shields.io/badge/License-MIT-brightgreen.svg
+      url: https://opensource.org/licenses/MIT
 ---
-
-# Ansible Update MOTD Role
-
-![Build](https://github.com/gibbs/ansible-role-update-motd/actions/workflows/test.yml/badge.svg)
-[![Ansible Role](https://img.shields.io/badge/Ansible%20Role-gibbs.update__motd-blue.svg)](https://galaxy.ansible.com/gibbs/update_motd)
-[![License](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
 
 An Ansible role for managing the dynamic MOTD scripts on Debian 9, 10, 11 
 and Ubuntu 14.04, 16.04, 18.04 and 20.04.

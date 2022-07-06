@@ -5,6 +5,13 @@
 {% set previous = collections.blog | getPreviousCollectionItem(page) %}
 {% set next = collections.blog | getNextCollectionItem(page) %}
 
+{% if image %}
+  {% block banner %}
+    {% include "banner.njk" %}
+  {% endblock %}
+{% endif %}
+
+
 {% block content %}
   <div class="container">
     <article class="row post">
@@ -18,14 +25,6 @@
         {% endif %}
       </div>
       {% endif %}
-
-      {% if heading %}
-      <h1 class="post__heading">{{ heading }}</h1>
-      {% endif %}
-      
-      <time class="post__date" datetime="{{ page.date | postDate }}">
-        <span class="icon icon-clock"></span> {{ page.date | postDate }}
-      </time>
 
       <div class="post__content">
         {{ content | safe }}

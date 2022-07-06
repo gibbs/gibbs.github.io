@@ -7,6 +7,21 @@ module.exports = {
     anchor: {
       type: 'string'
     },
+    badges: {
+      type: 'array',
+      properties: {
+        text: {
+          type: 'string'
+        },
+        src: {
+          type: 'string'
+        },
+        url: {
+          type: 'string'
+        }
+      },
+      required: ['text', 'src', 'url']
+    },
     changeFreq: {
       type: 'string',
       enum: ['always', 'hourly', 'daily', 'weekly', 'monthly', 'yearly', 'never']

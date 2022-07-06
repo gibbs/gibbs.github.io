@@ -24,11 +24,11 @@ jsonld:
     dateModified: "2021-11-17"
     sameAs:
         - https://github.com/gibbs/currency-data
+badges:
+    - text: Test Status
+      src: https://github.com/gibbs/currency-data/actions/workflows/tests.yml/badge.svg
+      url: https://github.com/gibbs/currency-data
 ---
-
-# Open Currency Dataset
-
-![Build Status](https://github.com/gibbs/currency-data/actions/workflows/tests.yml/badge.svg)
 
 A free currency dataset of ISO 4217 world currencies available in CSV, JSON, 
 Markdown, PHP and XML formats for easy programmatic usage.

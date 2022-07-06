@@ -2,6 +2,25 @@
 
 {% block json_ld %}{{ jsonld | toJSONLDBlog | safe }}{% endblock %}
 
+{% block banner %}
+<div class="banner banner--project">
+  <div class="container">
+    <h1 class="banner__heading">{{ heading }}</h1>
+
+    {% if badges %}
+      <ul class="banner__badges">
+      {% for badge in badges %}
+        <li class="banner__badge-item">
+          <a href="{{ badge.url }}" class="banner__badge-anchor">
+            <img src="{{ badge.src }}" alt="{{ badge.text }}" class="banner__badge-img"></a>
+        </li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
+
 {% block content %}
   <div class="container">
     <article class="row">

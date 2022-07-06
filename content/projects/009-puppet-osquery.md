@@ -24,14 +24,20 @@ jsonld:
     sameAs:
         - https://github.com/gibbs/puppet-osquery
         - https://forge.puppet.com/modules/genv/osquery
+badges:
+    - text: Build Status
+      src: https://img.shields.io/github/workflow/status/gibbs/puppet-osquery/CI?style=flat-square
+      url: https://github.com/gibbs/puppet-osquery/actions?query=workflow%3ACI
+    - text: Release
+      src: https://img.shields.io/github/workflow/status/gibbs/puppet-osquery/Release?label=release&style=flat-square
+      url: https://github.com/gibbs/puppet-osquery/actions?query=workflow%3ARelease
+    - text: Puppet Forge
+      src: https://img.shields.io/puppetforge/v/genv/osquery.svg?maxAge=2592000&style=flat-square
+      url: https://forge.puppet.com/genv/osquery
+    - text: Apache-2 License
+      src: https://img.shields.io/github/license/gibbs/puppet-osquery.svg?style=flat-square
+      url: https://github.com/gibbs/puppet-osquery/blob/master/LICENSE
 ---
-
-# Puppet Module for osquery
-
-[![Build Status](https://img.shields.io/github/workflow/status/gibbs/puppet-osquery/CI?style=flat-square)](https://github.com/gibbs/puppet-osquery/actions?query=workflow%3ACI)
-[![Release](https://img.shields.io/github/workflow/status/gibbs/puppet-osquery/Release?label=release&style=flat-square)](https://github.com/gibbs/puppet-osquery/actions?query=workflow%3ARelease)
-[![Puppet Forge](https://img.shields.io/puppetforge/v/genv/osquery.svg?maxAge=2592000&style=flat-square)](https://forge.puppet.com/genv/osquery)
-[![Apache-2 License](https://img.shields.io/github/license/gibbs/puppet-osquery.svg?style=flat-square)](https://github.com/gibbs/puppet-osquery/blob/master/LICENSE)
 
 A minimal Puppet module for installing and managing the `osquery` service.
 

@@ -25,11 +25,11 @@ jsonld:
     sameAs:
         - https://github.com/gibbs/docker-lighthouse
         - https://hub.docker.com/r/genv/lighthouse
+badges:
+    - text: Build Status
+      src: https://github.com/gibbs/docker-lighthouse/actions/workflows/build.yml/badge.svg
+      url: https://github.com/gibbs/docker-lighthouse/actions
 ---
-
-# Docker Lighthouse
-
-![Build Status](https://github.com/Gibbs/docker-lighthouse/actions/workflows/build.yml/badge.svg)
 
 A Docker image of the latest 
 [Lighthouse](https://developers.google.com/web/tools/lighthouse) builds. This 

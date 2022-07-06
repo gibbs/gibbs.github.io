@@ -26,14 +26,20 @@ jsonld:
     sameAs:
         - https://github.com/gibbs/puppet-systemd_journal_remote
         - https://forge.puppet.com/modules/genv/systemd_journal_remote
+badges:
+    - text: Build Status
+      src: https://img.shields.io/github/workflow/status/gibbs/puppet-systemd_journal_remote/CI?style=flat-square
+      url: https://github.com/gibbs/puppet-systemd_journal_remote/actions?query=workflow%3ACI
+    - text: Release
+      src: https://img.shields.io/github/workflow/status/gibbs/puppet-systemd_journal_remote/Release?label=release&style=flat-square
+      url: https://github.com/gibbs/puppet-systemd_journal_remote/actions?query=workflow%3ARelease
+    - text: Puppet Forge
+      src: https://img.shields.io/puppetforge/v/genv/systemd_journal_remote.svg?maxAge=2592000&style=flat-square
+      url: https://forge.puppet.com/genv/systemd_journal_remote
+    - text: Apache-2 License
+      src: https://img.shields.io/github/license/gibbs/puppet-systemd_journal_remote.svg?style=flat-square
+      url: https://github.com/gibbs/puppet-systemd_journal_remote/
 ---
-
-# Puppet Module for systemd journal remote
-
-[![Build Status](https://img.shields.io/github/workflow/status/gibbs/puppet-systemd_journal_remote/CI?style=flat-square)](https://github.com/gibbs/puppet-systemd_journal_remote/actions?query=workflow%3ACI)
-[![Release](https://img.shields.io/github/workflow/status/gibbs/puppet-systemd_journal_remote/Release?label=release&style=flat-square)](https://github.com/gibbs/puppet-systemd_journal_remote/actions?query=workflow%3ARelease)
-[![Puppet Forge](https://img.shields.io/puppetforge/v/genv/systemd_journal_remote.svg?maxAge=2592000&style=flat-square)](https://forge.puppet.com/genv/systemd_journal_remote)
-[![Apache-2 License](https://img.shields.io/github/license/gibbs/puppet-systemd_journal_remote.svg?style=flat-square)](https://github.com/gibbs/puppet-systemd_journal_remote/blob/master/)
 
 A Puppet module for managing the `systemd-journal-remote`, 
 `systemd-journal-upload` and `systemd-journal-gatewayd` services on CentOS,

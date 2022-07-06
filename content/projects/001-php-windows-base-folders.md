@@ -24,11 +24,11 @@ jsonld:
     sameAs:
         - https://github.com/gibbs/php-windows-base-dir
         - https://packagist.org/packages/gibbs/php-windows-base-dir
+badges:
+    - text: Test Status
+      src: https://github.com/gibbs/php-windows-base-dir/actions/workflows/test.yml/badge.svg
+      url: https://github.com/gibbs/php-windows-base-dir/actions/
 ---
-
-# PHP Library: Windows Base Directory
-
-![Test Status](https://github.com/gibbs/php-windows-base-dir/actions/workflows/test.yml/badge.svg)
 
 A small PHP library for accessing Windows directory paths.
 

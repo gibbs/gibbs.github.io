@@ -24,14 +24,20 @@ jsonld:
     sameAs:
         - https://github.com/gibbs/puppet-login_defs
         - https://forge.puppet.com/modules/genv/login_defs
+badges:
+    - text: Build Status
+      src: https://img.shields.io/github/workflow/status/gibbs/puppet-login_defs/CI?style=flat-square
+      url: https://github.com/gibbs/puppet-login_defs/actions?query=workflow%3ACI
+    - text: Release
+      src: https://img.shields.io/github/workflow/status/gibbs/puppet-login_defs/Release?label=release&style=flat-square
+      url: https://github.com/gibbs/puppet-login_defs/actions?query=workflow%3ARelease
+    - text: Puppet Forge
+      src: https://img.shields.io/puppetforge/v/genv/login_defs.svg?maxAge=2592000&style=flat-square
+      url: https://forge.puppet.com/genv/login_defs
+    - text: Apache-2 License
+      src: https://img.shields.io/github/license/gibbs/puppet-login_defs.svg?style=flat-square
+      url: https://github.com/gibbs/puppet-login_defs/blob/master/LICENSE
 ---
-
-# Puppet Module for login.defs
-
-[![Build Status](https://img.shields.io/github/workflow/status/gibbs/puppet-login_defs/CI?style=flat-square)](https://github.com/gibbs/puppet-login_defs/actions?query=workflow%3ACI)
-[![Release](https://img.shields.io/github/workflow/status/gibbs/puppet-login_defs/Release?label=release&style=flat-square)](https://github.com/gibbs/puppet-login_defs/actions?query=workflow%3ARelease)
-[![Puppet Forge](https://img.shields.io/puppetforge/v/genv/login_defs.svg?maxAge=2592000&style=flat-square)](https://forge.puppet.com/genv/login_defs)
-[![Apache-2 License](https://img.shields.io/github/license/gibbs/puppet-login_defs.svg?style=flat-square)](https://github.com/gibbs/puppet-login_defs/blob/master/LICENSE)
 
 A Puppet module for managing and configuring `/etc/login.defs` on CentOS,
 Debian, RedHat, Ubuntu, Rocky and AlmaLinux.

@@ -6,7 +6,7 @@
     <title>{{ title or meta.title }}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    {% include "meta.njk" %}
+    {% block meta %}{% include "meta.njk" %}{% endblock %}
     {% if jsonld %}
     <script type="application/ld+json">
       {% block json_ld %}{{ jsonld | toJSONLD | safe }}{% endblock %}

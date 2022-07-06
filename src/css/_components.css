@@ -84,6 +84,36 @@
 }
 
 /*
+ * Banners
+ */
+.banner {
+  position: relative;
+}
+
+.banner__heading {
+  text-align: center;
+}
+
+.banner__badges {
+  display: flex;
+  gap: calc(var(--gap) * .25);
+  list-style-type: none;
+  margin: calc(var(--gap) * .5) 0;
+  padding: 0;
+  justify-content: center;
+  min-height: 20px;
+}
+
+.banner__badge-item {
+  margin: 0;
+}
+
+.banner__badge-anchor {
+  display: block;
+  line-height: 0;
+}
+
+/*
  * Code Tabs
  */
 .code-tabs {
@@ -188,6 +218,16 @@
 
 .anchor-up:hover {
   color: var(--dark-link-text-hover-color);
+}
+
+@media (--breakpoint-md) {
+  .banner__heading {
+    text-align: left;
+  }
+
+  .banner__badges {
+    justify-content: flex-start;
+  }
 }
 
 @media (--breakpoint-lg) {
