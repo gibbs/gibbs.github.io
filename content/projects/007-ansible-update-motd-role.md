@@ -21,7 +21,7 @@ date: "2021-07-13"
 jsonld:
     datePublished: "2021-07-13"
     dateCreated: "2021-07-13"
-    dateModified: "2022-03-04"
+    dateModified: "2022-07-08"
     sameAs:
         - https://github.com/gibbs/ansible-role-update-motd
         - https://galaxy.ansible.com/gibbs/update_motd
@@ -39,6 +39,10 @@ badges:
 
 An Ansible role for managing the dynamic MOTD scripts on Debian 9, 10, 11 
 and Ubuntu 14.04, 16.04, 18.04 and 20.04.
+
+- [Example Usage](#goto-example-usage)
+- [Default Variables](#goto-default-variables)
+- [MOTD Scripts](#goto-motd-scripts)
 
 [Source available on GitHub]({{ project.repository }}){.button .button--image .button--github}
 

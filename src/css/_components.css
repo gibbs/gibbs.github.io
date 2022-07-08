@@ -48,7 +48,7 @@
   max-width: 100%;
   padding: var(--gutter);
   border: 1px solid;
-  margin: 0 0 var(--gap) 0;
+  margin: var(--gap) 0 var(--gap) 0;
 }
 
 .alert > p:first-of-type {

@@ -20,13 +20,17 @@ jsonld:
     headline: "Running the Puppet 7 agent on Raspberry Pi OS (armhf/armv7)"
     datePublished: "2022-02-22"
     dateCreated: "2022-02-22"
-    dateModified: "2022-02-22"
+    dateModified: "2022-07-08"
 ---
 
 The Puppet open source repositories for Debian are not currently packaged
 with a `puppet-agent` for ARM architectures. If you need to run a specific 
 Puppet agent version (>=6) you can manually set up the agent and run it with
 Ruby.
+
+- [Installing the Puppet Agent via Ruby](#goto-installing-the-puppet-agent-via-ruby)
+- [Initial Configuration](#goto-initial-configuration)
+- [Set the System Facts](#goto-set-the-system-facts)
 
 ## Installing the Puppet Agent via Ruby
 

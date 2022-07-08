@@ -20,7 +20,7 @@ date: "2021-04-18"
 jsonld:
     datePublished: "2021-04-18"
     dateCreated: "2021-11-18"
-    dateModified: "2021-11-18"
+    dateModified: "2022-07-08"
     sameAs:
         - https://github.com/gibbs/php-windows-base-dir
         - https://packagist.org/packages/gibbs/php-windows-base-dir
@@ -33,17 +33,20 @@ badges:
 A small PHP library for accessing Windows directory paths.
 
 1. [Example Usage](#goto-example-usage)
-2. [API](#goto-api)
+2. [Installation](#goto-installation)
+3. [API](#goto-api)
 
 [Source available on GitHub]({{ project.repository }}){.button .button--image .button--github}
 
-## Example Usage
+## Installation
 
-Install the package via the Composer package manager:
+Install the package with [Composer](https://packagist.org/):
 
 ```bash
 composer require gibbs/php-windows-base-dir
 ```
+
+## Example Usage
 
 Using the Composer autoloader, print all available paths:
 

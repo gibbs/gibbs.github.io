@@ -21,7 +21,7 @@ date: "2021-11-17"
 jsonld:
     datePublished: "2021-11-17"
     dateCreated: "2021-11-17"
-    dateModified: "2021-11-17"
+    dateModified: "2022-07-08"
     sameAs:
         - https://github.com/gibbs/currency-data
 badges:
@@ -33,11 +33,11 @@ badges:
 A free currency dataset of ISO 4217 world currencies available in CSV, JSON, 
 Markdown, PHP and XML formats for easy programmatic usage.
 
-- [CSV](https://raw.githubusercontent.com/gibbs/currency-data/master/dist/currencies.csv)
-- [JSON](https://raw.githubusercontent.com/gibbs/currency-data/master/dist/currencies.json)
-- [Markdown](https://raw.githubusercontent.com/gibbs/currency-data/master/dist/currencies.md)
-- [PHP](https://raw.githubusercontent.com/gibbs/currency-data/master/dist/currencies.php)
-- [XML](https://raw.githubusercontent.com/gibbs/currency-data/master/dist/currencies.xml)
+- [CSV File](https://raw.githubusercontent.com/gibbs/currency-data/master/dist/currencies.csv)
+- [JSON File](https://raw.githubusercontent.com/gibbs/currency-data/master/dist/currencies.json)
+- [Markdown File](https://raw.githubusercontent.com/gibbs/currency-data/master/dist/currencies.md)
+- [PHP File](https://raw.githubusercontent.com/gibbs/currency-data/master/dist/currencies.php)
+- [XML File](https://raw.githubusercontent.com/gibbs/currency-data/master/dist/currencies.xml)
 
 [Source available on GitHub]({{ project.repository }}){.button .button--image .button--github}
 

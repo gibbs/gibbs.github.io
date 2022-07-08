@@ -19,12 +19,16 @@ jsonld:
     headline: "Let's Encrypt ACME with HAProxy"
     datePublished: "2022-04-11"
     dateCreated: "2022-04-11"
-    dateModified: "2022-06-16"
+    dateModified: "2022-07-08"
 ---
 
 HAProxy can be used to flexibly manage multiple Let's Encrypt certificates. This
  is useful when reverse proxying microservices without the need for a web server
  or exposing `certbot` publicly.
+
+- [Challenge ACL](#goto-challenge-acl)
+- [HAProxy Deploy Hook](#goto-ha-proxy-deploy-hook)
+- [Certbot Example](#goto-certbot-example)
 
 ## Challenge ACL
 
