@@ -1,7 +1,7 @@
 ---
 title: Let's Encrypt Standalone ACME with HAProxy
 description: >-
-    Using Let's Encrypt standalone mode with HAProxy to issue and renew 
+    Using Let's Encrypt standalone mode with HAProxy to issue and renew
     certificates.
 summary: >-
     Using HAProxy to route Let's Encrypt HTTP challenges in standalone mode.

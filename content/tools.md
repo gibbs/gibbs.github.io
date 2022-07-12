@@ -1,7 +1,7 @@
 ---
 layout: tools
 title: Tools
-description: |-
+description: >-
     Web based interfaces for development tools and utilities
 anchor: Tools
 tags:

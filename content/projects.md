@@ -1,8 +1,8 @@
 ---
 layout: projects
 title: Projects
-description: |
-    Projects being contributed to and worked on by Dan Gibbs
+description: >-
+    Active projects currently being worked on or contributed to
 anchor: Projects
 tags:
     - page

@@ -1,7 +1,7 @@
 ---
 title: How to run systemd Docker containers in Arch Linux
 description: >-
-    Changing the systemd default hierarchy to run systemd init containers on 
+    Changing the systemd default hierarchy to run systemd init containers on
     Arch Linux.
 summary: >-
     Run Docker containers using the systemd init system on hosts running 

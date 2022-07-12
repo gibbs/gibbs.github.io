@@ -89,6 +89,13 @@ for (const key in urls) {
       assert.isTrue(selector.textContent.length <= 60)
     })
 
+    it('should not have new lines in title', () => {
+      const document = new JSDOM(response.text)
+      const selector = document.window.document.querySelector('title')
+
+      assert.equal(selector.text.indexOf('\n') === -1, true)
+    })
+
     it('should have a suitable meta description between 50 and 160 characters', () => {
       const document = new JSDOM(response.text)
       const selector = document.window.document.querySelector('meta[name="description"]')
@@ -97,6 +104,13 @@ for (const key in urls) {
       assert.equal(selector === null, false)
       assert.isAtLeast(selector.content.length, 50)
       assert.isAtMost(selector.content.length, 160)
+    })
+
+    it('should not contain meta description new lines', () => {
+      const document = new JSDOM(response.text)
+      const selector = document.window.document.querySelector('meta[name="description"]')
+
+      assert.equal(selector.content.indexOf('\n') === -1, true)
     })
 
     it('should be valid HTML', () => {

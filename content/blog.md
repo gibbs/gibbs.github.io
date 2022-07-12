@@ -1,7 +1,7 @@
 ---
 layout: blog
 title: Blog
-description: |
+description: >-
     Web and techology related blog posts from Dan Gibbs
 anchor: Blog
 tags:

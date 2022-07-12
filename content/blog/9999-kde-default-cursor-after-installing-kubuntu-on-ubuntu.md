@@ -2,7 +2,7 @@
 archived: true
 title: KDE Default Cursor After Installing Kubuntu on Ubuntu
 description: >-
-    How to change the cursor theme back to default after installing Kubuntu 
+    How to change the cursor theme back to default after installing Kubuntu
     from Ubuntu.
 summary: >-
     How to change the cursor theme back to default after installing Kubuntu 
