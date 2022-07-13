@@ -43,7 +43,7 @@ A minimal Puppet module for installing and managing the `osquery` service.
 
 - [Example Usage](#goto-example-usage)
 - [Default Configuration](#goto-default-configuration)
-- [Changelog](#goto-changelog)
+- [Changelog](#goto-change-log)
 - [Reference](#goto-reference)
 
 [Source available on GitHub]({{ project.repository }}){.button .button--image .button--github}

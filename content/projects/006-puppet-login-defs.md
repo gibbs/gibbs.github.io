@@ -44,7 +44,7 @@ Debian, RedHat, Ubuntu, Rocky and AlmaLinux.
 
 - [Example Usage](#goto-example-usage)
 - [Default Configuration](#goto-default-configuration)
-- [Changelog](#goto-changelog)
+- [Changelog](#goto-change-log)
 - [Reference](#goto-reference)
 
 [Source available on GitHub]({{ project.repository }}){.button .button--image .button--github}
