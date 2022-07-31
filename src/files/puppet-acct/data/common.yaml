@@ -1,0 +1,12 @@
+---
+acct::defaults:
+  enable: true
+  logging: 30
+
+acct::manage_defaults: true
+
+acct::package_ensure: installed
+acct::package_manage: true
+acct::service_enable: true
+acct::service_ensure: running
+acct::service_manage: true
