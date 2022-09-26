@@ -21,7 +21,7 @@
 
       <div class="row">
         {% for type in ['a', 'aaaa', 'any', 'caa', 'cname', 'dnskey', 'ds', 'mx', 'ns', 'ptr', 'soa', 'srv', 'tlsa', 'tsig', 'txt'] %}
-        <input type="checkbox" name="types[]" value="{{ type }}" class="button--check" id="type_{{ type }}" {% if loop.first %} checked{% endif %}>
+        <input type="checkbox" name="types[]" value="{{ type }}" class="button--check" id="type_{{ type }}" {% if type in ['a', 'aaaa', 'cname', 'mx', 'ns', 'txt'] %} checked{% endif %}>
         <label class="button button--toggle button--sm" for="type_{{ type }}">{{ type|upper }}</label>
         {% endfor %}
       </div>
