@@ -10,5 +10,31 @@ module.exports = {
   url: url.origin,
   host: url.host,
   hostname: url.hostname,
-  year: (new Date()).getFullYear()
+  year: (new Date()).getFullYear(),
+  contentSecurity: [
+    'upgrade-insecure-requests',
+    "default-src 'self'",
+    "style-src 'self' 'unsafe-inline'",
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval' " + [
+      url.origin,
+      'https://www.googletagmanager.com/gtag/js',
+      'https://cdn.jsdelivr.net/npm/chart.js'
+    ].join(' '),
+    "font-src 'self' " + [
+      'fonts.gstatic.com',
+      'data:'
+    ].join(' '),
+    'img-src * data:',
+    "connect-src 'self' " + [
+      url.host,
+      '*.' + url.host,
+      '*.google-analytics.com',
+      '*.analytics.google.com',
+      '*.googletagmanager.com'
+    ].join(' '),
+    "base-uri 'self'",
+    "object-src 'none'",
+    "manifest-src 'self'",
+    "worker-src 'self'"
+  ].join('; ')
 }
