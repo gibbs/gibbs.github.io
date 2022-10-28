@@ -1,4 +1,4 @@
-name: Build
+name: Deploy
 
 on:
   workflow_run:
@@ -7,18 +7,16 @@ on:
       - completed
 
 jobs:
-  deploy:
-    name: Build and Deploy
+  build:
+    name: Build
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: '16'
-
-      - name: Install Dependencies
+      - name: Install NPM Dependencies
         run: npm install
-
       - name: Build
         run: |
           cp -f .env.production .env
@@ -27,9 +25,34 @@ jobs:
         env:
           APP_ENV: production
           APP_URL: https://dangibbs.uk
-
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4.2.5
+      - name: Archive Build
+        env:
+          INPUT_PATH: docs/
+        run: |
+          tar \
+            --dereference --hard-dereference \
+            --directory "$INPUT_PATH" \
+            -cvf "$RUNNER_TEMP/build.tar" \
+            --exclude=.git \
+            --exclude=.github \
+      - name: Upload artefact
+        uses: actions/upload-artifact@main
         with:
-          branch: gh-pages
-          folder: docs
+          name: github-pages
+          path: ${{ runner.temp }}/build.tar
+          retention-days: '1'
+
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-20.04
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-page
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
