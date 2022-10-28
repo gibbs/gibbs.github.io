@@ -1,6 +1,6 @@
 # dangibbs.uk
 
-![Build](https://github.com/gibbs/gibbs.github.io/actions/workflows/deploy.yml/badge.svg)
+![Deploy](https://github.com/gibbs/gibbs.github.io/actions/workflows/deploy.yml/badge.svg)
 ![Tests](https://github.com/gibbs/gibbs.github.io/actions/workflows/test.yml/badge.svg)
 ![Version](https://img.shields.io/github/package-json/v/gibbs/gibbs.github.io)
 ![Size](https://img.shields.io/github/repo-size/gibbs/gibbs.github.io)
