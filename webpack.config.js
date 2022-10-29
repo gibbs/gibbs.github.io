@@ -5,6 +5,7 @@ const webpack = require('webpack')
 // Plugins
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const WorkboxPlugin = require('workbox-webpack-plugin')
 
 // The output filename
 const filename = '[name]' + (site.environment === 'production' ? '.[contenthash]' : '')
@@ -103,6 +104,11 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       APP_SERVICE_URL: JSON.stringify(process.env.APP_SERVICE_URL)
+    }),
+    new WorkboxPlugin.GenerateSW({
+      clientsClaim: true,
+      skipWaiting: true,
+      swDest: '../service-worker.js'
     })
   ]
 }

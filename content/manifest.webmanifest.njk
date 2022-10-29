@@ -3,21 +3,35 @@ permalink: manifest.webmanifest
 eleventyExcludeFromCollections: true
 ---
 {
-  "name": "Dan Gibbs",
+  "$schema": "https://json.schemastore.org/web-manifest-combined.json",
+  "name": "dangibbs.uk",
+  "short_name": "dangibbs.uk",
+  "description": "Dan Gibbs personal website PWA",
   "background_color": "{{ meta.manifest.color }}",
   "theme_color": "{{ meta.manifest.color }}",
   "icons": [
     {
       "src": "{{ site.url }}{% image 'icons/icon-192.png' %}",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "any"
+    },
+    {
+      "src": "{{ site.url }}{% image 'icons/icon-192-maskable.png' %}",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "maskable"
     },
     {
       "src": "{{ site.url }}{% image 'icons/icon-512.png' %}",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "purpose": "any"
     }
   ],
-  "display": "browser",
-  "start_url": "{{ site.url }}"
+  "display": "standalone",
+  "id": "{{ site.url }}",
+  "orientation": "any",
+  "start_url": "{{ site.url }}",
+  "scope": "{{ site.url }}"
 }

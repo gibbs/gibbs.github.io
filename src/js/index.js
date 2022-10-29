@@ -1,5 +1,11 @@
 import '~/vanilla-cookieconsent/dist/cookieconsent.js'
 
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js', { scope: '/' })
+  })
+}
+
 window.addEventListener && window.addEventListener('load', () => {
   const systemDarkPreference = window.matchMedia('(prefers-color-scheme: dark)').matches
   let userDarkPreference = JSON.parse(window.sessionStorage.getItem('theme')) ?? systemDarkPreference
