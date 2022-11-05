@@ -17,11 +17,11 @@ jsonld:
     headline: "Overriding Puppet Resources"
     datePublished: "2022-03-18"
     dateCreated: "2022-03-18"
-    dateModified: "2022-03-18"
+    dateModified: "2022-11-05"
 ---
 
 Puppet 
-[resource collectors](https://puppet.com/docs/puppet/7/lang_collectors.html)
+[resource collectors][puppet-resource-collectors]
 can be used to override resources. Although it should be used sparingly, this 
 feature is incredibly useful if you need to change a resource declared in a 
 module or want to conditionally set attribute values.
@@ -56,3 +56,5 @@ service { 'systemd-timesyncd':
   enable => true,
 }
 ```
+
+[puppet-resource-collectors]: <https://puppet.com/docs/puppet/7/lang_collectors.html> "Resource collectors"

@@ -21,7 +21,7 @@ date: "2021-05-08"
 jsonld:
     datePublished: "2021-05-08"
     dateCreated: "2021-05-08"
-    dateModified: "2021-05-08"
+    dateModified: "2022-11-05"
     sameAs:
         - https://github.com/gibbs/docker-lighthouse
         - https://hub.docker.com/r/genv/lighthouse
@@ -32,7 +32,7 @@ badges:
 ---
 
 A Docker image of the latest 
-[Lighthouse](https://developers.google.com/web/tools/lighthouse) builds. This 
+[Lighthouse][lighthouse] builds. This 
 image is focused on being entirely open source by being built on Debian and 
 using the Chromium web browser with open fonts.
 
@@ -137,7 +137,7 @@ typically the IP on Linux hosts);
 docker run --cap-add=SYS_ADMIN -v "$(pwd):/home/lighthouse/reports/" genv/lighthouse:latest http://172.17.0.1:8080/
 ```
 
-Alternatively, a wildcard DNS service like [nip.io](https://nip.io/) should work
+Alternatively, a wildcard DNS service like [nip.io][nip.io] should work
 for testing other sites within your local network.
 
 ### All Options
@@ -147,3 +147,6 @@ For a full list of options available:
 ```bash
 docker run genv/lighthouse --help
 ```
+
+[lighthouse]: <https://developer.chrome.com/docs/lighthouse/overview/> "Lighthouse overview"
+[nip.io]: <https://nip.io/> "Wildcard DNS provider"

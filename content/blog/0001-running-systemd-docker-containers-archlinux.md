@@ -22,10 +22,10 @@ jsonld:
     headline: "How to run systemd Docker containers in Arch Linux"
     datePublished: "2021-12-21"
     dateCreated: "2021-12-21"
-    dateModified: "2021-12-21"
+    dateModified: "2022-11-05"
 ---
 
-Docker engine [20.10.6](https://docs.docker.com/engine/release-notes/#20106)
+Docker engine [20.10.6][20106-release-notes]
 recently moved its cgroup v2 support out of experimental, but it does not 
 support *hybrid* hierarchies. Most modern systemd packages for Linux 
 distributions are compiled and shipped with the hybrid hierarchy which is a 
@@ -80,3 +80,5 @@ Regenerate the GRUB configuration with:
 ```bash
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
+
+[20106-release-notes]: <https://docs.docker.com/engine/release-notes/#20106> "20.10.6 Docker release notes"

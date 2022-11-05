@@ -20,7 +20,7 @@ date: "2021-04-18"
 jsonld:
     datePublished: "2021-04-18"
     dateCreated: "2021-11-18"
-    dateModified: "2022-07-08"
+    dateModified: "2022-11-05"
     sameAs:
         - https://github.com/gibbs/php-windows-base-dir
         - https://packagist.org/packages/gibbs/php-windows-base-dir
@@ -40,7 +40,7 @@ A small PHP library for accessing Windows directory paths.
 
 ## Installation
 
-Install the package with [Composer](https://packagist.org/):
+Install the package with [Composer][composer]:
 
 ```bash
 composer require gibbs/php-windows-base-dir
@@ -261,3 +261,5 @@ print_r($paths);
     </tbody>
   </table>
 </div>
+
+[composer]: <https://getcomposer.org/> "Composer dependency manager for PHP"

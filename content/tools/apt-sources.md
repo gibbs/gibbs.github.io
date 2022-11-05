@@ -12,7 +12,7 @@ date: "2022-06-19"
 jsonld:
     datePublished: "2022-06-19"
     dateCreated: "2022-06-19"
-    dateModified: "2022-06-19"
+    dateModified: "2022-11-05"
     operatingSystem: Web
     applicationCategory: DeveloperApplication
 ---
@@ -54,4 +54,6 @@ Ubuntu cloud images.
 !!!include(apt-sources/ubuntu-xenial.list)!!!
 ```
 
-Files available at [github.com/gibbs/apt-sources](https://github.com/gibbs/apt-sources/tree/master/sources).
+Files available at [github.com/gibbs/apt-sources][1].
+
+[1]: https://github.com/gibbs/apt-sources/tree/master/sources

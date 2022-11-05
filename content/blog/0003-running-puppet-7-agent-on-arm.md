@@ -20,7 +20,7 @@ jsonld:
     headline: "Running the Puppet 7 agent on Raspberry Pi OS (armhf/armv7)"
     datePublished: "2022-02-22"
     dateCreated: "2022-02-22"
-    dateModified: "2022-07-08"
+    dateModified: "2022-11-05"
 ---
 
 The Puppet open source repositories for Debian are not currently packaged
@@ -34,7 +34,7 @@ Ruby.
 
 ## Installing the Puppet Agent via Ruby
 
-Install Ruby 2.7.2 with [rvm](https://rvm.io/rvm/install) or an equivalent 
+Install Ruby 2.7.2 with [rvm][rvm-install] or an equivalent 
 environment manager:
 
 ```bash
@@ -115,3 +115,5 @@ OS facts resolved by facter can be queried with:
 ```bash
 facter operatingsystem os
 ```
+
+[rvm-install]: <https://rvm.io/rvm/install> "Installing RVM"

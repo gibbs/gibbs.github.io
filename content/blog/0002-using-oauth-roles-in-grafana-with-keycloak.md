@@ -20,14 +20,14 @@ jsonld:
     headline: "How to run use Grafana roles with OAuth and Keycloak"
     datePublished: "2022-01-21"
     dateCreated: "2022-01-21"
-    dateModified: "2022-07-08"
+    dateModified: "2022-11-05"
 ---
 
 When signing in to Grafana via OAuth the dashboard will default to the "Viewer" 
 role if a specific role can not be matched. Roles need to be supplied to the 
 OAuth UserInfo endpoint to support logging in as an Admin or Editor.
 
-See the [Generic OAuth authentication](https://grafana.com/docs/grafana/latest/auth/generic-oauth/)
+See the [Generic OAuth authentication][grafana-generic-oauth]
 documentation for useful information.
 
 - [Matching Keycloak Roles with Grafana](#goto-matching-keycloak-roles-with-grafana)
@@ -110,4 +110,4 @@ returned from OAuth requests.
 level = debug
 ```
 
-
+[grafana-generic-oauth]: <https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/generic-oauth/> "Configure generic OAuth authentication"

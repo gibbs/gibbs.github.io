@@ -19,7 +19,7 @@ jsonld:
     headline: "Remote Terraform state file with locking using AWS S3 and DynamoDB"
     datePublished: "2022-03-17"
     dateCreated: "2022-03-17"
-    dateModified: "2022-03-17"
+    dateModified: "2022-11-05"
 ---
 
 Using a remote backend to manage the Terraform state file provides a few 
@@ -109,5 +109,7 @@ terraform {
 ```
 
 Run `terraform init` to re-initialise the backend and copy any existing state 
-to S3. See [S3 Backend](https://www.terraform.io/language/settings/backends/s3)
+to S3. See [S3 Backend][terraform-s3-backend]
 for more information.
+
+[terraform-s3-backend]: <https://developer.hashicorp.com/terraform/language/settings/backends/s3> "Terraform S3 Backend"
