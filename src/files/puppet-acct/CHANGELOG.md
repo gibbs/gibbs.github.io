@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [v1.1.0](https://github.com/gibbs/puppet-acct/tree/v1.1.0) (2022-11-24)
+
+[Full Changelog](https://github.com/gibbs/puppet-acct/compare/v1.0.0...v1.1.0)
+
+### Added
+
+- Add Ubuntu 22.04 support [\#2](https://github.com/gibbs/puppet-acct/pull/2) ([gibbs](https://github.com/gibbs))
+
 ## [v1.0.0](https://github.com/gibbs/puppet-acct/tree/v1.0.0) (2022-07-31)
 
 [Full Changelog](https://github.com/gibbs/puppet-acct/compare/715082840d726ac3c1bded1318f4dd915f269f4b...v1.0.0)

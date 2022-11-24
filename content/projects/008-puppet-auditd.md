@@ -20,7 +20,7 @@ date: "2022-03-10"
 jsonld:
     datePublished: "2022-03-10"
     dateCreated: "2022-03-10"
-    dateModified: "2022-06-16"
+    dateModified: "2022-11-24"
     sameAs:
         - https://github.com/gibbs/puppet-auditd
         - https://forge.puppet.com/modules/genv/auditd
