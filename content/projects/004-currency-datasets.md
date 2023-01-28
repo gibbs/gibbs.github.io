@@ -21,7 +21,7 @@ date: "2021-11-17"
 jsonld:
     datePublished: "2021-11-17"
     dateCreated: "2021-11-17"
-    dateModified: "2022-07-08"
+    dateModified: "2023-01-28"
     sameAs:
         - https://github.com/gibbs/currency-data
 badges:
@@ -576,15 +576,6 @@ Markdown, PHP and XML formats for easy programmatic usage.
         <td>HNL</td>
         <td>L</td>
         <td>&amp;#x4C;</td>
-        <td></td>
-        <td>true</td>
-      </tr>
-      <tr>
-        <td>Kuna</td>
-        <td>kuna</td>
-        <td>HRK</td>
-        <td>kn</td>
-        <td>&amp;#x6B;&amp;#x6E;</td>
         <td></td>
         <td>true</td>
       </tr>
@@ -1197,6 +1188,15 @@ Markdown, PHP and XML formats for easy programmatic usage.
         <td>SHP</td>
         <td>£</td>
         <td>&amp;#xA3;</td>
+        <td></td>
+        <td>true</td>
+      </tr>
+      <tr>
+        <td>Leone</td>
+        <td>leone</td>
+        <td>SLE</td>
+        <td>Le</td>
+        <td>&amp;#x4C;&amp;#x65;</td>
         <td></td>
         <td>true</td>
       </tr>
