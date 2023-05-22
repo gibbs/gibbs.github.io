@@ -17,7 +17,6 @@ module.exports = {
     "style-src 'self' 'unsafe-inline'",
     "script-src 'self' 'unsafe-inline' 'unsafe-eval' " + [
       url.origin,
-      'https://www.googletagmanager.com/gtag/js',
       'https://cdn.jsdelivr.net/npm/chart.js'
     ].join(' '),
     "font-src 'self' " + [
@@ -27,10 +26,7 @@ module.exports = {
     'img-src * data:',
     "connect-src 'self' " + [
       url.host,
-      '*.' + url.host,
-      '*.google-analytics.com',
-      '*.analytics.google.com',
-      '*.googletagmanager.com'
+      '*.' + url.host
     ].join(' '),
     "base-uri 'self'",
     "object-src 'none'",
