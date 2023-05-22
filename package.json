@@ -93,7 +93,6 @@
   },
   "dependencies": {
     "chart.js": "^3.7.1",
-    "date-fns": "^2.28.0",
-    "vanilla-cookieconsent": "^2.7.1"
+    "date-fns": "^2.28.0"
   }
 }
