@@ -12,7 +12,7 @@ date: "2022-06-19"
 jsonld:
     datePublished: "2022-06-19"
     dateCreated: "2022-06-19"
-    dateModified: "2022-11-05"
+    dateModified: "2024-01-14"
     operatingSystem: Web
     applicationCategory: DeveloperApplication
 ---
@@ -23,6 +23,10 @@ A list of default APT data sources distributed in `sources.list` by Debian and
 Ubuntu cloud images.
 
 ## Debian
+
+```yaml [debian:12 Bookworm]
+!!!include(apt-sources/debian-bookworm.list)!!!
+```
 
 ```yaml [debian:11 Bullseye]
 !!!include(apt-sources/debian-bullseye.list)!!!
