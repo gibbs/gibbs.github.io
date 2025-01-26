@@ -21,7 +21,7 @@ date: "2021-11-17"
 jsonld:
     datePublished: "2021-11-17"
     dateCreated: "2021-11-17"
-    dateModified: "2023-01-28"
+    dateModified: "2025-01-26"
     sameAs:
         - https://github.com/gibbs/currency-data
 badges:
@@ -1453,6 +1453,15 @@ Markdown, PHP and XML formats for easy programmatic usage.
         <td>true</td>
       </tr>
       <tr>
+        <td>Caribbean guilder</td>
+        <td>guilder</td>
+        <td>XCG</td>
+        <td>Cg</td>
+        <td>&amp;#x43;&amp;#x67;</td>
+        <td></td>
+        <td>true</td>
+      </tr>
+      <tr>
         <td>SDR (Special Drawing Right)</td>
         <td>SDR</td>
         <td>XDR</td>
@@ -1507,12 +1516,12 @@ Markdown, PHP and XML formats for easy programmatic usage.
         <td>true</td>
       </tr>
       <tr>
-        <td>Zimdollar</td>
-        <td>dollar</td>
-        <td>ZWL</td>
-        <td>$</td>
-        <td>&amp;#x24;</td>
-        <td>ZWL$</td>
+        <td>Zimbabwe Gold</td>
+        <td>zig</td>
+        <td>ZWG</td>
+        <td>ZiG</td>
+        <td>&amp;#x5A;&amp;#x69;&amp;#x47;</td>
+        <td></td>
         <td>true</td>
       </tr>
     </tbody>

@@ -20,7 +20,7 @@ date: "2022-03-18"
 jsonld:
     datePublished: "2022-03-18"
     dateCreated: "2022-03-18"
-    dateModified: "2022-04-26"
+    dateModified: "2025-01-26"
     sameAs:
         - https://github.com/gibbs/puppet-osquery
         - https://forge.puppet.com/modules/genv/osquery
@@ -162,6 +162,10 @@ JSON result:
 
 ```yaml [g1:RedHat Family]
 !!!include(puppet-osquery/data/RedHat.yaml)!!!
+```
+
+```yaml [g1:Windows]
+!!!include(puppet-osquery/data/windows.yaml)!!!
 ```
 
 <div class="puppet--changelog">

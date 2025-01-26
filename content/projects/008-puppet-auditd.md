@@ -20,7 +20,7 @@ date: "2022-03-10"
 jsonld:
     datePublished: "2022-03-10"
     dateCreated: "2022-03-10"
-    dateModified: "2022-11-24"
+    dateModified: "2025-01-26"
     sameAs:
         - https://github.com/gibbs/puppet-auditd
         - https://forge.puppet.com/modules/genv/auditd
@@ -173,20 +173,12 @@ auditd::audisp::config:
 !!!include(puppet-auditd/data/AlmaLinux-8.yaml)!!!
 ```
 
-```yaml [g1:CentOS 7]
-!!!include(puppet-auditd/data/CentOS-7.yaml)!!!
-```
-
-```yaml [g1:Debian 10]
-!!!include(puppet-auditd/data/Debian-10.yaml)!!!
-```
-
 ```yaml [g1:Debian 11]
 !!!include(puppet-auditd/data/Debian-11.yaml)!!!
 ```
 
-```yaml [g1:RedHat 7]
-!!!include(puppet-auditd/data/RedHat-7.yaml)!!!
+```yaml [g1:Debian 12]
+!!!include(puppet-auditd/data/Debian-12.yaml)!!!
 ```
 
 ```yaml [g1:RedHat 8]
@@ -195,10 +187,6 @@ auditd::audisp::config:
 
 ```yaml [g1:Rocky 8]
 !!!include(puppet-auditd/data/Rocky-8.yaml)!!!
-```
-
-```yaml [g1:Scientific 7]
-!!!include(puppet-auditd/data/Scientific-7.yaml)!!!
 ```
 
 ```yaml [g1:Ubuntu 1804]
@@ -211,6 +199,10 @@ auditd::audisp::config:
 
 ```yaml [g1:Ubuntu 2204]
 !!!include(puppet-auditd/data/Ubuntu-22.04.yaml)!!!
+```
+
+```yaml [g1:Ubuntu 2404]
+!!!include(puppet-auditd/data/Ubuntu-24.04.yaml)!!!
 ```
 
 <div class="puppet--changelog">
