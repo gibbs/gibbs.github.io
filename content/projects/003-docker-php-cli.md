@@ -22,7 +22,7 @@ date: "2021-11-20"
 jsonld:
     datePublished: "2021-07-06"
     dateCreated: "2021-07-06"
-    dateModified: "2023-01-07"
+    dateModified: "2025-01-26"
     sameAs:
         - https://hub.docker.com/r/genv/php-cli
         - https://github.com/gibbs/docker-php-cli
@@ -41,7 +41,7 @@ Images are frequently built on various Debian releases to provide all major
 releases and security updates after 5.6. Old, unsupported, PHP versions are 
 still provided, allowing work to be performed on legacy codebases and old 
 library versions. Tags are available for PHP versions 5.6, 7.0, 7.1, 7.2, 7.3, 
-7.4, 8.0, 8.1 and 8.2 with the Composer package manager being included in all 
+7.4, 8.0, 8.1, 8.2, 8.3 and 8.4 with the Composer package manager being included in all 
 releases.
 
 1. [Getting Started](#goto-getting-started)
