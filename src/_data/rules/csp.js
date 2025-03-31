@@ -16,7 +16,7 @@ const directives = {
   'manifest-src': "'self'",
   'media-src': "'self'",
   'object-src': "'self'",
-  'script-src': `'self' ${resources['chart.js'].src}`,
+  'script-src': `'self' 'unsafe-inline' ${resources['chart.js'].src}`,
   'style-src': "'self' 'unsafe-inline'",
   'worker-src': "'self'"
 }
