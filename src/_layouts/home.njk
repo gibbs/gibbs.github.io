@@ -15,7 +15,7 @@
     </video>#}
   </div>
 
-  <div class="home-posts">
+  {#<div class="home-posts">
     <div class="container">
       <div class="home-posts__container">
         <div>
@@ -41,7 +41,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div>#}
 
   <div class="home-insights js-required" id="insights">
     <div class="container">
@@ -98,6 +98,6 @@
 {% endblock %}
 
 {% block scripts %}
-  <script>{% asset 'homepage.js' %}</script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script integrity="{% sri 'homepage.js', true %}">{% asset 'homepage.js' %}</script>
+  <script src="{{ site.resources['chart.js'].src }}" integrity="{{ site.resources['chart.js'].sha }}" crossorigin="anonymous"></script>
 {% endblock %}

@@ -1,3 +1,7 @@
+@view-transition {
+  navigation: auto;
+}
+
 body {
   display: grid;
   grid-template-rows: auto 1fr auto;
@@ -12,12 +16,10 @@ body {
 }
 
 .header {
-  border-top: 5px solid;
-  border-image: linear-gradient(to right, var(--secondary-color) 75%, var(--primary-color) 75%) 5;
-  background-color: var(--header-bg);
+  position: relative;
+  background-color: transparent;
   padding: var(--gap) 0 var(--gap) 0;
   z-index: 1;
-  box-shadow: -4px 4px 4px var(--shadow-color);
 }
 
 /**
@@ -137,7 +139,9 @@ body {
 }
 
 .footer-navigation__anchor {
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
   padding: .5rem 0 .5rem 0;
   text-decoration: none;
   color: var(--dark-link-text-color);

@@ -11,26 +11,7 @@ module.exports = {
   host: url.host,
   hostname: url.hostname,
   year: (new Date()).getFullYear(),
-  contentSecurity: [
-    'upgrade-insecure-requests',
-    "default-src 'self'",
-    "style-src 'self' 'unsafe-inline'",
-    "script-src 'self' 'unsafe-inline' 'unsafe-eval' " + [
-      url.origin,
-      'https://cdn.jsdelivr.net/npm/chart.js'
-    ].join(' '),
-    "font-src 'self' " + [
-      'fonts.gstatic.com',
-      'data:'
-    ].join(' '),
-    'img-src * data:',
-    "connect-src 'self' " + [
-      url.host,
-      '*.' + url.host
-    ].join(' '),
-    "base-uri 'self'",
-    "object-src 'none'",
-    "manifest-src 'self'",
-    "worker-src 'self'"
-  ].join('; ')
+  contentSecurityPolicy: require('./rules/csp'),
+  speculationRules: require('./rules/speculation'),
+  resources: require('./rules/resources')
 }

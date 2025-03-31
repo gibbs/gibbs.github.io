@@ -3,10 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="content-security-policy" content="{{ site.contentSecurity|safe }}">
+    <meta http-equiv="content-security-policy" content="{{ site.contentSecurityPolicy|safe }}">
     <title>{{ title or meta.title }}</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     {% block meta %}{% include "meta.njk" %}{% endblock %}
     {% if jsonld %}
     <script type="application/ld+json">
@@ -14,8 +12,8 @@
     </script>
     {% endif %}
     <style>{% css %}</style>
+    <script integrity="{% sri 'init.js', true %}">{% asset 'init.js' %}</script>
     <noscript><style>.js-required{display:none}.navigation{flex-direction:row-reverse}@media (min-width:768px){.navigation{flex-direction:row}}</style></noscript>
-    <script>document.documentElement.setAttribute('data-dark-mode', JSON.parse(window.sessionStorage.getItem('theme')) ?? false)</script>
   </head>
 
   <body class="layout-{{ layout|default('base') }}">
@@ -52,6 +50,7 @@
     {% endblock %}
 
     <script src="{{ site.url }}{% manifest 'main.js' %}" integrity="{% sri 'main.js', true %}"></script>
+    <script type="speculationrules">{{ site.speculationRules|safe }}</script>
     {% block scripts %}{% endblock %}
   </body>
 </html>

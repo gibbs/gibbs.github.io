@@ -18,6 +18,10 @@ module.exports = {
         path.resolve(__dirname, 'src/css', 'main.css')
       ]
     },
+    init: {
+      filename: filename + '.js',
+      import: path.resolve(__dirname, 'src/js', 'init.js')
+    },
     homepage: {
       filename: filename + '.js',
       import: path.resolve(__dirname, 'src/js', 'homepage.js')
