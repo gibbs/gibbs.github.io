@@ -1,13 +1,2 @@
 ---
-# This is for posterity and tracking. Do something with it eventually to 
-# attribute properly?
-images:
-  covers/currency-data.jpeg:
-    src: https://unsplash.com/photos/ROQzKIAdY78
-    author: John McArthur
-    url: https://unsplash.com/@snowjam
-
-  covers/placeholder.jpg:
-    src: https://unsplash.com/photos/Tjbk79TARiE
-    author: Sai Kiran Anagani
-    url: https://unsplash.com/@anagani_saikiran
+# This is for posterity and tracking. Do something with it eventually
