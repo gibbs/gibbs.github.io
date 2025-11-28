@@ -26,10 +26,10 @@ jsonld:
         - https://forge.puppet.com/modules/genv/auditd
 badges:
     - text: Build Status
-      src: https://img.shields.io/github/workflow/status/gibbs/puppet-auditd/CI?style=flat-square
+      src: https://img.shields.io/github/actions/workflow/status/gibbs/puppet-auditd/ci.yml?style=flat-square
       url: https://github.com/gibbs/puppet-auditd/actions?query=workflow%3ACI
     - text: Release
-      src: https://img.shields.io/github/workflow/status/gibbs/puppet-auditd/Release?label=release&style=flat-square
+      src: https://img.shields.io/github/actions/workflow/status/gibbs/puppet-auditd/release.yml?label=release&style=flat-square
       url: https://github.com/gibbs/puppet-auditd/actions?query=workflow%3ARelease
     - text: Puppet Forge
       src: https://img.shields.io/puppetforge/v/genv/auditd.svg?maxAge=2592000&style=flat-square
