@@ -26,10 +26,10 @@ jsonld:
         - https://forge.puppet.com/modules/genv/osquery
 badges:
     - text: Build Status
-      src: https://img.shields.io/github/workflow/status/gibbs/puppet-osquery/CI?style=flat-square
+      src: https://img.shields.io/github/actions/workflow/status/gibbs/puppet-osquery/ci.yml?style=flat-square
       url: https://github.com/gibbs/puppet-osquery/actions?query=workflow%3ACI
     - text: Release
-      src: https://img.shields.io/github/workflow/status/gibbs/puppet-osquery/Release?label=release&style=flat-square
+      src: https://img.shields.io/github/actions/workflow/status/gibbs/puppet-osquery/release.yml?label=release&style=flat-square
       url: https://github.com/gibbs/puppet-osquery/actions?query=workflow%3ARelease
     - text: Puppet Forge
       src: https://img.shields.io/puppetforge/v/genv/osquery.svg?maxAge=2592000&style=flat-square

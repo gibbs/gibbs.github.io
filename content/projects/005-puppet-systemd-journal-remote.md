@@ -28,10 +28,10 @@ jsonld:
         - https://forge.puppet.com/modules/genv/systemd_journal_remote
 badges:
     - text: Build Status
-      src: https://img.shields.io/github/workflow/status/gibbs/puppet-systemd_journal_remote/CI?style=flat-square
+      src: https://img.shields.io/github/actions/workflow/status/gibbs/puppet-systemd_journal_remote/ci.yaml?style=flat-square
       url: https://github.com/gibbs/puppet-systemd_journal_remote/actions?query=workflow%3ACI
     - text: Release
-      src: https://img.shields.io/github/workflow/status/gibbs/puppet-systemd_journal_remote/Release?label=release&style=flat-square
+      src: https://img.shields.io/github/actions/workflow/status/gibbs/puppet-systemd_journal_remote/release.yaml?label=release&style=flat-square
       url: https://github.com/gibbs/puppet-systemd_journal_remote/actions?query=workflow%3ARelease
     - text: Puppet Forge
       src: https://img.shields.io/puppetforge/v/genv/systemd_journal_remote.svg?maxAge=2592000&style=flat-square
