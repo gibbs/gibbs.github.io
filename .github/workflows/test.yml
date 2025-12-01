@@ -11,7 +11,7 @@ on:
 jobs:
   lint:
     name: Lint
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -24,7 +24,7 @@ jobs:
 
   acceptance:
     name: Acceptance Tests
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -52,7 +52,7 @@ jobs:
 
   e2e:
     name: E2E Tests
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     container: genv/webdriver-chromium:latest
     services:
       app:
