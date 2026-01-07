@@ -1,7 +1,7 @@
 ---
 layout: home
-title: Dan Gibbs - Full Stack Web Developer
-description: The personal website of Dan Gibbs, full stack web developer.
+title: Dan Gibbs - Full-stack Developer
+description: The website of Dan Gibbs, UK based full-stack web developer.
 anchor: Home
 tags:
     - page
@@ -15,3 +15,5 @@ jsonld:
 ---
 
 # Dan Gibbs { .hero__title #goto-h1 }
+
+## Full-stack web developer

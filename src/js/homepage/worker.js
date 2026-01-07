@@ -38,83 +38,9 @@ function processFeed (data) {
 }
 
 function setInsightsFeed (data) {
-  const totals = { count: 0, bytes: 0 }
-
-  // Get totals
-  for (const i in data.usage) {
-    totals.count += data.usage[i].count
-    totals.bytes += data.usage[i].bytes
-  }
-
-  // Get popularity/workload
-  const chartData = {
-    popularity: {
-      labels: [],
-      datasets: [{
-        label: 'Language Popularity',
-        data: [],
-        backgroundColor: []
-      }]
-    },
-    workload: {
-      labels: [],
-      datasets: [{
-        label: 'Language Usage',
-        data: [],
-        backgroundColor: []
-      }]
-    }
-  }
-
-  for (const i in data.usage) {
-    const languageKey = data.usage[i].name.toLowerCase().replace(' ', '-')
-
-    // Add labels
-    chartData.popularity.labels.push(data.usage[i].name)
-    chartData.workload.labels.push(data.usage[i].name)
-
-    // Add values
-    chartData.popularity.datasets[0].data.push((data.usage[i].count / totals.count * 100))
-    chartData.workload.datasets[0].data.push((data.usage[i].bytes / totals.bytes * 100))
-
-    // Add background colours
-    if (languageKey in githubLanguages) {
-      chartData.popularity.datasets[0].backgroundColor.push(githubLanguages[languageKey])
-      chartData.workload.datasets[0].backgroundColor.push(githubLanguages[languageKey])
-    }
-  }
-
-  // Popularity chart
-  const chartPopularityData = {
-    type: 'bar',
-    data: chartData.popularity,
-    options: {
-      indexAxis: 'y',
-      plugins: {
-        legend: {
-          display: false
-        }
-      }
-    }
-  }
-
-  // Workload chart
-  const chartWorkloadData = {
-    type: 'pie',
-    data: chartData.workload,
-    options: {
-      plugins: {
-        legend: {
-          display: false
-        }
-      }
-    }
-  }
-
   return {
     languages: data.languages,
-    workload: chartWorkloadData,
-    popularity: chartPopularityData
+    usage: data.usage
   }
 }
 

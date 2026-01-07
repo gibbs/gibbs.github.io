@@ -98,18 +98,36 @@ document.addEventListener('DOMContentLoaded', () => {
       $languages.appendChild($item)
     }
 
+    // Insights charts
+    const $popularity = template.querySelector('#insights_popularity')
+
+    for (const i in data.insights.usage) {
+      const language = data.insights.usage[i].name
+      const $item = document.createElement('li')
+      const $bar = document.createElement('span')
+      const $progress = document.createElement('span')
+      const $title = document.createElement('p')
+
+      $item.classList = 'insights__chart__bar__item'
+      $bar.classList = 'bar'
+      $bar.classList = 'insights__chart__bar__bar'
+      $progress.classList = `insights__chart__bar__progress insight--language gh-language gh-language--${language.toLowerCase().replace(' ', '-')}`
+      $progress.style.width = data.insights.usage[i].width + '%'
+      $title.classList = 'insights__chart__bar__title'
+      $title.textContent = `${language} (${data.insights.usage[i].percentage}%)`
+
+      $bar.appendChild($progress)
+      $item.appendChild($title)
+      $item.appendChild($bar)
+
+      // Append the list item
+      $popularity.appendChild($item)
+    }
+
     // Clear the insight HTML
     $insight.innerHTML = ''
 
     // Append the timeline
     $insight.append(template)
-
-    // Insights charts
-    const chartPopularity = new Chart(document.querySelector('#insights_popularity'), data.insights.popularity)
-    const chartWorkload = new Chart(document.querySelector('#insights_workload'), data.insights.workload)
-
-    // Draw charts
-    chartPopularity.draw()
-    chartWorkload.draw()
   }
 })

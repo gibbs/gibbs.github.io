@@ -18,7 +18,6 @@ body {
 .header {
   position: relative;
   background-color: transparent;
-  padding: var(--gap) 0 var(--gap) 0;
   z-index: 1;
 }
 
@@ -28,14 +27,14 @@ body {
 .navigation {
   position: relative;
   display: flex;
-  justify-content: space-between;
   flex-direction: row;
-  align-items: center;
   flex-wrap: wrap;
+  align-items: center;
   z-index: 1;
 }
 
 .navigation__list {
+  order: 3;
   display: flex;
   flex-direction: column;
   flex-basis: 100%;
@@ -43,10 +42,31 @@ body {
   max-height: 0;
   overflow: hidden;
   margin: 0;
-  padding: 0;
+  padding: var(--gap) 0 var(--gap) 0;
   transform: scaleY(0);
   transform-origin: top;
   transition: transform var(--transition-speed) ease-in;
+}
+
+.navigation__logo {
+  display: flex;
+  order: 2;
+  justify-content: center;
+  font-weight: 300;
+  font-size: calc(var(--font-size) * 1.25);
+  height: 48px;
+  line-height: 48px;
+
+  span {
+    font-weight: 400;
+  }
+
+  &--anchor {
+    color: var(--dark-link-text-color);
+    padding: 0 calc(var(--gutter) * .5);
+    background-color: var(--secondary-color);
+    border-radius: 3px 0 0 3px;
+  }
 }
 
 .navigation__menu {
@@ -61,12 +81,13 @@ body {
 .navigation__toggle {
   position: relative;
   display: block;
+  order: 3;
   cursor: pointer;
   background-color: var(--secondary-color);
   width: 48px;
   height: 48px;
   z-index: 1000;
-  border-radius: 3px;
+  border-radius: 0 3px 3px 0;
 }
 
 .navigation__item {
@@ -98,9 +119,11 @@ body {
 }
 
 .navigation__theme-preference {
+  order: 1;
   padding: var(--gap);
   cursor: pointer;
   font-size: calc(var(--font-size) * 1.5);
+  flex-grow: 1;
 }
 
 /**
@@ -202,11 +225,29 @@ body {
 @media (--breakpoint-md) {
   .navigation {
     flex-direction: row-reverse;
-    align-items: center;
+    align-items: flex-start;
+  }
+
+  .navigation__logo {
+    height: auto;
+    flex-grow: 1;
+    gap: calc(var(--gap) * .25);
+
+    &--anchor {
+      border-radius: 0 0 .5rem  .5rem;
+      padding: calc(var(--gutter) * .5) var(--gutter) ;
+    }
+  }
+
+  .navigation__theme-preference {
+    align-self: center;
+    flex-grow: 0;
+    order: 1;
   }
 
   .navigation__list {
     display: flex;
+    order: 2;
     justify-content: left;
     width: auto;
     flex-basis: auto;
@@ -217,7 +258,13 @@ body {
     transform: none;
   }
 
+  .navigation__logo {
+    justify-content: start;
+    order: 3;
+  }
+
   .navigation__toggle {
+    border-radius: 3px;
     display: none;
   }
 
