@@ -15,7 +15,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0 var(--gap) 0 0;
+  margin: 0;
   width: 100%;
 }
 
@@ -23,7 +23,6 @@
   position: relative;
   display: block;
   margin: calc(var(--gap) * 2) 0 0 0;
-  border-left: 2px solid var(--secondary-color);
   width: 100%;
 }
 
@@ -37,7 +36,7 @@
   background-color: var(--secondary-color);
   color: var(--dark-link-text-color);
   font-size: smaller;
-  margin: 0 calc(var(--gap) * -1.5) 0 calc(var(--gap) * -1);
+  border-radius: 0 5px 0 5px;
   text-align: center;
   font-weight: 500;
 }
@@ -52,10 +51,10 @@
   display: flex;
   flex-direction: column;
   flex-direction: column;
-  border: 1px solid var(--mask-dark);
-  border-radius: 5px;
-  align-items: center;
-  margin: 0 0 calc(var(--gap) * .5) 0;
+  border: 3px solid var(--mask-dark);
+  border-width: 0 0 2px 10px;
+  border-bottom-style: dashed;
+  margin: 0;
 }
 
 .timeline__entry:last-of-type {
@@ -71,7 +70,6 @@
   flex: 2;
   text-align: left;
   padding: calc(var(--gap) * .5) 0;
-  align-self: center;
 }
 
 .timeline__entry-heading {
@@ -83,25 +81,25 @@
   font-size: smaller;
   margin: 0;
   color: var(--text-color-light);
+  padding: 0 calc(var(--gap) * .75);
 }
 
 .timeline__actions {
   display: flex;
-  align-self: center;
 }
 
 .timeline__hash-button {
   font-size: smaller;
-  border-radius: 5px 5px 0 0;
   text-align: center;
   min-width: 105px;
+  padding: calc(var(--gap) * .25);
+  margin: 0 calc(var(--gap) * .75);
 }
 
 @media (--breakpoint-md) {
   .timeline__date {
     display: inline-block;
-    margin: 0 0 0 calc(var(--gap) * -1);
-    border-radius: 5px;
+    text-align: left;
   }
 
   .timeline__information {
@@ -113,15 +111,25 @@
   }
 
   .timeline__entry {
+    align-items: center;
     flex-direction: row;
   }
 
   .timeline__repository {
+    align-items: center;
     flex: 1;
     padding: 0 calc(var(--gap) * .75);
   }
 
+  .timeline__authored {
+    align-items: center;
+  }
+
+  .timeline__actions {
+    align-items: center;
+  }
+
   .timeline__hash-button {
-    border-radius: 0;
+    border-radius: 3px;
   }
 }
