@@ -16,13 +16,13 @@ const directives = {
   'manifest-src': "'self'",
   'media-src': "'self'",
   'object-src': "'self'",
-  'script-src': `'self' 'unsafe-inline' ${resources['chart.js'].src}`,
+  'script-src': "'self' 'unsafe-inline'",
   'style-src': "'self' 'unsafe-inline'",
   'worker-src': "'self'"
 }
 
 if (process.env.APP_ENV !== 'production') {
-  directives['script-src'] = `'self' 'unsafe-eval' 'unsafe-inline' ${resources['chart.js'].src}`
+  directives['script-src'] = "'self' 'unsafe-eval' 'unsafe-inline'"
 }
 
 module.exports = Object.keys(directives).map(key => `${key} ${directives[key]}`).join('; ')
