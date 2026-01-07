@@ -18,7 +18,7 @@
 
 ### Data types
 
-* [`Acct::Defaults`](#acctdefaults): Default configuration types
+* [`Acct::Defaults`](#Acct--Defaults): Default configuration types
 
 ## Classes
 
@@ -30,65 +30,65 @@ GNU Accounting Utilities
 
 The following parameters are available in the `acct` class:
 
-* [`defaults`](#defaults)
-* [`manage_defaults`](#manage_defaults)
-* [`package_name`](#package_name)
-* [`package_ensure`](#package_ensure)
-* [`package_manage`](#package_manage)
-* [`service_enable`](#service_enable)
-* [`service_name`](#service_name)
-* [`service_ensure`](#service_ensure)
-* [`service_manage`](#service_manage)
+* [`defaults`](#-acct--defaults)
+* [`manage_defaults`](#-acct--manage_defaults)
+* [`package_name`](#-acct--package_name)
+* [`package_ensure`](#-acct--package_ensure)
+* [`package_manage`](#-acct--package_manage)
+* [`service_enable`](#-acct--service_enable)
+* [`service_name`](#-acct--service_name)
+* [`service_ensure`](#-acct--service_ensure)
+* [`service_manage`](#-acct--service_manage)
 
-##### <a name="defaults"></a>`defaults`
+##### <a name="-acct--defaults"></a>`defaults`
 
 Data type: `Acct::Defaults`
 
 acct defaults configuration
 
-##### <a name="manage_defaults"></a>`manage_defaults`
+##### <a name="-acct--manage_defaults"></a>`manage_defaults`
 
 Data type: `Boolean`
 
 Manage the acct defaults file (/etc/default/acct)
 
-##### <a name="package_name"></a>`package_name`
+##### <a name="-acct--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
 The package name
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-acct--package_ensure"></a>`package_ensure`
 
 Data type: `String`
 
 The package ensure state
 
-##### <a name="package_manage"></a>`package_manage`
+##### <a name="-acct--package_manage"></a>`package_manage`
 
 Data type: `Boolean`
 
 If the package should be managed
 
-##### <a name="service_enable"></a>`service_enable`
+##### <a name="-acct--service_enable"></a>`service_enable`
 
 Data type: `Boolean`
 
 The service enable state
 
-##### <a name="service_name"></a>`service_name`
+##### <a name="-acct--service_name"></a>`service_name`
 
 Data type: `String[1]`
 
 The service name to use
 
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-acct--service_ensure"></a>`service_ensure`
 
 Data type: `Enum['stopped', 'running']`
 
 The service ensure state
 
-##### <a name="service_manage"></a>`service_manage`
+##### <a name="-acct--service_manage"></a>`service_manage`
 
 Data type: `Boolean`
 
@@ -96,7 +96,7 @@ If the auditd service should be managed
 
 ## Data types
 
-### <a name="acctdefaults"></a>`Acct::Defaults`
+### <a name="Acct--Defaults"></a>`Acct::Defaults`
 
 Default configuration types
 
