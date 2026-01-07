@@ -15,7 +15,7 @@ describe('Web app manifest', () => {
   let error, response
 
   before('should load', (done) => {
-    request.get('/manifest.webmanifest').end((err, res) => {
+    request.get('/manifest.json').end((err, res) => {
       error = err
       response = res
       done()
