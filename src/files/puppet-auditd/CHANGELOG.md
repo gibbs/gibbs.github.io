@@ -2,6 +2,46 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [v2.1.0](https://github.com/gibbs/puppet-auditd/tree/v2.1.0) (2025-04-26)
+
+[Full Changelog](https://github.com/gibbs/puppet-auditd/compare/v2.0.1...v2.1.0)
+
+### Added
+
+- Remove Puppet 7 support [\#30](https://github.com/gibbs/puppet-auditd/pull/30) ([gibbs](https://github.com/gibbs))
+
+### Fixed
+
+- Explicitly set numeric ordering for rules [\#29](https://github.com/gibbs/puppet-auditd/pull/29) ([gibbs](https://github.com/gibbs))
+- Make override.conf world readable [\#25](https://github.com/gibbs/puppet-auditd/pull/25) ([pluijm](https://github.com/pluijm))
+
+## [v2.0.1](https://github.com/gibbs/puppet-auditd/tree/v2.0.1) (2024-11-08)
+
+[Full Changelog](https://github.com/gibbs/puppet-auditd/compare/v2.0.0...v2.0.1)
+
+### Added
+
+- feat: Add Ubuntu 24.04 support [\#24](https://github.com/gibbs/puppet-auditd/pull/24) ([rwaffen](https://github.com/rwaffen))
+
+## [v2.0.0](https://github.com/gibbs/puppet-auditd/tree/v2.0.0) (2024-01-21)
+
+[Full Changelog](https://github.com/gibbs/puppet-auditd/compare/v1.0.4...v2.0.0)
+
+### Added
+
+- Add Debian 12 support [\#23](https://github.com/gibbs/puppet-auditd/pull/23) ([TheMeier](https://github.com/TheMeier))
+- Add Puppet 8 support. Drop near EOL versions. [\#22](https://github.com/gibbs/puppet-auditd/pull/22) ([gibbs](https://github.com/gibbs))
+
+## [v1.0.4](https://github.com/gibbs/puppet-auditd/tree/v1.0.4) (2023-10-02)
+
+[Full Changelog](https://github.com/gibbs/puppet-auditd/compare/v1.0.3...v1.0.4)
+
+### Added
+
+- chore: update pdk version 3.0.0 [\#19](https://github.com/gibbs/puppet-auditd/pull/19) ([TheMeier](https://github.com/TheMeier))
+- Extend range of order parameter to 1000 [\#16](https://github.com/gibbs/puppet-auditd/pull/16) ([imp-](https://github.com/imp-))
+- Update to PDK 2.6.1 [\#15](https://github.com/gibbs/puppet-auditd/pull/15) ([Phil-Friderici](https://github.com/Phil-Friderici))
+
 ## [v1.0.3](https://github.com/gibbs/puppet-auditd/tree/v1.0.3) (2023-01-19)
 
 [Full Changelog](https://github.com/gibbs/puppet-auditd/compare/v1.0.2...v1.0.3)
