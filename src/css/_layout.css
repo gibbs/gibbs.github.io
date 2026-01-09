@@ -17,7 +17,7 @@ body {
 
 .header {
   position: relative;
-  background-color: transparent;
+  background-color: var(--secondary-color);
   z-index: 1;
 }
 
@@ -30,6 +30,7 @@ body {
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
+  padding: var(--gap) 0;
   z-index: 1;
 }
 
@@ -42,7 +43,7 @@ body {
   max-height: 0;
   overflow: hidden;
   margin: 0;
-  padding: var(--gap) 0 var(--gap) 0;
+  padding: 0;
   transform: scaleY(0);
   transform-origin: top;
   transition: transform var(--transition-speed) ease-in;
@@ -50,6 +51,7 @@ body {
 
 .navigation__logo {
   display: flex;
+  flex: 1 1 auto;
   order: 2;
   justify-content: center;
   font-weight: 300;
@@ -64,7 +66,6 @@ body {
   &--anchor {
     color: var(--dark-link-text-color);
     padding: 0 calc(var(--gutter) * .5);
-    background-color: var(--secondary-color);
     border-radius: 3px 0 0 3px;
   }
 }
@@ -76,18 +77,20 @@ body {
 .navigation__menu:checked ~ .navigation__list {
   max-height: 100%;
   transform: scaleY(1);
+  padding: var(--gap) 0 0 0;
 }
 
 .navigation__toggle {
   position: relative;
-  display: block;
+  display: flex;
   order: 3;
   cursor: pointer;
   background-color: var(--secondary-color);
-  width: 48px;
+  min-width: 48px;
   height: 48px;
   z-index: 1000;
-  border-radius: 0 3px 3px 0;
+  border-radius: 3px;
+  border: 1px solid var(--border-color);
 }
 
 .navigation__item {
@@ -103,7 +106,7 @@ body {
   padding: .7rem 1rem;
   border-bottom: 2px solid transparent;
   text-decoration: none;
-  color: var(--text-color);
+  color: var(--navigation-toggle-color);
   font-weight: 500;
 }
 
@@ -119,11 +122,13 @@ body {
 }
 
 .navigation__theme-preference {
+  display: flex;
+  min-width: 48px;
+  max-width: 48px;
   order: 1;
-  padding: var(--gap);
+  color: var(--navigation-toggle-color);
   cursor: pointer;
   font-size: calc(var(--font-size) * 1.5);
-  flex-grow: 1;
 }
 
 /**
@@ -223,9 +228,24 @@ body {
 }
 
 @media (--breakpoint-md) {
+  .header {
+    background-color: transparent;
+  }
+
   .navigation {
+    padding: 0;
     flex-direction: row-reverse;
     align-items: flex-start;
+  }
+
+  .navigation__anchor {
+    color: var(--text-color);
+
+    &--active,
+    &:hover,
+    &:focus {
+      color: var(--primary-color);
+    }
   }
 
   .navigation__logo {
@@ -234,6 +254,7 @@ body {
     gap: calc(var(--gap) * .25);
 
     &--anchor {
+      background-color: var(--secondary-color);
       border-radius: 0 0 .5rem  .5rem;
       padding: calc(var(--gutter) * .5) var(--gutter) ;
     }
@@ -243,11 +264,16 @@ body {
     align-self: center;
     flex-grow: 0;
     order: 1;
+    min-width: auto;
+    max-width: none;
+    padding: var(--gap);
+    color: var(--text-color);
   }
 
   .navigation__list {
     display: flex;
     order: 2;
+    padding: var(--gap) 0 var(--gap) 0;
     justify-content: left;
     width: auto;
     flex-basis: auto;
