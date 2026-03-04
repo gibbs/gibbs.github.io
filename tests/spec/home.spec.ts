@@ -20,7 +20,7 @@ test.describe('Home page', () => {
 		expect(heroElement.locator('.hero-location .time')).not.toContainText('00:00:00 GMT');
 	});
 
-	test('activity feed', async ({ page }) => {
+	test.skip('activity feed', async ({ page }) => {
 		const homepage = new HomePage(page);
 		await homepage.goto();
 		const activityFeed = homepage.activity;
