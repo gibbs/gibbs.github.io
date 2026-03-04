@@ -1,10 +1,11 @@
 <label
 	class="scheme-preference"
+	:class="{ 'active': active == true, 'animate': animate == true }"
 	id="scheme-preference"
 	title="Toggles light & dark scheme"
 	aria-label="Toggle color scheme"
 	x-data="schemePreference"
-	x-cloak
+	x-model="getChecked"
 >
 	<svg
 		fill="#000000"
@@ -31,6 +32,8 @@
 			return {
 				key: 'sp',
 				scheme: 'dark',
+				active: false,
+				animate: false,
 
 				init() {
 					this.scheme = this.getCustomPreference();
@@ -39,6 +42,7 @@
 				changeScheme() {
 					const preference = this.getToggledPreference();
 
+					this.animate = true;
 					this.scheme = preference;
 					localStorage.setItem(this.key, preference);
 					document.documentElement.setAttribute('data-color-scheme', preference);
@@ -46,7 +50,11 @@
 				},
 
 				getChecked() {
-					return this.scheme == 'dark';
+					try {
+						return this.scheme === 'dark';
+					} finally {
+						this.active = true;
+					}
 				},
 
 				getToggledPreference() {
@@ -73,7 +81,7 @@
 
 <style>
 	:root {
-		--switch-height: 40px;
+		--switch-height: 38px;
 		--switch-padding: 4px;
 		--switch-width: calc((var(--switch-height) * 2 - var(--switch-padding) * 2));
 		--switch-thumb-height: calc(var(--switch-height) - (var(--switch-padding) * 2));
@@ -95,6 +103,8 @@
 		padding: 0;
 		border-radius: 50%;
 		cursor: pointer;
+		opacity: 0;
+		transition: opacity ease-in calc(var(--transition-duration) * 2);
 
 		& > svg {
 			color: var(--white);
@@ -129,8 +139,8 @@
 		height: 100%;
 		background-color: var(--surface-2);
 		border: var(--border-width) solid rgba(0, 0, 0, 0.6);
-		transition: var(--transition-duration);
 		border-radius: var(--border-radius);
+		transition: none;
 	}
 
 	.scheme-preference-slider:after {
@@ -140,9 +150,23 @@
 		height: var(--switch-thumb-height);
 		width: var(--switch-thumb-width);
 		background-color: var(--white);
-		transition: var(--transition-duration);
 		border: var(--border-width) solid rgba(0, 0, 0, 0.6);
 		border-radius: var(--border-radius);
+		transition: none;
+	}
+
+	.scheme-preference.active {
+		opacity: 1;
+	}
+
+	.scheme-preference.animate {
+		.scheme-preference-slider {
+			transition: var(--transition-duration);
+		}
+
+		.scheme-preference-slider:after {
+			transition: var(--transition-duration);
+		}
 	}
 
 	input:checked + .scheme-preference-slider {
