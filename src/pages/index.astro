@@ -39,7 +39,7 @@ const frontmatter = {
 	<script define:vars={{ BASE_URL: env.BASE_URL }}>
 		document.addEventListener('DOMContentLoaded', () => {
 			try {
-				const worker = new Worker(new URL('service-worker.js?v=2.0', BASE_URL));
+				const worker = new Worker(new URL('service-worker.js?v=2.01', BASE_URL));
 
 				worker.postMessage({ type: 'getActivityFeed' });
 
