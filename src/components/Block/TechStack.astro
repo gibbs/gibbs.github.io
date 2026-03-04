@@ -1,0 +1,186 @@
+---
+import type { TechStackItem } from '@data/techstack';
+import { __ } from '@i18n/utils';
+import { STACK as Stack } from '@data/techstack';
+import Tabs from '@components/Block/Tabs.astro';
+import LogoIcon from '@components/Block/LogoIcon.astro';
+
+const tabs = Object.entries(Stack).map(([index, category]) => ({
+	title: category.heading,
+	id: `tabpanel_${index}`,
+}));
+---
+
+<x-tech-stack class="stack col">
+	<h2>{__('component.techstack.title')}</h2>
+
+	<Tabs
+		className="xt-stack"
+		tabs={tabs}
+		orientation={'horizontal'}
+		title={__('component.techstack.title')}
+	>
+		{
+			Object.entries(Stack).map(([index, category]) => (
+				<x-tabpanel
+					class="xt-stack-panel"
+					role="tabpanel"
+					tabindex={index}
+					id={`tabpanel_${index}`}
+					data-category={index}
+					data-tab-panel={`tabpanel_${index}`}
+					x-show="isActiveTab"
+				>
+					<ol class="stack-items">
+						{category.items.map((item: TechStackItem) => (
+							<li class="stack-item">
+								<span class="stack-item-logo">
+									<LogoIcon
+										size={32}
+										icon={item.icon ?? item.title.replace(' ', '-').toLowerCase()}
+									/>
+								</span>
+								<span class="stack-item-title">{item.title}</span>
+							</li>
+						))}
+					</ol>
+				</x-tabpanel>
+			))
+		}
+	</Tabs>
+</x-tech-stack>
+
+<style>
+	h2 {
+		text-align: center;
+		margin: 0 0 var(--gap-lg) 0;
+	}
+
+	.stack-items {
+		display: grid;
+		gap: var(--gap-xs);
+		grid-template-columns: 1fr;
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.stack-item {
+		display: flex;
+		flex-direction: row;
+		gap: var(--gap-xxs);
+		align-items: center;
+		border-radius: calc(var(--border-radius) * 2);
+		padding: var(--gap-xxs);
+		background: var(--surface-2);
+		margin: 0;
+	}
+
+	.stack-item-title {
+		text-align: center;
+		font-size: x-small;
+		padding: var(--gap-xxs);
+	}
+
+	.stack-item-logo {
+		display: inline-flex;
+		align-content: center;
+		padding: var(--gap-xs);
+	}
+
+	@media (--vp-sm) {
+		.stack-items {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	@media (--vp-lg) {
+		.stack-items {
+			grid-template-columns: repeat(auto-fill, minmax(250px, auto));
+		}
+	}
+</style>
+
+<style is:global>
+	.xt-stack-wrapper {
+		margin: var(--gap-sm) 0;
+	}
+
+	.xt-stack-panels {
+		flex: 1 1 auto;
+		overflow: hidden;
+		border-radius: calc(var(--border-radius) * 3);
+		background-color: var(--surface-2);
+	}
+
+	.xt-stack-tab {
+		display: flex;
+		font-size: small;
+	}
+
+	.xt-stack-tablist {
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		gap: var(--gap-xs);
+		margin: 0 0 var(--gap) 0;
+	}
+
+	.xt-stack-label {
+		position: relative;
+		display: flex;
+		flex: 1 1 auto;
+		cursor: pointer;
+		color: var(--text-muted);
+		font-weight: 400;
+		background-image: none;
+		background-color: var(--surface-1);
+		border: var(--border-width) solid var(--surface-2);
+		border-radius: calc(var(--border-radius) * 3);
+		padding: var(--gap-sm) var(--gap-xl);
+	}
+
+	.xt-stack-tablist.col .xt-stack-label {
+		border-radius: var(--border-radius) 0 0 var(--border-radius);
+	}
+
+	input[type='radio']:checked + .xt-stack-label {
+		color: var(--text);
+		background-color: var(--surface-3);
+		border: var(--border-width) solid var(--surface-3);
+	}
+
+	.xt-stack-tablist.col input[type='radio']:checked + .xt-stack-label {
+		background-position: 100% 0;
+	}
+
+	.xt-stack-label:hover {
+		color: var(--text);
+	}
+
+	.xt-stack-panel {
+		display: flex;
+		flex-direction: column;
+		border: 0;
+		padding: var(--gap);
+		background-color: var(--surface-1);
+
+		p {
+			font-size: small;
+			margin-bottom: var(--gap);
+		}
+	}
+
+	@media (--vp-md) {
+		.xt-stack-tab {
+			font-size: medium;
+		}
+	}
+
+	@media (--vp-lg) {
+		.xt-stack-tablist {
+			flex-direction: row;
+			gap: var(--gap-sm);
+		}
+	}
+</style>

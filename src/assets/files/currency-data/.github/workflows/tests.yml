@@ -1,0 +1,41 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - '*'
+  pull_request:
+    branches:
+      - 'master'
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install
+      - run: npm run lint:yaml
+      - run: npm run lint:js
+
+  test:
+    name: Test
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install
+      - run: npm run test:schema
+      - run: npm run test:validate
+      - uses: addnab/docker-run-action@v3
+        with:
+          image: genv/php-cli:8.3
+          options: -v ${{ github.workspace }}:/data/
+          run: |
+            /usr/local/bin/composer install
+            vendor/bin/phpunit test/php/ || true

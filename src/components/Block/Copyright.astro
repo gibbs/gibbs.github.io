@@ -1,0 +1,9 @@
+---
+import { __ } from '@i18n/utils';
+
+const currentYear: number = new Date().getFullYear();
+---
+
+<x-copyright class="copyright">
+	<p><small>{__('component.copyright', '©', currentYear)}</small></p>
+</x-copyright>

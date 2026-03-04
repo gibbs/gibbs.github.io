@@ -1,0 +1,11 @@
+---
+import SchemePreference from '@components/Block/SchemePreference.astro';
+import Navigation from '@components/Layout/Navigation.astro';
+---
+
+<header class="header">
+	<SchemePreference />
+	<Navigation />
+
+	<slot name="header" slot="header" />
+</header>

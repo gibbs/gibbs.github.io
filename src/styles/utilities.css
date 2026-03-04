@@ -1,0 +1,87 @@
+/* PostCSS Custom Media */
+@custom-media --vp-sm (min-width: 481px);
+@custom-media --vp-md (min-width: 769px);
+@custom-media --vp-lg (min-width: 1025px);
+@custom-media --vp-xl (min-width: 1440px);
+@custom-media --max-vp-sm (max-width: 480px);
+@custom-media --max-vp-md (max-width: 768px);
+@custom-media --max-vp-lg (max-width: 1024px);
+@custom-media --max-vp-xl (max-width: 1440px);
+
+[x-cloak] {
+	display: none !important;
+}
+
+.flex {
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: space-between;
+	align-items: center;
+	gap: var(--gap);
+}
+
+.row {
+	display: flex;
+	flex-direction: row;
+}
+
+.col {
+	display: flex;
+	flex-direction: column;
+}
+
+.gap-xxs {
+	gap: var(--gap-xxs);
+}
+
+.gap-xs {
+	gap: var(--gap-xs);
+}
+
+.gap-sm {
+	gap: var(--gap-sm);
+}
+
+.gap {
+	gap: var(--gap);
+}
+
+.gap-md {
+	gap: var(--gap-md);
+}
+
+.gap-lg {
+	gap: var(--gap-lg);
+}
+
+.hidden {
+	display: none;
+}
+
+.has-icon {
+	display: flex;
+	flex-direction: row;
+	gap: var(--gap-xs);
+	align-items: center;
+
+	[class^="gg-"] {
+		color: var(--text-color);
+	}
+}
+
+.text-center {
+	text-align: center;
+}
+
+@media (--vp-md) {
+	.flex {
+		flex-direction: row;
+		gap: var(--gap-sm);
+	}
+}
+
+@media (--max-vp-md) {
+	.row {
+		flex-direction: column;
+	}
+}

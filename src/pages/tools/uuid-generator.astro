@@ -1,0 +1,108 @@
+---
+import ToolLayout from '@layouts/Tool.astro';
+import { env } from '@src/env.config';
+import SliceLibrary from '@components/Prismic/SliceLibrary.astro';
+import { getPageByUID } from '@src/prismic';
+import { generateFrontmatter } from '@utils/frontmatter';
+
+const tool = await getPageByUID('uuid-generator', 'tools');
+const frontmatter = generateFrontmatter(tool);
+---
+
+<ToolLayout frontmatter={frontmatter} url={Astro.url}>
+	<slot slot="content">
+		<SliceLibrary slices={tool.data.slices} />
+
+		<form id="tool" class="form" method="post" x-data="tool" @submit.prevent="generate">
+			<fieldset class="fieldset">
+				<legend class="hidden">UUID Generator</legend>
+
+				<div class="col-checkbox">
+					<input
+						class="form-checkbox-input"
+						type="checkbox"
+						name="random"
+						value="1"
+						id="uuid_random"
+						x-bind:disabled="loading"
+					/>
+					<label class="form-checkbox-label" for="uuid_random">
+						<strong>Random</strong> - random-based UUID created mostly of random bits.
+					</label>
+				</div>
+				<div class="col-checkbox">
+					<input
+						class="form-checkbox-input"
+						type="checkbox"
+						name="time"
+						value="1"
+						id="uuid_time"
+						x-bind:disabled="loading"
+					/>
+					<label class="form-checkbox-label" for="uuid_time">
+						<strong>Time</strong> - time-based UUID based on the remote system clock.
+					</label>
+				</div>
+			</fieldset>
+
+			<button type="submit" id="uuid_generate" class="button" x-bind:disabled="loading"
+				>Generate</button
+			>
+
+			<output x-cloak x-show="result.output" x-text="result.output" :class="result.class"></output>
+			<output class="result result-command" x-text="result.command"></output>
+		</form>
+	</slot>
+</ToolLayout>
+
+<script is:inline define:vars={{ APP_SERVICE_URL: env.APP_SERVICE_URL }}>
+	document.addEventListener('alpine:init', () => {
+		const url = new URL(APP_SERVICE_URL.replace(/\/+$/, '') + '/tool/uuidgen').toString();
+
+		Alpine.data('tool', () => {
+			return {
+				loading: false,
+				result: {
+					class: null,
+					command: null,
+					output: null,
+					success: null,
+				},
+
+				generate() {
+					this.loading = true;
+					const formData = new FormData(document.getElementById('tool'));
+
+					fetch(url, {
+						method: 'post',
+						cache: 'no-cache',
+						headers: {
+							'content-type': 'application/json',
+						},
+						body: JSON.stringify(Object.fromEntries(formData)),
+					})
+						.then((res) => res.json())
+						.then((data) => {
+							this.result = {
+								class: `result ${data.success ? 'result-success' : 'result-danger'}`,
+								command: data.command,
+								output: data.output,
+								success: data.success,
+							};
+						})
+						.catch((err) => {
+							this.result = {
+								class: 'result result-error',
+								command: null,
+								output: err.message,
+								success: false,
+							};
+						})
+						.finally(() => {
+							this.loading = false;
+						});
+				},
+			};
+		});
+	});
+</script>

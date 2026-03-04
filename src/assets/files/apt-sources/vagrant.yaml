@@ -1,0 +1,73 @@
+---
+machine:
+  xenial:
+    hostname: ubuntu-xenial.sources.test
+    ip:       192.168.56.30
+    cpus:     2
+    memory:   512
+    username: vagrant
+    os:
+      box: ubuntu/xenial64
+
+  bionic:
+    hostname: ubuntu-bionic.sources.test
+    ip:       192.168.56.31
+    cpus:     2
+    memory:   512
+    username: vagrant
+    os:
+      box: ubuntu/bionic64
+
+  focal:
+    hostname: ubuntu-focal.sources.test
+    ip:       192.168.56.32
+    cpus:     2
+    memory:   512
+    username: vagrant
+    os:
+      box: ubuntu/focal64
+
+  jammy:
+    hostname: ubuntu-jammy.sources.test
+    ip:       192.168.56.33
+    cpus:     2
+    memory:   512
+    username: vagrant
+    os:
+      box: ubuntu/jammy64
+
+  stretch:
+    hostname: debian-stretch.sources.test
+    ip:       192.168.56.40
+    cpus:     2
+    memory:   512
+    username: vagrant
+    os:
+      box: debian/contrib-stretch64
+
+  buster:
+    hostname: debian-buster.sources.test
+    ip:       192.168.56.41
+    cpus:     2
+    memory:   512
+    username: vagrant
+    os:
+      box: debian/contrib-buster64
+
+  bullseye:
+    hostname: debian-bullseye.sources.test
+    ip:       192.168.56.42
+    cpus:     2
+    memory:   512
+    username: vagrant
+    os:
+      box: debian/bullseye64
+
+  bookworm:
+    hostname: debian-bookworm.sources.test
+    ip:       192.168.56.43
+    cpus:     2
+    memory:   512
+    username: vagrant
+    os:
+      box: debian/bookworm64

@@ -1,0 +1,145 @@
+---
+import { env } from '@src/env.config';
+import Logo from '@components/Block/LogoIcon.astro';
+
+interface Props {
+	icon?: string;
+	tag?: string;
+	heading: string;
+	summary: string;
+	uri: string;
+}
+
+const { icon = null, tag = null, heading = null, summary = null, uri = '/' } = Astro.props;
+---
+
+<x-card class="card">
+	<div class="card-preview">
+		{
+			icon && icon.length > 0 && (
+				<>
+					<span class="card-logo">
+						<Logo size={92} icon={icon} />
+					</span>
+					<span class="card-logo-mask">
+						<Logo size={512} icon={icon} />
+					</span>
+				</>
+			)
+		}
+		{
+			tag && tag.length > 0 && (
+				<>
+					<x-tag class="card-tag">{tag}</x-tag>
+				</>
+			)
+		}
+	</div>
+	<div class="card-details">
+		<h2 class="card-heading">
+			<a class="card-heading-anchor" href={new URL(uri, env.BASE_URL).href}>
+				{heading}
+			</a>
+		</h2>
+		<p>{summary}</p>
+	</div>
+</x-card>
+
+<style>
+	.card {
+		display: grid;
+		gap: 0;
+		grid-template-columns: 1fr;
+		grid-template-rows: 1fr 1fr;
+		border: calc(var(--border-width) * 2) solid var(--border-color);
+		border-radius: var(--border-radius);
+		background-color: light-dark(var(--surface-i-2), var(--surface-1));
+		box-shadow: 0.25rem 0.25rem 0.5rem light-dark(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 1));
+	}
+
+	.card-heading {
+		margin-top: 0;
+		font-size: var(--font-size-h4);
+	}
+
+	.card-heading-anchor {
+		color: var(--text);
+		text-decoration: none;
+
+		&:hover,
+		&:focus {
+			color: var(--primary);
+		}
+	}
+
+	.card-preview {
+		position: relative;
+		overflow: hidden;
+		align-self: baseline;
+		flex: 1 0 auto;
+		background-color: light-dark(var(--surface-i-1), var(--surface-2));
+		padding: var(--gap) 0;
+		border-bottom: 1px solid var(--border-color);
+	}
+
+	.card-preview::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-image: var(--background-chequered);
+		background-repeat: repeat;
+		background-size: 75%;
+		opacity: 1;
+	}
+
+	.card-logo {
+		padding: var(--gap-sm);
+		z-index: 1;
+	}
+
+	.card-logo-mask {
+		position: absolute;
+		top: 50%;
+		margin-top: -256px;
+		left: -25%;
+		opacity: 0.05;
+		z-index: 0;
+	}
+
+	.card-details {
+		flex: 1 1 auto;
+		padding: var(--gap);
+	}
+
+	.card-tag {
+		position: absolute;
+		top: 50%;
+		margin-top: -25px;
+		background-color: light-dark(var(--surface-i-1), var(--surface-1));
+		right: 0;
+		border: 1px solid var(--border-color);
+		border-right: 0;
+		border-radius: var(--border-radius) 0 0 var(--border-radius);
+		font-size: small;
+		font-weight: 300;
+		padding: 0 var(--gap-sm);
+		z-index: 1;
+		min-height: 50px;
+		line-height: 50px;
+	}
+
+	@media (--vp-md) {
+		.card {
+			grid-template-rows: auto 1fr;
+		}
+	}
+
+	html[data-color-scheme='dark'] {
+		.card-logo-mask {
+			opacity: 0.1;
+		}
+	}
+</style>

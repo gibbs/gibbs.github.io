@@ -1,0 +1,11 @@
+---
+import { env } from '@src/env.config';
+---
+
+<link
+	rel="preload"
+	href={new URL('/logos.svg', env.BASE_URL).href}
+	as="image"
+	type="image/svg+xml"
+	fetchpriority="high"
+/>

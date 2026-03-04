@@ -1,0 +1,56 @@
+---
+const {
+	interval = false,
+	format = 'TIME_24_WITH_SHORT_OFFSET',
+	timezone = 'Europe/London',
+} = Astro.props;
+---
+
+<time
+	class="time"
+	x-data="xtime"
+	x-init="init"
+	x-bind:datetime="getDatetime"
+	x-text="getTime"
+	data-interval={interval}
+	data-format={format}
+	data-timezone={timezone}>00:00:00 GMT</time
+>
+
+<script>
+	import { DateTime } from 'luxon';
+
+	document.addEventListener('alpine:init', () => {
+		Alpine.data('xtime', () => {
+			return {
+				date: DateTime.now(),
+				interval: 0,
+				format: 'TIME_24_WITH_SHORT_OFFSET',
+				timezone: 'Europe/London',
+
+				init() {
+					this.interval = parseInt(this.$el.dataset.interval) || this.interval;
+					this.format = this.$el.dataset.format || this.format;
+					this.timezone = this.$el.dataset.timezone || this.timezone;
+
+					if (!this.interval) {
+						this.date = DateTime.now().setZone(this.timezone);
+						return;
+					}
+
+					setInterval(() => {
+						this.date = DateTime.now().setZone(this.timezone);
+					}, this.interval);
+				},
+
+				getTime() {
+					return this.date.toLocaleString(DateTime[this.format]);
+				},
+
+				getDatetime() {
+					return this.date.toISO();
+				},
+			};
+		});
+	});
+</script>

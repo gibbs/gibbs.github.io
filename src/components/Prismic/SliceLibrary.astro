@@ -1,0 +1,33 @@
+---
+import * as prismic from '@prismicio/client';
+import Alert from '@components/Prismic/Alert.astro';
+import Badges from '@components/Prismic/Badges.astro';
+import ButtonGroup from '@components/Prismic/ButtonGroup.astro';
+import FileRenderer from '@components/Prismic/FileRenderer.astro';
+import Image from '@components/Prismic/Image.astro';
+import Markdown from '@components/Prismic/Markdown.astro';
+import Tabs from '@components/Prismic/Tabs.astro';
+
+// Map slice type to component
+const zone = {
+	alert: Alert,
+	badges: Badges,
+	button_group: ButtonGroup,
+	file_renderer: FileRenderer,
+	image: Image,
+	markdown: Markdown,
+	tabs: Tabs,
+};
+
+const { slices } = Astro.props;
+---
+
+{
+	slices.map((slice: prismic.Slice, index: number) => {
+		const SliceComponent = zone[slice.slice_type as keyof typeof zone] || false;
+
+		if (SliceComponent) {
+			return <SliceComponent key={index} {...slice} />;
+		}
+	})
+}

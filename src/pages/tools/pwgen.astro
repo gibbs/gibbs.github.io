@@ -1,0 +1,225 @@
+---
+import ToolLayout from '@layouts/Tool.astro';
+import { env } from '@src/env.config';
+import SliceLibrary from '@components/Prismic/SliceLibrary.astro';
+import { getPageByUID } from '@src/prismic';
+import { generateFrontmatter } from '@utils/frontmatter';
+
+const tool = await getPageByUID('pwgen', 'tools');
+const frontmatter = generateFrontmatter(tool);
+
+const pwgenCheckboxes: { name: string; title: string; desc: string }[] = [
+	{
+		name: 'secure',
+		title: 'Secure',
+		desc: 'completely randomise output (hard-to-memorise)',
+	},
+	{
+		name: 'numerals',
+		title: 'Include Numerals',
+		desc: 'include at least one number in the password',
+	},
+	{
+		name: 'symbols',
+		title: 'Include Symbols',
+		desc: 'include at least one special character in the password',
+	},
+	{
+		name: 'capitalize',
+		title: 'Include Capitals',
+		desc: 'include at least one capital letter in the password',
+	},
+	{
+		name: 'ambiguous',
+		title: 'No Ambiguity',
+		desc: "do not use characters that could be confused when printed, such as 'l' and '1', or '0' or 'O'",
+	},
+	{
+		name: 'no-capitalize',
+		title: 'No Capitals',
+		desc: 'stops passwords including capitalisation',
+	},
+	{
+		name: 'no-numerals',
+		title: 'No Numerals',
+		desc: 'do not include numbers in the generated passwords',
+	},
+	{
+		name: 'no-vowels',
+		title: 'No Vowels',
+		desc: 'do not include vowels or numbers that might be mistaken for vowels',
+	},
+];
+---
+
+<ToolLayout frontmatter={frontmatter} url={Astro.url}>
+	<slot slot="content">
+		<SliceLibrary slices={tool.data.slices} />
+
+		<form id="tool" class="tool" method="post" x-data="tool" @submit.prevent="generate">
+			<fieldset class="fieldset fieldset-tool">
+				<legend class="hidden">Password Creator</legend>
+
+				<div class="col">
+					<label for="length" class="form-label">Length</label>
+					<input
+						type="number"
+						class="form-control"
+						id="length"
+						name="length"
+						min="1"
+						max="1024"
+						value="16"
+						required
+						x-bind:disabled="loading"
+					/>
+					<span class="form-helper form-helper--active all">Password length (max 1024)</span>
+				</div>
+
+				<div class="col">
+					<label for="num-passwords" class="form-label">Number</label>
+					<input
+						type="number"
+						class="form-control"
+						id="num-passwords"
+						name="num-passwords"
+						min="1"
+						max="100"
+						value="5"
+						required
+						x-bind:disabled="loading"
+					/>
+					<span class="form-helper form-helper--active all">Number of passwords (max 100)</span>
+				</div>
+
+				<div class="col">
+					<label for="remove-chars" class="form-label">Remove Characters</label>
+					<input
+						type="text"
+						class="form-control"
+						id="remove-chars"
+						name="remove-chars"
+						minlength="0"
+						maxlength="65"
+						value=""
+						placeholder="e.g. !£$%^&*()"
+						x-bind:disabled="loading"
+					/>
+					<span class="form-helper form-helper--active all">Ignore the specified characters</span>
+				</div>
+
+				<div class="col" style="align-self: center;">
+					<button
+						type="button"
+						id="pwgen_options_toggle"
+						class="button button--secondary button--form"
+						x-on:click="options = !options">More</button
+					>
+				</div>
+			</fieldset>
+
+			<fieldset class="fieldset" x-cloak x-show="options">
+				<legend class="hidden">Password Creator Options</legend>
+				{
+					pwgenCheckboxes.map((checkbox) => (
+						<div class="col-checkbox">
+							<input
+								class="form-checkbox-input"
+								type="checkbox"
+								name={checkbox.name}
+								value="1"
+								id={checkbox.name}
+								x-bind:disabled="loading"
+							/>
+							<label class="form-checkbox-label" for={checkbox.name}>
+								<strong>{checkbox.title}</strong> - {checkbox.desc}
+							</label>
+						</div>
+					))
+				}
+			</fieldset>
+
+			<button type="submit" id="mkpasswd_generate" class="button" x-bind:disabled="loading"
+				>Generate
+			</button>
+
+			<pre x-cloak x-show="result.output" :class="result.class" x-text="result.output"></pre>
+			<output class="result result-command" x-cloak x-text="result.command"></output>
+		</form>
+	</slot>
+</ToolLayout>
+
+<style>
+	.fieldset-tool {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: 1fr;
+		gap: var(--gap);
+	}
+
+	@media (--vp-md) {
+		.fieldset-tool {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	@media (--vp-lg) {
+		.fieldset-tool {
+			grid-template-columns: 2fr 2fr 4fr minmax(0, 1fr);
+			grid-template-rows: 1fr;
+		}
+	}
+</style>
+
+<script is:inline define:vars={{ APP_SERVICE_URL: env.APP_SERVICE_URL }}>
+	document.addEventListener('alpine:init', () => {
+		const url = new URL(APP_SERVICE_URL.replace(/\/+$/, '') + '/tool/pwgen').toString();
+
+		Alpine.data('tool', () => {
+			return {
+				loading: false,
+				options: false,
+				result: {
+					class: null,
+					command: null,
+					output: null,
+					success: null,
+				},
+
+				generate() {
+					this.loading = true;
+					const formData = new FormData(document.getElementById('tool'));
+
+					fetch(url, {
+						method: 'post',
+						cache: 'no-cache',
+						headers: {
+							'content-type': 'application/json',
+						},
+						body: JSON.stringify(Object.fromEntries(formData)),
+					})
+						.then((res) => res.json())
+						.then((data) => {
+							this.result = {
+								class: `result ${data.success ? 'result-success' : 'result-danger'}`,
+								command: data.command,
+								output: data.output,
+								success: data.success,
+							};
+						})
+						.catch((err) => {
+							this.result = {
+								class: 'result result-error',
+								command: null,
+								output: err.message,
+								success: false,
+							};
+						})
+						.finally(() => {
+							this.loading = false;
+						});
+				},
+			};
+		});
+	});
+</script>

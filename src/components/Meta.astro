@@ -1,0 +1,16 @@
+---
+import ContentSecurityPolicy from '@components/Meta/ContentSecurityPolicy.astro';
+import LinkData from '@components/Meta/LinkData.astro';
+import Theme from '@components/Meta/Theme.astro';
+
+const { frontmatter } = Astro.props;
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="description" content={frontmatter.description} />
+<meta name="robots" content={frontmatter.robots || 'index, follow'} />
+<meta name="color-scheme" content="light dark" />
+<Theme frontmatter={frontmatter} />
+<LinkData frontmatter={frontmatter} />
+<ContentSecurityPolicy />

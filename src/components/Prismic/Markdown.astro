@@ -1,0 +1,7 @@
+---
+import { Markdown as PrismicMarkdown } from '@astropub/md';
+
+const props = Astro.props;
+---
+
+<PrismicMarkdown of={props.primary.content[0].text} />

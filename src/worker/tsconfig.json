@@ -1,0 +1,35 @@
+{
+	"extends": "astro/tsconfigs/base",
+	"include": [
+		"../../.astro/types.d.ts",
+		"service-worker.ts"
+	],
+	"exclude": [
+		"dist",
+    "node_modules",
+  ],
+  "compilerOptions": {
+    "target": "es2021",
+		"module": "esnext",
+		"moduleResolution": "bundler",
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"strict": true,
+		"baseUrl": "./",
+		"verbatimModuleSyntax": true,
+		"allowImportingTsExtensions": false,
+		"noEmit": false,
+    "lib": [
+      "webworker",
+      "es2021",
+    ],
+		"outDir": "../public",
+		"rootDir": ".",
+		"paths": {
+			"@src/*": ["../*"],
+		},
+		"typeRoots": [
+			"./node_modules/@types"
+		],
+  },
+}

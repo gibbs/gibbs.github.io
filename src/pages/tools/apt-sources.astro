@@ -1,0 +1,96 @@
+---
+import ToolLayout from '@layouts/Tool.astro';
+import { getPageByUID } from '@src/prismic';
+import { generateFrontmatter } from '@utils/frontmatter';
+import SliceLibrary from '@components/Prismic/SliceLibrary.astro';
+import Tabs from '@components/Prismic/Tabs.astro';
+
+const tool = await getPageByUID('apt-sources', 'tools');
+const frontmatter = generateFrontmatter(tool);
+
+const tabs = {
+	debian: {
+		key: 'debian',
+		variation: 'tabsWithFiles',
+		primary: {
+			direction: 'Vertical',
+			content: [
+				{
+					text: '## Debian',
+				},
+			],
+			files: [
+				{
+					title: 'Debian 12 Bookworm',
+					path: 'apt-sources/sources/debian-bookworm.list',
+					type: 'code',
+				},
+				{
+					title: 'Debian 11 Bullseye',
+					path: 'apt-sources/sources/debian-bullseye.list',
+					type: 'code',
+				},
+				{
+					title: 'Debian 10 Buster',
+					path: 'apt-sources/sources/debian-buster.list',
+					type: 'code',
+				},
+				{
+					title: 'Debian 9 Stretch',
+					path: 'apt-sources/sources/debian-stretch.list',
+					type: 'code',
+				},
+			],
+		},
+	},
+	ubuntu: {
+		key: 'ubuntu',
+		variation: 'tabsWithFiles',
+		primary: {
+			direction: 'Vertical',
+			content: [
+				{
+					text: '## Ubuntu',
+				},
+			],
+			files: [
+				{
+					title: 'Ubuntu 22.04 Jammy',
+					path: 'apt-sources/sources/ubuntu-jammy.list',
+					type: 'code',
+				},
+				{
+					title: 'Ubuntu 20.04 Focal',
+					path: 'apt-sources/sources/ubuntu-focal.list',
+					type: 'code',
+				},
+				{
+					title: 'Ubuntu 18.04 Bionic',
+					path: 'apt-sources/sources/ubuntu-bionic.list',
+					type: 'code',
+				},
+				{
+					title: 'Ubuntu 16.04 Xenial',
+					path: 'apt-sources/sources/ubuntu-xenial.list',
+					type: 'code',
+				},
+			],
+		},
+	},
+};
+---
+
+<ToolLayout frontmatter={frontmatter} url={Astro.url}>
+	<slot slot="content">
+		<SliceLibrary slices={tool.data.slices} />
+
+		<Tabs {...tabs.debian} />
+		<Tabs {...tabs.ubuntu} />
+
+		<p>
+			Files available at <a href="https://github.com/gibbs/apt-sources"
+				>github.com/gibbs/apt-sources</a
+			>.
+		</p>
+	</slot>
+</ToolLayout>

@@ -1,0 +1,59 @@
+.result {
+	display: flex;
+	padding: var(--gap);
+	border-radius: var(--border-radius);
+	margin: var(--gap) 0;
+	font-size: small;
+	border: 3px solid;
+	animation: result ease var(--transition-duration);
+
+	pre {
+		margin: 0;
+		padding: 0;
+	}
+}
+
+.result-success {
+	color: var(--white);
+	background-color: var(--success);
+	border-color: light-dark(
+		oklch(from var(--success) calc(l - 0.15) c h / 0.8),
+		oklch(from var(--success) calc(l + 0.15) c h / 0.5)
+	);
+}
+
+.result-error {
+	color: var(--white);
+	background-color: var(--danger);
+	border-color: light-dark(
+		oklch(from var(--danger) calc(l - 0.15) c h / 0.8),
+		oklch(from var(--danger) calc(l + 0.15) c h / 0.5)
+	);
+}
+
+.result-command {
+	font-family: monospace;
+	font-size: small;
+	padding: var(--gap);
+	background-color: var(--info);
+	color: var(--white);
+	border-color: light-dark(
+		oklch(from var(--info) calc(l - 0.15) c h / 0.8),
+		oklch(from var(--info) calc(l + 0.15) c h / 0.5)
+	);
+}
+
+.result-command:empty {
+	border: 0;
+	height: 0;
+	background: none;
+}
+
+@keyframes result {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}

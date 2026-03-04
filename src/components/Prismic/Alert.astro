@@ -1,0 +1,10 @@
+---
+import * as prismic from '@prismicio/client';
+import AlertBlock from '@components/Block/Alert.astro';
+
+const props = Astro.props;
+const text = prismic.asHTML(props.primary.message);
+const type = props.primary.type?.toLowerCase();
+---
+
+<AlertBlock type={type} text={text ?? ''} />

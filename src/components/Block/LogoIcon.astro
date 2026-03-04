@@ -1,0 +1,15 @@
+---
+interface Props {
+	icon: string;
+	size?: number;
+	className?: string;
+}
+
+const { icon = 'default', size = 24, className = 'logo' } = Astro.props;
+
+const iconRef = icon.replace(' ', '-').replace('rvm', 'ruby');
+---
+
+<svg xmlns="http://www.w3.org/2000/svg" class={className} width={size} height={size}>
+	<use href={`/logos.svg#${iconRef}`}></use>
+</svg>

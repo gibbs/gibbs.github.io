@@ -1,0 +1,70 @@
+---
+import type { TabsSliceDefaultPrimary } from '@src/prismicio-types';
+import { Markdown } from '@astropub/md';
+import FileRenderer from '@components/Prismic/FileRenderer.astro';
+import TabsBlock from '@components/Block/Tabs.astro';
+
+const props = Astro.props;
+const prismicTabVariant = {
+	default: 'tabs',
+	tabsWithFiles: 'files',
+};
+const direction = props.primary.direction?.toLowerCase();
+const variantKey = (props.variation ?? 'default') as keyof typeof prismicTabVariant;
+const variant = prismicTabVariant[variantKey];
+
+const tabData = props.primary[variant].map((tab: TabsSliceDefaultPrimary, i: number) => ({
+	title: tab.title,
+	id: `tabpanel_${props.key}_tabpanel_${i + 1}`,
+}));
+---
+
+{props.primary.content.length > 0 && <Markdown.Inline of={props.primary.content[0].text} />}
+
+<TabsBlock
+	tabs={tabData}
+	orientation={direction === 'vertical' ? 'vertical' : 'horizontal'}
+	variant={props.variation.toLowerCase()}
+	title={props.primary.title}
+>
+	{
+		props.primary[variant].map((tab: TabsSliceDefaultPrimary, i: number) => (
+			<x-tabpanel
+				class="panel"
+				role="tabpanel"
+				tabindex={i === 0 ? '0' : '-1'}
+				id={`tabpanel_${props.key}_tabpanel_${i + 1}`}
+				data-tab-panel={`tabpanel_${props.key}_tabpanel_${i + 1}`}
+				x-show="isActiveTab"
+			>
+				{variant === 'tabs' && <Markdown.Inline of={tab.content[0]?.text} />}
+				{variant === 'files' && <FileRenderer primary={tab} />}
+			</x-tabpanel>
+		))
+	}
+</TabsBlock>
+
+<style>
+	.panel {
+		display: block;
+		border: var(--border-width) solid var(--tab);
+		/*padding: var(--gap);*/
+
+		> pre,
+		> figure,
+		> div {
+			margin: calc(var(--gap) * -1);
+		}
+
+		> figure > pre {
+			margin: 0;
+		}
+	}
+
+	/* Shiki code */
+	/*.panel > *:first-child:has(> div),
+	.panel > *:first-child:has(> figure) {
+		padding: 0;
+		margin: calc(var(--gap) * -1);
+	}*/
+</style>

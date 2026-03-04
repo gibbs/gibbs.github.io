@@ -1,0 +1,58 @@
+---
+import { getLangFromUrl } from '@i18n/utils';
+import Head from '@components/Head.astro';
+import Header from '@components/Layout/Header.astro';
+import Footer from '@components/Layout/Footer.astro';
+import SpeculationRules from '@components/Meta/SpeculationRules.astro';
+import '@styles/_global.css';
+
+const lang = getLangFromUrl(Astro.url);
+const { frontmatter, url } = Astro.props;
+---
+
+<html lang={lang}>
+	<head>
+		<Head frontmatter={frontmatter} url={url} />
+		<slot name="head" />
+		<script is:inline>
+			document.documentElement.setAttribute(
+				'data-color-scheme',
+				localStorage.getItem('sp') ||
+					(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'),
+			);
+		</script>
+	</head>
+
+	<body data-type={frontmatter.type || 'default'}>
+		<Header>
+			<slot slot="header" name="header" />
+		</Header>
+
+		<main class="main">
+			<slot />
+		</main>
+
+		<slot slot="before-footer" name="before-footer" />
+		<Footer />
+		<SpeculationRules />
+		<slot name="body-end" />
+	</body>
+</html>
+
+<script>
+	import Alpine from '@alpinejs/csp';
+	import intersect from '@alpinejs/intersect';
+
+	window.Alpine = Alpine;
+
+	Alpine.plugin(intersect);
+	Alpine.start();
+
+	if ('serviceWorker' in navigator) {
+		window.addEventListener('load', () => {
+			navigator.serviceWorker.register('/service-worker.js', {
+				scope: '/',
+			});
+		});
+	}
+</script>

@@ -1,0 +1,30 @@
+---
+import { __ } from '@i18n/utils';
+
+const buildDate: string = new Date().toJSON().slice(0, 10).split('-').reverse().join('-');
+const buildTime: string = new Date().toISOString();
+---
+
+<x-build-status class="build-status">
+	<p>
+		<small>{__('component.build')}: <time datetime={buildTime}>{buildDate}</time></small>
+	</p>
+	<div class="flex gap-xs">
+		<a href="https://github.com/gibbs/gibbs.github.io/actions/workflows/test.yml">
+			<img
+				src="https://img.shields.io/github/actions/workflow/status/gibbs/gibbs.github.io/test.yml?label=Tests&style=flat-square"
+				alt="Tests status badge"
+				height="26"
+				width="117"
+			/>
+		</a>
+		<a href="https://github.com/gibbs/gibbs.github.io/actions/workflows/deploy.yml">
+			<img
+				src="https://img.shields.io/github/actions/workflow/status/gibbs/gibbs.github.io/deploy.yml?label=Release&style=flat-square"
+				alt="Deploy status badge"
+				height="26"
+				width="135"
+			/>
+		</a>
+	</div>
+</x-build-status>

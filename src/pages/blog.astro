@@ -1,0 +1,100 @@
+---
+import { __ } from '@i18n/utils';
+import BaseLayout from '@layouts/Base.astro';
+import Logo from '@components/Block/LogoIcon.astro';
+import Card from '@components/Block/Card.astro';
+import { env } from '@src/env.config';
+import { getAllPosts } from '@src/prismic';
+import { DateTime } from 'luxon';
+
+const frontmatter = {
+	title: __('page.blog.title'),
+	description: __('page.blog.description'),
+	date: '2022-06-19',
+};
+const posts = await getAllPosts().then((response) => response.results);
+const featured = posts.shift();
+---
+
+<BaseLayout frontmatter={frontmatter} url={Astro.url}>
+	<article class="blog-featured">
+		<div class="blog-featured-logo">
+			<Logo size={92} icon={featured.tags[0]} />
+		</div>
+		<div class="blog-featured-content">
+			<h2>
+				<a href={new URL(`blog/${featured.uid}`, env.BASE_URL).href} class="blog-anchor">
+					{featured.data.title}
+				</a>
+			</h2>
+			<span class="meta">
+				{featured.tags.length > 0 && <x-tag>{featured.tags[0].toUpperCase()}</x-tag>}
+				<time datetime={featured.data.date}>
+					— {DateTime.fromISO(featured.data.date, { locale: 'en-GB' }).toFormat('d LLL, yyyy')}
+				</time>
+			</span>
+			<p>{featured.data.summary}</p>
+		</div>
+	</article>
+	<section class="blog-posts">
+		{
+			posts.map((post) => {
+				return (
+					<Card
+						heading={post.data.title}
+						summary={post.data.summary}
+						uri={`blog/${post.uid}`}
+						tag={post.tags[0]}
+						icon={post.tags[0]}
+					/>
+				);
+			})
+		}
+	</section>
+</BaseLayout>
+
+<style>
+	.blog-posts {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+		gap: var(--gap);
+		margin-top: var(--gap);
+	}
+
+	.blog-featured {
+		display: flex;
+		flex-direction: column;
+		border: none;
+		min-height: 40vh;
+		justify-content: center;
+		gap: var(--gap);
+		align-items: center;
+	}
+
+	.blog-featured-logo {
+		flex-shrink: 1;
+	}
+
+	.blog-featured-content {
+		flex-grow: 1;
+	}
+
+	@media (--vp-sm) {
+		.blog-item-featured {
+			margin: var(--gap-xl) 0;
+			grid-column: span 2;
+		}
+	}
+
+	@media (--vp-md) {
+		.blog-posts {
+			gap: var(--gap-lg);
+		}
+
+		.blog-featured {
+			flex-direction: row;
+			margin: var(--gap-xxl) 0;
+			grid-column: span 3;
+		}
+	}
+</style>

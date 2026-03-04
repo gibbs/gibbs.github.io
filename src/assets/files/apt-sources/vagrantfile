@@ -1,0 +1,43 @@
+require 'yaml'
+
+$yaml_path = File.dirname(__FILE__) + File::SEPARATOR
+$yaml_file = $yaml_path + 'vagrant.yaml'
+
+if !File.exists?($yaml_file)
+  raise RuntimeError, sprintf("Failed to read %s", $yaml_file)
+end
+
+$yaml = YAML.load_file $yaml_file
+
+Vagrant.configure("2") do |config|
+
+  config.vm.provision "shell", path: "sources.sh"
+
+  $yaml['machine'].each do |server,yaml|
+    config.vm.define server do |machine|
+
+      if ARGV[0] == "ssh"
+        machine.ssh.username = yaml['username']
+      end
+
+      machine.vm.hostname = yaml['hostname']
+      machine.vm.network "private_network", ip: yaml['ip']
+      machine.vm.box = yaml['os']['box']
+      machine.vm.box_check_update = false
+
+      if yaml['os'].include? 'url'
+        machine.vm.box_url = yaml['os']['url']
+      end
+
+      if yaml['os'].include? 'version'
+        machine.vm.box_version = yaml['os']['version']
+      end
+
+      machine.vm.provider "virtualbox" do |v|
+        v.name = yaml['hostname']
+        v.memory = yaml['memory']
+        v.cpus = yaml['cpus']
+      end
+    end
+  end
+end

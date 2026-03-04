@@ -1,20 +1,13 @@
 # dangibbs.uk
 
-![Deploy](https://github.com/gibbs/gibbs.github.io/actions/workflows/deploy.yml/badge.svg)
 ![Tests](https://github.com/gibbs/gibbs.github.io/actions/workflows/test.yml/badge.svg)
+![Deploy](https://github.com/gibbs/gibbs.github.io/actions/workflows/deploy.yml/badge.svg)
 ![Version](https://img.shields.io/github/package-json/v/gibbs/gibbs.github.io)
 ![Size](https://img.shields.io/github/repo-size/gibbs/gibbs.github.io)
 
-Personal static website repository built with 
-[Eleventy](https://github.com/11ty/eleventy).
+Personal website built with Astro and Prismic.
 
 ## Build
-
-Production builds are committed to the `gh-pages` branch by the `deploy` 
-workflow. This is triggered on push and pull requests to the `master` 
-branch.
-
-To build locally to the `docs` directory use:
 
 ```bash
 npm run build
@@ -22,35 +15,30 @@ npm run build
 
 ## Develop
 
-Run the 11ty web server:
-
 ```bash
-npm run serve
+npm run dev
 ```
 
-## Lint
+## Docker Environments
 
-Lint javascript, website frontmatter and YAML files:
+Service dependencies can be run locally with `compose-dev.yaml`
 
 ```bash
-npm run lint
-
-# Individually
-npm run lint:frontmatter
-npm run lint:js
-npm run lint:yaml
+docker compose -f compose-dev.yaml up -d
 ```
 
-## Test
-
-Run the full test suite:
+## Testing
 
 ```bash
-npm run test
-
-# Individually
-npm run test:acceptance
 npm run test:e2e
+npm run test:unit
 ```
 
-For a full list of commands use `npm run`
+## Submodule Updates
+
+Submodules are used for including documentation, references and
+changelogs from other repositories.
+
+```bash
+git submodule update --recursive --remote
+```

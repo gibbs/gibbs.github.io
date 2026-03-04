@@ -1,0 +1,74 @@
+---
+import { __ } from '@i18n/utils';
+import { env } from '@src/env.config';
+
+interface Props {
+	container: boolean;
+	path: string;
+	title: string;
+}
+
+const { container = true, path = '/', title = 'Back' } = Astro.props;
+---
+
+<section class={container ? 'container return' : 'return'}>
+	<a class="return-anchor" href={new URL(path, env.BASE_URL)}>
+		<svg class="return-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+			<path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path>
+		</svg>
+		<span class="return-title">
+			{__('component.returntoarea.previous')}<br />
+			<small>{__('component.returntoarea.back', title)}</small>
+		</span>
+	</a>
+</section>
+
+<style>
+	.return {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		background: var(--surface-1); /*oklch(from var(--bg) calc(l - 0.02) c h);*/
+		font-size: larger;
+	}
+
+	.return-anchor {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		padding: var(--gap-l) 0;
+		text-decoration: none;
+		gap: var(--gap);
+	}
+
+	.return-anchor:focus,
+	.return-anchor:hover {
+		color: var(--text);
+
+		.return-icon {
+			background-color: var(--accent);
+			fill: var(--white);
+		}
+	}
+
+	.return-title {
+		display: flex;
+		flex-direction: column;
+		gap: var(--gap-xxs);
+		font-size: small;
+
+		small {
+			font-size: x-small;
+		}
+	}
+
+	.return-icon {
+		width: 2rem;
+		height: 2rem;
+		fill: var(--accent);
+		border: var(--border-width) solid var(--border-color);
+		border-radius: 100%;
+		padding: 0.15rem;
+		background-color: var(--surface-2);
+	}
+</style>

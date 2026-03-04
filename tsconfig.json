@@ -1,0 +1,42 @@
+{
+	"extends": "astro/tsconfigs/base",
+	"include": [
+		".astro/types.d.ts", 
+		"src/**/*",
+		"tests/**/*"
+	],
+	"exclude": [
+		"dist",
+		"node_modules"
+	],
+	"compilerOptions": {
+		"target": "ES2021",
+		"verbatimModuleSyntax": true,
+		"strict": true,
+		"baseUrl": ".",
+		"paths": {
+			"@asset/*": ["src/assets/*"],
+			"@content/*": ["src/content/*"],
+			"@components/*": ["src/components/*"],
+			"@data/*": ["src/data/*"],
+			"@files/*": ["src/assets/files*"],
+			"@i18n/*": ["src/i18n/*"],
+			"@icons/*": ["src/assets/icons/*"],
+			"@lib/*": ["src/lib/*"],
+			"@layouts/*": ["src/layouts/*"],
+			"@src/*": ["src/*"],
+			"@styles/*": ["src/styles/*"],
+			"@tests/*": ["tests/*"],
+			"@fixtures/*": ["tests/fixtures/*"],
+			"@utils/*": ["src/utils/*"]
+		},
+		"plugins": [
+			{
+				"name": "@astrojs/ts-plugin"
+			},
+		],
+		"typeRoots": [
+			"./node_modules/@types"
+		],
+	}
+}

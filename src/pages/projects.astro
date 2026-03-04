@@ -1,0 +1,48 @@
+---
+import { __ } from '@i18n/utils';
+import BaseLayout from '@layouts/Base.astro';
+import Card from '@components/Block/Card.astro';
+import { getAllProjects } from '@src/prismic';
+
+const projects = await getAllProjects().then((response) => response.results);
+const frontmatter = {
+	title: __('page.projects.title'),
+	description: __('page.projects.description'),
+	date: '2026-02-23',
+};
+---
+
+<BaseLayout frontmatter={frontmatter} url={Astro.url}>
+	<h1>{__('page.projects.heading')}</h1>
+
+	<section class="projects">
+		{
+			projects.map((project) => {
+				return (
+					<Card
+						heading={project.data.title}
+						summary={project.data.summary}
+						uri={`projects/${project.uid}`}
+						tag={project.tags[0]}
+						icon={project.tags[0]}
+					/>
+				);
+			})
+		}
+	</section>
+</BaseLayout>
+
+<style>
+	.projects {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+		gap: var(--gap);
+		margin-top: var(--gap);
+	}
+
+	@media (--vp-md) {
+		.projects {
+			gap: var(--gap-lg);
+		}
+	}
+</style>

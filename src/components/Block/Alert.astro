@@ -1,0 +1,64 @@
+---
+interface Props {
+	icon?: string;
+	type: 'danger' | 'info' | 'success' | 'warning';
+	text: string;
+}
+
+const icons: { [k: string]: string } = {
+	danger: 'danger',
+	info: 'info',
+	success: 'check-o',
+	warning: 'danger',
+};
+
+const { type = 'info', text = null } = Astro.props;
+const icon = icons[type];
+---
+
+<aside class:list={['alert', `alert-${type}`, 'has-icon']}>
+	<span class={`gg-` + icon}></span>
+	<div set:html={text} />
+</aside>
+
+<style>
+	.alert-danger {
+		--alert-color: var(--danger);
+	}
+
+	.alert-success {
+		--alert-color: var(--success);
+	}
+
+	.alert-info {
+		--alert-color: var(--info);
+	}
+
+	.alert-warning {
+		--alert-color: var(--warning);
+	}
+
+	.alert {
+		padding: var(--gap-lg) var(--gap);
+		border: var(--border-width) solid;
+		margin: 0 0 var(--gap-sm) 0;
+		border-color: light-dark(
+			oklch(from var(--alert-color) calc(l - 0.15) c h / 0.8),
+			oklch(from var(--alert-color) calc(l + 0.15) c h / 0.5)
+		);
+		background-color: light-dark(
+			oklch(from var(--alert-color) l c h / 0.8),
+			oklch(from var(--alert-color) l c h / 0.5)
+		);
+		border-radius: var(--border-radius);
+		color: var(--white);
+
+		p:last-of-type {
+			margin-bottom: 0;
+		}
+
+		gg-* {
+			color: oklch(from var(--alert-color) calc(l + 0.25) c h);
+		}
+	}
+</style>

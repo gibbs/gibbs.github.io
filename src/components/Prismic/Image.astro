@@ -1,0 +1,21 @@
+---
+import type { ImageSliceDefaultPrimary } from '@src/prismicio-types';
+const props = Astro.props;
+
+const data: ImageSliceDefaultPrimary = props.primary;
+
+const image = {
+	id: data.image.id,
+	alt: data.image.alt,
+	dimensions: data.image.dimensions,
+	url: data.image.url,
+};
+---
+
+<img
+	class="image"
+	src={image.url}
+	alt={image.alt}
+	width={image.dimensions?.width}
+	height={image.dimensions?.height}
+/>

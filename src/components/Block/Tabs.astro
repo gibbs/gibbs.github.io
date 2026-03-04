@@ -1,0 +1,161 @@
+---
+type TabOrientation = 'vertical' | 'horizontal';
+
+export interface Tab {
+	title: string;
+	id: string;
+}
+
+interface Props {
+	className?: string;
+	tabs: Tab[];
+	orientation?: TabOrientation;
+	variant?: string;
+	title?: string;
+	key?: string;
+}
+
+const {
+	className = 'xt',
+	tabs,
+	orientation = 'horizontal',
+	variant = null,
+	title = null,
+	key = Math.random().toString(36).substring(7),
+} = Astro.props;
+
+const isVertical = orientation === 'vertical';
+---
+
+<x-tabs
+	class={`${className}-wrapper ${isVertical ? 'row' : 'col'}`}
+	data-variant={variant}
+	x-data="tabs"
+>
+	<x-tablist
+		class={`${className}-tablist ${isVertical ? 'col' : 'row'}`}
+		role="tablist"
+		aria-label={title}
+	>
+		{
+			tabs.map((tab, i) => (
+				<x-tab
+					class={`${className}-tab`}
+					role="tab"
+					aria-controls={tab.id}
+					aria-selected={i === 0}
+					tabindex={i === 0 ? 0 : -1}
+					data-tab={tab.id}
+				>
+					<input
+						type="radio"
+						class="hidden"
+						name={`tabset_${key}`}
+						id={`tablist_${key}_tab_${i + 1}`}
+						checked={i === 0}
+						x-on:click="setActiveTab"
+					/>
+					<label for={`tablist_${key}_tab_${i + 1}`} class={`${className}-label`}>
+						{tab.title}
+					</label>
+				</x-tab>
+			))
+		}
+	</x-tablist>
+	<x-tabpanels class={`${className}-panels`}>
+		<slot />
+	</x-tabpanels>
+</x-tabs>
+
+<script is:inline>
+	document.addEventListener('alpine:init', () => {
+		Alpine.data('tabs', () => {
+			return {
+				activeTab: null,
+
+				init() {
+					const checkedInput = this.$el.querySelector('input[type="radio"]:checked');
+					const checkedTab = checkedInput?.closest('[role="tab"]');
+
+					if (!checkedTab) {
+						console.warn('No checked tab in set');
+					}
+
+					this.activeTab = checkedTab?.dataset.tab || null;
+				},
+				setActiveTab(e) {
+					const tab = e.target.closest('[role="tab"]');
+
+					if (!tab) {
+						return;
+					}
+
+					this.activeTab = tab.dataset.tab;
+					tab.focus();
+
+					setTimeout(() => {
+						const activePanel = this.$el.querySelector(`[data-tab-panel="${this.activeTab}"]`);
+
+						if (activePanel?.querySelector('[tabindex="-1"]')) {
+							activePanel.querySelector('[tabindex="-1"]').focus();
+						}
+					}, 0);
+				},
+				isActiveTab() {
+					return this.activeTab === this.$el.dataset.tabPanel;
+				},
+			};
+		});
+	});
+</script>
+
+<style is:global>
+	.xt-wrapper {
+		margin: var(--gap-sm) 0;
+	}
+
+	.xt-panels {
+		flex: 1 1 auto;
+		overflow: hidden;
+	}
+
+	.xt-tab {
+		display: flex;
+	}
+
+	.xt-label {
+		position: relative;
+		display: flex;
+		flex: 1 1 auto;
+		padding: var(--gap) var(--gap-xl);
+		cursor: pointer;
+		font-weight: 500;
+		background-size: 200% 100%;
+		background-image: linear-gradient(to right, transparent 50%, var(--tab) 50%);
+		border-radius: var(--border-radius);
+	}
+
+	.xt-tablist.col .xt-label {
+		border-radius: var(--border-radius);
+	}
+
+	input[type='radio']:checked + .xt-label {
+		color: var(--white);
+		background-position: -100% 0;
+		transition: background-position 0.15s ease-in-out;
+	}
+
+	.xt-tablist.col input[type='radio']:checked + .xt-label {
+		background-position: 100% 0;
+	}
+
+	@media (--vp-md) {
+		.xt-label {
+			border-radius: var(--border-radius) var(--border-radius) 0 0;
+		}
+
+		.xt-tablist.col .xt-label {
+			border-radius: var(--border-radius) 0 0 var(--border-radius);
+		}
+	}
+</style>

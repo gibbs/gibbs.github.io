@@ -1,0 +1,56 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	color-scheme: light dark;
+	-webkit-font-smoothing: antialiased;
+	text-size-adjust: none;
+	scroll-padding-top: 9rem;
+}
+
+[data-color-scheme="light"] {
+	color-scheme: light;
+}
+
+[data-color-scheme="dark"] {
+	color-scheme: dark;
+}
+
+body {
+	margin: 0;
+}
+
+:where(div, article, header, footer, main, figure) {
+	display: flex;
+	flex-direction: column;
+}
+
+ul,
+ol,
+dl {
+	list-style-position: inside;
+
+	ul,
+	ol,
+	dl {
+		padding-inline-start: 1lh;
+	}
+}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+	border-color: inherit;
+	text-indent: 0;
+}
+
+mark {
+	padding: calc(var(--gap-xxs) / 2) calc(var(--gap-xxs) / 0.75);
+	background-color: var(--warning);
+	color: var(--white);
+	border-radius: var(--border-radius);
+	font-family: monospace;
+}

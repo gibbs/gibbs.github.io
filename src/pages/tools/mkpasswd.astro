@@ -1,0 +1,206 @@
+---
+import ToolLayout from '@layouts/Tool.astro';
+import { env } from '@src/env.config';
+import SliceLibrary from '@components/Prismic/SliceLibrary.astro';
+import { getPageByUID } from '@src/prismic';
+import { generateFrontmatter } from '@utils/frontmatter';
+
+const tool = await getPageByUID('mkpasswd', 'tools');
+const frontmatter = generateFrontmatter(tool);
+---
+
+<ToolLayout frontmatter={frontmatter} url={Astro.url}>
+	<slot slot="content">
+		<SliceLibrary slices={tool.data.slices} />
+
+		<form id="tool" class="form" method="post" x-data="tool" @submit.prevent="generate">
+			<fieldset class="fieldset fieldset-tool">
+				<legend class="hidden">mkpasswd</legend>
+
+				<div class="col">
+					<label class="form-label" for="input">Input</label>
+					<input
+						type="text"
+						name="input"
+						id="input"
+						pattern="([A-z0-9À-ž\s]){1,}"
+						x-bind:disabled="loading"
+						autofocus
+						required
+					/>
+				</div>
+
+				<div class="col">
+					<label class="form-label" for="method">Method</label>
+					<select
+						class="form-select"
+						aria-label="Computational type"
+						name="method"
+						id="method"
+						required
+						x-bind:disabled="loading"
+						x-on:change="methodChanged($event.target.value)"
+					>
+						<option value="scrypt" selected="selected">scrypt</option>
+						<option value="sha512crypt">SHA512-crypt</option>
+						<option value="sha256crypt">SHA256-crypt</option>
+						<option value="md5crypt">MD5-crypt</option>
+					</select>
+				</div>
+
+				<div class="col">
+					<label class="form-label" for="salt">Salt</label>
+					<input id="salt" type="text" disabled x-bind:disabled="!salt || loading" />
+					<span class="form-helper form-helper--active" x-text="salt || ''"></span>
+				</div>
+
+				<div class="col">
+					<label for="rounds" class="form-label">Rounds</label>
+					<input
+						type="number"
+						id="rounds"
+						name="rounds"
+						class="form-control"
+						min="0"
+						x-bind:step="rounds.step"
+						x-bind:max="rounds.max"
+						value="0"
+						x-bind:disabled="!rounds.enabled || loading"
+					/>
+					<span class="form-helper form-helper--active" x-text="rounds.enabled || ''"></span>
+				</div>
+			</fieldset>
+
+			<button type="submit" id="mkpasswd_generate" class="button" x-bind:disabled="loading"
+				>Generate</button
+			>
+
+			<output x-cloak x-show="result.output" x-text="result.output" :class="result.class"></output>
+			<output class="result result-command" x-text="result.command"></output>
+		</form>
+	</slot>
+</ToolLayout>
+
+<script is:inline define:vars={{ APP_SERVICE_URL: env.APP_SERVICE_URL }}>
+	document.addEventListener('alpine:init', () => {
+		const url = new URL(APP_SERVICE_URL.replace(/\/+$/, '') + '/tool/mkpasswd').toString();
+
+		Alpine.data('tool', () => {
+			const config = {
+				md5crypt: {
+					salt: 'When set must be 8 characters.',
+					rounds: {
+						enabled: false,
+						max: 0,
+						step: 0,
+					},
+				},
+				scrypt: {
+					salt: false,
+					rounds: {
+						enabled: 'Must be 0, 6, 7, 8, 9, 10 or 11',
+						max: 11,
+						step: 1,
+					},
+				},
+				sha256crypt: {
+					salt: 'When set must be between 8-16 characters.',
+					rounds: {
+						enabled: 'When set must be an integer between 1000 and 1000000',
+						max: 1000000,
+						step: 1000,
+					},
+				},
+				sha512crypt: {
+					salt: 'When set must be between 8-16 characters.',
+					rounds: {
+						enabled: 'When set must be an integer between 1000 and 1000000',
+						max: 1000000,
+						step: 1000,
+					},
+				},
+			};
+
+			return {
+				loading: false,
+				salt: config.scrypt.salt,
+				rounds: config.scrypt.rounds,
+				result: {
+					class: null,
+					command: null,
+					output: null,
+					success: null,
+				},
+
+				isLoading() {
+					return this.loading;
+				},
+
+				methodChanged(value) {
+					if (!config[value]) {
+						return;
+					}
+
+					this.salt = config[value].salt;
+					this.rounds = config[value].rounds;
+				},
+
+				generate() {
+					this.loading = true;
+					const formData = new FormData(document.getElementById('tool'));
+
+					fetch(url, {
+						method: 'post',
+						cache: 'no-cache',
+						headers: {
+							'content-type': 'application/json',
+						},
+						body: JSON.stringify(Object.fromEntries(formData)),
+					})
+						.then((res) => res.json())
+						.then((data) => {
+							this.result = {
+								class: `result ${data.success ? 'result-success' : 'result-danger'}`,
+								command: data.command,
+								output: data.output,
+								success: data.success,
+							};
+						})
+						.catch((err) => {
+							this.result = {
+								class: 'result result-error',
+								command: null,
+								output: err.message,
+								success: false,
+							};
+						})
+						.finally(() => {
+							this.loading = false;
+						});
+				},
+			};
+		});
+	});
+</script>
+
+<style>
+	.fieldset-tool {
+		display: grid;
+		gap: var(--gap);
+		grid-template-columns: 1fr;
+		grid-template-rows: 1fr;
+	}
+
+	@media (--vp-md) {
+		.fieldset-tool {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	@media (--vp-lg) {
+		.fieldset-tool {
+			grid-template-columns: 2fr 1fr 1fr 1fr;
+			grid-template-rows: 1fr min-content;
+		}
+	}
+</style>
