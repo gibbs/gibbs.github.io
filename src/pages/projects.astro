@@ -35,7 +35,7 @@ const frontmatter = {
 <style>
 	.projects {
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+		grid-template-columns: 1fr;
 		gap: var(--gap);
 		margin-top: var(--gap);
 	}
@@ -43,6 +43,7 @@ const frontmatter = {
 	@media (--vp-md) {
 		.projects {
 			gap: var(--gap-lg);
+			grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
 		}
 	}
 </style>

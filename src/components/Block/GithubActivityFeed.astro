@@ -2,7 +2,7 @@
 import '@styles/icons.css';
 ---
 
-<x-at
+<section
 	x-data="xat"
 	x-intersect:once="boot"
 	x-on:x-activity-timeline.document="update($event)"
@@ -45,7 +45,7 @@ import '@styles/icons.css';
 			</div>
 		</template>
 	</div>
-</x-at>
+</section>
 
 <script>
 	document.addEventListener('alpine:init', () => {
