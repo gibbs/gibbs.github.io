@@ -15,6 +15,7 @@
 	},
 	"bugs": "https://github.com/gibbs/gibbs.github.io/issues",
 	"scripts": {
+		"postinstall": "patch-package",
 		"dev": "npm run build:worker && astro dev",
 		"build": "npm run build:worker && astro build",
 		"build:testing": "dotenv -e .env.testing -- npm run build:worker && dotenv -e .env.testing -- astro build",
@@ -62,6 +63,7 @@
 		"happy-dom": "^20.6.1",
 		"html-validate": "^10.7.0",
 		"install": "^0.13.0",
+		"patch-package": "^8.0.1",
 		"postcss": "^8.5.4",
 		"postcss-custom-media": "^11.0.6",
 		"postcss-nesting": "^13.0.1",
