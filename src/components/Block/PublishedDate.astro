@@ -31,12 +31,18 @@ const dateUpdated = props?.linkdata?.dateModified || null;
 	.publish-dates {
 		display: flex;
 		flex-direction: column;
-		gap: 1rem;
+		gap: var(--gap-xxs);
+		align-items: center;
 		font-size: small;
+
+		p {
+			margin: 0;
+		}
 	}
 
 	@media (--vp-sm) {
 		.publish-dates {
+			gap: var(--gap);
 			flex-direction: row;
 		}
 	}
