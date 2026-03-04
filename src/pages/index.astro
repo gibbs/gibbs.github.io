@@ -39,7 +39,7 @@ const frontmatter = {
 	<script define:vars={{ BASE_URL: env.BASE_URL }}>
 		document.addEventListener('DOMContentLoaded', () => {
 			try {
-				const worker = new Worker(new URL('service-worker.js', BASE_URL));
+				const worker = new Worker(new URL('service-worker.js?v=2.0', BASE_URL));
 
 				worker.postMessage({ type: 'getActivityFeed' });
 
@@ -119,6 +119,10 @@ const frontmatter = {
 		animation: header-gradient 30s ease infinite;
 		animation-duration: 15s;
 		opacity: 0.5;
+	}
+
+	.scheme-preference {
+		align-self: self-start !important;
 	}
 
 	.hero {

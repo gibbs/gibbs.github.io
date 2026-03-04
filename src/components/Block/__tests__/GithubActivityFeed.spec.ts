@@ -8,8 +8,8 @@ describe('Github Activity Feed component', () => {
 		const container = await AstroContainer.create();
 		const result = await container.renderToString(GithubActivityFeed);
 
-		expect(result).toContain('<x-at');
-		expect(result).toContain('</x-at>');
+		expect(result).toContain('<section');
+		expect(result).toContain('</section>');
 	});
 
 	test('contains Alpine.js script', async () => {
