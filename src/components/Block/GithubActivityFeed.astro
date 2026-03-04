@@ -1,0 +1,170 @@
+---
+import '@styles/icons.css';
+---
+
+<x-at
+	x-data="xat"
+	x-intersect:once="boot"
+	x-on:x-activity-timeline.document="update($event)"
+	aria-label="GitHub activity timeline"
+>
+	<div class="xat" x-show="show == true" x-cloak>
+		<template x-for="group in timeline">
+			<div class="xat-group">
+				<time class="xat-date has-icon" :datetime="group.datetime">
+					<span class="gg-time" aria-hidden="true"></span>
+					<span x-text="group.date"></span>
+				</time>
+				<ol class="xat-entries">
+					<template x-for="(item, index) in group.items">
+						<li class="xat-entry" :style="{'--animation-order': (index + 1) }">
+							<div class="xat-description has-icon">
+								<span
+									:class="item.commit.merge ? 'gg-git-pull' : 'gg-git-commit'"
+									:title="item.commit.merge ? 'Pull Request' : 'Commit'"
+									aria-hidden="true"></span>
+								<p class="xat-message" x-text="item.commit.message"></p>
+							</div>
+							<a
+								href="/"
+								class="xat-repository"
+								:href="item.repository.url"
+								:title="'Repository: ' + item.repository.name"
+								x-text="item.repository.name">item.repository.name</a
+							>
+							<a
+								href="/"
+								class="xat-link"
+								:href="item.commit.url"
+								:title="'Commit: ' + item.commit.hash"
+								x-text="item.commit.hash">item.commit.hash</a
+							>
+						</li>
+					</template>
+				</ol>
+			</div>
+		</template>
+	</div>
+</x-at>
+
+<script>
+	document.addEventListener('alpine:init', () => {
+		Alpine.data('xat', () => {
+			return {
+				show: false,
+				timeline: {},
+
+				boot() {
+					this.show = true;
+				},
+
+				update(event) {
+					if (event?.detail && typeof event.detail === 'object') {
+						this.timeline = event.detail;
+					} else {
+						this.timeline = {};
+					}
+				},
+			};
+		});
+	});
+</script>
+
+<style>
+	.xat {
+		display: flex;
+		flex-direction: column;
+		font-size: small;
+		margin: var(--gap-xxl) 0;
+	}
+
+	.xat-group {
+		display: flex;
+		border: 0 solid var(--surface-2);
+		border-left-width: var(--border-width-lg);
+	}
+
+	.xat-entries {
+		display: flex;
+		flex-direction: column;
+		margin: 0;
+		padding: var(--gap-xl);
+		gap: var(--gap-sm);
+		list-style: none;
+	}
+
+	.xat-date {
+		font-size: small;
+		background-color: var(--surface-2);
+		max-width: fit-content;
+		padding: var(--gap) var(--gap-sm);
+		border-radius: 0 var(--border-radius) var(--border-radius) 0;
+	}
+
+	.xat-entry {
+		display: flex;
+		flex-direction: column;
+		gap: var(--gap);
+		align-items: center;
+		animation-name: entryIn;
+		animation-duration: 600ms;
+		animation-delay: calc(var(--animation-order) * 120ms);
+		animation-fill-mode: both;
+		animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+		margin-bottom: 0;
+	}
+
+	.xat-description {
+		flex-grow: 1;
+	}
+
+	.xat-description.has-icon {
+		gap: var(--gap);
+		color: var(--white);
+	}
+
+	.xat-link {
+		padding: var(--gap-xs) var(--gap-sm);
+		background-color: var(--accent);
+		color: var(--white);
+		border-radius: var(--border-radius);
+		text-decoration: none;
+		font-size: smaller;
+	}
+
+	.xat-link:hover,
+	.xat-link:focus {
+		background-color: oklch(from var(--tab) calc(l - 0.1) c h);
+	}
+
+	.gg-git-commit,
+	.gg-git-pull {
+		transform: scale(1.5);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.xat-entry {
+			animation: none;
+			opacity: 1;
+			transform: none;
+		}
+	}
+
+	@media (--vp-md) {
+		.xat-entry {
+			flex-direction: row;
+		}
+	}
+
+	@keyframes entryIn {
+		0% {
+			opacity: 0;
+			transform: translateX(-16px) translateY(-4px);
+		}
+
+		100% {
+			opacity: 1;
+			transform: translateX(0) translateY(0);
+		}
+	}
+</style>

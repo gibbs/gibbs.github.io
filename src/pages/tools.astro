@@ -1,0 +1,98 @@
+---
+import { __ } from '@i18n/utils';
+import BaseLayout from '@layouts/Base.astro';
+import { getAllTools } from '@src/prismic';
+import { env } from '@src/env.config';
+
+const tools = await getAllTools().then((response) => response.results);
+const frontmatter = {
+	title: __('page.tools.title'),
+	description: __('page.tools.description'),
+	date: '2026-02-23',
+};
+---
+
+<BaseLayout frontmatter={frontmatter} url={Astro.url}>
+	<h1>{__('page.tools.heading')}</h1>
+	<p>{__('page.tools.text')}</p>
+
+	<ol class="tools">
+		{
+			tools.map((tool) => (
+				<li class="tool">
+					<span class="tool-heading">{tool.data.title}</span>
+					<a href={new URL(`tools/${tool.uid}`, env.BASE_URL).href} class="tool-anchor">
+						{tool.data.title}
+					</a>
+					<p class="tool-summary">{tool.data.summary}</p>
+				</li>
+			))
+		}
+	</ol>
+</BaseLayout>
+
+<style>
+	.tools {
+		display: grid;
+		grid-template-columns: 1fr;
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		gap: var(--gap);
+		margin: var(--gap) 0;
+	}
+
+	.tool {
+		position: relative;
+		anchor-name: --tool-anchor;
+		padding: var(--gap-lg);
+		background-color: light-dark(var(--surface-i-4), var(--surface-1));
+	}
+
+	.tool-heading {
+		display: block;
+		color: var(--primary);
+		font-weight: 600;
+		font-size: large;
+		margin-bottom: var(--gap-sm);
+	}
+
+	.tool-anchor {
+		position: absolute;
+		position-anchor: --tool-anchor;
+		top: 0px;
+		left: 0px;
+		right: anchor(--tool-anchor right);
+		bottom: anchor(--tool-anchor bottom);
+		margin: 0px;
+		width: 100%;
+		height: 100%;
+		color: transparent;
+		overflow: hidden;
+		white-space: nowrap;
+		z-index: 1;
+		border: calc(var(--border-width) * 2) solid var(--border-color);
+		border-radius: var(--border-radius);
+	}
+
+	.tool-anchor:hover,
+	.tool-anchor:focus {
+		border-color: var(--accent);
+	}
+
+	.tool-summary {
+		margin-bottom: 0;
+	}
+
+	@media (--vp-md) {
+		.tools {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	@media (--vp-lg) {
+		.tools {
+			grid-template-columns: 1fr 1fr 1fr;
+		}
+	}
+</style>

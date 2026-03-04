@@ -1,0 +1,73 @@
+---
+import type { ButtonGroupSliceDefaultPrimaryButtonItem } from '@src/prismicio-types';
+
+const props = Astro.props;
+---
+
+<ul class="button-group">
+	{
+		props.primary.button.map((button: ButtonGroupSliceDefaultPrimaryButtonItem) => (
+			<li class="btn">
+				<a class={'btn-' + button.link.variant?.toLowerCase()} href={button.link.url}>
+					{button.link.text || `View on ${button.link.variant}`}
+				</a>
+			</li>
+		))
+	}
+</ul>
+
+<style>
+	.button-group {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--gap-sm);
+		list-style-type: none;
+		padding: 0;
+		min-height: 30px;
+	}
+
+	.btn {
+		a {
+			display: flex;
+			font-size: small;
+			border-radius: calc(var(--border-radius) * 0.75);
+			border-width: var(--border-width);
+			border-style: solid;
+			padding: var(--gap-sm) var(--gap);
+			text-decoration: none;
+		}
+	}
+
+	.btn-github {
+		background-color: #f2f5f3;
+		color: #000000;
+		border-color: #c9d5cd;
+
+		&:hover,
+		&:focus {
+			background-color: #c9d5cd;
+		}
+	}
+
+	.btn-docker {
+		background-color: #1d63ed;
+		border-color: #1152d1;
+		color: #e5f2fc;
+
+		&:hover,
+		&:focus {
+			background-color: #1152d1;
+		}
+	}
+
+	.btn-puppet {
+		background-color: #ffae1a;
+		border-color: #ef9a00;
+		color: #222;
+
+		&:hover,
+		&:focus {
+			background-color: #ef9a00;
+		}
+	}
+</style>

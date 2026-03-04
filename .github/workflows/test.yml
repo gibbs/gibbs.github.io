@@ -1,88 +1,91 @@
-name: Tests
+name: Test
 
 on:
-  push:
-    branches:
-      - 'master'
   pull_request:
     branches:
       - 'master'
+  workflow_dispatch:
 
 jobs:
-  lint:
-    name: Lint
+  test:
+    name: Test
     runs-on: ubuntu-24.04
+    environment: testing
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v6
         with:
-          node-version: '22'
-      - name: Install Dependencies
-        run: npm install
+          submodules: true
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
+
+      - name: Prepare runner-temp cache
+        run: |
+          mkdir -p "$RUNNER_TEMP/npm-cache" "$RUNNER_TEMP/ms-playwright"
+          echo "NPM_CONFIG_CACHE=$RUNNER_TEMP/npm-cache" >> $GITHUB_ENV
+          echo "PLAYWRIGHT_BROWSERS_PATH=$RUNNER_TEMP/ms-playwright" >> $GITHUB_ENV
+
+      - name: Restore/cache node_modules
+        id: node-modules-cache
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: node-modules-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            node-modules-${{ runner.os }}-
+
+      - name: Cache npm
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}/npm-cache
+          key: npm-cache-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            npm-cache-${{ runner.os }}-
+
+      - name: Cache Playwright browsers
+        id: playwright-cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}/ms-playwright
+          key: playwright-browsers-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            playwright-browsers-${{ runner.os }}-
+
+      - name: Install Dependencies (cache miss)
+        if: steps.node-modules-cache.outputs.cache-hit != 'true'
+        run: npm ci --no-audit --no-fund --prefer-offline
+
+      - name: Skip install
+        if: steps.node-modules-cache.outputs.cache-hit == 'true'
+        run: echo "node_modules cache restored — skipping npm ci"
+
+      - name: Install Playwright
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: npx playwright install --with-deps
+
+      - name: Build testing environment
+        env:
+          PRISMIC_REPOSITORY: ${{ secrets.PRISMIC_REPOSITORY }}
+          PRISMIC_ACCESS_TOKEN: ${{ secrets.PRISMIC_ACCESS_TOKEN }}
+        run: |
+          cp -f .env.testing .env
+          npm run build:testing
+
       - name: Lint
         run: npm run lint
 
-  acceptance:
-    name: Acceptance Tests
-    runs-on: ubuntu-24.04
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Run E2E test
+        run: npx playwright test
+
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() && failure() }}
         with:
-          node-version: '22'
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
 
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Run server
-        run: |
-          cp -f .env.development .env
-          npm run build
-          npm run serve &
-          sleep 15
-        env:
-          APP_ENV: development
-          APP_URL: http://localhost:8080/
-
-      - name: Run tests
-        run: npm run test:acceptance
-        env:
-          APP_ENV: development
-          APP_URL: http://localhost:8080/
-
-  e2e:
-    name: E2E Tests
-    runs-on: ubuntu-24.04
-    container: genv/webdriver-chromium:latest
-    services:
-      app:
-        image: gibbs/app.dangibbs.uk:latest
-      godanuk:
-        image: gibbs/godanuk:latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '22'
-
-      - name: Install Dependencies
-        run: npm install
-        env:
-          CHROMEDRIVER_FILEPATH: /usr/bin/chromedriver
-          CHROMEDRIVER_SKIP_DOWNLOAD: true
-
-      - name: Run server
-        run: |
-          cp -f .env.development .env
-          npm run build
-          npm run serve &
-          sleep 15
-        env:
-          APP_ENV: development
-          APP_URL: http://localhost:8080/
-
-      - name: Run tests
-        run: npm run test:e2e
-        env:
-          APP_ENV: testing
-          APP_URL: http://localhost:8080/
+      - name: Run unit tests
+        run: npx vitest

@@ -1,0 +1,11 @@
+---
+import { env } from '@src/env.config';
+import Meta from '@components/Meta.astro';
+
+const { frontmatter } = Astro.props;
+---
+
+<title>{frontmatter.title}</title>
+<base href={new URL(Astro.url.pathname, env.BASE_URL).href} />
+<link rel="canonical" href={new URL(Astro.url.pathname, env.BASE_URL).href} />
+<Meta frontmatter={frontmatter} />

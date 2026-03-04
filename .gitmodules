@@ -1,0 +1,21 @@
+[submodule "src/assets/files/currency-data"]
+	path = src/assets/files/currency-data
+	url = git@github.com:gibbs/currency-data.git
+[submodule "src/assets/files/puppet-systemd_journal_remote"]
+	path = src/assets/files/puppet-systemd_journal_remote
+	url = https://github.com/gibbs/puppet-systemd_journal_remote.git
+[submodule "src/assets/files/puppet-acct"]
+	path = src/assets/files/puppet-acct
+	url = git@github.com:gibbs/puppet-acct.git
+[submodule "src/assets/files/puppet-auditd"]
+	path = src/assets/files/puppet-auditd
+	url = git@github.com:gibbs/puppet-auditd.git
+[submodule "src/assets/files/puppet-osquery"]
+	path = src/assets/files/puppet-osquery
+	url = git@github.com:gibbs/puppet-osquery.git
+[submodule "src/assets/files/puppet-login_defs"]
+	path = src/assets/files/puppet-login_defs
+	url = git@github.com:gibbs/puppet-login_defs.git
+[submodule "src/assets/files/apt-sources"]
+	path = src/assets/files/apt-sources
+	url = git@github.com:gibbs/apt-sources.git

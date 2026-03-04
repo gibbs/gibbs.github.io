@@ -1,0 +1,18 @@
+---
+import BaseLayout from '@layouts/Base.astro';
+import Noscript from '@components/Block/Noscript.astro';
+
+import '@styles/forms.css';
+import '@styles/tool.css';
+
+const { frontmatter } = Astro.props;
+---
+
+<BaseLayout frontmatter={frontmatter} url={Astro.url}>
+	<Noscript />
+	<slot name="content" />
+
+	<!-- <slot slot="before-footer">
+		<ReturnToArea title="Tools" path="tools" container={true} />
+	</slot> -->
+</BaseLayout>

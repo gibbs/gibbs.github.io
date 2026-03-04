@@ -1,0 +1,85 @@
+---
+import ToolLayout from '@layouts/Tool.astro';
+import SliceLibrary from '@components/Prismic/SliceLibrary.astro';
+import { getPageByUID } from '@src/prismic';
+import { generateFrontmatter } from '@utils/frontmatter';
+import LinguistData from '@data/github-languages.json' with { type: 'json' };
+
+interface Linguist {
+	[languageName: string]: LinguistLanguage;
+}
+
+interface LinguistLanguage {
+	type: string;
+	extensions?: string[];
+	color?: string;
+	tm_scope: string;
+	ace_mode: string;
+	language_id: number;
+}
+
+const languages = LinguistData as Linguist;
+
+const tool = await getPageByUID('github-language-colours', 'tools');
+const frontmatter = generateFrontmatter(tool);
+---
+
+<ToolLayout frontmatter={frontmatter} url={Astro.url}>
+	<slot slot="content">
+		<SliceLibrary slices={tool.data.slices} />
+
+		<ol class="languages">
+			{
+				Object.entries(languages).map(
+					([name]) =>
+						languages[name].color && (
+							<li data-language-id={languages[name].language_id}>
+								<span class="title">{name}</span>
+								<span
+									class="color"
+									style={{
+										color: languages[name].color,
+										'background-color': languages[name].color,
+									}}
+								>
+									<span class="color-text">{languages[name].color.toLowerCase()}</span>
+								</span>
+							</li>
+						),
+				)
+			}
+		</ol>
+	</slot>
+</ToolLayout>
+
+<style>
+	.languages {
+		display: grid;
+		list-style-type: none;
+		margin: var(--gap) 0 0 0;
+		padding: 0;
+		gap: var(--gap);
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+
+		li {
+			display: grid;
+			align-items: center;
+			flex-direction: row;
+			gap: var(--gap);
+		}
+
+		.title {
+			font-weight: 500;
+		}
+
+		.color {
+			border-radius: var(--border-radius);
+			padding: var(--gap);
+			font-size: x-small;
+		}
+
+		.color-text {
+			filter: invert(100%);
+		}
+	}
+</style>

@@ -1,0 +1,69 @@
+---
+import { env } from '@src/env.config';
+
+// @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Content-Security-Policy#directives
+interface CspDirectives {
+	'child-src'?: string;
+	'connect-src'?: string;
+	'default-src'?: string;
+	'fenced-frame-src'?: string;
+	'font-src'?: string;
+	'frame-src'?: string;
+	'img-src'?: string;
+	'manifest-src'?: string;
+	'media-src'?: string;
+	'object-src'?: string;
+	'prefetch-src'?: string;
+	'script-src'?: string;
+	'script-src-elem'?: string;
+	'script-src-attr'?: string;
+	'style-src'?: string;
+	'style-src-elem'?: string;
+	'style-src-attr'?: string;
+	'worker-src'?: string;
+	'base-uri'?: string;
+	sandbox?: string;
+	'form-action'?: string;
+	'frame-ancestors'?: string;
+	'report-to'?: string;
+	'require-trusted-types-for'?: string;
+	'trusted-types'?: string;
+	'upgrade-insecure-requests'?: string;
+}
+
+const resources: CspDirectives = {
+	'connect-src': new URL('/', env.APP_SERVICE_URL).href,
+	'img-src': [
+		'https://github.com/gibbs/',
+		'https://img.shields.io/',
+		'https://images.prismic.io/dangibbs/',
+	].join(' '),
+	'script-src': ['https://static.cdn.prismic.io/'].join(' '),
+	'frame-src': ['https://dangibbs.prismic.io/'].join(' '),
+};
+
+const directives: CspDirectives = {
+	'upgrade-insecure-requests': '',
+	'base-uri': "'self'",
+	'child-src': "'none'",
+	'connect-src': `'self' ${resources['connect-src']}`,
+	'default-src': "'self'",
+	'font-src': "'self' data:",
+	'form-action': "'self'",
+	'frame-src': `'self' ${resources['frame-src']}`,
+	'img-src': `'self' ${resources['img-src']} data:`,
+	'manifest-src': "'self'",
+	'media-src': "'self'",
+	'object-src': "'self'",
+	'script-src': `'self' ${resources['script-src']} 'unsafe-inline'`,
+	'style-src': "'self' 'unsafe-inline'",
+	'worker-src': "'self'",
+};
+---
+
+<meta
+	http-equiv="content-security-policy"
+	content={Object.keys(directives)
+		.map((key: string) => `${key} ${directives[key as keyof CspDirectives]}`)
+		.join('; ')}
+/>

@@ -1,0 +1,295 @@
+---
+import ToolLayout from '@layouts/Tool.astro';
+import { env } from '@src/env.config';
+import { getPageByUID } from '@src/prismic';
+import SliceLibrary from '@components/Prismic/SliceLibrary.astro';
+import { generateFrontmatter } from '@utils/frontmatter';
+
+const tool = await getPageByUID('dns', 'tools');
+
+const frontmatter = generateFrontmatter(tool);
+
+const nameservers: { name: string; title: string; selected: boolean }[] = [
+	{
+		name: 'cloudflare',
+		title: 'Cloudflare',
+		selected: false,
+	},
+	{
+		name: 'google',
+		title: 'Google',
+		selected: true,
+	},
+	{
+		name: 'quad9',
+		title: 'Quad9',
+		selected: false,
+	},
+	{
+		name: 'opendns',
+		title: 'OpenDNS',
+		selected: false,
+	},
+	{
+		name: 'comodo',
+		title: 'Comodo',
+		selected: false,
+	},
+];
+
+const records: { name: string; title: string; selected: boolean }[] = [
+	{
+		name: 'a',
+		title: 'A',
+		selected: true,
+	},
+	{
+		name: 'aaaa',
+		title: 'AAAA',
+		selected: true,
+	},
+	{
+		name: 'any',
+		title: 'ANY',
+		selected: false,
+	},
+	{
+		name: 'caa',
+		title: 'CAA',
+		selected: false,
+	},
+	{
+		name: 'cname',
+		title: 'CNAME',
+		selected: true,
+	},
+	{
+		name: 'dnskey',
+		title: 'DNSKEY',
+		selected: false,
+	},
+	{
+		name: 'ds',
+		title: 'DS',
+		selected: false,
+	},
+	{
+		name: 'mx',
+		title: 'MX',
+		selected: true,
+	},
+	{
+		name: 'ns',
+		title: 'NS',
+		selected: true,
+	},
+	{
+		name: 'ptr',
+		title: 'PTR',
+		selected: false,
+	},
+	{
+		name: 'soa',
+		title: 'SOA',
+		selected: false,
+	},
+	{
+		name: 'srv',
+		title: 'SRV',
+		selected: false,
+	},
+	{
+		name: 'tlsa',
+		title: 'TLSA',
+		selected: false,
+	},
+	{
+		name: 'tsig',
+		title: 'TSIG',
+		selected: false,
+	},
+	{
+		name: 'txt',
+		title: 'TXT',
+		selected: true,
+	},
+];
+---
+
+<ToolLayout frontmatter={frontmatter} url={Astro.url}>
+	<slot slot="content">
+		<SliceLibrary slices={tool.data.slices} />
+
+		<form id="tool" class="form" method="post" x-data="tool" @submit.prevent="generate">
+			<fieldset class="fieldset fieldset-tool">
+				<legend class="hidden">DNS Tool</legend>
+
+				<div class="col">
+					<label for="name">Name</label>
+					<input
+						type="text"
+						id="name"
+						name="name"
+						placeholder="e.g. google.com"
+						minlength="1"
+						maxlength="255"
+						autofocus
+						required
+					/>
+				</div>
+				<div class="col">
+					<label for="nameserver">Nameserver</label>
+					<select id="nameserver" name="nameserver">
+						{
+							nameservers.map((nameserver) => (
+								<option value={nameserver.name} selected={nameserver.selected}>
+									{nameserver.title}
+								</option>
+							))
+						}
+					</select>
+				</div>
+			</fieldset>
+
+			<fieldset class="fieldset fieldset-options">
+				<legend class="hidden">DNS Tool Options</legend>
+				{
+					records.map((type) => (
+						<>
+							<input
+								type="checkbox"
+								name="types[]"
+								value={type.name}
+								id={`type_${type.name}`}
+								checked={type.selected}
+							/>
+							<label class="" for={`type_${type.name}`}>
+								{type.title}
+							</label>
+						</>
+					))
+				}
+			</fieldset>
+
+			<button type="submit" x-bind:disabled="loading">Lookup</button>
+
+			<table class="table result" x-cloak x-show="result.success">
+				<thead>
+					<tr>
+						<th scope="col">Name</th>
+						<th scope="col">TTL</th>
+						<th scope="col">Type</th>
+						<th scope="col">Value</th>
+					</tr>
+				</thead>
+				<tbody>
+					<template x-for="record in result.output">
+						<tr>
+							<td x-text="getRecordName"></td>
+							<td x-text="getRecordTtl"></td>
+							<td x-text="getRecordTag"></td>
+							<td x-text="getRecordValue"></td>
+						</tr>
+					</template>
+				</tbody>
+			</table>
+
+			<output class="result result-error" x-cloak x-show="result.error" x-text="result.error"
+			></output>
+			<output class="result result-command" x-cloak x-text="result.command"></output>
+		</form>
+	</slot>
+</ToolLayout>
+
+<script is:inline define:vars={{ APP_SERVICE_URL: env.APP_SERVICE_URL }}>
+	document.addEventListener('alpine:init', () => {
+		const url = new URL(APP_SERVICE_URL.replace(/\/+$/, '') + '/tool/dig').toString();
+
+		Alpine.data('tool', () => {
+			return {
+				loading: false,
+				result: {
+					class: null,
+					command: null,
+					output: null,
+					success: null,
+					error: null,
+				},
+
+				generate() {
+					this.loading = true;
+					const formData = new FormData(document.getElementById('tool'));
+					const data = {
+						name: formData.get('name'),
+						nameserver: formData.get('nameserver'),
+						types: formData.getAll('types[]'),
+					};
+
+					fetch(url, {
+						method: 'post',
+						cache: 'no-cache',
+						headers: {
+							'content-type': 'application/json',
+						},
+						body: JSON.stringify(data),
+					})
+						.then((res) => res.json())
+						.then((data) => {
+							this.result = {
+								class: `result ${data.success ? 'result-success' : 'result-error'}`,
+								command: data.command,
+								output: data.output,
+								success: data.success,
+							};
+						})
+						.catch((err) => {
+							this.result = {
+								class: 'result result-error',
+								command: null,
+								output: null,
+								success: false,
+								error: err.message,
+							};
+						})
+						.finally(() => {
+							this.loading = false;
+						});
+				},
+
+				getRecordName() {
+					return this.record.name;
+				},
+				getRecordTtl() {
+					return this.record.ttl;
+				},
+				getRecordTag() {
+					return this.record.tag;
+				},
+				getRecordValue() {
+					return this.record.value;
+				},
+			};
+		});
+	});
+</script>
+
+<style>
+	.fieldset-tool {
+		display: grid;
+		gap: var(--gap);
+		grid-template-columns: auto;
+	}
+
+	.table {
+		display: table;
+		border: 0;
+		margin: var(--gap) 0;
+	}
+
+	@media (--vp-md) {
+		.fieldset-tool {
+			grid-template-columns: 1fr auto;
+			grid-template-rows: 1fr;
+		}
+	}
+</style>

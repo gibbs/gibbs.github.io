@@ -1,0 +1,35 @@
+---
+import BaseLayout from '@layouts/Base.astro';
+import { getAllProjects } from '@src/prismic';
+import SliceLibrary from '@components/Prismic/SliceLibrary.astro';
+import PublishedDate from '@components/Block/PublishedDate.astro';
+import ReturnToArea from '@components/Block/ReturnToArea.astro';
+import { generateFrontmatter } from '@utils/frontmatter';
+import '@styles/icons.css';
+
+export async function getStaticPaths() {
+	const projects = await getAllProjects();
+
+	return projects.results.map((project) => {
+		return {
+			params: { uid: project.uid },
+			props: { project },
+		};
+	});
+}
+
+const { project } = Astro.props;
+
+const frontmatter = generateFrontmatter(project, 'Article');
+---
+
+<BaseLayout frontmatter={frontmatter} url={Astro.url}>
+	<h1>{project.data.title}</h1>
+	<PublishedDate props={frontmatter} />
+
+	<SliceLibrary slices={project.data.slices} />
+
+	<slot slot="before-footer">
+		<ReturnToArea title="Projects" path="projects" container={true} />
+	</slot>
+</BaseLayout>

@@ -1,0 +1,58 @@
+---
+import LogoIcon from './LogoIcon.astro';
+
+const { tags, icons = false } = Astro.props;
+---
+
+<ul class="tags">
+	{
+		tags.map((tag: string) => (
+			<li class="tag">
+				{icons == true && (
+					<span class="icon">
+						<LogoIcon size={16} icon={tag} />
+					</span>
+				)}
+				<span class="title">{tag}</span>
+			</li>
+		))
+	}
+</ul>
+
+<style>
+	.tags {
+		display: flex;
+		flex-direction: row;
+		margin: var(--gap-xs) 0 var(--gap-xl) 0;
+		padding: 0;
+		gap: var(--gap-xxs);
+		list-style-type: none;
+	}
+
+	.tag {
+		display: flex;
+		flex-direction: row;
+		gap: 0;
+		align-items: center;
+		font-size: smaller;
+		background-color: var(--surface-2);
+		color: var(--text);
+		margin: 0;
+		border-radius: var(--border-radius-sm);
+
+		> span {
+			display: flex;
+		}
+
+		.icon,
+		.title {
+			padding: var(--gap-xxs) var(--gap-xs);
+			min-height: 100%;
+			align-items: center;
+		}
+
+		.icon {
+			background-color: var(--surface-1);
+		}
+	}
+</style>

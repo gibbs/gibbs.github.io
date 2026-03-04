@@ -1,0 +1,37 @@
+services:
+  web:
+    build: 
+      context: ${PWD}/.docker/httpd/
+      dockerfile: ${PWD}/.docker/httpd/Dockerfile
+    ports:
+      - '8080:80'
+    networks:
+      - dgapp
+
+  app:
+    image: gibbs/app.dangibbs.uk:0.7.1
+    volumes:
+      - ${PWD}/.docker/database.sqlite3:/var/www/html/database/database.sqlite3:rw
+      - ${PWD}/.docker/.env:/var/www/html/.env
+    networks:
+      - dgapp
+
+  godan:
+    image: gibbs/godanuk:0.5.5
+    networks:
+      - dgapp
+
+  search:
+    image: getmeili/meilisearch:v1.14.0
+    ports:
+      - '7700:7700'
+    env_file:
+      - ${PWD}/.docker/.env
+    volumes:
+      - ${PWD}/.docker/meilisearch/search:/meili_data
+    networks:
+      - dgapp
+
+networks:
+  dgapp:
+    driver: bridge

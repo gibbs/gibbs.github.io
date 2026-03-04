@@ -1,0 +1,46 @@
+---
+import { env } from '@src/env.config';
+import { __ } from '@i18n/utils';
+
+const { pathname } = Astro.url;
+const Links: { label: string; url: string; active: boolean }[] = [
+	{
+		label: __('nav.home'),
+		url: '/',
+		active: pathname === '/',
+	},
+	{
+		label: __('nav.projects'),
+		url: 'projects',
+		active: pathname.startsWith('/projects'),
+	},
+	{
+		label: __('nav.tools'),
+		url: 'tools',
+		active: pathname.startsWith('/tools'),
+	},
+];
+---
+
+<input type="checkbox" class="nav-input" id="nav-input" name="nav-input" />
+
+<label for="nav-input" class="nav-menu-button">
+	<span class="nav-menu-icon icon">
+		<span class="hidden">Menu</span>
+	</span>
+</label>
+
+<ul class="nav">
+	{
+		Links.map((link) => (
+			<li class="nav-item">
+				<a
+					class={link.active ? 'nav-link active' : 'nav-link'}
+					href={new URL(link.url, env.BASE_URL)}
+				>
+					{link.label}
+				</a>
+			</li>
+		))
+	}
+</ul>

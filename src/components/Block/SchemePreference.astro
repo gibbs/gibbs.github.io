@@ -1,0 +1,158 @@
+<label
+	class="scheme-preference"
+	id="scheme-preference"
+	title="Toggles light & dark scheme"
+	aria-label="Toggle color scheme"
+	x-data="schemePreference"
+	x-cloak
+>
+	<svg
+		fill="#000000"
+		width="100px"
+		height="100px"
+		viewBox="0 0 32 32"
+		version="1.1"
+		xmlns="http://www.w3.org/2000/svg"
+	>
+		<path
+			d="M0 16q0 3.264 1.28 6.24t3.392 5.088 5.12 3.424 6.208 1.248q3.264 0 6.24-1.248t5.088-3.424 3.392-5.088 1.28-6.24-1.28-6.208-3.392-5.12-5.088-3.392-6.24-1.28q-3.264 0-6.208 1.28t-5.12 3.392-3.392 5.12-1.28 6.208zM4 16q0-3.264 1.6-6.016t4.384-4.352 6.016-1.632 6.016 1.632 4.384 4.352 1.6 6.016-1.6 6.048-4.384 4.352-6.016 1.6-6.016-1.6-4.384-4.352-1.6-6.048zM16 26.016q2.72 0 5.024-1.344t3.648-3.648 1.344-5.024-1.344-4.992-3.648-3.648-5.024-1.344v20z"
+		></path>
+	</svg>
+
+	<span class="scheme-preference-switch">
+		<input type="checkbox" x-on:change="changeScheme" x-model="getChecked" />
+		<span class="scheme-preference-slider"></span>
+	</span>
+</label>
+
+<script is:inline>
+	document.addEventListener('alpine:init', () => {
+		Alpine.data('schemePreference', () => {
+			return {
+				key: 'sp',
+				scheme: 'dark',
+
+				init() {
+					this.scheme = this.getCustomPreference();
+				},
+
+				changeScheme() {
+					const preference = this.getToggledPreference();
+
+					this.scheme = preference;
+					localStorage.setItem(this.key, preference);
+					document.documentElement.setAttribute('data-color-scheme', preference);
+					document.documentElement.style.setProperty('color-scheme', preference);
+				},
+
+				getChecked() {
+					return this.scheme == 'dark';
+				},
+
+				getToggledPreference() {
+					return this.scheme == 'light' ? 'dark' : 'light';
+				},
+
+				getCustomPreference() {
+					const stored = localStorage.getItem(this.key);
+
+					if (['light', 'dark'].includes(stored)) {
+						return stored;
+					}
+
+					return this.getSystemPreference();
+				},
+
+				getSystemPreference() {
+					return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+				},
+			};
+		});
+	});
+</script>
+
+<style>
+	:root {
+		--switch-height: 40px;
+		--switch-padding: 4px;
+		--switch-width: calc((var(--switch-height) * 2 - var(--switch-padding) * 2));
+		--switch-thumb-height: calc(var(--switch-height) - (var(--switch-padding) * 2));
+		--switch-thumb-width: calc(var(--switch-thumb-height));
+		--switch-thumb-travel: calc(
+			var(--switch-width) - var(--switch-thumb-width) - (var(--switch-padding) * 2)
+		);
+	}
+
+	.scheme-preference {
+		position: relative;
+		display: flex;
+		flex-direction: row;
+		gap: var(--gap-sm);
+		align-items: center;
+		background: none;
+		border: none;
+		padding: 0;
+		border-radius: 50%;
+		cursor: pointer;
+
+		& > svg {
+			color: var(--white);
+			fill: currentColor;
+			width: 20px;
+			height: 20px;
+			stroke-linecap: round;
+		}
+
+		input {
+			display: none;
+			opacity: 0;
+			width: 0;
+			height: 0;
+		}
+	}
+
+	.scheme-preference-switch {
+		position: relative;
+		display: flex;
+		width: var(--switch-width);
+		height: var(--switch-height);
+		padding: var(--switch-padding);
+	}
+
+	.scheme-preference-slider {
+		position: relative;
+		display: inline-flex;
+		align-items: center;
+		cursor: pointer;
+		width: 100%;
+		height: 100%;
+		background-color: var(--surface-2);
+		border: var(--border-width) solid rgba(0, 0, 0, 0.6);
+		transition: var(--transition-duration);
+		border-radius: var(--border-radius);
+	}
+
+	.scheme-preference-slider:after {
+		position: relative;
+		display: flex;
+		content: '';
+		height: var(--switch-thumb-height);
+		width: var(--switch-thumb-width);
+		background-color: var(--white);
+		transition: var(--transition-duration);
+		border: var(--border-width) solid rgba(0, 0, 0, 0.6);
+		border-radius: var(--border-radius);
+	}
+
+	input:checked + .scheme-preference-slider {
+		background-color: var(--accent);
+	}
+
+	input:focus + .scheme-preference-slider {
+		box-shadow: 0 0 1px var(--accent);
+	}
+
+	input:checked + .scheme-preference-slider:after {
+		transform: translateX(var(--switch-thumb-travel));
+	}
+</style>

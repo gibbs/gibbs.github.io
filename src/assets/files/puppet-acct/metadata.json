@@ -1,0 +1,68 @@
+{
+  "name": "genv-acct",
+  "version": "2.1.0",
+  "author": "gibbs",
+  "summary": "Install, configure and manage acct process accounting",
+  "license": "MIT",
+  "source": "https://github.com/gibbs/puppet-acct",
+  "project_page": "https://github.com/gibbs/puppet-acct",
+  "issues_url": "https://github.com/gibbs/puppet-acct/issues",
+  "dependencies": [
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 9.0.0 < 10.0.0"
+    }
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "AlmaLinux",
+      "operatingsystemrelease": [
+        "9",
+        "8"
+      ]
+    },
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "12",
+        "11"
+      ]
+    },
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "9",
+        "8"
+      ]
+    },
+    {
+      "operatingsystem": "Rocky",
+      "operatingsystemrelease": [
+        "9",
+        "8"
+      ]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "24.04",
+        "22.04"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 8.0.0 < 9.0.0"
+    }
+  ],
+  "tags": [
+    "acct",
+    "psacct",
+    "process",
+    "accounting"
+  ],
+  "pdk-version": "3.4.0",
+  "template-url": "https://github.com/puppetlabs/pdk-templates#3.4.0.3",
+  "template-ref": "tags/3.4.0.3-0-g8fb22fc"
+}

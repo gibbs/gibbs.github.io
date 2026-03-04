@@ -1,0 +1,25 @@
+---
+import { __ } from '@i18n/utils';
+---
+
+<noscript>
+	<p>
+		{__('component.noscript.banner')}
+	</p>
+	<p>
+		<a href="https://www.enable-javascript.com/">{__('component.noscript.anchor')}</a>
+	</p>
+</noscript>
+
+<style>
+	noscript {
+		background-color: var(--warning);
+		border: var(--border-width) solid var(--warning-darker); /* @FIXME */
+		padding: var(--gap);
+		margin-bottom: var(--gap);
+
+		p {
+			margin: 0;
+		}
+	}
+</style>

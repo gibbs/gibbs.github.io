@@ -1,8 +1,13 @@
 *~
 .vscode
+.astro
 /node_modules/
 /backup/
-/docs/
 /.env
-/tests_output/
 /logs/
+/test-results
+/dist/
+/.docker/*
+!/.docker/
+!/.docker/.env.local
+!/.docker/httpd/

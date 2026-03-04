@@ -1,0 +1,13 @@
+---
+import { env } from '@src/env.config';
+import faviconAppleTouchIcon from '@icons/apple-touch-icon.png';
+import faviconSvg from '@icons/icon.svg';
+
+const themeColor: string = '#34344A';
+---
+
+<link rel="manifest" href={new URL('manifest.json', env.BASE_URL).href} />
+<meta name="theme-color" content={themeColor} />
+<link rel="icon" href={new URL('/favicon.ico', env.BASE_URL).href} />
+<link rel="icon" href={faviconSvg.src} type="image/svg+xml" />
+<link rel="apple-touch-icon" href={faviconAppleTouchIcon.src} />

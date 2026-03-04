@@ -1,0 +1,8 @@
+/[Bb]ackup*/
+*~
+/*.log
+
+# Vagrant
+/.vagrant/
+/Vagrantfile
+!/vagrantfile

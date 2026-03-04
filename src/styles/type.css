@@ -1,0 +1,103 @@
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	text-wrap: balance;
+	padding: 0;
+	margin-block-start: var(--space-4);
+	margin-block-end: var(--space-3);
+}
+
+h1, h2 {
+	color: var(--primary);
+}
+
+h1 {
+	font-size: var(--font-size-h1);
+	letter-spacing: -0.03em;
+	font-weight: 500;
+	text-align: center;
+	line-height: 1.2;
+	margin-block-start: var(--space-6);
+	margin-block-end: var(--space-4);
+}
+
+.main > h1 {
+	margin-top: 0;
+}
+
+h2 {
+	font-size: var(--font-size-h2);
+	letter-spacing: -0.02em;
+	font-weight: 400;
+	margin-block-start: var(--space-4);
+	margin-block-end: var(--space-3);
+}
+
+h3 {
+	color: var(--text);
+	font-size: var(--font-size-h3);
+	letter-spacing: -0.01em;
+	font-weight: 400;
+	margin-block-start: var(--space-3);
+	margin-block-end: var(--space-2);
+}
+
+h4 {
+	font-size: var(--font-size-h4);
+	font-weight: 400;
+	margin-block-start: var(--space-3);
+	margin-block-end: var(--space-2);
+}
+
+h5, h6 {
+	font-size: var(--font-size-h5);
+	font-weight: 400;
+	margin-block-start: var(--space-2);
+	margin-block-end: var(--space-1);
+}
+
+a {
+	color: var(--link);
+}
+
+a:focus,
+a:hover {
+	color: var(--link-hover);
+}
+
+p {
+	color: var(--text-muted);
+	text-wrap: pretty;
+	margin-block-start: 0;
+	margin-block-end: var(--space-3);
+	line-height: var(--line-height);
+
+	> code {
+		color: var(--white);
+		padding: 0 var(--gap-xs);
+		background-color: var(--tertiary);
+	}
+}
+
+ul,
+ol {
+	margin-block-start: var(--space-2);
+	margin-block-end: var(--space-2);
+	padding-left: var(--gap);
+	line-height: var(--line-height);
+}
+
+li {
+	color: var(--text-muted);
+	margin-block-end: var(--space-1);
+}
+
+@media (--vp-sm) {
+	h1 {
+		text-align: initial;
+	}
+}

@@ -1,0 +1,54 @@
+{
+  "name": "genv-login_defs",
+  "version": "2.1.0",
+  "author": "gibbs",
+  "summary": "Manage login.defs",
+  "license": "Apache-2.0",
+  "source": "https://github.com/gibbs/puppet-login_defs",
+  "project_page": "https://github.com/gibbs/puppet-login_defs",
+  "issues_url": "https://github.com/gibbs/puppet-login_defs/issues",
+  "dependencies": [],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "AlmaLinux",
+      "operatingsystemrelease": [
+        "8"
+      ]
+    },
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "12",
+        "11"
+      ]
+    },
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "9"
+      ]
+    },
+    {
+      "operatingsystem": "Rocky",
+      "operatingsystemrelease": [
+        "8"
+      ]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "24.04",
+        "22.04"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 8.0.0 < 9.0.0"
+    }
+  ],
+  "pdk-version": "3.4.0",
+  "template-url": "https://github.com/puppetlabs/pdk-templates#3.4.0.3",
+  "template-ref": "tags/3.4.0.3-0-g8fb22fc"
+}

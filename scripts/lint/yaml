@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-eslint content/**/*.yaml || true

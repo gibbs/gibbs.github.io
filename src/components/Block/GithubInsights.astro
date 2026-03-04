@@ -1,0 +1,150 @@
+---
+import '@styles/vendor/github-language-colours.css';
+
+// @note - wip
+---
+
+<x-in x-data="xin" x-intersect:once="boot" x-on:x-insights.document="update($event)">
+	<div class="xin" x-show="show == true" x-cloak>
+		<div>
+			<h3>Language Popularity</h3>
+
+			<ul class="xin-bar-chart">
+				<template x-for="language in insights.usage">
+					<li class="xin-bar-item">
+						<span class="xin-bar-progress">
+							<span
+								:class="'xin-bar-progress-value gh-language gh-language--' + language.name.toLowerCase()"
+								:style="{ width: language.width + '%' }"></span>
+							<span class="xin-bar-title" x-text="language.name + ' (' + language.percentage + '%)'"
+							></span>
+						</span>
+					</li>
+				</template>
+			</ul>
+		</div>
+
+		<div>
+			<ul class="xin-language-key">
+				<template x-for="language in insights.languages">
+					<li x-text="language" :class="'gh-language gh-language--' + language.toLowerCase()"></li>
+				</template>
+			</ul>
+		</div>
+
+		<p class="text-center"><small>Data sourced from public repositories</small></p>
+	</div>
+</x-in>
+
+<script>
+	document.addEventListener('alpine:init', () => {
+		Alpine.data('xin', () => {
+			return {
+				show: false,
+				insights: { usage: [], languages: [] },
+
+				boot() {
+					this.show = true;
+				},
+
+				update(event) {
+					if (event?.detail && typeof event.detail === 'object') {
+						if (Array.isArray(event.detail.usage) && Array.isArray(event.detail.languages)) {
+							this.insights = event.detail;
+						} else {
+							console.warn('Invalid insight data:', event.detail);
+							this.insights = { usage: [], languages: [] };
+						}
+					} else {
+						console.warn('No insight data');
+						this.insights = { usage: [], languages: [] };
+					}
+				},
+			};
+		});
+	});
+</script>
+
+<style>
+	.xin {
+		display: grid;
+		width: 100%;
+		grid-template-columns: 1fr;
+		gap: var(--gap);
+	}
+
+	.xin-bar-progress {
+		display: flex;
+		height: 30px;
+		line-height: 30px;
+	}
+
+	.xin-bar-progress-value {
+		display: flex;
+		height: 30px;
+		animation: xin-progress-bar 2s ease;
+		transform-origin: left;
+	}
+
+	.xin-bar-chart {
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: column;
+		margin: 0;
+		padding: 0;
+		padding-bottom: var(--gap);
+		gap: var(--gap);
+		border-width: 0 0 6px 6px;
+		border-color: var(--border-color);
+		border-style: solid;
+		list-style-type: none;
+	}
+
+	.xin-bar-item {
+		position: relative;
+		display: flex;
+		justify-content: flex-end;
+	}
+
+	.xin-bar-progress {
+		width: 100%;
+	}
+
+	.xin-bar-title {
+		position: absolute;
+		font-size: smaller;
+		height: 30px;
+		line-height: 30px;
+		right: 0;
+		top: 0;
+		margin: 0 var(--gap-sm);
+	}
+
+	.xin-bar-progress-value.gh-language::before {
+		width: 100%;
+		height: 30px;
+	}
+
+	.xin-language-key {
+		display: flex;
+		flex-wrap: wrap;
+		margin: 0;
+		padding: 0;
+		gap: var(--gap-xs);
+	}
+
+	@media (--vp-md) {
+		.xin {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	@keyframes xin-progress-bar {
+		0% {
+			transform: scaleX(0);
+		}
+		100% {
+			transform: scaleX(1);
+		}
+	}
+</style>

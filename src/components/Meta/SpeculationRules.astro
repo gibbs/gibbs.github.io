@@ -1,0 +1,19 @@
+---
+const rules: Record<string, any> = {
+	prerender: [
+		{
+			eagerness: 'eager',
+			source: 'list',
+			urls: ['/', '/projects/', '/tools/'],
+		},
+		{
+			eagerness: 'moderate',
+			where: {
+				and: [{ href_matches: '/*' }, { not: { selector_matches: '[rel~=nofollow]' } }],
+			},
+		},
+	],
+};
+---
+
+<script is:inline type="speculationrules" set:html={JSON.stringify(rules)} />

@@ -1,0 +1,44 @@
+---
+import { env } from '@src/env.config';
+const { frontmatter } = Astro.props;
+
+const defaultData: Record<string, any> = {
+	'@context': 'https://schema.org',
+	'@type': 'Website',
+	name: 'Dan Gibbs',
+	description: 'The website of Dan Gibbs',
+	url: new URL('/', env.BASE_URL).href,
+	copyrightYear: new Date().getFullYear(),
+	copyrightHolder: {
+		'@type': 'Person',
+		name: 'Dan Gibbs',
+	},
+	inLanguage: 'en-GB',
+	mainEntityOfPage: true,
+	sameAs: ['https://github.com/gibbs/'],
+	publisher: {
+		'@type': 'Person',
+		name: 'Dan Gibbs',
+	},
+	author: {
+		'@type': 'Person',
+		name: 'Dan Gibbs',
+		url: new URL('/', env.BASE_URL).href,
+	},
+	creator: {
+		'@type': 'Person',
+		name: 'Dan Gibbs',
+		url: new URL('/', env.BASE_URL).href,
+	},
+	about: {
+		'@type': 'WebPage',
+	},
+};
+
+const linkData: Record<string, any> = {
+	...defaultData,
+	...frontmatter.linkdata,
+};
+---
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(linkData, null, 0)} />

@@ -1,35 +1,35 @@
 name: Deploy
 
 on:
+  push:
+    tags:
+       - '*'
   workflow_dispatch:
-  workflow_run:
-    workflows: ['Tests']
-    branches: [master]
-    types:
-      - completed
 
 jobs:
   build:
     name: Build
     runs-on: ubuntu-24.04
+    environment: production
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with:
-          node-version: '22'
+          node-version: '24'
       - name: Install NPM Dependencies
-        run: npm install
+        run: npm ci 
       - name: Build
         run: |
-          cp -f .env.production .env
-          npm run build
           npm run build
         env:
-          APP_ENV: production
-          APP_URL: https://dangibbs.uk
+          APP_SERVICE_URL: ${{ vars.APP_SERVICE_URL }}
+          BASE_URL: ${{ vars.BASE_URL }}
+          PRISMIC_REPOSITORY: ${{ secrets.PRISMIC_REPOSITORY }}
+          PRISMIC_ACCESS_TOKEN: ${{ secrets.PRISMIC_ACCESS_TOKEN }}
+          VITE_MODE: production
       - name: Archive Build
         env:
-          INPUT_PATH: docs/
+          INPUT_PATH: dist/
         run: |
           tar \
             --dereference --hard-dereference \

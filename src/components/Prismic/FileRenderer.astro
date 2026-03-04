@@ -1,0 +1,64 @@
+---
+import fs from 'node:fs';
+import path from 'path';
+import { senv } from '@src/senv.config';
+import { Markdown } from '@astropub/md';
+import { transformContent } from '@src/utils/content';
+import { createHighlighter } from 'shiki';
+import type { BundledLanguage } from 'shiki';
+
+const props = Astro.props;
+
+const filePath: string = path.join(senv.ASSET_PATH, `./files/${props.primary.path}`);
+
+const file: { type: string; content: string } = {
+	type: props.primary.title?.toLowerCase(),
+	content: fs.readFileSync(filePath, 'utf-8'),
+};
+
+if (props.primary.title) {
+	file.content = transformContent(file.content, file.type);
+}
+
+let language = props.primary.type.toLowerCase();
+let languageOverride = null;
+
+if (language === 'code') {
+	languageOverride = 'text';
+}
+
+const highlighter = await createHighlighter({
+	themes: ['github-dark'],
+	langs: [languageOverride || language],
+});
+
+const html = highlighter.codeToHtml(file.content, {
+	lang: (languageOverride || language) as BundledLanguage,
+	theme: 'github-dark',
+});
+
+highlighter.dispose();
+---
+
+{
+	language == 'markdown' && (
+		<div class="renderer-markdown">
+			<Markdown of={file.content} />
+		</div>
+	)
+}
+
+{
+	['yaml', 'code'].includes(language) && (
+		<div class="renderer-code">
+			<div set:html={html} />
+		</div>
+	)
+}
+{language == 'text' && <div class="renderer-text">{file.content}</div>}
+
+<style>
+	.renderer-markdown {
+		padding: var(--gap-sm) var(--gap-lg);
+	}
+</style>

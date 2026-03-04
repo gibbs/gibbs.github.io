@@ -1,0 +1,204 @@
+---
+import { __ } from '@i18n/utils';
+import BaseLayout from '@layouts/Base.astro';
+import { env } from '@src/env.config';
+import TechStack from '@components/Block/TechStack.astro';
+import GithubActivityFeed from '@components/Block/GithubActivityFeed.astro';
+import Time from '@components/Block/Time.astro';
+import '@styles/icons.css';
+
+const frontmatter = {
+	title: __('page.home.title'),
+	description: __('page.home.description'),
+	date: '2026-02-23',
+};
+---
+
+<BaseLayout frontmatter={frontmatter} url={Astro.url}>
+	<slot slot="header">
+		<section class="hero">
+			<h1>Dan Gibbs</h1>
+			<h2>Full-stack web developer</h2>
+			<span class="hero-location">
+				<span class="gg-pin"></span>
+				<span>Devon, UK</span>
+				<span class="gg-time"></span>
+				<Time interval={1000} format={'TIME_24_WITH_SHORT_OFFSET'} timezone={'Europe/London'} />
+			</span>
+		</section>
+	</slot>
+
+	<div class="container container-feed">
+		<GithubActivityFeed />
+	</div>
+
+	<div class="container">
+		<TechStack />
+	</div>
+
+	<script define:vars={{ BASE_URL: env.BASE_URL }}>
+		document.addEventListener('DOMContentLoaded', () => {
+			try {
+				const worker = new Worker(new URL('service-worker.js', BASE_URL));
+
+				worker.postMessage({ type: 'getActivityFeed' });
+
+				worker.onmessage = (e) => {
+					if (typeof e.data === 'object' && e.data.type === 'insights' && e.data?.detail) {
+						if (e.data.detail.activity) {
+							document.dispatchEvent(
+								new CustomEvent('x-activity-timeline', {
+									detail: e.data.detail.activity,
+								}),
+							);
+						}
+
+						if (e.data.detail.insights) {
+							document.dispatchEvent(
+								new CustomEvent('x-insights', {
+									detail: e.data.detail.insights,
+								}),
+							);
+						}
+					}
+				};
+
+				worker.onerror = (error) => {
+					console.error('Service Worker error:', error.message);
+					document.dispatchEvent(
+						new CustomEvent('x-activity-timeline', {
+							detail: { groups: [] },
+						}),
+					);
+				};
+			} catch (err) {
+				console.error('Failed to initialise service worker: ', err);
+			}
+		});
+	</script>
+</BaseLayout>
+
+<style is:global>
+	.main {
+		padding: 0;
+	}
+
+	.header {
+		color-scheme: dark;
+		position: relative;
+		flex-wrap: wrap;
+		align-items: baseline;
+		min-height: 100vh;
+		background-repeat: repeat;
+		background-image: radial-gradient(rgba(255, 255, 255, 0.4), rgba(0, 0, 0, 0.4) 1px);
+		background-size: 1rem 1rem;
+		animation: none;
+	}
+
+	.header::before {
+		content: '';
+		background-color: var(--bg);
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: -1;
+	}
+
+	.header::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: -1;
+		background: linear-gradient(-135deg, var(--primary-dark), var(--accent), var(--primary-light));
+		background-size: 350% 350%;
+		animation: header-gradient 30s ease infinite;
+		animation-duration: 15s;
+		opacity: 0.5;
+	}
+
+	.hero {
+		order: 3;
+		padding: var(--gap-xxl) 0;
+		width: 100%;
+		grid-column: 1 / -1;
+		flex-shrink: 0;
+		justify-content: center;
+		text-align: center;
+		overflow: hidden;
+
+		h1 {
+			font-size: 5.5rem;
+			letter-spacing: -0.5rem;
+			font-weight: 500;
+			color: white;
+			margin: 0;
+			text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+			text-align: center;
+			word-break: unset;
+			min-width: 100%;
+			animation: slideinT ease-in-out 1s;
+		}
+
+		h2 {
+			font-weight: 400;
+			margin: 1.5rem 0;
+			text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+			color: #fff;
+			overflow: hidden;
+			word-break: unset;
+			min-width: 100%;
+		}
+
+		[class^='gg-']:not(:first-of-type) {
+			margin-left: var(--gap-xs);
+		}
+	}
+
+	.hero-location {
+		display: flex;
+		flex-direction: row;
+		color: var(--text);
+		gap: var(--gap-xs);
+		align-items: center;
+		margin: 0.5rem 0;
+		font-size: small;
+		justify-content: center;
+		text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+	}
+
+	.container-feed {
+		position: relative;
+		padding-bottom: 0;
+	}
+
+	/*.container-feed::after {
+		position: absolute;
+		display: block;
+		content: '';
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		background-image: var(--background-chequered);
+		background-repeat: repeat;
+		background-size: 20%;
+		z-index: -1;
+		opacity: 0.4;
+	}*/
+
+	@keyframes slideinT {
+		0% {
+			opacity: 0.25;
+			transform: scaleY(0.85) scaleX(0.85);
+		}
+		100% {
+			opacity: 1;
+			transform: scaleY(1) scaleX(1);
+		}
+	}
+</style>
