@@ -20,17 +20,21 @@ const props = Astro.props;
 	.badges {
 		display: flex;
 		flex-direction: column;
-		align-items: center;
-		gap: var(--gap-sm);
+		gap: var(--gap-xs);
 		list-style-type: none;
-		margin: var(--gap-xs) 0 var(--gap) 0;
+		margin: var(--gap) 0;
 		padding: 0;
 		font-size: 0;
+
+		img {
+			margin: 0;
+		}
 	}
 
 	@media (--vp-sm) {
 		.badges {
 			flex-direction: row;
+			align-items: center;
 			gap: var(--gap-xs);
 		}
 	}
