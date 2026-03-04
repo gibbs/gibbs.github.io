@@ -1,0 +1,15 @@
+diff --git a/node_modules/@alpinejs/csp/dist/module.esm.js b/node_modules/@alpinejs/csp/dist/module.esm.js
+index e9c96ec..901dd8d 100644
+--- a/node_modules/@alpinejs/csp/dist/module.esm.js
++++ b/node_modules/@alpinejs/csp/dist/module.esm.js
+@@ -1772,6 +1772,10 @@ var globals = /* @__PURE__ */ new Set();
+ Object.getOwnPropertyNames(globalThis).forEach((key) => {
+   if (key === "styleMedia")
+     return;
++  // Prevent Chrome deprecation warning...
++  if (key === "sharedStorage")
++    return;
++
+   globals.add(globalThis[key]);
+ });
+ var Token = class {
