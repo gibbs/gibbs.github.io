@@ -14,7 +14,7 @@
 
 .flex {
 	display: flex;
-	flex-flow: column nowrap;
+	flex-flow: row nowrap;
 	justify-content: space-between;
 	align-items: center;
 	gap: var(--gap);
@@ -77,11 +77,5 @@
 	.flex {
 		flex-direction: row;
 		gap: var(--gap-sm);
-	}
-}
-
-@media (--max-vp-md) {
-	.row {
-		flex-direction: column;
 	}
 }

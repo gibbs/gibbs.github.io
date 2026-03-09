@@ -9,6 +9,7 @@ h6 {
 	padding: 0;
 	margin-block-start: var(--space-4);
 	margin-block-end: var(--space-3);
+	word-wrap: break-word;
 }
 
 h1, h2 {
@@ -19,7 +20,6 @@ h1 {
 	font-size: var(--font-size-h1);
 	letter-spacing: -0.03em;
 	font-weight: 500;
-	text-align: center;
 	line-height: 1.2;
 	margin-block-start: var(--space-6);
 	margin-block-end: var(--space-4);
