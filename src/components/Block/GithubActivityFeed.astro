@@ -88,7 +88,7 @@ import '@styles/icons.css';
 		display: flex;
 		flex-direction: column;
 		margin: 0;
-		padding: var(--gap-xl);
+		padding: var(--gap);
 		gap: var(--gap-sm);
 		list-style: none;
 	}
@@ -103,8 +103,9 @@ import '@styles/icons.css';
 
 	.xat-entry {
 		display: flex;
-		flex-direction: column;
-		gap: var(--gap);
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: var(--gap-xxs);
 		align-items: center;
 		animation-name: entryIn;
 		animation-duration: 600ms;
@@ -115,11 +116,21 @@ import '@styles/icons.css';
 	}
 
 	.xat-description {
-		flex-grow: 1;
+		flex: 1 0 auto;
+		width: 100%;
+		margin-bottom: var(--gap);
+
+		p:last-of-type {
+			margin: 0;
+		}
+	}
+
+	.xat-repository {
+		flex: 1 0 auto;
 	}
 
 	.xat-description.has-icon {
-		gap: var(--gap);
+		gap: var(--gap-lg);
 		color: var(--white);
 	}
 
@@ -151,8 +162,25 @@ import '@styles/icons.css';
 	}
 
 	@media (--vp-md) {
+		.xat-entries {
+			padding: var(--gap);
+		}
+
 		.xat-entry {
 			flex-direction: row;
+			padding: var(--gap-xs);
+			gap: var(--gap-xl);
+			flex-wrap: nowrap;
+		}
+
+		.xat-description {
+			flex: 1 1 auto;
+			width: auto;
+			margin-bottom: 0;
+		}
+
+		.xat-repository {
+			flex: 0 1 auto;
 		}
 	}
 
