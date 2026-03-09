@@ -59,7 +59,7 @@ const tabs = Object.entries(Stack).map(([index, category]) => ({
 	.stack-items {
 		display: grid;
 		gap: var(--gap-xs);
-		grid-template-columns: 1fr;
+		grid-template-columns: 1fr 1fr;
 		list-style-type: none;
 		margin: 0;
 		padding: 0;
@@ -120,10 +120,13 @@ const tabs = Object.entries(Stack).map(([index, category]) => ({
 
 	.xt-stack-tablist {
 		display: flex;
-		flex-direction: column;
-		flex-wrap: wrap;
+		flex-direction: row;
+		flex-wrap: nowrap;
 		gap: var(--gap-xs);
-		margin: 0 0 var(--gap) 0;
+		padding: var(--gap);
+		max-width: 100%;
+		overflow: scroll;
+		scrollbar-width: none;
 	}
 
 	.xt-stack-label {
@@ -136,8 +139,8 @@ const tabs = Object.entries(Stack).map(([index, category]) => ({
 		background-image: none;
 		background-color: var(--surface-1);
 		border: var(--border-width) solid var(--surface-2);
-		border-radius: calc(var(--border-radius) * 3);
-		padding: var(--gap-sm) var(--gap-xl);
+		padding: var(--gap-xs) var(--gap);
+		border-radius: calc(var(--border-radius));
 	}
 
 	.xt-stack-tablist.col .xt-stack-label {
@@ -175,12 +178,18 @@ const tabs = Object.entries(Stack).map(([index, category]) => ({
 		.xt-stack-tab {
 			font-size: medium;
 		}
+
+		.xt-stack-label {
+			padding: var(--gap-sm) var(--gap-xl);
+			border-radius: calc(var(--border-radius) * 3);
+		}
 	}
 
 	@media (--vp-lg) {
 		.xt-stack-tablist {
 			flex-direction: row;
 			gap: var(--gap-sm);
+			margin: 0 0 var(--gap) 0;
 		}
 	}
 </style>

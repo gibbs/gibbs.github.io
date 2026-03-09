@@ -127,16 +127,22 @@ const isVertical = orientation === 'vertical';
 		position: relative;
 		display: flex;
 		flex: 1 1 auto;
-		padding: var(--gap) var(--gap-xl);
+		padding: var(--gap-xs) var(--gap-sm);
 		cursor: pointer;
 		font-weight: 500;
 		background-size: 200% 100%;
 		background-image: linear-gradient(to right, transparent 50%, var(--tab) 50%);
-		border-radius: var(--border-radius);
+		border-radius: var(--border-radius) var(--border-radius) 0 0;
+	}
+
+	.xt-tablist.row {
+		max-width: 100%;
+		overflow-x: scroll;
+		scrollbar-width: none;
 	}
 
 	.xt-tablist.col .xt-label {
-		border-radius: var(--border-radius);
+		border-radius: var(--border-radius) 0 0 var(--border-radius);
 	}
 
 	input[type='radio']:checked + .xt-label {
@@ -151,6 +157,7 @@ const isVertical = orientation === 'vertical';
 
 	@media (--vp-md) {
 		.xt-label {
+			padding: var(--gap) var(--gap-xl);
 			border-radius: var(--border-radius) var(--border-radius) 0 0;
 		}
 
