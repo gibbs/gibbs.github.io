@@ -106,7 +106,7 @@ td, th {
 	width: 100%;
 	gap: var(--gap-xs);
 	list-style-type: none;
-	padding: 0;
+	padding: var(--gap-xs) 0;
 	margin: 0;
 }
 
@@ -262,6 +262,7 @@ input[name="nav-input"]:checked ~ .nav-menu-button {
 		flex-direction: row;
 		justify-content: space-between;
 		order: 0;
+		padding: var(--gap-sm) var(--gap-lg);
 	}
 
 	.nav-menu-button {
