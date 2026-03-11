@@ -6,6 +6,7 @@ import { Markdown } from '@astropub/md';
 import { transformContent } from '@src/utils/content';
 import { createHighlighter } from 'shiki';
 import type { BundledLanguage } from 'shiki';
+import PuppetMetadata from '@components/Block/PuppetMetadata.astro';
 
 const props = Astro.props;
 
@@ -23,7 +24,7 @@ if (props.primary.title) {
 let language = props.primary.type.toLowerCase();
 let languageOverride = null;
 
-if (language === 'code') {
+if (['code', 'puppet metadata'].includes(language)) {
 	languageOverride = 'text';
 }
 
@@ -40,6 +41,7 @@ const html = highlighter.codeToHtml(file.content, {
 highlighter.dispose();
 ---
 
+{language == 'puppet metadata' && <PuppetMetadata data={file.content} />}
 {
 	language == 'markdown' && (
 		<div class="renderer-markdown">
