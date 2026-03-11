@@ -84,7 +84,7 @@ const frontmatter = {
 	}
 
 	.header {
-		position: fixed;
+		position: absolute;
 		color-scheme: dark;
 	}
 
@@ -97,6 +97,7 @@ const frontmatter = {
 	}
 
 	.hero {
+		color-scheme: dark;
 		height: 100vh;
 		align-content: center;
 		padding: var(--gap-xxl) 0;
@@ -131,6 +132,18 @@ const frontmatter = {
 		[class^='gg-']:not(:first-of-type) {
 			margin-left: var(--gap-xs);
 		}
+	}
+
+	.hero::before {
+		content: '';
+		color-scheme: dark;
+		background-color: var(--bg);
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: -1;
 	}
 
 	.hero::after {
