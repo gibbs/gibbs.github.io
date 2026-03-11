@@ -28,6 +28,8 @@ const { frontmatter, url } = Astro.props;
 			<slot slot="header" name="header" />
 		</Header>
 
+		<slot slot="header-after" name="header-after" />
+
 		<main class="main">
 			<slot />
 		</main>
