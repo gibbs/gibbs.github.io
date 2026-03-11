@@ -1,0 +1,96 @@
+---
+interface Props {
+	data: string;
+}
+
+interface PuppetMetadata {
+	name: string;
+	version: string;
+	author: string;
+	summary: string;
+	license: string;
+	source: string;
+	project_page?: string;
+	issues_url?: string;
+	dependencies?: {
+		name: string;
+		version_requirement?: string;
+	}[];
+	operatingsystem_support?: {
+		operatingsystem: string;
+		operatingsystemrelease?: string[];
+	}[];
+	requirements?: Array<{
+		name: string;
+		version_requirement?: string;
+	}>;
+	tags?: string[];
+	[key: string]: any;
+}
+
+const { data = '{}' } = Astro.props;
+const metadata: PuppetMetadata = JSON.parse(data);
+---
+
+<ol class="metadata">
+	{
+		metadata.requirements && metadata.requirements.length > 0 && (
+			<li class="puppet-version">
+				<strong>Puppet version:</strong> {metadata.requirements[0].version_requirement}
+			</li>
+		)
+	}
+	{
+		metadata.operatingsystem_support && metadata.operatingsystem_support.length > 0 && (
+			<li class="os-support">
+				<strong>OS:</strong>
+				<ol class="os-support-list">
+					{metadata.operatingsystem_support.map((item) => (
+						<li>
+							{item.operatingsystemrelease && (
+								<>
+									{item.operatingsystem}: {item.operatingsystemrelease.join(', ')}
+								</>
+							)}
+							{!item.operatingsystemrelease && <>{item.operatingsystem}</>}
+						</li>
+					))}
+				</ol>
+			</li>
+		)
+	}
+</ol>
+
+<style>
+	.metadata {
+		background-color: var(--surface-2);
+		margin: var(--gap) 0 0 0;
+		padding: var(--gap-sm);
+		list-style-type: none;
+		border-left: calc(var(--border-width) * 2) solid var(--surface-3);
+
+		li {
+			margin: 0;
+		}
+
+		li > ol {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+		}
+	}
+
+	.os-support,
+	.os-support-list {
+		display: flex;
+	}
+
+	.os-support {
+		gap: var(--gap-xxs);
+	}
+
+	.os-support-list {
+		gap: var(--gap-xs);
+		flex-wrap: wrap;
+	}
+</style>

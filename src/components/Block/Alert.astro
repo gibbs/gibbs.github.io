@@ -41,7 +41,7 @@ const icon = icons[type];
 	.alert {
 		padding: var(--gap-lg) var(--gap);
 		border: var(--border-width) solid;
-		margin: 0 0 var(--gap-sm) 0;
+		margin: var(--gap-sm) 0 var(--gap-sm) 0;
 		border-color: light-dark(
 			oklch(from var(--alert-color) calc(l - 0.15) c h / 0.8),
 			oklch(from var(--alert-color) calc(l + 0.15) c h / 0.5)
@@ -52,13 +52,15 @@ const icon = icons[type];
 		);
 		border-radius: var(--border-radius);
 		color: var(--white);
+	}
 
-		p:last-of-type {
-			margin-bottom: 0;
-		}
+	.has-icon [class^='gg-'] {
+		--text-color: oklch(from var(--alert-color) calc(l + 0.25) c h);
+	}
+</style>
 
-		gg-* {
-			color: oklch(from var(--alert-color) calc(l + 0.25) c h);
-		}
+<style is:inline>
+	.alert p:last-of-type {
+		margin-bottom: 0;
 	}
 </style>
