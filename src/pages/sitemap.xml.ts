@@ -18,7 +18,7 @@ export const GET: APIRoute = async () => {
 		});
 	});
 
-	for (const type of ['project', 'blog', 'tools']) {
+	for (const type of ['page', 'project', 'blog', 'tools']) {
 		try {
 			const pages = await client.getAllByType(type, {
 				fetch: ['page.last_publication_date'],
@@ -31,7 +31,12 @@ export const GET: APIRoute = async () => {
 	}
 
 	sitemapRoutes.forEach((route) => {
-		const url = `${baseUrl.replace(/\/$/, '')}${route.url}`;
+		let url = `${baseUrl.replace(/\/$/, '')}`;
+
+		if (route.uid != 'index') {
+			url += route.url ? route.url : `/${route.uid}`;
+		}
+
 		const lastMod = route.last_publication_date
 			? new Date(route.last_publication_date).toISOString()
 			: new Date().toISOString();

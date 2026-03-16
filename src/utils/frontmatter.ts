@@ -38,7 +38,7 @@ export function generateFrontmatter(document: PrismicDocument, type?: string): F
 		description: document.data.meta_description,
 		linkdata: {
 			...linkData,
-			...JSON.parse(document.data.linkdata[0].text),
+			...JSON.parse(document.data?.linkdata[0]?.text || '{}'),
 		},
 	};
 

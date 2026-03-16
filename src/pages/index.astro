@@ -1,5 +1,6 @@
 ---
-import { __ } from '@i18n/utils';
+import { getPageByUID } from '@src/prismic';
+import { generateFrontmatter } from '@utils/frontmatter';
 import BaseLayout from '@layouts/Base.astro';
 import { env } from '@src/env.config';
 import TechStack from '@components/Block/TechStack.astro';
@@ -7,11 +8,8 @@ import GithubActivityFeed from '@components/Block/GithubActivityFeed.astro';
 import Time from '@components/Block/Time.astro';
 import '@styles/icons.css';
 
-const frontmatter = {
-	title: __('page.home.title'),
-	description: __('page.home.description'),
-	date: '2026-02-23',
-};
+const page = await getPageByUID('index', 'page');
+const frontmatter = generateFrontmatter(page, 'Website');
 ---
 
 <BaseLayout frontmatter={frontmatter} url={Astro.url}>

@@ -5,27 +5,6 @@ const trans: Record<string, any> = {
 		projects: 'Projects',
 		tools: 'Tools',
 	},
-	page: {
-		home: {
-			title: 'Dan Gibbs',
-			description: 'The homepage of Dan Gibbs',
-		},
-		blog: {
-			title: 'Blog',
-			description: 'Web and techology related posts from Dan Gibbs',
-		},
-		projects: {
-			title: 'Projects',
-			description: 'A list of current projects',
-			heading: 'Projects',
-		},
-		tools: {
-			title: 'Tools',
-			description: 'Web based tools and utilities',
-			heading: 'Tools & Utilities',
-			text: 'An assortment of web based tools and utilities.',
-		},
-	},
 	component: {
 		copyright: `Copyright $1 2007 - $2 Dan Gibbs`,
 		build: 'Build',

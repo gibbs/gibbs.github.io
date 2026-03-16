@@ -1,19 +1,18 @@
 ---
-import { __ } from '@i18n/utils';
 import BaseLayout from '@layouts/Base.astro';
 import Card from '@components/Block/Card.astro';
-import { getAllProjects } from '@src/prismic';
+import { getPageByUID, getAllProjects } from '@src/prismic';
+import { generateFrontmatter } from '@utils/frontmatter';
+import SliceLibrary from '@components/Prismic/SliceLibrary.astro';
+
+const page = await getPageByUID('projects', 'page');
+const frontmatter = generateFrontmatter(page, 'Table');
 
 const projects = await getAllProjects().then((response) => response.results);
-const frontmatter = {
-	title: __('page.projects.title'),
-	description: __('page.projects.description'),
-	date: '2026-02-23',
-};
 ---
 
 <BaseLayout frontmatter={frontmatter} url={Astro.url}>
-	<h1>{__('page.projects.heading')}</h1>
+	<SliceLibrary slices={page.data.slices} />
 
 	<section class="projects">
 		{
