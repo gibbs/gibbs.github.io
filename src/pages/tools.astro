@@ -1,20 +1,18 @@
 ---
-import { __ } from '@i18n/utils';
 import BaseLayout from '@layouts/Base.astro';
-import { getAllTools } from '@src/prismic';
 import { env } from '@src/env.config';
+import { getPageByUID, getAllTools } from '@src/prismic';
+import { generateFrontmatter } from '@utils/frontmatter';
+import SliceLibrary from '@components/Prismic/SliceLibrary.astro';
+
+const page = await getPageByUID('tools', 'page');
+const frontmatter = generateFrontmatter(page, 'Table');
 
 const tools = await getAllTools().then((response) => response.results);
-const frontmatter = {
-	title: __('page.tools.title'),
-	description: __('page.tools.description'),
-	date: '2026-02-23',
-};
 ---
 
 <BaseLayout frontmatter={frontmatter} url={Astro.url}>
-	<h1>{__('page.tools.heading')}</h1>
-	<p>{__('page.tools.text')}</p>
+	<SliceLibrary slices={page.data.slices} />
 
 	<ol class="tools">
 		{

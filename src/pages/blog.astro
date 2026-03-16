@@ -1,22 +1,23 @@
 ---
-import { __ } from '@i18n/utils';
 import BaseLayout from '@layouts/Base.astro';
 import Logo from '@components/Block/LogoIcon.astro';
 import Card from '@components/Block/Card.astro';
 import { env } from '@src/env.config';
-import { getAllPosts } from '@src/prismic';
 import { DateTime } from 'luxon';
+import { getPageByUID, getAllPosts } from '@src/prismic';
+import { generateFrontmatter } from '@utils/frontmatter';
+import SliceLibrary from '@components/Prismic/SliceLibrary.astro';
 
-const frontmatter = {
-	title: __('page.blog.title'),
-	description: __('page.blog.description'),
-	date: '2022-06-19',
-};
+const page = await getPageByUID('blog', 'page');
+const frontmatter = generateFrontmatter(page, 'Table');
+
 const posts = await getAllPosts().then((response) => response.results);
 const featured = posts.shift();
 ---
 
 <BaseLayout frontmatter={frontmatter} url={Astro.url}>
+	<SliceLibrary slices={page.data.slices} />
+
 	<article class="blog-featured">
 		<div class="blog-featured-logo">
 			<Logo size={92} icon={featured.tags[0]} />
