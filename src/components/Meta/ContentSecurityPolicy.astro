@@ -34,16 +34,14 @@ interface CspDirectives {
 const resources: CspDirectives = {
 	'connect-src': [
 		new URL('/', env.APP_SERVICE_URL).href,
-		new URL('/', env.APP_SEARCH_URL).href
+		new URL('/', env.APP_SEARCH_URL).href,
 	].join(' '),
 	'img-src': [
 		'https://github.com/gibbs/',
 		'https://img.shields.io/',
 		'https://images.prismic.io/dangibbs/',
 	].join(' '),
-	'script-src': [
-		'https://static.cdn.prismic.io/',
-	].join(' '),
+	'script-src': ['https://static.cdn.prismic.io/'].join(' '),
 	'frame-src': ['https://dangibbs.prismic.io/'].join(' '),
 };
 
