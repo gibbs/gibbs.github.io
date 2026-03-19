@@ -62,13 +62,13 @@ td, th {
 .header {
 	position: sticky;
 	display: grid;
-	grid-template-columns: 1fr min-content;
+	grid-template-columns: min-content 1fr min-content;
 	grid-template-rows: auto;
 	top: 0;
 	left: 0;
 	width: 100%;
 	align-items: center;
-	gap: 0 var(--gap);
+	gap: 0 var(--gap-sm);
 	padding: var(--gap);
 	backdrop-filter: blur(5px);
 	z-index: 100;
@@ -102,6 +102,7 @@ td, th {
 .nav {
 	display: none;
 	flex-direction: column;
+	align-items: center;
 	grid-column: 1 / -1;
 	width: 100%;
 	gap: var(--gap-xs);
@@ -258,11 +259,12 @@ input[name="nav-input"]:checked ~ .nav-menu-button {
 	}
 
 	.header {
-		grid-template-columns: max-content auto;
+		grid-template-columns: min-content 1fr auto;
 		flex-direction: row;
 		justify-content: space-between;
 		order: 0;
 		padding: var(--gap-sm) var(--gap-lg);
+		gap: var(--gap);
 	}
 
 	.nav-menu-button {
@@ -276,7 +278,7 @@ input[name="nav-input"]:checked ~ .nav-menu-button {
 
 	.logo,
 	.scheme-preference {
-		order: 1;
+		order: 2;
 	}
 
 	.nav {
@@ -284,8 +286,17 @@ input[name="nav-input"]:checked ~ .nav-menu-button {
 		order: 0;
 	}
 
+	.search-bar {
+		order: 1;
+	}
+
 	.nav-item {
 		width: min-content;
+		transition: flex-grow ease-in-out var(--transition-duration);
+	}
+
+	.nav-item.search:focus-within{
+		flex-grow: 1;
 	}
 
 	.main {

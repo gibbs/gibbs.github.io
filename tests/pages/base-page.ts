@@ -52,6 +52,14 @@ export class BasePage {
 			rules: {
 				'no-inline-style': 'off',
 				'attribute-boolean-style': 'off',
+				'prefer-native-element': [
+					'error',
+					{
+						exclude: [
+							'listbox', // The listbox role is used for search results
+						],
+					},
+				],
 			},
 			elements: [
 				'html5',

@@ -38,6 +38,14 @@ const trans: Record<string, any> = {
 			previous: 'Previous',
 			back: 'Back to $1',
 		},
+		search: {
+			placeholder: 'Search...',
+			search: 'Search site content',
+			unavailable: 'Search is currently unavailable.',
+			fetchFailed: 'Unable to fetch search results.',
+			results: '$1 results available. Use up and down arrows to review results.',
+			noresults: 'No results found.',
+		},
 	},
 };
 
