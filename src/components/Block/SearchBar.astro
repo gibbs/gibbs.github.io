@@ -1,0 +1,359 @@
+---
+import { __ } from '@i18n/utils';
+import { env } from '@src/env.config';
+
+interface Props {
+	searchUrl?: string;
+	searchKey?: string;
+	searchIndex?: string;
+	placeholder?: string;
+}
+
+const {
+	searchUrl = env.VITE_MEILISEARCH_URL,
+	searchKey = env.VITE_MEILISEARCH_SEARCH_KEY,
+	searchIndex = env.VITE_MEILISEARCH_INDEX,
+	placeholder = __('component.search.placeholder'),
+} = Astro.props;
+---
+
+<x-search-bar class="search-bar" x-data="search" @focusout="handleFocusOut($event)">
+	<label class="sr-only" for="search">{__('component.search.search')}</label>
+	<input
+		name="search"
+		id="search"
+		class="search-bar-input"
+		type="search"
+		autocomplete="off"
+		placeholder={placeholder}
+		x-ref="searchInput"
+		x-model="searchTerm"
+		role="combobox"
+		aria-haspopup="listbox"
+		aria-autocomplete="list"
+		aria-controls="search-results"
+		aria-expanded="false"
+		:aria-expanded="isOpen.toString()"
+		:aria-activedescendant="selectedIndex > -1 ? resultId(selectedIndex) : undefined"
+		@input.debounce.250ms="search()"
+		@focus="openResults()"
+		@click="openResults()"
+		@keydown.arrow-down.stop.prevent="highlightNext()"
+		@keydown.arrow-up.stop.prevent="highlightPrev()"
+		@keydown.enter.stop.prevent="goToLink()"
+		@keydown.escape.stop.prevent="closeResults()"
+		@keydown.slash.window="focusShortcut($event)"
+		data-search-url={searchUrl}
+		data-search-index={searchIndex}
+		data-search-key={searchKey}
+	/>
+
+	<ol
+		id="search-results"
+		class="search-bar-results"
+		role="listbox"
+		x-ref="resultsList"
+		x-show="isOpen"
+		x-cloak
+		@mousedown.prevent
+	>
+		<template x-for="(result, i) in results" :key="i">
+			<li
+				:id="resultId(i)"
+				class="search-bar-result"
+				role="option"
+				aria-selected="false"
+				:aria-selected="selectedIndex === i"
+				:class="{ 'is-highlighted': selectedIndex === i }"
+				@mousemove="selectedIndex = i"
+				@click="selectResult(result)"
+			>
+				<h3 class="search-bar-result-heading" x-text="result.title">Search result</h3>
+				<p class="search-bar-result-summary" x-text="result.summary"></p>
+			</li>
+		</template>
+	</ol>
+
+	<span class="sr-only" role="status" aria-live="polite" x-text="status"></span>
+</x-search-bar>
+
+<script>
+	// @ts-nocheck
+	import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
+
+	document.addEventListener('alpine:init', () => {
+		window.Alpine.data('search', () => ({
+			client: /** @type {any} */ (null),
+			url: null,
+			key: null,
+			index: null,
+			searchTerm: '',
+			results: /** @type {Array<{ title: string; summary: string; url: string }>} */ ([]),
+			isOpen: false,
+			status: '',
+			selectedIndex: -1,
+
+			getSearchInput() {
+				return this.$refs.searchInput;
+			},
+
+			init() {
+				const searchInput = this.getSearchInput();
+
+				this.url = searchInput.dataset.searchUrl;
+				this.key = searchInput.dataset.searchKey;
+				this.index = searchInput.dataset.searchIndex;
+
+				if (!this.url || !this.key || !this.index) {
+					this.status = 'Search is currently unavailable.';
+
+					return;
+				}
+
+				this.client = instantMeiliSearch(this.url, this.key, {
+					placeholderSearch: false,
+				}).searchClient;
+			},
+
+			resultId(index) {
+				return `search-bar-result-${index}`;
+			},
+
+			async search() {
+				const query = this.searchTerm.trim();
+
+				if (query.length === 0) {
+					this.results = [];
+					this.status = '';
+					this.closeResults();
+
+					return;
+				}
+
+				if (!this.client) {
+					this.status = 'Search is currently unavailable.';
+					return;
+				}
+
+				try {
+					const response = await this.client.search([
+						{
+							indexName: this.index,
+							params: {
+								query,
+								hitsPerPage: 10,
+							},
+						},
+					]);
+
+					this.results = response.results?.[0]?.hits ?? [];
+					this.selectedIndex = -1;
+					this.isOpen = this.results.length > 0;
+					this.status = this.results.length
+						? `${this.results.length} results available. Use up and down arrows to review results.`
+						: 'No results found.';
+				} catch {
+					this.results = [];
+					this.status = 'Unable to fetch search results.';
+					this.closeResults();
+				}
+			},
+
+			highlightNext() {
+				if (this.results.length === 0) {
+					return;
+				}
+
+				this.isOpen = true;
+
+				if (this.selectedIndex >= this.results.length - 1) {
+					this.selectedIndex = 0;
+					this.scrollActiveResultIntoView();
+					return;
+				}
+
+				this.selectedIndex++;
+				this.scrollActiveResultIntoView();
+			},
+
+			highlightPrev() {
+				if (this.results.length === 0) {
+					return;
+				}
+
+				this.isOpen = true;
+
+				if (this.selectedIndex <= 0) {
+					this.selectedIndex = this.results.length - 1;
+					this.scrollActiveResultIntoView();
+					return;
+				}
+
+				this.selectedIndex--;
+				this.scrollActiveResultIntoView();
+			},
+
+			goToLink() {
+				const index = this.selectedIndex > -1 ? this.selectedIndex : 0;
+				const result = this.results[index];
+
+				if (!result?.url) {
+					return;
+				}
+
+				window.location.assign(result.url);
+			},
+
+			selectResult(result) {
+				if (!result?.url) {
+					return;
+				}
+
+				window.location.assign(result.url);
+			},
+
+			openResults() {
+				this.isOpen = this.results.length > 0;
+			},
+
+			closeResults() {
+				this.isOpen = false;
+				this.selectedIndex = -1;
+			},
+
+			scrollActiveResultIntoView() {
+				if (this.selectedIndex < 0) {
+					return;
+				}
+
+				this.$nextTick(() => {
+					const resultsList = this.$refs.resultsList;
+					const activeItem = document.getElementById(this.resultId(this.selectedIndex));
+
+					if (!resultsList || !activeItem) {
+						return;
+					}
+
+					const activeTop = activeItem.offsetTop;
+					const activeBottom = activeTop + activeItem.offsetHeight;
+					const visibleTop = resultsList.scrollTop;
+					const visibleBottom = visibleTop + resultsList.clientHeight;
+
+					if (activeTop < visibleTop) {
+						resultsList.scrollTop = activeTop;
+
+						return;
+					}
+
+					if (activeBottom > visibleBottom) {
+						resultsList.scrollTop = activeBottom - resultsList.clientHeight;
+					}
+				});
+			},
+
+			focusShortcut(e) {
+				if (e.target instanceof HTMLElement && e.target.isContentEditable) {
+					return;
+				}
+
+				if (
+					e.target instanceof HTMLInputElement ||
+					e.target instanceof HTMLTextAreaElement ||
+					e.target instanceof HTMLSelectElement
+				) {
+					return;
+				}
+
+				e.preventDefault();
+				this.getSearchInput().focus();
+			},
+
+			handleFocusOut(e) {
+				if (e.relatedTarget instanceof HTMLElement && this.$el.contains(e.relatedTarget)) {
+					return;
+				}
+
+				this.closeResults();
+			},
+		}));
+	});
+</script>
+
+<style>
+	.search-bar {
+		position: relative;
+		display: block;
+		width: 100%;
+		min-width: min(20rem, 100%);
+	}
+
+	.search-bar-input {
+		position: relative;
+		color: var(--text-color);
+		padding: var(--gap-sm);
+		border: var(--border-width) solid var(--border-color);
+		border-radius: var(--border-radius);
+		background-color: light-dark(var(--white), oklch(from var(--bg) calc(l + 0.15) c h));
+		outline: var(--tertiary);
+		font-size: var(--font-size);
+		min-width: 100%;
+		max-width: 100%;
+	}
+
+	.search-bar-results {
+		position: absolute;
+		background-color: light-dark(var(--white), oklch(from var(--bg) calc(l + 0.15) c h));
+		margin: 0;
+		padding: 0;
+		top: calc(100% - (var(--border-radius) / 2));
+		left: 0;
+		width: 100%;
+		list-style-type: none;
+		overflow-y: auto;
+		overscroll-behavior: contain;
+		max-height: 90vh;
+		border: var(--border-width) solid var(--border-color);
+		border-top: 0;
+		z-index: 10;
+	}
+
+	.search-bar-result {
+		padding: var(--gap-xs) var(--gap);
+		cursor: pointer;
+		margin: 0;
+		min-height: 44px;
+	}
+
+	.search-bar-result.is-highlighted {
+		background: light-dark(
+			oklch(from var(--tertiary) calc(l + 0.15) calc(c * 0.3) h),
+			oklch(from var(--tertiary) calc(l - 0.1) calc(c * 0.3) h)
+		);
+	}
+
+	.search-bar-result-heading {
+		margin: 0;
+		font-size: var(--font-size-h5);
+	}
+
+	.search-bar-result-summary {
+		font-size: small;
+		margin: 0;
+	}
+
+	.search-bar-result-url {
+		margin: 0;
+		font-size: smaller;
+		opacity: 0.85;
+	}
+
+	@media (--vp-md) {
+		.search-bar-input {
+			min-width: auto;
+		}
+
+		.search-bar:focus-within .search-bar-input {
+			min-width: 100%;
+		}
+	}
+</style>

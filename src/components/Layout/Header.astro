@@ -1,10 +1,12 @@
 ---
 import SchemePreference from '@components/Block/SchemePreference.astro';
 import Navigation from '@components/Layout/Navigation.astro';
+import SearchBar from '@components/Block/SearchBar.astro';
 ---
 
 <header class="header">
 	<SchemePreference />
+	<SearchBar />
 	<Navigation />
 
 	<slot name="header" slot="header" />

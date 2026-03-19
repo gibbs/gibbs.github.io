@@ -124,7 +124,7 @@
 
 	.scheme-preference-switch {
 		position: relative;
-		display: flex;
+		display: none;
 		width: var(--switch-width);
 		height: var(--switch-height);
 		padding: var(--switch-padding);
@@ -179,5 +179,11 @@
 
 	input:checked + .scheme-preference-slider:after {
 		transform: translateX(var(--switch-thumb-travel));
+	}
+
+	@media (--vp-md) {
+		.scheme-preference-switch {
+			display: flex;
+		}
 	}
 </style>

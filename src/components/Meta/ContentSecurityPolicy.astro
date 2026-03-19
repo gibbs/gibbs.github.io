@@ -32,13 +32,18 @@ interface CspDirectives {
 }
 
 const resources: CspDirectives = {
-	'connect-src': new URL('/', env.APP_SERVICE_URL).href,
+	'connect-src': [
+		new URL('/', env.APP_SERVICE_URL).href,
+		new URL('/', env.APP_SEARCH_URL).href
+	].join(' '),
 	'img-src': [
 		'https://github.com/gibbs/',
 		'https://img.shields.io/',
 		'https://images.prismic.io/dangibbs/',
 	].join(' '),
-	'script-src': ['https://static.cdn.prismic.io/'].join(' '),
+	'script-src': [
+		'https://static.cdn.prismic.io/',
+	].join(' '),
 	'frame-src': ['https://dangibbs.prismic.io/'].join(' '),
 };
 
@@ -54,7 +59,7 @@ const directives: CspDirectives = {
 	'img-src': `'self' ${resources['img-src']} data:`,
 	'manifest-src': "'self'",
 	'media-src': "'self'",
-	'object-src': "'self'",
+	'object-src': "'none'",
 	'script-src': `'self' ${resources['script-src']} 'unsafe-inline'`,
 	'style-src': "'self' 'unsafe-inline'",
 	'worker-src': "'self'",
