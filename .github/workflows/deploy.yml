@@ -29,6 +29,10 @@ jobs:
           PRISMIC_ACCESS_TOKEN: ${{ secrets.PRISMIC_ACCESS_TOKEN }}
           VITE_APP_SERVICE_URL: ${{ vars.APP_SERVICE_URL }}
           VITE_MODE: production
+          VITE_MEILISEARCH_URL: ${{ vars.VITE_MEILISEARCH_URL }}
+          VITE_MEILISEARCH_INDEX: ${{ vars.VITE_MEILISEARCH_INDEX }}
+          VITE_MEILISEARCH_SEARCH_KEY: ${{ vars.VITE_MEILISEARCH_SEARCH_KEY }}
+          VITE_MEILISEARCH_MASTER_KEY: ${{ secrets.VITE_MEILISEARCH_MASTER_KEY }}
       - name: Archive Build
         env:
           INPUT_PATH: dist/
