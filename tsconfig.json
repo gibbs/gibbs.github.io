@@ -4,7 +4,7 @@
 		".astro/types.d.ts", 
 		"src/**/*",
 		"tests/**/*"
-	],
+, "scripts/indexer.ts"	],
 	"exclude": [
 		"dist",
 		"node_modules"

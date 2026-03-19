@@ -172,6 +172,132 @@ export type BlogDocument<Lang extends string = string> = prismic.PrismicDocument
 	Lang
 >;
 
+type PageDocumentDataSlicesSlice =
+	| MarkdownSlice
+	| AlertSlice
+	| BadgesSlice
+	| ButtonGroupSlice
+	| TabsSlice
+	| ImageSlice
+	| FileRendererSlice;
+
+/**
+ * Content for Page documents
+ */
+interface PageDocumentData {
+	/**
+	 * Title field in *Page*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: page.title
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	title: prismic.KeyTextField;
+
+	/**
+	 * Summary field in *Page*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: page.summary
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	summary: prismic.KeyTextField;
+
+	/**
+	 * Date field in *Page*
+	 *
+	 * - **Field Type**: Date
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: page.date
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/date
+	 */
+	date: prismic.DateField;
+
+	/**
+	 * Heading field in *Page*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Heading
+	 * - **API ID Path**: page.heading
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	heading: prismic.KeyTextField;
+
+	/**
+	 * Slice Zone field in *Page*
+	 *
+	 * - **Field Type**: Slice Zone
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: page.slices[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/slices
+	 */
+	slices: prismic.SliceZone<PageDocumentDataSlicesSlice>; /**
+	 * Meta Title field in *Page*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A title of the page used for social media and search engines
+	 * - **API ID Path**: page.meta_title
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	meta_title: prismic.KeyTextField;
+
+	/**
+	 * Meta Description field in *Page*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A brief summary of the page
+	 * - **API ID Path**: page.meta_description
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	meta_description: prismic.KeyTextField;
+
+	/**
+	 * Meta Image field in *Page*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: page.meta_image
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	meta_image: prismic.ImageField<never>;
+
+	/**
+	 * LinkData field in *Page*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: JSON Link Data
+	 * - **API ID Path**: page.linkdata
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	linkdata: prismic.RichTextField;
+}
+
+/**
+ * Page document from Prismic
+ *
+ * - **API ID**: `page`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type PageDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
+	Simplify<PageDocumentData>,
+	'page',
+	Lang
+>;
+
 type ProjectDocumentDataSlicesSlice =
 	| ImageSlice
 	| TabsSlice
@@ -490,7 +616,12 @@ export type ToolsDocument<Lang extends string = string> = prismic.PrismicDocumen
 	Lang
 >;
 
-export type AllDocumentTypes = BlogDocument | ProjectDocument | RecipeDocument | ToolsDocument;
+export type AllDocumentTypes =
+	| BlogDocument
+	| PageDocument
+	| ProjectDocument
+	| RecipeDocument
+	| ToolsDocument;
 
 /**
  * Primary content in *Alert → Default → Primary*
@@ -701,7 +832,7 @@ export interface FileRendererSliceDefaultPrimary {
 	 * - **API ID Path**: file_renderer.default.primary.type
 	 * - **Documentation**: https://prismic.io/docs/fields/select
 	 */
-	type: prismic.SelectField<'Markdown' | 'Code', 'filled'>;
+	type: prismic.SelectField<'Markdown' | 'Code' | 'Puppet Metadata', 'filled'>;
 
 	/**
 	 * Extra field in *FileRenderer → Default → Primary*
@@ -1053,6 +1184,9 @@ declare module '@prismicio/client' {
 			BlogDocument,
 			BlogDocumentData,
 			BlogDocumentDataSlicesSlice,
+			PageDocument,
+			PageDocumentData,
+			PageDocumentDataSlicesSlice,
 			ProjectDocument,
 			ProjectDocumentData,
 			ProjectDocumentDataSlicesSlice,

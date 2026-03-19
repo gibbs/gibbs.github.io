@@ -5,6 +5,7 @@ import rehypePrettyCode from 'rehype-pretty-code';
 import { transformerCopyButton } from '@rehype-pretty/transformers';
 import markdownIntegration from '@astropub/md';
 import remarkFlexibleMarkers from 'remark-flexible-markers';
+import searchIndexIntegration from './integrations/search-index-integration';
 
 const env: Record<string, string> = loadEnv(
 	process.env.NODE_ENV ?? 'production',
@@ -20,12 +21,15 @@ export default defineConfig({
 		inlineStylesheets: 'always',
 		redirects: true,
 	},
-
-	integrations: [markdownIntegration()],
-
+	integrations: [markdownIntegration(), searchIndexIntegration()],
 	env: {
 		schema: {
 			APP_SERVICE_URL: envField.string({
+				context: 'client',
+				access: 'public',
+				optional: false,
+			}),
+			APP_SEARCH_URL: envField.string({
 				context: 'client',
 				access: 'public',
 				optional: false,
@@ -50,6 +54,21 @@ export default defineConfig({
 			PRISMIC_ACCESS_TOKEN: envField.string({
 				context: 'server',
 				access: 'secret',
+				optional: false,
+			}),
+			VITE_MEILISEARCH_URL: envField.string({
+				context: 'client',
+				access: 'public',
+				optional: false,
+			}),
+			VITE_MEILISEARCH_INDEX: envField.string({
+				context: 'client',
+				access: 'public',
+				optional: false,
+			}),
+			VITE_MEILISEARCH_SEARCH_KEY: envField.string({
+				context: 'client',
+				access: 'public',
 				optional: false,
 			}),
 		},

@@ -23,6 +23,7 @@ jobs:
           npm run build
         env:
           APP_SERVICE_URL: ${{ vars.APP_SERVICE_URL }}
+          APP_SEARCH_URL: ${{ vars.APP_SEARCH_URL }}
           BASE_URL: ${{ vars.BASE_URL }}
           PRISMIC_REPOSITORY: ${{ secrets.PRISMIC_REPOSITORY }}
           PRISMIC_ACCESS_TOKEN: ${{ secrets.PRISMIC_ACCESS_TOKEN }}
