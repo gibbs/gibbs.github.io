@@ -289,7 +289,7 @@ const {
 
 	.search-bar-input {
 		position: relative;
-		color: var(--text-color);
+		color: light-dark(var(--text), var(--white));
 		padding: var(--gap-sm);
 		border: var(--border-width) solid var(--border-color);
 		border-radius: var(--border-radius);
@@ -300,6 +300,10 @@ const {
 		max-width: 100%;
 	}
 
+	.search-bar-input::placeholder {
+		color: light-dark(var(--text-muted), oklch(88% 0.02 260));
+	}
+
 	.search-bar-input:focus-visible {
 		outline: 3px solid var(--tertiary);
 		outline-offset: 2px;
@@ -307,6 +311,7 @@ const {
 
 	.search-bar-results {
 		position: absolute;
+		color: light-dark(var(--text), var(--white));
 		background-color: light-dark(var(--white), oklch(from var(--bg) calc(l + 0.15) c h));
 		margin: 0;
 		padding: 0;
