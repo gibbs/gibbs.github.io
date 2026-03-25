@@ -7,6 +7,7 @@ test.describe('Tools page', () => {
 		await toolsPage.goto();
 
 		await toolsPage.assertStandard(page);
+		await toolsPage.assertAccessibility();
 	});
 
 	test('lists tools', async ({ page }) => {

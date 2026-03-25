@@ -15,7 +15,7 @@ export default defineConfig([
 	pluginA11y.flatConfigs.recommended,
 	{
 		rules: {
-			'jsx-a11y/label-has-associated-control': 'off',
+			'jsx-a11y/label-has-associated-control': 'error',
 		},
 	},
 ]);

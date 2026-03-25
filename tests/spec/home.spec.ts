@@ -8,6 +8,7 @@ test.describe('Home page', () => {
 		await homepage.goto();
 
 		await homepage.assertStandard(page);
+		await homepage.assertAccessibility();
 	});
 
 	test('hero element', async ({ page }) => {
