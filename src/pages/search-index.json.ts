@@ -13,6 +13,19 @@ interface IndexDocument {
 }
 
 /**
+ * Normalise the URL to index
+ */
+const indexUrl = (url: string | null | undefined): string => {
+	const value = (url || '').trim();
+
+	if (value === '' || value === 'index') {
+		return '/';
+	}
+
+	return `/${value.replace(/^\/+/, '').replace(/^index$/, '')}`.replace(/\/$/, '') || '/';
+};
+
+/**
  * This route generates a search-index.json file that is read for indexing
  * after build. An integration is used to remove the file prior to deployment.
  */
@@ -24,7 +37,7 @@ export const GET: APIRoute = async () => {
 	pages.forEach((page) => {
 		let document: IndexDocument = {
 			id: `${page.id.replace('index', '')}`,
-			url: `${page.id.replace('index', '')}`,
+			url: indexUrl(page.id),
 			title: page.data.title,
 			summary: page.data.summary,
 			meta_title: page.data.meta.title,
@@ -45,8 +58,8 @@ export const GET: APIRoute = async () => {
 					: new Date().toISOString();
 
 				let document: IndexDocument = {
-					id: pages[key].uid,
-					url: pages[key].url || pages[key].uid?.replace('index', '') || '/',
+					id: pages[key].uid || '',
+					url: indexUrl(pages[key].url || pages[key].uid),
 					title: pages[key].data.title,
 					summary: pages[key].data.summary,
 					meta_title: pages[key].data.meta_title,
