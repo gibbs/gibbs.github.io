@@ -50,6 +50,7 @@
 		"sharp-ico": "^0.1.5"
 	},
 	"devDependencies": {
+		"@axe-core/playwright": "^4.11.1",
 		"@csstools/postcss-global-data": "^3.0.0",
 		"@playwright/test": "^1.49.1",
 		"@richhouse83/xsd-validator": "^1.0.0",

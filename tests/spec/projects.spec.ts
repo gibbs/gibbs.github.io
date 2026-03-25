@@ -7,6 +7,7 @@ test.describe('Projects page', () => {
 		await projectsPage.goto();
 
 		await projectsPage.assertStandard(page);
+		await projectsPage.assertAccessibility();
 	});
 
 	test('lists projects with tags and anchors', async ({ page }) => {

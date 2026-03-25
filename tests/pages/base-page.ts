@@ -1,3 +1,4 @@
+import AxeBuilder from '@axe-core/playwright';
 import { expect, type Locator, type Page } from '@playwright/test';
 import { HtmlValidate } from 'html-validate/node';
 
@@ -90,6 +91,30 @@ export class BasePage {
 		await this.assertLayout();
 		await this.assertMeta();
 		await this.validate(page);
+	}
+
+	/**
+	 * Axe accessibility tests
+	 *
+	 * @param options 
+	 */
+	async assertAccessibility(options?: { exclude?: string[]; disableRules?: string[] }) {
+		let builder = new AxeBuilder({ page: this.page });
+
+		for (const selector of options?.exclude ?? []) {
+			builder = builder.exclude(selector);
+		}
+
+		if (options?.disableRules?.length) {
+			builder = builder.disableRules(options.disableRules);
+		}
+
+		const { violations } = await builder.analyze();
+		const summary = violations
+			.map((violation) => `${violation.id}: ${violation.help} (${violation.nodes.length} nodes)`)
+			.join('\n');
+
+		expect(violations, summary).toEqual([]);
 	}
 
 	/**
