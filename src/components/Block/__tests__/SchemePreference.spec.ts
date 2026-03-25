@@ -8,7 +8,8 @@ describe('SchemePreference component', () => {
 		const container = await AstroContainer.create();
 		const result = await container.renderToString(SchemePreference);
 
-		expect(result).toContain('<label');
-		expect(result).toContain('</label>');
+		expect(result).toContain('<button');
+		expect(result).toContain('aria-pressed="false"');
+		expect(result).toContain('Toggle colour scheme');
 	});
 });

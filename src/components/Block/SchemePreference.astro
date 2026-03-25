@@ -1,11 +1,16 @@
-<label
+<button
+	type="button"
 	class="scheme-preference"
 	:class="{ 'active': active == true, 'animate': animate == true }"
 	id="scheme-preference"
-	title="Toggles light & dark scheme"
-	aria-label="Toggle color scheme"
+	title="Toggle colour scheme"
+	aria-label="Toggle colour scheme"
+	:aria-label="buttonLabel"
+	aria-pressed="false"
+	:aria-pressed="isDark.toString()"
 	x-data="schemePreference"
-	x-model="getChecked"
+	x-init="init()"
+	@click="changeScheme"
 >
 	<svg
 		fill="#000000"
@@ -14,17 +19,18 @@
 		viewBox="0 0 32 32"
 		version="1.1"
 		xmlns="http://www.w3.org/2000/svg"
+		aria-hidden="true"
 	>
 		<path
 			d="M0 16q0 3.264 1.28 6.24t3.392 5.088 5.12 3.424 6.208 1.248q3.264 0 6.24-1.248t5.088-3.424 3.392-5.088 1.28-6.24-1.28-6.208-3.392-5.12-5.088-3.392-6.24-1.28q-3.264 0-6.208 1.28t-5.12 3.392-3.392 5.12-1.28 6.208zM4 16q0-3.264 1.6-6.016t4.384-4.352 6.016-1.632 6.016 1.632 4.384 4.352 1.6 6.016-1.6 6.048-4.384 4.352-6.016 1.6-6.016-1.6-4.384-4.352-1.6-6.048zM16 26.016q2.72 0 5.024-1.344t3.648-3.648 1.344-5.024-1.344-4.992-3.648-3.648-5.024-1.344v20z"
 		></path>
 	</svg>
 
-	<span class="scheme-preference-switch">
-		<input type="checkbox" x-on:change="changeScheme" x-model="getChecked" />
+	<span class="scheme-preference-switch" aria-hidden="true">
 		<span class="scheme-preference-slider"></span>
 	</span>
-</label>
+	<span class="sr-only" x-text="buttonLabel"></span>
+</button>
 
 <script is:inline>
 	document.addEventListener('alpine:init', () => {
@@ -37,6 +43,16 @@
 
 				init() {
 					this.scheme = this.getCustomPreference();
+					this.active = true;
+					document.documentElement.style.setProperty('color-scheme', this.scheme);
+				},
+
+				isDark() {
+					return this.scheme === 'dark';
+				},
+
+				buttonLabel() {
+					return `Switch to ${this.isDark ? 'light' : 'dark'} colour scheme`;
 				},
 
 				changeScheme() {
@@ -47,14 +63,6 @@
 					localStorage.setItem(this.key, preference);
 					document.documentElement.setAttribute('data-color-scheme', preference);
 					document.documentElement.style.setProperty('color-scheme', preference);
-				},
-
-				getChecked() {
-					try {
-						return this.scheme === 'dark';
-					} finally {
-						this.active = true;
-					}
 				},
 
 				getToggledPreference() {
@@ -105,6 +113,7 @@
 		cursor: pointer;
 		opacity: 0;
 		transition: opacity ease-in calc(var(--transition-duration) * 2);
+		appearance: none;
 
 		& > svg {
 			color: var(--white);
@@ -114,11 +123,9 @@
 			stroke-linecap: round;
 		}
 
-		input {
-			display: none;
-			opacity: 0;
-			width: 0;
-			height: 0;
+		&:focus-visible {
+			outline: 3px solid var(--tertiary);
+			outline-offset: 4px;
 		}
 	}
 
@@ -169,15 +176,11 @@
 		}
 	}
 
-	input:checked + .scheme-preference-slider {
+	.scheme-preference[aria-pressed='true'] .scheme-preference-slider {
 		background-color: var(--accent);
 	}
 
-	input:focus + .scheme-preference-slider {
-		box-shadow: 0 0 1px var(--accent);
-	}
-
-	input:checked + .scheme-preference-slider:after {
+	.scheme-preference[aria-pressed='true'] .scheme-preference-slider:after {
 		transform: translateX(var(--switch-thumb-travel));
 	}
 
