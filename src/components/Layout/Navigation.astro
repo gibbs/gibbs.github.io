@@ -67,15 +67,15 @@ const Links: { label: string; url: string; active: boolean }[] = [
 		Alpine.data('navMenu', () => ({
 			isOpen: false,
 
-			ariaExpanded() {
+			get ariaExpanded() {
 				return this.isOpen.toString();
 			},
 
-			ariaLabel() {
+			get ariaLabel() {
 				return this.isOpen ? 'Close main navigation' : 'Open main navigation';
 			},
 
-			navClass() {
+			get navClass() {
 				return this.isOpen ? 'is-open' : '';
 			},
 

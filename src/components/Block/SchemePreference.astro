@@ -7,7 +7,7 @@
 	aria-label="Toggle colour scheme"
 	:aria-label="buttonLabel"
 	aria-pressed="false"
-	:aria-pressed="isDark.toString()"
+	:aria-pressed="ariaPressed"
 	x-data="schemePreference"
 	x-init="init()"
 	@click="changeScheme"
@@ -47,12 +47,16 @@
 					document.documentElement.style.setProperty('color-scheme', this.scheme);
 				},
 
-				isDark() {
+				get isDark() {
 					return this.scheme === 'dark';
 				},
 
-				buttonLabel() {
+				get buttonLabel() {
 					return `Switch to ${this.isDark ? 'light' : 'dark'} colour scheme`;
+				},
+
+				get ariaPressed() {
+					return this.isDark ? 'true' : 'false';
 				},
 
 				changeScheme() {
