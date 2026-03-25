@@ -13,18 +13,16 @@ const frontmatter = generateFrontmatter(page, 'Website');
 ---
 
 <BaseLayout frontmatter={frontmatter} url={Astro.url}>
-	<slot slot="header-after">
-		<section class="hero">
-			<h1>Dan Gibbs</h1>
-			<h2>Full-stack web developer</h2>
-			<span class="hero-location">
-				<span class="gg-pin"></span>
-				<span>Devon, UK</span>
-				<span class="gg-time"></span>
-				<Time interval={1000} format={'TIME_24_WITH_SHORT_OFFSET'} timezone={'Europe/London'} />
-			</span>
-		</section>
-	</slot>
+	<section class="hero">
+		<h1>Dan Gibbs</h1>
+		<h2>Full-stack web developer</h2>
+		<span class="hero-location">
+			<span class="gg-pin"></span>
+			<span>Devon, UK</span>
+			<span class="gg-time"></span>
+			<Time interval={1000} format={'TIME_24_WITH_SHORT_OFFSET'} timezone={'Europe/London'} />
+		</span>
+	</section>
 
 	<div class="container container-feed">
 		<GithubActivityFeed />
@@ -87,7 +85,7 @@ const frontmatter = generateFrontmatter(page, 'Website');
 	}
 
 	.header::before {
-		background-color: transparent;
+		background-color: oklch(0% 0 0 / 0.45);
 	}
 
 	.header::after {
@@ -96,9 +94,9 @@ const frontmatter = generateFrontmatter(page, 'Website');
 
 	.hero {
 		color-scheme: dark;
-		height: 100vh;
+		min-height: 100svh;
 		align-content: center;
-		padding: var(--gap-xxl) 0;
+		padding: calc(var(--header-height) + var(--gap-lg)) 0 var(--gap-xxl) 0;
 		width: 100%;
 		justify-content: center;
 		text-align: center;

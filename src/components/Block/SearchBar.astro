@@ -300,6 +300,11 @@ const {
 		max-width: 100%;
 	}
 
+	.search-bar-input:focus-visible {
+		outline: 3px solid var(--tertiary);
+		outline-offset: 2px;
+	}
+
 	.search-bar-results {
 		position: absolute;
 		background-color: light-dark(var(--white), oklch(from var(--bg) calc(l + 0.15) c h));
@@ -329,6 +334,8 @@ const {
 			oklch(from var(--tertiary) calc(l + 0.15) calc(c * 0.3) h),
 			oklch(from var(--tertiary) calc(l - 0.1) calc(c * 0.3) h)
 		);
+		outline: 2px solid var(--tertiary);
+		outline-offset: -2px;
 	}
 
 	.search-bar-result-heading {

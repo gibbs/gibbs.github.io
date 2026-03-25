@@ -24,13 +24,14 @@ const { frontmatter, url } = Astro.props;
 	</head>
 
 	<body data-type={frontmatter.type || 'default'}>
+		<a class="skip-link" href="#main-content">Skip to content</a>
 		<Header>
 			<slot slot="header" name="header" />
 		</Header>
 
 		<slot slot="header-after" name="header-after" />
 
-		<main class="main">
+		<main id="main-content" class="main" tabindex="-1">
 			<slot />
 		</main>
 
@@ -49,6 +50,32 @@ const { frontmatter, url } = Astro.props;
 
 	Alpine.plugin(intersect);
 	Alpine.start();
+
+	const syncHeaderHeight = () => {
+		const header = document.querySelector('.header');
+
+		if (!(header instanceof HTMLElement)) {
+			return;
+		}
+
+		document.documentElement.style.setProperty('--header-height', `${header.offsetHeight}px`);
+	};
+
+	if ('ResizeObserver' in window) {
+		const header = document.querySelector('.header');
+
+		if (header instanceof HTMLElement) {
+			const observer = new ResizeObserver(() => {
+				syncHeaderHeight();
+			});
+
+			observer.observe(header);
+		}
+	}
+
+	window.addEventListener('load', syncHeaderHeight);
+	window.addEventListener('resize', syncHeaderHeight);
+	syncHeaderHeight();
 
 	if ('serviceWorker' in navigator) {
 		window.addEventListener('load', () => {

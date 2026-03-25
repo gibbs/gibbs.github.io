@@ -2,6 +2,10 @@
 	navigation: auto;
 }
 
+:root {
+	--header-height: 0px;
+}
+
 body {
 	display: flex;
 	flex-direction: column;
@@ -74,6 +78,24 @@ td, th {
 	z-index: 100;
 }
 
+.skip-link {
+	position: absolute;
+	top: var(--gap-sm);
+	left: var(--gap-sm);
+	padding: var(--gap-xs) var(--gap-sm);
+	background: var(--bg);
+	color: var(--text);
+	border: var(--border-width) solid var(--tertiary);
+	border-radius: var(--border-radius);
+	transform: translateY(-180%);
+	transition: transform var(--transition-fast);
+	z-index: 200;
+}
+
+.skip-link:focus {
+	transform: translateY(0);
+}
+
 .header::before {
 	content: '';
 	position: absolute;
@@ -99,20 +121,36 @@ td, th {
 	opacity: 0.75;
 }
 
+.site-nav {
+	display: flex;
+	flex-direction: column;
+	grid-column: auto;
+	align-items: flex-end;
+	gap: var(--gap-xs);
+	position: static;
+}
+
 .nav {
 	display: none;
 	flex-direction: column;
 	align-items: center;
-	grid-column: 1 / -1;
-	width: 100%;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	right: 0;
+	width: auto;
 	gap: var(--gap-xs);
 	list-style-type: none;
 	padding: var(--gap-xs) 0;
 	margin: 0;
+	background: oklch(0% 0 0 / 0.75);
+	border: 1px solid oklch(from var(--accent) calc(l + 0.1) c h / 0.5);
+	border-radius: var(--gap-xs);
+	z-index: 110;
 }
 
-.nav-input {
-	display: none;
+.nav.is-open {
+	display: flex;
 }
 
 .nav-menu-button {
@@ -127,14 +165,31 @@ td, th {
 	width: 3rem;
 	height: 3rem;
 	border-radius: var(--gap-xs);
+	padding: 0;
 }
 
-input[name="nav-input"]:checked ~ .nav {
-	display: flex;
-}
-
-input[name="nav-input"]:checked ~ .nav-menu-button {
+.nav-menu-button[aria-expanded='true'] {
 	background: oklch(0% 0 0 / 0.6);
+
+	.nav-menu-icon.icon {
+		background: transparent;
+	}
+
+	.nav-menu-icon.icon::before {
+		top: 0;
+		transform: rotate(45deg);
+	}
+
+	.nav-menu-icon.icon::after {
+		top: 0;
+		transform: rotate(-45deg);
+	}
+}
+
+.nav-menu-button:focus-visible,
+.nav-link:focus-visible {
+	outline: 3px solid var(--tertiary);
+	outline-offset: 3px;
 }
 
 .nav-item {
@@ -267,13 +322,26 @@ input[name="nav-input"]:checked ~ .nav-menu-button {
 		gap: var(--gap);
 	}
 
+	.site-nav {
+		grid-column: auto;
+		order: 0;
+	}
+
 	.nav-menu-button {
 		display: none;
 	}
 
 	.nav {
 		display: flex;
-		grid-column: auto;
+		position: static;
+		width: auto;
+		transform: none;
+		left: auto;
+		right: auto;
+		top: auto;
+		background: transparent;
+		border: 0;
+		z-index: auto;
 	}
 
 	.logo,
@@ -324,6 +392,21 @@ input[name="nav-input"]:checked ~ .nav-menu-button {
 	.copyright {
 		order: 0;
 		text-align: initial;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+
+	.header::after {
+		animation: none;
 	}
 }
 
