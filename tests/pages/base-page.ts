@@ -96,7 +96,7 @@ export class BasePage {
 	/**
 	 * Axe accessibility tests
 	 *
-	 * @param options 
+	 * @param options
 	 */
 	async assertAccessibility(options?: { exclude?: string[]; disableRules?: string[] }) {
 		let builder = new AxeBuilder({ page: this.page });

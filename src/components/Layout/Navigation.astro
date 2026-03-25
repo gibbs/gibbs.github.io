@@ -22,25 +22,76 @@ const Links: { label: string; url: string; active: boolean }[] = [
 ];
 ---
 
-<input type="checkbox" class="nav-input" id="nav-input" name="nav-input" />
+<nav
+	class="site-nav"
+	aria-label="Main"
+	x-data="navMenu"
+	:class="navClass"
+	@click.window="handleWindowClick($event)"
+	@keydown.escape.window="close()"
+>
+	<button
+		type="button"
+		class="nav-menu-button"
+		aria-controls="main-navigation"
+		aria-label="Open main navigation"
+		aria-expanded="false"
+		:aria-expanded="ariaExpanded"
+		:aria-label="ariaLabel"
+		@click="toggle()"
+	>
+		<span class="nav-menu-icon icon" aria-hidden="true"></span>
+		<span class="sr-only" x-text="ariaLabel"> Open main navigation </span>
+	</button>
 
-<label for="nav-input" class="nav-menu-button">
-	<span class="nav-menu-icon icon">
-		<span class="hidden">Menu</span>
-	</span>
-</label>
+	<ul id="main-navigation" class="nav" :class="navClass">
+		{
+			Links.map((link) => (
+				<li class="nav-item">
+					<a
+						class={link.active ? 'nav-link active' : 'nav-link'}
+						href={new URL(link.url, env.BASE_URL)}
+						aria-current={link.active ? 'page' : undefined}
+						@click="close()"
+					>
+						{link.label}
+					</a>
+				</li>
+			))
+		}
+	</ul>
+</nav>
 
-<ul class="nav">
-	{
-		Links.map((link) => (
-			<li class="nav-item">
-				<a
-					class={link.active ? 'nav-link active' : 'nav-link'}
-					href={new URL(link.url, env.BASE_URL)}
-				>
-					{link.label}
-				</a>
-			</li>
-		))
-	}
-</ul>
+<script is:inline>
+	document.addEventListener('alpine:init', () => {
+		Alpine.data('navMenu', () => ({
+			isOpen: false,
+
+			ariaExpanded() {
+				return this.isOpen.toString();
+			},
+
+			ariaLabel() {
+				return this.isOpen ? 'Close main navigation' : 'Open main navigation';
+			},
+
+			navClass() {
+				return this.isOpen ? 'is-open' : '';
+			},
+
+			toggle() {
+				this.isOpen = !this.isOpen;
+			},
+
+			close() {
+				this.isOpen = false;
+			},
+
+			handleWindowClick(event) {
+				if (!this.$el.contains(event.target)) {
+					this.close();
+				}
+			},
+		}));
+	});
+</script>
