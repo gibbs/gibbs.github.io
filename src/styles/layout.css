@@ -52,10 +52,25 @@ th {
 tbody tr {
 	background-color: var(--table-row-bg-color);
 	border-bottom: 1px solid var(--table-border-color);
+	transition: background-color var(--transition-fast) ease;
+}
+
+tbody tr:hover {
+	background-color: light-dark(
+		oklch(from var(--table-row-bg-color) calc(l - 0.04) c h),
+		oklch(from var(--table-row-bg-color) calc(l + 0.04) c h)
+	);
 }
 
 tbody tr:nth-child(2n) {
 	background-color: var(--table-row-bg-alt-color);
+}
+
+tbody tr:nth-child(2n):hover {
+	background-color: light-dark(
+		oklch(from var(--table-row-bg-color) calc(l - 0.04) c h),
+		oklch(from var(--table-row-bg-color) calc(l + 0.04) c h)
+	);
 }
 
 td, th {
@@ -247,7 +262,8 @@ td, th {
 	align-items: center;
 	font-size: small;
 	padding: var(--gap);
-	background: var(--surface-2); /*oklch(from var(--bg) calc(l - 0.04) c h);*/
+	background: var(--surface-2);
+	border-top: var(--border-width) solid var(--border-color);
 	gap: var(--gap);
 }
 
