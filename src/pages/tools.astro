@@ -45,6 +45,13 @@ const tools = await getAllTools().then((response) => response.results);
 		anchor-name: --tool-anchor;
 		padding: var(--gap-lg);
 		background-color: light-dark(var(--surface-i-4), var(--surface-1));
+		border-radius: var(--border-radius);
+		border: calc(var(--border-width) * 2) solid var(--border-color);
+		box-shadow: 0.15rem 0.15rem 0.4rem light-dark(rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.5));
+		transition:
+			box-shadow var(--transition-duration) ease,
+			transform var(--transition-duration) ease,
+			border-color var(--transition-duration) ease;
 	}
 
 	.tool-heading {
@@ -69,12 +76,14 @@ const tools = await getAllTools().then((response) => response.results);
 		overflow: hidden;
 		white-space: nowrap;
 		z-index: 1;
-		border: calc(var(--border-width) * 2) solid var(--border-color);
+		border: calc(var(--border-width) * 2) solid transparent;
 		border-radius: var(--border-radius);
 	}
 
-	.tool-anchor:hover,
-	.tool-anchor:focus {
+	.tool:has(.tool-anchor:hover),
+	.tool:has(.tool-anchor:focus) {
+		box-shadow: 0.2rem 0.4rem 1rem light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.7));
+		transform: translateY(-2px);
 		border-color: var(--accent);
 	}
 

@@ -29,6 +29,18 @@ select {
 	padding: var(--gap-sm);
 	outline: var(--form-outline-color);
 	font-size: var(--font-size);
+	transition: border-color ease var(--transition-fast);
+}
+
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+	border-color: light-dark(
+		oklch(from var(--form-border-color) calc(l - 0.15) c h),
+		oklch(from var(--form-border-color) calc(l + 0.20) c h)
+	);
+	outline: 2px solid var(--form-outline-color);
+	outline-offset: 2px;
 }
 
 input:focus,
@@ -84,8 +96,17 @@ button {
 	border-radius: var(--form-border-radius);
 	background-color: var(--form-button-bg);
 	color: var(--white);
-	transition: opacity ease 2s;
+	transition: opacity ease 0.2s, background-color ease var(--transition-fast), transform ease var(--transition-fast);
 	opacity: 1;
+	cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+	background-color: oklch(from var(--accent) calc(l - 0.06) c h);
+}
+
+button:active:not(:disabled) {
+	transform: translateY(1px);
 }
 
 .col {
