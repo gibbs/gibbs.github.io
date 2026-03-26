@@ -154,13 +154,13 @@ td, th {
 	left: 0;
 	right: 0;
 	width: auto;
-	gap: var(--gap-xs);
+	gap: 0;
 	list-style-type: none;
-	padding: var(--gap-xs) 0;
 	margin: 0;
+	padding: 0;
 	background: oklch(0% 0 0 / 0.75);
 	border: 1px solid oklch(from var(--accent) calc(l + 0.1) c h / 0.5);
-	border-radius: var(--gap-xs);
+	border-radius: 0;
 	z-index: 110;
 }
 
@@ -210,6 +210,7 @@ td, th {
 .nav-item {
 	display: block;
 	width: 100%;
+	margin: 0;
 }
 
 .nav-link {
@@ -221,7 +222,6 @@ td, th {
 	text-align: center;
 	transition: background-color 0.1s ease;
 	border: 1px solid transparent;
-	border-radius: var(--gap-xs) 0;
 	transition: background linear var(--transition-fast);
 
 	&:hover {
@@ -358,6 +358,11 @@ td, th {
 		background: transparent;
 		border: 0;
 		z-index: auto;
+		gap: var(--gap-xs);
+	}
+
+	.nav-link {
+		border-radius: var(--gap-xs) 0;
 	}
 
 	.logo,
@@ -368,6 +373,7 @@ td, th {
 	.nav {
 		flex-direction: row;
 		order: 0;
+		padding: var(--gap-xs) 0;
 	}
 
 	.search-bar {
