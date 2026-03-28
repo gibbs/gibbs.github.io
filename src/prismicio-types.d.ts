@@ -25,16 +25,14 @@ type PickContentRelationshipFieldData<
 			TSubRelationship['customtypes'],
 			TLang
 		>;
-	} & {
-		// Group
+	} & { // Group
 		[TGroup in Extract<
 			TRelationship['fields'][number],
 			prismic.CustomTypeModelFetchGroupLevel1 | prismic.CustomTypeModelFetchGroupLevel2
 		> as TGroup['id']]: TData[TGroup['id']] extends prismic.GroupField<infer TGroupData>
 			? prismic.GroupField<PickContentRelationshipFieldData<TGroup, TGroupData, TLang>>
 			: never;
-	} & {
-		// Other fields
+	} & { // Other fields
 		[TFieldKey in Extract<TRelationship['fields'][number], string>]: TFieldKey extends keyof TData
 			? TData[TFieldKey]
 			: never;
@@ -501,6 +499,95 @@ export type RecipeDocument<Lang extends string = string> = prismic.PrismicDocume
 	Lang
 >;
 
+/**
+ * Item in *Tech Stack Section → Items*
+ */
+export interface TechStackSectionDocumentDataItemsItem {
+	/**
+	 * Title field in *Tech Stack Section → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: tech_stack_section.items[].title
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	title: prismic.KeyTextField;
+
+	/**
+	 * Icon field in *Tech Stack Section → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: tech_stack_section.items[].icon
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	icon: prismic.KeyTextField;
+}
+
+/**
+ * Content for Tech Stack Section documents
+ */
+interface TechStackSectionDocumentData {
+	/**
+	 * Heading field in *Tech Stack Section*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: tech_stack_section.heading
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	heading: prismic.KeyTextField;
+
+	/**
+	 * Description field in *Tech Stack Section*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: tech_stack_section.description
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	description: prismic.KeyTextField;
+
+	/**
+	 * Order field in *Tech Stack Section*
+	 *
+	 * - **Field Type**: Number
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: tech_stack_section.order
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/number
+	 */
+	order: prismic.NumberField;
+
+	/**
+	 * Items field in *Tech Stack Section*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: tech_stack_section.items[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	items: prismic.GroupField<Simplify<TechStackSectionDocumentDataItemsItem>>;
+}
+
+/**
+ * Tech Stack Section document from Prismic
+ *
+ * - **API ID**: `tech_stack_section`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type TechStackSectionDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
+	Simplify<TechStackSectionDocumentData>,
+	'tech_stack_section',
+	Lang
+>;
+
 type ToolsDocumentDataSlicesSlice =
 	| ImageSlice
 	| MarkdownSlice
@@ -621,6 +708,7 @@ export type AllDocumentTypes =
 	| PageDocument
 	| ProjectDocument
 	| RecipeDocument
+	| TechStackSectionDocument
 	| ToolsDocument;
 
 /**
@@ -1194,6 +1282,9 @@ declare module '@prismicio/client' {
 			RecipeDocument,
 			RecipeDocumentData,
 			RecipeDocumentDataSlicesSlice,
+			TechStackSectionDocument,
+			TechStackSectionDocumentData,
+			TechStackSectionDocumentDataItemsItem,
 			ToolsDocument,
 			ToolsDocumentData,
 			ToolsDocumentDataSlicesSlice,

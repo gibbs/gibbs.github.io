@@ -1,53 +1,59 @@
 ---
-import type { TechStackItem } from '@data/techstack';
 import { __ } from '@i18n/utils';
-import { STACK as Stack } from '@data/techstack';
+import type { Content } from '@prismicio/client';
+import { getAllTechStackSections } from '@src/prismic';
 import Tabs from '@components/Block/Tabs.astro';
 import LogoIcon from '@components/Block/LogoIcon.astro';
 
-const tabs = Object.entries(Stack).map(([index, category]) => ({
-	title: category.heading,
-	id: `tabpanel_${index}`,
+const sections = await getAllTechStackSections().then((response) => response.results);
+
+const tabs = sections.map((section) => ({
+	title: section.data.heading || section.uid,
+	id: `tabpanel_${section.uid}`,
 }));
 ---
 
 <x-tech-stack class="stack col">
 	<h2>{__('component.techstack.title')}</h2>
 
-	<Tabs
-		className="xt-stack"
-		tabs={tabs}
-		orientation={'horizontal'}
-		title={__('component.techstack.title')}
-	>
-		{
-			Object.entries(Stack).map(([index, category]) => (
-				<x-tabpanel
-					class="xt-stack-panel"
-					role="tabpanel"
-					tabindex={index}
-					id={`tabpanel_${index}`}
-					data-category={index}
-					data-tab-panel={`tabpanel_${index}`}
-					x-show="isActiveTab"
-				>
-					<ol class="stack-items">
-						{category.items.map((item: TechStackItem) => (
-							<li class="stack-item">
-								<span class="stack-item-logo">
-									<LogoIcon
-										size={32}
-										icon={item.icon ?? item.title.replace(' ', '-').toLowerCase()}
-									/>
-								</span>
-								<span class="stack-item-title">{item.title}</span>
-							</li>
-						))}
-					</ol>
-				</x-tabpanel>
-			))
-		}
-	</Tabs>
+	{
+		sections.length > 0 && (
+			<Tabs
+				className="xt-stack"
+				tabs={tabs}
+				orientation={'horizontal'}
+				title={__('component.techstack.title')}
+			>
+				{sections.map((section, sectionIndex) => (
+					<x-tabpanel
+						class="xt-stack-panel"
+						role="tabpanel"
+						tabindex={sectionIndex}
+						id={`tabpanel_${section.uid}`}
+						data-category={section.uid}
+						data-tab-panel={`tabpanel_${section.uid}`}
+						x-show="isActiveTab"
+					>
+						<ol class="stack-items">
+							{section.data.items.map((item: Content.TechStackSectionDocumentDataItemsItem) => (
+								<li class="stack-item">
+									<span class="stack-item-logo">
+										<LogoIcon
+											size={32}
+											icon={String(item.icon ?? item.title ?? '')
+												.replace(/\s+/g, '-')
+												.toLowerCase()}
+										/>
+									</span>
+									<span class="stack-item-title">{item.title}</span>
+								</li>
+							))}
+						</ol>
+					</x-tabpanel>
+				))}
+			</Tabs>
+		)
+	}
 </x-tech-stack>
 
 <style>

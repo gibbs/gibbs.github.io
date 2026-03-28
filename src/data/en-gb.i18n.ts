@@ -13,22 +13,6 @@ const trans: Record<string, any> = {
 		},
 		techstack: {
 			title: 'Tech Stack',
-			heading: {
-				core: 'Web & Languages',
-				frameworks: 'Frameworks & Libraries',
-				testing_data: 'Testing & Data',
-				tools_infra: 'Tools & Infrastructure',
-				providers: 'CMS & Providers',
-				legacy: 'Legacy',
-			},
-			description: {
-				core: '',
-				frameworks: '',
-				testing_data: '',
-				tools_infra: '',
-				providers: '',
-				legacy: '',
-			},
 		},
 		noscript: {
 			banner: 'This page requires javascript fully function correctly.',
