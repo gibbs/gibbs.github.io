@@ -34,9 +34,9 @@ test.describe('DNS tool page', () => {
 		await page.fill('#name', 'example.com');
 		await Promise.all([page.waitForResponse('**/tool/dig'), page.click('button[type="submit"]')]);
 
-		await expect(page.locator('.table.result')).toBeVisible();
-		await expect(page.locator('.table.result tbody tr')).toHaveCount(1);
-		await expect(page.locator('.table.result tbody tr').locator('td').nth(3)).toHaveText(
+		await expect(page.locator('.table-wrapper > table')).toBeVisible();
+		await expect(page.locator('.table-wrapper > table tbody tr')).toHaveCount(1);
+		await expect(page.locator('.table-wrapper > table tbody tr').locator('td').nth(3)).toHaveText(
 			'93.184.216.34',
 		);
 		await expect(page.locator('.result-command')).toContainText('dig example.com');
