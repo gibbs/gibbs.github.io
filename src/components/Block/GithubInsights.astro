@@ -1,64 +1,312 @@
 ---
 import '@styles/vendor/github-language-colours.css';
-
-// @note - wip
 ---
 
 <x-in x-data="xin" x-intersect:once="boot" x-on:x-insights.document="update($event)">
 	<div class="xin" x-show="show == true" x-cloak>
-		<div>
+		<section class="xin-panel">
 			<h3>Language Popularity</h3>
 
-			<ul class="xin-bar-chart">
-				<template x-for="language in insights.usage">
+			<template x-if="loading">
+				<p class="xin-muted">Loading insights...</p>
+			</template>
+
+			<template x-if="!loading && usage.length === 0">
+				<p class="xin-muted">No language usage data available.</p>
+			</template>
+
+			<ul class="xin-bar-chart" x-show="usage.length > 0">
+				<template x-for="language in popularity" :key="language.name">
 					<li class="xin-bar-item">
 						<span class="xin-bar-progress">
 							<span
-								:class="'xin-bar-progress-value gh-language gh-language--' + language.name.toLowerCase()"
+								:class="'xin-bar-progress-value gh-language gh-language--' + languageClass(language.name)"
 								:style="{ width: language.width + '%' }"></span>
-							<span class="xin-bar-title" x-text="language.name + ' (' + language.percentage + '%)'"
-							></span>
+							<span
+								class="xin-bar-title"
+								x-text="language.name + ' (' + language.percentage.toFixed(1) + '%)'"></span>
 						</span>
 					</li>
 				</template>
 			</ul>
-		</div>
+		</section>
 
-		<div>
-			<ul class="xin-language-key">
-				<template x-for="language in insights.languages">
-					<li x-text="language" :class="'gh-language gh-language--' + language.toLowerCase()"></li>
-				</template>
-			</ul>
-		</div>
+		<section class="xin-panel">
+			<h3>Distribution</h3>
 
-		<p class="text-center"><small>Data sourced from public repositories</small></p>
+			<div class="xin-distribution" x-show="usage.length > 0">
+				<div
+					class="xin-donut"
+					role="img"
+					aria-label="Language distribution chart"
+					:style="{ background: donutGradient }"
+				>
+				</div>
+
+				<ol class="xin-language-key">
+					<template x-for="language in usage" :key="'key-' + language.name">
+						<li :class="'gh-language gh-language--' + languageClass(language.name)">
+							<span x-text="language.name"></span>
+							<span class="xin-key-value" x-text="language.percentage.toFixed(1) + '%'"></span>
+						</li>
+					</template>
+				</ol>
+			</div>
+
+			<dl class="xin-stats" x-show="usage.length > 0">
+				<div>
+					<dt>Repositories</dt>
+					<dd x-text="stats.count"></dd>
+				</div>
+				<div>
+					<dt>Total bytes</dt>
+					<dd x-text="formatBytes(stats.bytes)"></dd>
+				</div>
+				<div>
+					<dt>Languages</dt>
+					<dd x-text="languages.length"></dd>
+				</div>
+			</dl>
+		</section>
+
+		<p class="text-center xin-footer"><small>Data sourced from public repositories</small></p>
 	</div>
 </x-in>
 
 <script>
+	// @ts-nocheck
 	document.addEventListener('alpine:init', () => {
 		Alpine.data('xin', () => {
 			return {
 				show: false,
-				insights: { usage: [], languages: [] },
+				loading: true,
+				usage: [],
+				popularity: [],
+				languages: [],
+				limit: 14,
+				stats: {
+					bytes: 0,
+					count: 0,
+				},
+
+				palette: [
+					'oklch(65% 0.17 250)',
+					'oklch(62% 0.18 30)',
+					'oklch(68% 0.15 145)',
+					'oklch(70% 0.16 90)',
+					'oklch(60% 0.13 315)',
+					'oklch(72% 0.15 205)',
+				],
+				languageColorCache: {},
 
 				boot() {
 					this.show = true;
 				},
 
-				update(event) {
-					if (event?.detail && typeof event.detail === 'object') {
-						if (Array.isArray(event.detail.usage) && Array.isArray(event.detail.languages)) {
-							this.insights = event.detail;
-						} else {
-							console.warn('Invalid insight data:', event.detail);
-							this.insights = { usage: [], languages: [] };
-						}
-					} else {
-						console.warn('No insight data');
-						this.insights = { usage: [], languages: [] };
+				get donutGradient() {
+					if (this.usage.length === 0) {
+						return 'conic-gradient(var(--surface-3) 0deg 360deg)';
 					}
+
+					let start = 0;
+					const segments = this.usage.map((item, index) => {
+						const span = Math.max((item.percentage / 100) * 360, 4);
+						const end = Math.min(start + span, 360);
+						const color = this.getLanguageColor(item.name, index);
+						const segment = `${color} ${start}deg ${end}deg`;
+						start = end;
+						return segment;
+					});
+
+					if (start < 360) {
+						segments.push(`var(--surface-3) ${start}deg 360deg`);
+					}
+
+					return `conic-gradient(${segments.join(', ')})`;
+				},
+
+				update(event) {
+					this.loading = false;
+
+					if (!(event?.detail && typeof event.detail === 'object')) {
+						this.reset();
+						return;
+					}
+
+					const normalized = this.normalize(event.detail);
+
+					if (normalized.usage.length === 0) {
+						this.reset();
+						return;
+					}
+
+					this.usage = normalized.usage;
+					this.popularity = normalized.popularity;
+					this.languages = normalized.languages;
+					this.stats = normalized.stats;
+				},
+
+				reset() {
+					this.usage = [];
+					this.popularity = [];
+					this.languages = [];
+					this.stats = { bytes: 0, count: 0 };
+				},
+
+				normalize(detail) {
+					const usageSource = Array.isArray(detail.usage)
+						? detail.usage
+						: detail.usage && typeof detail.usage === 'object'
+							? Object.values(detail.usage)
+							: Array.isArray(detail?.stats?.usage)
+								? detail.stats.usage
+								: [];
+
+					const normalizedUsage = usageSource
+						.map((item) => {
+							const name = String(item?.name ?? '').trim();
+							const bytes = Number(item?.bytes ?? 0);
+							const count = Number(item?.count ?? 0);
+							const percentage = Number(item?.percentage ?? 0);
+							const width = Number(item?.width ?? 0);
+
+							return {
+								name,
+								bytes: Number.isFinite(bytes) ? bytes : 0,
+								count: Number.isFinite(count) ? count : 0,
+								percentage: Number.isFinite(percentage) ? percentage : 0,
+								width: Number.isFinite(width) ? width : 0,
+							};
+						})
+						.filter((item) => item.name.length > 0);
+
+					const usageByBytes = [...normalizedUsage]
+						.sort((a, b) => b.bytes - a.bytes)
+						.slice(0, this.limit);
+
+					const usageByCount = [...normalizedUsage]
+						.sort((a, b) => b.count - a.count)
+						.slice(0, this.limit);
+
+					const maxBytes = Math.max(...usageByBytes.map((item) => item.bytes), 1);
+					const totalBytes = usageByBytes.reduce((sum, item) => sum + item.bytes, 0);
+					const maxCount = Math.max(...usageByCount.map((item) => item.count), 1);
+					const totalCount = usageByCount.reduce((sum, item) => sum + item.count, 0);
+
+					const usage = usageByBytes.map((item) => {
+						const percentage =
+							item.percentage > 0
+								? item.percentage
+								: totalBytes > 0
+									? (item.bytes / totalBytes) * 100
+									: (item.bytes / maxBytes) * 100;
+
+						const width = item.width > 0 ? item.width : (item.bytes / maxBytes) * 100;
+
+						return {
+							...item,
+							percentage,
+							width: Math.min(Math.max(width, 6), 100),
+						};
+					});
+
+					const popularity = usageByCount.map((item) => {
+						const width = (item.count / maxCount) * 100;
+
+						return {
+							...item,
+							percentage: totalCount > 0 ? (item.count / totalCount) * 100 : 0,
+							width: Math.min(Math.max(width, 6), 100),
+						};
+					});
+
+					const languages = Array.isArray(detail.languages)
+						? detail.languages.filter((item) => typeof item === 'string' && item.trim().length > 0)
+						: usage.map((item) => item.name);
+
+					const statsBytes = Number(detail?.stats?.bytes ?? 0);
+					const statsCount = Number(detail?.stats?.count ?? 0);
+
+					return {
+						usage,
+						popularity,
+						languages,
+						stats: {
+							bytes: Number.isFinite(statsBytes) && statsBytes > 0 ? statsBytes : totalBytes,
+							count:
+								Number.isFinite(statsCount) && statsCount > 0
+									? statsCount
+									: usage.reduce((sum, item) => sum + item.count, 0),
+						},
+					};
+				},
+
+				formatBytes(value) {
+					const units = ['B', 'KB', 'MB', 'GB', 'TB'];
+					let amount = Number(value);
+					let unit = 0;
+
+					while (amount >= 1024 && unit < units.length - 1) {
+						amount /= 1024;
+						unit++;
+					}
+
+					return `${amount.toFixed(unit === 0 ? 0 : 1)} ${units[unit]}`;
+				},
+
+				getLanguageColor(name, index) {
+					const key = this.languageClass(name);
+
+					if (this.languageColorCache[key]) {
+						return this.languageColorCache[key];
+					}
+
+					const fallback = this.palette[index % this.palette.length];
+
+					if (typeof document === 'undefined') {
+						return fallback;
+					}
+
+					const node = document.createElement('span');
+					node.className = `gh-language gh-language--${key}`;
+					node.style.position = 'absolute';
+					node.style.opacity = '0';
+					node.style.pointerEvents = 'none';
+					node.style.inset = '0';
+					document.body.appendChild(node);
+
+					const color = window.getComputedStyle(node, '::before').backgroundColor;
+					node.remove();
+
+					const resolved = color && color !== 'rgba(0, 0, 0, 0)' ? color : fallback;
+					this.languageColorCache[key] = resolved;
+					return resolved;
+				},
+
+				languageClass(name) {
+					const aliases = {
+						'1c enterprise': 'onec-enterprise',
+						'c#': 'csharp',
+						'c++': 'cpp',
+						'f#': 'fsharp',
+						'asp.net': 'aspdotnet',
+					};
+
+					const value = String(name ?? '')
+						.trim()
+						.toLowerCase();
+
+					if (value in aliases) {
+						return aliases[value];
+					}
+
+					return value
+						.replace(/\+\+/g, 'pp')
+						.replace(/#/g, 'sharp')
+						.replace(/&/g, 'and')
+						.replace(/\./g, '')
+						.replace(/\s+/g, '-')
+						.replace(/[^a-z0-9-]/g, '');
 				},
 			};
 		});
@@ -70,33 +318,50 @@ import '@styles/vendor/github-language-colours.css';
 		display: grid;
 		width: 100%;
 		grid-template-columns: 1fr;
-		gap: var(--gap);
+		gap: var(--gap-lg);
+	}
+
+	.xin-panel {
+		display: flex;
+		flex-direction: column;
+		padding: var(--gap-sm);
+		border: var(--border-width) solid var(--border-color);
+		border-radius: var(--border-radius);
+		background: light-dark(var(--surface-i-2), var(--surface-1));
+		min-height: 20rem;
+	}
+
+	.xin-panel h3 {
+		margin-top: 0;
+	}
+
+	.xin-muted {
+		margin: var(--gap) 0 0 0;
+		color: var(--text-muted);
 	}
 
 	.xin-bar-progress {
 		display: flex;
-		height: 30px;
-		line-height: 30px;
+		height: 26px;
+		line-height: 26px;
+		border-radius: var(--border-radius-sm);
+		overflow: hidden;
+		background: var(--surface-2);
 	}
 
 	.xin-bar-progress-value {
 		display: flex;
-		height: 30px;
+		height: 26px;
 		animation: xin-progress-bar 2s ease;
 		transform-origin: left;
 	}
 
 	.xin-bar-chart {
 		display: flex;
-		flex-wrap: wrap;
 		flex-direction: column;
 		margin: 0;
 		padding: 0;
-		padding-bottom: var(--gap);
-		gap: var(--gap);
-		border-width: 0 0 6px 6px;
-		border-color: var(--border-color);
-		border-style: solid;
+		gap: var(--gap-xxs);
 		list-style-type: none;
 	}
 
@@ -112,30 +377,121 @@ import '@styles/vendor/github-language-colours.css';
 
 	.xin-bar-title {
 		position: absolute;
-		font-size: smaller;
-		height: 30px;
-		line-height: 30px;
+		font-size: x-small;
+		height: 26px;
+		line-height: 26px;
 		right: 0;
 		top: 0;
-		margin: 0 var(--gap-sm);
+		margin: 0 var(--gap-xs);
+		color: var(--text);
+		font-weight: 600;
 	}
 
 	.xin-bar-progress-value.gh-language::before {
 		width: 100%;
-		height: 30px;
+		height: 26px;
+		margin: 0;
+		border-radius: 0;
+	}
+
+	.xin-distribution {
+		display: grid;
+		gap: var(--gap);
+	}
+
+	.xin-donut {
+		width: min(17rem, 100%);
+		aspect-ratio: 1;
+		border-radius: 999px;
+		margin: 0 auto;
+		position: relative;
+	}
+
+	.xin-donut::after {
+		content: '';
+		position: absolute;
+		inset: 22%;
+		background: var(--surface-1);
+		border-radius: 999px;
+		box-shadow: inset 0 0 0 1px var(--border-color);
 	}
 
 	.xin-language-key {
 		display: flex;
-		flex-wrap: wrap;
+		flex-direction: column;
 		margin: 0;
 		padding: 0;
-		gap: var(--gap-xs);
+		gap: var(--gap-xxs);
+		list-style: none;
+		font-size: smaller;
+	}
+
+	.xin-language-key li {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: calc(var(--gap-xxs) / 2) var(--gap-xs);
+		border-radius: var(--border-radius-sm);
+		background: var(--surface-2);
+	}
+
+	.xin-key-value {
+		font-size: x-small;
+		color: var(--text-muted);
+	}
+
+	.xin-stats {
+		display: grid;
+		gap: var(--gap-sm);
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		margin: var(--gap) 0 0 0;
+	}
+
+	.xin-stats div {
+		padding: var(--gap-sm);
+		background: var(--surface-2);
+		border-radius: var(--border-radius-sm);
+		text-align: center;
+	}
+
+	.xin-stats dt {
+		font-size: smaller;
+		color: var(--text-muted);
+		margin: 0;
+	}
+
+	.xin-stats dd {
+		font-size: large;
+		font-weight: 600;
+		margin: var(--gap-xxs) 0 0 0;
+	}
+
+	.xin-footer {
+		margin: 0;
 	}
 
 	@media (--vp-md) {
 		.xin {
 			grid-template-columns: 1fr 1fr;
+		}
+
+		.xin-distribution {
+			grid-template-columns: minmax(12rem, 14rem) 1fr;
+			align-items: start;
+		}
+
+		.xin-footer {
+			grid-column: 1 / -1;
+		}
+
+		.xin-language-key {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			column-gap: var(--gap-sm);
+		}
+
+		.xin-language-key li {
+			margin-bottom: 0;
 		}
 	}
 

@@ -55,6 +55,15 @@ export async function getAllTools() {
 	});
 }
 
+export async function getAllTechStackSections() {
+	return client.getByType('tech_stack_section', {
+		orderings: {
+			field: 'my.tech_stack_section.order',
+			direction: 'asc',
+		},
+	});
+}
+
 export async function getPageByUID(uid: string, type: string = 'page') {
 	return await client.getByUID(type, uid, {
 		page: 1,
