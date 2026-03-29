@@ -14,129 +14,131 @@ body {
 	);
 }
 
-fieldset {
-	border: 0;
-	padding: 0;
-	margin: 0;
-}
+.main {
+	fieldset {
+		border: 0;
+		padding: 0;
+		margin: 0;
+	}
 
-input,
-textarea,
-select {
-	background-color: var(--form-input-bg);
-	border: var(--form-border-width) solid var(--form-border-color);
-	border-radius: var(--form-border-radius);
-	padding: var(--gap-sm);
-	outline: var(--form-outline-color);
-	font-size: var(--font-size);
-	transition: border-color ease var(--transition-fast);
-}
+	input,
+	textarea,
+	select {
+		background-color: var(--form-input-bg);
+		border: var(--form-border-width) solid var(--form-border-color);
+		border-radius: var(--form-border-radius);
+		padding: var(--gap-sm);
+		outline: var(--form-outline-color);
+		font-size: var(--font-size);
+		transition: border-color ease var(--transition-fast);
+	}
 
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible {
-	border-color: light-dark(
-		oklch(from var(--form-border-color) calc(l - 0.15) c h),
-		oklch(from var(--form-border-color) calc(l + 0.20) c h)
-	);
-	outline: 2px solid var(--form-outline-color);
-	outline-offset: 2px;
-}
+	input:focus-visible,
+	textarea:focus-visible,
+	select:focus-visible {
+		border-color: light-dark(
+			oklch(from var(--form-border-color) calc(l - 0.15) c h),
+			oklch(from var(--form-border-color) calc(l + 0.20) c h)
+		);
+		outline: 2px solid var(--form-outline-color);
+		outline-offset: 2px;
+	}
 
-input:focus,
-textarea:focus,
-select:focus {
-	border-color: light-dark(
-		oklch(from var(--form-border-color) calc(l - 0.15) c h),
-		oklch(from var(--form-border-color) calc(l + 0.20) c h)
-	);
-}
+	input:focus,
+	textarea:focus,
+	select:focus {
+		border-color: light-dark(
+			oklch(from var(--form-border-color) calc(l - 0.15) c h),
+			oklch(from var(--form-border-color) calc(l + 0.20) c h)
+		);
+	}
 
-input,
-textarea,
-select,
-button {
-	opacity: 1;
-	transition: opacity ease 1s;
-}
+	input,
+	textarea,
+	select,
+	button {
+		opacity: 1;
+		transition: opacity ease 1s;
+	}
 
-input:disabled,
-input.disabled,
-textarea:disabled,
-textarea.disabled,
-select:disabled,
-select.disabled,
-button:disabled,
-button.disabled {
-	opacity: .5;
-}
+	input:disabled,
+	input.disabled,
+	textarea:disabled,
+	textarea.disabled,
+	select:disabled,
+	select.disabled,
+	button:disabled,
+	button.disabled {
+		opacity: .5;
+	}
 
-input[type="checkbox"] {
-	accent-color: var(--accent);
-	background-color: var(--form-input-bg);
-	border: var(--form-border-width) solid var(--form-border-color);
-	border-radius: var(--form-border-radius);
-	width: 1.5em;
-	height: 1.5em;
-}
+	input[type="checkbox"] {
+		accent-color: var(--accent);
+		background-color: var(--form-input-bg);
+		border: var(--form-border-width) solid var(--form-border-color);
+		border-radius: var(--form-border-radius);
+		width: 1.5em;
+		height: 1.5em;
+	}
 
-input[type="checkbox"]:focus {
-	box-shadow: none;
-}
+	input[type="checkbox"]:focus {
+		box-shadow: none;
+	}
 
-label {
-	font-weight: 500;
-}
+	label {
+		font-weight: 500;
+	}
 
-button {
-	padding: var(--gap-xs) var(--gap-sm);
-	font-size: large;
-	font-weight: 400;
-	border: var(--form-border-width) solid var(--accent);
-	border-radius: var(--form-border-radius);
-	background-color: var(--form-button-bg);
-	color: var(--white);
-	transition: opacity ease 0.2s, background-color ease var(--transition-fast), transform ease var(--transition-fast);
-	opacity: 1;
-	cursor: pointer;
-}
+	button {
+		padding: var(--gap-xs) var(--gap-sm);
+		font-size: large;
+		font-weight: 400;
+		border: var(--form-border-width) solid var(--accent);
+		border-radius: var(--form-border-radius);
+		background-color: var(--form-button-bg);
+		color: var(--white);
+		transition: opacity ease 0.2s, background-color ease var(--transition-fast), transform ease var(--transition-fast);
+		opacity: 1;
+		cursor: pointer;
+	}
 
-button:hover:not(:disabled) {
-	background-color: oklch(from var(--accent) calc(l - 0.06) c h);
-}
+	button:hover:not(:disabled) {
+		background-color: oklch(from var(--accent) calc(l - 0.06) c h);
+	}
 
-button:active:not(:disabled) {
-	transform: translateY(1px);
-}
+	button:active:not(:disabled) {
+		transform: translateY(1px);
+	}
 
-.col {
-	gap: var(--gap-xs);
-}
+	.col {
+		gap: var(--gap-xs);
+	}
 
-.fieldset {
-	margin: var(--gap) 0;
-}
+	.fieldset {
+		margin: var(--gap) 0;
+	}
 
-.fieldset-options {
-	display: flex;
-	align-items: center;
-	gap: var(--gap-xs);
-	flex-wrap: wrap;
-}
+	.fieldset-options {
+		display: flex;
+		align-items: center;
+		gap: var(--gap-xs);
+		flex-wrap: wrap;
+	}
 
-.col-checkbox {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	gap: var(--gap-xs);
-}
+	.col-checkbox {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: var(--gap-xs);
+	}
 
-.form-checkbox-label {
-	font-weight: normal;
-	font-size: small;
-	margin: var(--gap-xs) 0;
-}
+	.form-checkbox-label {
+		font-weight: normal;
+		font-size: small;
+		margin: var(--gap-xs) 0;
+	}
 
-.form-helper {
-	font-size: smaller;
+	.form-helper {
+		font-size: smaller;
+	}
 }
