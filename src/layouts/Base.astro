@@ -51,32 +51,6 @@ const { frontmatter, url } = Astro.props;
 	Alpine.plugin(intersect);
 	Alpine.start();
 
-	const syncHeaderHeight = () => {
-		const header = document.querySelector('.header');
-
-		if (!(header instanceof HTMLElement)) {
-			return;
-		}
-
-		document.documentElement.style.setProperty('--header-height', `${header.offsetHeight}px`);
-	};
-
-	if ('ResizeObserver' in window) {
-		const header = document.querySelector('.header');
-
-		if (header instanceof HTMLElement) {
-			const observer = new ResizeObserver(() => {
-				syncHeaderHeight();
-			});
-
-			observer.observe(header);
-		}
-	}
-
-	window.addEventListener('load', syncHeaderHeight);
-	window.addEventListener('resize', syncHeaderHeight);
-	syncHeaderHeight();
-
 	if ('serviceWorker' in navigator) {
 		window.addEventListener('load', () => {
 			navigator.serviceWorker.register('/service-worker.js?v=2.01', {
