@@ -1,4 +1,5 @@
 ---
+import { __ } from '@i18n/utils';
 import { getPageByUID } from '@src/prismic';
 import { generateFrontmatter } from '@utils/frontmatter';
 import BaseLayout from '@layouts/Base.astro';
@@ -14,11 +15,11 @@ const frontmatter = generateFrontmatter(page, 'Website');
 
 <BaseLayout frontmatter={frontmatter} url={Astro.url}>
 	<section class="hero">
-		<h1>Dan Gibbs</h1>
-		<h2>Full-stack web developer</h2>
+		<h1>{__('component.hero.title')}</h1>
+		<h2>{__('component.hero.subtitle')}</h2>
 		<span class="hero-location">
 			<span class="gg-pin"></span>
-			<span>Devon, UK</span>
+			<span>{__('component.hero.location')}</span>
 			<span class="gg-time"></span>
 			<Time interval={1000} format={'TIME_24_WITH_SHORT_OFFSET'} timezone={'Europe/London'} />
 		</span>
@@ -80,7 +81,6 @@ const frontmatter = generateFrontmatter(page, 'Website');
 	}
 
 	.header {
-		position: absolute;
 		color-scheme: dark;
 	}
 
@@ -96,7 +96,7 @@ const frontmatter = generateFrontmatter(page, 'Website');
 		color-scheme: dark;
 		min-height: 100svh;
 		align-content: center;
-		padding: calc(var(--header-height) + var(--gap-lg)) 0 var(--gap-xxl) 0;
+		padding: var(--gap);
 		width: 100%;
 		justify-content: center;
 		text-align: center;
