@@ -6,6 +6,11 @@ const trans: Record<string, any> = {
 		tools: 'Tools',
 	},
 	component: {
+		hero: {
+			title: 'Dan Gibbs',
+			subtitle: 'Full-stack web developer',
+			location: 'Devon, UK',
+		},
 		copyright: `Copyright $1 2007 - $2 Dan Gibbs`,
 		build: 'Build',
 		githubinsights: {
