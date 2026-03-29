@@ -35,6 +35,7 @@ const resources: CspDirectives = {
 	'connect-src': [
 		new URL('/', env.APP_SERVICE_URL).href,
 		new URL('/', env.APP_SEARCH_URL).href,
+		'https://o4511127957929984.ingest.us.sentry.io',
 	].join(' '),
 	'img-src': [
 		'https://github.com/gibbs/',
@@ -48,7 +49,7 @@ const resources: CspDirectives = {
 const directives: CspDirectives = {
 	'upgrade-insecure-requests': '',
 	'base-uri': "'self'",
-	'child-src': "'none'",
+	'child-src': "'self' blob:",
 	'connect-src': `'self' ${resources['connect-src']}`,
 	'default-src': "'self'",
 	'font-src': "'self' data:",
@@ -60,7 +61,7 @@ const directives: CspDirectives = {
 	'object-src': "'none'",
 	'script-src': `'self' ${resources['script-src']} 'unsafe-inline'`,
 	'style-src': "'self' 'unsafe-inline'",
-	'worker-src': "'self'",
+	'worker-src': "'self' blob:",
 };
 ---
 

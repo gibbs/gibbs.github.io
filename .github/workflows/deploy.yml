@@ -33,6 +33,7 @@ jobs:
           VITE_MEILISEARCH_INDEX: ${{ vars.VITE_MEILISEARCH_INDEX }}
           VITE_MEILISEARCH_SEARCH_KEY: ${{ vars.VITE_MEILISEARCH_SEARCH_KEY }}
           VITE_MEILISEARCH_MASTER_KEY: ${{ secrets.VITE_MEILISEARCH_MASTER_KEY }}
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
       - name: Archive Build
         env:
           INPUT_PATH: dist/
