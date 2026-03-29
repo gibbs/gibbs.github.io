@@ -38,6 +38,7 @@
 		"@meilisearch/instant-meilisearch": "^0.30.0",
 		"@prismicio/client": "^7.17.2",
 		"@rehype-pretty/transformers": "^0.13.2",
+		"@sentry/astro": "^10.46.0",
 		"@types/alpinejs": "^3.13.11",
 		"astro": "^5.7.0",
 		"date-fns": "^4.1.0",

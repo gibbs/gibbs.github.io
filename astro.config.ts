@@ -1,6 +1,7 @@
 import path from 'path';
 import { loadEnv } from 'vite';
 import { defineConfig, envField } from 'astro/config';
+import sentry from '@sentry/astro';
 import rehypePrettyCode from 'rehype-pretty-code';
 import { transformerCopyButton } from '@rehype-pretty/transformers';
 import markdownIntegration from '@astropub/md';
@@ -21,7 +22,15 @@ export default defineConfig({
 		inlineStylesheets: 'always',
 		redirects: true,
 	},
-	integrations: [markdownIntegration(), searchIndexIntegration()],
+	integrations: [
+		markdownIntegration(),
+		searchIndexIntegration(),
+		sentry({
+			project: 'dangibbsuk',
+			org: 'dan-gibbd',
+			authToken: process.env.SENTRY_AUTH_TOKEN,
+		}),
+	],
 	env: {
 		schema: {
 			APP_SERVICE_URL: envField.string({
