@@ -53,7 +53,7 @@ const { frontmatter, url } = Astro.props;
 
 	if ('serviceWorker' in navigator) {
 		window.addEventListener('load', () => {
-			navigator.serviceWorker.register('/service-worker.js?v=2.01', {
+			navigator.serviceWorker.register('/service-worker.js?v=2.02', {
 				scope: '/',
 			});
 		});

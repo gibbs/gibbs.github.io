@@ -44,6 +44,9 @@ function getProcessedFeed(data: Feed) {
 
 	for (const i in data.activity.items) {
 		const item: FeedCommit = data.activity.items[i];
+		const commitMessage = String(item.commit.message ?? '');
+		const isPullRequest =
+			commitMessage.includes('Merge pull request #') || /(^|\s)#\d+\b/.test(commitMessage);
 		const group = format(parseISO(item.commit.author.date), 'MMM do yyyy');
 
 		if (!(group in commits)) {
@@ -65,10 +68,10 @@ function getProcessedFeed(data: Feed) {
 				date: format(parseISO(item.commit.author.date), 'E do LLL yyyy HH:mm O'),
 				datetime: formatISO(parseISO(item.commit.author.date)),
 				timestamp: item.commit.author.date,
-				message: item.commit.message,
+				message: commitMessage,
 				hash: item.sha.slice(0, 8),
 				url: item.html_url,
-				merge: item.commit.message.includes('Merge pull request #'),
+				merge: isPullRequest,
 			},
 		});
 	}
