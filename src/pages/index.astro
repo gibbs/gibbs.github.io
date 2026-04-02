@@ -6,6 +6,7 @@ import BaseLayout from '@layouts/Base.astro';
 import { env } from '@src/env.config';
 import TechStack from '@components/Block/TechStack.astro';
 import GithubActivityFeed from '@components/Block/GithubActivityFeed.astro';
+import GithubInsights from '@components/Block/GithubInsights.astro';
 import Time from '@components/Block/Time.astro';
 import '@styles/icons.css';
 
@@ -30,13 +31,17 @@ const frontmatter = generateFrontmatter(page, 'Website');
 	</div>
 
 	<div class="container">
+		<GithubInsights />
+	</div>
+
+	<div class="container">
 		<TechStack />
 	</div>
 
 	<script define:vars={{ BASE_URL: env.BASE_URL }}>
 		document.addEventListener('DOMContentLoaded', () => {
 			try {
-				const worker = new Worker(new URL('service-worker.js?v=2.01', BASE_URL));
+				const worker = new Worker(new URL('service-worker.js?v=2.02', BASE_URL));
 
 				worker.postMessage({ type: 'getActivityFeed' });
 

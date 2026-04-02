@@ -35,6 +35,15 @@ const trans: Record<string, any> = {
 			results: '$1 results available. Use up and down arrows to review results.',
 			noresults: 'No results found.',
 		},
+		insights: {
+			heading: {
+				popularity: 'Language Popularity',
+				distribution: 'Distribution',
+			},
+			loading: 'Loading insights...',
+			nodata: 'No language usage data available.',
+			source: 'Data sourced from public repositories',
+		},
 	},
 };
 
