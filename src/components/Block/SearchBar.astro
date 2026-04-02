@@ -27,7 +27,6 @@ const {
 		autocomplete="off"
 		placeholder={placeholder}
 		x-ref="searchInput"
-		x-model="searchTerm"
 		role="combobox"
 		aria-haspopup="listbox"
 		aria-autocomplete="list"
@@ -87,7 +86,6 @@ const {
 			url: null,
 			key: null,
 			index: null,
-			searchTerm: '',
 			results: /** @type {Array<{ title: string; summary: string; url: string }>} */ ([]),
 			isOpen: false,
 			status: '',
@@ -120,7 +118,7 @@ const {
 			},
 
 			async search() {
-				const query = this.searchTerm.trim();
+				const query = this.getSearchInput().value.trim();
 
 				if (query.length === 0) {
 					this.results = [];

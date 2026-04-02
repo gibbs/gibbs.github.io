@@ -3,7 +3,7 @@
 }
 
 :root {
-	--header-height: 0px;
+	--anchor-scroll-offset: 9rem;
 }
 
 body {

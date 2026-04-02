@@ -8,7 +8,10 @@ html {
 	color-scheme: light dark;
 	-webkit-font-smoothing: antialiased;
 	text-size-adjust: none;
-	scroll-padding-top: 9rem;
+}
+
+main :target {
+	scroll-margin-top: var(--anchor-scroll-offset, 9rem);
 }
 
 [data-color-scheme="light"] {
