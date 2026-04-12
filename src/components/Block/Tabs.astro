@@ -36,6 +36,10 @@ const isVertical = orientation === 'vertical';
 		class={`${className}-tablist ${isVertical ? 'col' : 'row'}`}
 		role="tablist"
 		aria-label={title}
+		data-orientation={orientation}
+		@keydown="handleTabKeydown"
+		@keydown.home.prevent="focusFirst"
+		@keydown.end.prevent="focusLast"
 	>
 		{
 			tabs.map((tab, i) => (
@@ -83,12 +87,25 @@ const isVertical = orientation === 'vertical';
 
 					this.activeTab = checkedTab?.dataset.tab || null;
 				},
+
 				setActiveTab(e) {
 					const tab = e.target.closest('[role="tab"]');
 
 					if (!tab) {
 						return;
 					}
+
+					this.activateTab(tab);
+				},
+
+				activateTab(tab) {
+					const tabs = Array.from(this.$el.querySelectorAll('[role="tab"]'));
+
+					tabs.forEach((t) => {
+						const isActive = t === tab;
+						t.setAttribute('tabindex', isActive ? '0' : '-1');
+						t.setAttribute('aria-selected', isActive ? 'true' : 'false');
+					});
 
 					this.activeTab = tab.dataset.tab;
 					tab.focus();
@@ -101,6 +118,65 @@ const isVertical = orientation === 'vertical';
 						}
 					}, 0);
 				},
+
+				focusAdjacentTab(direction) {
+					const tabs = Array.from(this.$el.querySelectorAll('[role="tab"]'));
+					const currentIndex = tabs.indexOf(document.activeElement?.closest('[role="tab"]'));
+
+					if (currentIndex === -1) {
+						return;
+					}
+
+					const newIndex = (currentIndex + direction + tabs.length) % tabs.length;
+					const newTab = tabs[newIndex];
+					const radio = newTab.querySelector('input[type="radio"]');
+
+					if (radio) {
+						radio.checked = true;
+					}
+
+					this.activateTab(newTab);
+				},
+
+				focusFirst() {
+					const tabs = Array.from(this.$el.querySelectorAll('[role="tab"]'));
+					const first = tabs[0];
+					const radio = first?.querySelector('input[type="radio"]');
+
+					if (radio) {
+						radio.checked = true;
+					}
+
+					this.activateTab(first);
+				},
+
+				focusLast() {
+					const tabs = Array.from(this.$el.querySelectorAll('[role="tab"]'));
+					const last = tabs[tabs.length - 1];
+					const radio = last?.querySelector('input[type="radio"]');
+
+					if (radio) {
+						radio.checked = true;
+					}
+
+					this.activateTab(last);
+				},
+
+				handleTabKeydown(e) {
+					const isVertical = e.currentTarget?.dataset.orientation === 'vertical';
+					const keyToDirection = isVertical
+						? { ArrowUp: -1, ArrowDown: 1 }
+						: { ArrowLeft: -1, ArrowRight: 1 };
+					const direction = keyToDirection[e.key];
+
+					if (direction === undefined) {
+						return;
+					}
+
+					e.preventDefault();
+					this.focusAdjacentTab(direction);
+				},
+
 				isActiveTab() {
 					return this.activeTab === this.$el.dataset.tabPanel;
 				},
