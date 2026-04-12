@@ -74,7 +74,7 @@ const pwgenCheckboxes: { name: string; title: string; desc: string }[] = [
 						required
 						x-bind:disabled="loading"
 					/>
-					<span class="form-helper form-helper--active all">Password length (max 1024)</span>
+					<span class="form-helper form-helper--active all">The password length (max 1024)</span>
 				</div>
 
 				<div class="col">
@@ -90,11 +90,11 @@ const pwgenCheckboxes: { name: string; title: string; desc: string }[] = [
 						required
 						x-bind:disabled="loading"
 					/>
-					<span class="form-helper form-helper--active all">Number of passwords (max 100)</span>
+					<span class="form-helper form-helper--active all">The number of passwords to generate (max 100)</span>
 				</div>
 
 				<div class="col">
-					<label for="remove-chars" class="form-label">Remove Characters</label>
+					<label for="remove-chars" class="form-label">Character Removal</label>
 					<input
 						type="text"
 						class="form-control"
@@ -103,10 +103,10 @@ const pwgenCheckboxes: { name: string; title: string; desc: string }[] = [
 						minlength="0"
 						maxlength="65"
 						value=""
-						placeholder="e.g. !£$%^&*()"
+						placeholder="!£$%^&*()"
 						x-bind:disabled="loading"
 					/>
-					<span class="form-helper form-helper--active all">Ignore the specified characters</span>
+					<span class="form-helper form-helper--active all">Characters to be ignored.</span>
 				</div>
 
 				<div class="col" style="align-self: center;">

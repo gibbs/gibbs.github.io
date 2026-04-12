@@ -125,16 +125,15 @@ const records: { name: string; title: string; selected: boolean }[] = [
 				<legend class="hidden">DNS Tool</legend>
 
 				<div class="col">
-					<label for="name">Name</label>
+					<label for="name">Hostname</label>
 					<input
 						type="text"
 						id="name"
 						name="name"
-						placeholder="e.g. google.com"
+						placeholder="google.com"
 						minlength="1"
 						maxlength="255"
 						autocomplete="off"
-						autofocus
 						required
 					/>
 				</div>
@@ -164,8 +163,8 @@ const records: { name: string; title: string; selected: boolean }[] = [
 								id={`type_${type.name}`}
 								checked={type.selected}
 							/>
-							<label class="" for={`type_${type.name}`}>
-								{type.title}
+							<label for={`type_${type.name}`}>
+								{type.title}<span class="sr-only"> record</span>
 							</label>
 						</>
 					))
