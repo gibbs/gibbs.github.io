@@ -118,7 +118,7 @@ td, th {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background-color: light-dark(hsla(0, 0%, 0%, 0.6), transparent);
+	background-color: light-dark(hsla(0, 0%, 0%, 0.8), transparent);
 	z-index: -1;
 }
 
