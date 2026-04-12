@@ -365,19 +365,9 @@ td, th {
 		border-radius: var(--gap-xs) 0;
 	}
 
-	.logo,
-	.scheme-preference {
-		order: 2;
-	}
-
 	.nav {
 		flex-direction: row;
-		order: 0;
 		padding: var(--gap-xs) 0;
-	}
-
-	.search-bar {
-		order: 1;
 	}
 
 	.nav-item {
