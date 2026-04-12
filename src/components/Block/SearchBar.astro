@@ -41,7 +41,6 @@ const {
 		@keydown.arrow-up.stop.prevent="highlightPrev()"
 		@keydown.enter.stop.prevent="goToLink()"
 		@keydown.escape.stop.prevent="closeResults()"
-		@keydown.slash.window="focusShortcut($event)"
 		data-search-url={searchUrl}
 		data-search-index={searchIndex}
 		data-search-key={searchKey}
@@ -249,22 +248,6 @@ const {
 				});
 			},
 
-			focusShortcut(e) {
-				if (e.target instanceof HTMLElement && e.target.isContentEditable) {
-					return;
-				}
-
-				if (
-					e.target instanceof HTMLInputElement ||
-					e.target instanceof HTMLTextAreaElement ||
-					e.target instanceof HTMLSelectElement
-				) {
-					return;
-				}
-
-				e.preventDefault();
-				this.getSearchInput().focus();
-			},
 
 			handleFocusOut(e) {
 				if (e.relatedTarget instanceof HTMLElement && this.$el.contains(e.relatedTarget)) {
