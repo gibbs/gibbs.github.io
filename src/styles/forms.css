@@ -134,7 +134,7 @@ body {
 
 	.form-checkbox-label {
 		font-weight: normal;
-		font-size: small;
+		font-size: normal;
 		margin: var(--gap-xs) 0;
 	}
 
