@@ -12,10 +12,12 @@ const image = {
 };
 ---
 
-<img
-	class="image"
-	src={image.url}
-	alt={image.alt}
-	width={image.dimensions?.width}
-	height={image.dimensions?.height}
-/>
+<a class="image-anchor" href={image.url}>
+	<img
+		class="image"
+		src={image.url}
+		alt={image.alt}
+		width={image.dimensions?.width}
+		height={image.dimensions?.height}
+	/>
+</a>
