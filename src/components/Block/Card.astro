@@ -1,16 +1,25 @@
 ---
 import { env } from '@src/env.config';
 import Logo from '@components/Block/LogoIcon.astro';
+import { DateTime } from 'luxon';
 
 interface Props {
 	icon?: string;
 	tag?: string;
+	date?: Date;
 	heading: string;
 	summary: string;
 	uri: string;
 }
 
-const { icon = null, tag = null, heading = null, summary = null, uri = '/' } = Astro.props;
+const {
+	icon = null,
+	tag = null,
+	date = null,
+	heading = null,
+	summary = null,
+	uri = '/',
+} = Astro.props;
 ---
 
 <x-card class="card">
@@ -41,6 +50,13 @@ const { icon = null, tag = null, heading = null, summary = null, uri = '/' } = A
 				{heading}
 			</a>
 		</h2>
+		{
+			date && date instanceof Date && (
+				<p class="card-date">
+					{DateTime.fromISO(date.toISOString(), { locale: 'en-GB' }).toFormat('d LLL, yyyy')}
+				</p>
+			)
+		}
 		<p>{summary}</p>
 	</div>
 </x-card>
@@ -83,6 +99,11 @@ const { icon = null, tag = null, heading = null, summary = null, uri = '/' } = A
 		&:focus {
 			color: var(--primary);
 		}
+	}
+
+	.card-date {
+		margin-top: calc(var(--space-3) * -0.75);
+		margin-bottom: calc(var(--space-3) * 0.75);
 	}
 
 	.card-preview {
