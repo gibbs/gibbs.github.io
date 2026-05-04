@@ -27,7 +27,7 @@ test.describe('Blog page', () => {
 		const datetime = await time.getAttribute('datetime');
 		expect(isNaN(Date.parse((datetime || '').toString()))).toBe(false);
 
-		const summary = first.locator('p');
+		const summary = first.locator('p:not(.card-date)');
 		await expect(summary).toBeVisible();
 		expect((await summary.textContent())?.length ?? 0).toBeGreaterThan(20);
 	});
