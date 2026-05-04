@@ -45,6 +45,7 @@ const featured = posts.shift();
 						heading={post.data.title}
 						summary={post.data.summary}
 						uri={`blog/${post.uid}`}
+						date={new Date(post.data.date) || null}
 						tag={post.tags[0]}
 						icon={post.tags[0]}
 					/>
