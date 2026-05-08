@@ -1,5 +1,11 @@
 ---
 import '@styles/icons.css';
+
+interface Props {
+	containerClass: string;
+}
+
+const { containerClass = '' } = Astro.props;
 ---
 
 <section
@@ -7,6 +13,9 @@ import '@styles/icons.css';
 	x-intersect:once="boot"
 	x-on:x-activity-timeline.document="update($event)"
 	aria-label="GitHub activity timeline"
+	data-container-class={containerClass}
+	class="xat"
+	:class="show ? containerClass : ''"
 >
 	<div class="xat" x-show="show == true" x-cloak>
 		<template x-for="group in timeline">
@@ -51,16 +60,23 @@ import '@styles/icons.css';
 	document.addEventListener('alpine:init', () => {
 		Alpine.data('xat', () => {
 			return {
+				booted: false,
 				show: false,
 				timeline: {},
+				containerClass: '',
+
+				init() {
+					this.containerClass = this.$el.dataset.containerClass || '';
+				},
 
 				boot() {
-					this.show = true;
+					this.booted = true;
 				},
 
 				update(event) {
 					if (event?.detail && typeof event.detail === 'object') {
 						this.timeline = event.detail;
+						this.show = true;
 					} else {
 						this.timeline = {};
 					}
@@ -75,7 +91,7 @@ import '@styles/icons.css';
 		display: flex;
 		flex-direction: column;
 		font-size: small;
-		margin: var(--gap-xxl) 0;
+		margin-bottom: var(--gap-xxl);
 	}
 
 	.xat-group {

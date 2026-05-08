@@ -1,10 +1,21 @@
 ---
 import { __ } from '@i18n/utils';
 import '@styles/vendor/github-language-colours.css';
+
+interface Props {
+	containerClass: string;
+}
+
+const { containerClass = '' } = Astro.props;
 ---
 
-<x-in x-data="xin" x-intersect:once="boot" x-on:x-insights.document="update($event)">
-	<div class="xin" x-show="show == true" x-cloak>
+<x-in
+	x-data="xin"
+	x-intersect:once="boot"
+	x-on:x-insights.document="update($event)"
+	data-container-class={containerClass}
+>
+	<div class="xin" :class="show ? containerClass : ''" x-show="show == true" x-cloak>
 		<section class="xin-panel">
 			<h3>{__('component.insights.heading.popularity')}</h3>
 
@@ -69,6 +80,7 @@ import '@styles/vendor/github-language-colours.css';
 	document.addEventListener('alpine:init', () => {
 		Alpine.data('xin', () => {
 			return {
+				booted: false,
 				show: false,
 				loading: true,
 				popularity: [],
@@ -88,7 +100,7 @@ import '@styles/vendor/github-language-colours.css';
 				languageColorCache: {},
 
 				boot() {
-					this.show = true;
+					this.booted = true;
 				},
 
 				get pieGradient() {
@@ -114,6 +126,7 @@ import '@styles/vendor/github-language-colours.css';
 				},
 
 				update(event) {
+					this.show = true;
 					this.loading = false;
 
 					if (!(event?.detail && typeof event.detail === 'object')) {
@@ -139,6 +152,12 @@ import '@styles/vendor/github-language-colours.css';
 							this.selectedLanguage = '';
 						}
 					}
+				},
+
+				containerClass: '',
+
+				init() {
+					this.containerClass = this.$el.dataset.containerClass || '';
 				},
 
 				reset() {
