@@ -26,13 +26,8 @@ const frontmatter = generateFrontmatter(page, 'Website');
 		</span>
 	</section>
 
-	<div class="container container-feed">
-		<GithubActivityFeed />
-	</div>
-
-	<div class="container">
-		<GithubInsights />
-	</div>
+	<GithubActivityFeed containerClass="container container-feed" />
+	<GithubInsights containerClass="container" />
 
 	<div class="container">
 		<TechStack />
