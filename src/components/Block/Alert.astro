@@ -18,7 +18,7 @@ const icon = icons[type];
 
 <aside class:list={['alert', `alert-${type}`, 'has-icon']}>
 	<span class={`gg-` + icon}></span>
-	<div set:html={text} />
+	<div class="alert-content" set:html={text} />
 </aside>
 
 <style>
@@ -54,13 +54,11 @@ const icon = icons[type];
 		color: var(--white);
 	}
 
+	.alert-content :global(p:last-of-type) {
+		margin-bottom: 0;
+	}
+
 	.has-icon [class^='gg-'] {
 		--text-color: oklch(from var(--alert-color) calc(l + 0.25) c h);
-	}
-</style>
-
-<style is:inline>
-	.alert p:last-of-type {
-		margin-bottom: 0;
 	}
 </style>

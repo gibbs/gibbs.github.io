@@ -33,6 +33,12 @@ export class BasePage {
 		};
 	}
 
+	async goto(path: string) {
+		await this.page.goto(path, {
+			waitUntil: 'domcontentloaded',
+		});
+	}
+
 	async getMeta() {
 		return this.meta;
 	}
