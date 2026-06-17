@@ -50,7 +50,7 @@ const frontmatter = generateFrontmatter(tool);
 
 				<div class="col">
 					<label class="form-label" for="salt">Salt</label>
-					<input id="salt" type="text" disabled x-bind:disabled="!salt || loading" />
+					<input id="salt" name="salt" type="text" disabled x-bind:disabled="!salt || loading" />
 					<span class="form-helper form-helper--active" x-text="salt || ''"></span>
 				</div>
 
@@ -81,9 +81,9 @@ const frontmatter = generateFrontmatter(tool);
 	</slot>
 </ToolLayout>
 
-<script is:inline define:vars={{ APP_SERVICE_URL: env.APP_SERVICE_URL }}>
+<script is:inline define:vars={{ APP_API_PROXY_URL: env.APP_API_PROXY_URL }}>
 	document.addEventListener('alpine:init', () => {
-		const url = new URL(APP_SERVICE_URL.replace(/\/+$/, '') + '/tool/mkpasswd').toString();
+		const url = new URL(APP_API_PROXY_URL.replace(/\/+$/, '') + '/tools/mkpasswd').toString();
 
 		Alpine.data('tool', () => {
 			const config = {
@@ -157,7 +157,15 @@ const frontmatter = generateFrontmatter(tool);
 						},
 						body: JSON.stringify(Object.fromEntries(formData)),
 					})
-						.then((res) => res.json())
+						.then((res) => {
+							if (!res.ok) {
+								return res.json().then((errData) => {
+									throw new Error(errData.message || 'Validation failed');
+								});
+							}
+
+							return res.json();
+						})
 						.then((data) => {
 							this.result = {
 								class: `result ${data.success ? 'result-success' : 'result-danger'}`,

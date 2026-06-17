@@ -9,7 +9,7 @@ test.describe('mkpasswd tool page', () => {
 	});
 
 	test('generates a password hash via backend', async ({ page }) => {
-		await page.route('**/tool/mkpasswd', (route) =>
+		await page.route('**/api/tools/mkpasswd', (route) =>
 			route.fulfill({
 				status: 200,
 				contentType: 'application/json',
@@ -26,7 +26,7 @@ test.describe('mkpasswd tool page', () => {
 
 		await page.fill('#input', 'password');
 		await Promise.all([
-			page.waitForResponse('**/tool/mkpasswd'),
+			page.waitForResponse('**/api/tools/mkpasswd'),
 			page.click('button[type="submit"]'),
 		]);
 

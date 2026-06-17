@@ -11,3 +11,6 @@
 !/.docker/
 !/.docker/.env.local
 !/.docker/httpd/
+!/.docker/cloudflare/
+/.docker/cloudflare/**/*.env
+/.docker/cloudflare/src/.wrangler/

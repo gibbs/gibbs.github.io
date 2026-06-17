@@ -174,9 +174,9 @@ const pwgenCheckboxes: { name: string; title: string; desc: string }[] = [
 	}
 </style>
 
-<script is:inline define:vars={{ APP_SERVICE_URL: env.APP_SERVICE_URL }}>
+<script is:inline define:vars={{ APP_API_PROXY_URL: env.APP_API_PROXY_URL }}>
 	document.addEventListener('alpine:init', () => {
-		const url = new URL(APP_SERVICE_URL.replace(/\/+$/, '') + '/tool/pwgen').toString();
+		const url = new URL(APP_API_PROXY_URL.replace(/\/+$/, '') + '/tools/pwgen').toString();
 
 		Alpine.data('tool', () => {
 			return {
@@ -201,12 +201,20 @@ const pwgenCheckboxes: { name: string; title: string; desc: string }[] = [
 						},
 						body: JSON.stringify(Object.fromEntries(formData)),
 					})
-						.then((res) => res.json())
+						.then((res) => {
+							if (!res.ok) {
+								return res.json().then((errData) => {
+									throw new Error(errData.message || 'Validation failed');
+								});
+							}
+
+							return res.json();
+						})
 						.then((data) => {
 							this.result = {
 								class: `result ${data.success ? 'result-success' : 'result-danger'}`,
 								command: data.command,
-								output: data.output,
+								output: data.output.join('\n'),
 								success: data.success,
 							};
 						})
