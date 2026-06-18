@@ -33,7 +33,7 @@ export default defineConfig({
 	],
 	env: {
 		schema: {
-			APP_SERVICE_URL: envField.string({
+			APP_API_PROXY_URL: envField.string({
 				context: 'client',
 				access: 'public',
 				optional: false,

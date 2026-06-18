@@ -5,7 +5,7 @@ import ContentSecurityPolicy from '../ContentSecurityPolicy.astro';
 
 vi.mock('astro:env/client', () => {
 	return {
-		APP_SERVICE_URL: 'http://localhost',
+		APP_API_PROXY_URL: 'http://localhost',
 		APP_SEARCH_URL: 'http://localhost:7700',
 	};
 });

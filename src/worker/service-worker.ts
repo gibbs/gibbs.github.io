@@ -17,7 +17,7 @@ onmessage = (event: MessageEvent) => {
 
 function getActivityFeed() {
 	const url = new URL(
-		import.meta.env.VITE_APP_SERVICE_URL.replace(/\/+$/, '') + '/data/activity-feed.json',
+		import.meta.env.VITE_APP_API_PROXY_URL.replace(/\/+$/, '') + '/feeds/activity',
 	).toString();
 
 	fetch(url, {

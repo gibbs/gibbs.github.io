@@ -9,7 +9,7 @@ test.describe('UUID generator tool page', () => {
 	});
 
 	test('generates a UUID via backend (mocked) and validates format', async ({ page }) => {
-		await page.route('**/tool/uuidgen', (route) =>
+		await page.route('**/api/tools/uuid', (route) =>
 			route.fulfill({
 				status: 200,
 				contentType: 'application/json',
@@ -25,7 +25,7 @@ test.describe('UUID generator tool page', () => {
 		await toolsPage.goto('uuid-generator');
 
 		await Promise.all([
-			page.waitForResponse('**/tool/uuidgen'),
+			page.waitForResponse('**/api/tools/uuid'),
 			page.click('button[type="submit"]'),
 		]);
 

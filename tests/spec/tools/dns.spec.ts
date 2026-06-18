@@ -12,7 +12,7 @@ test.describe('DNS tool page', () => {
 		const toolsPage = new ToolsPage(page);
 		await toolsPage.goto('dns');
 
-		await page.route('**/tool/dig', (route) =>
+		await page.route('**/api/tools/dig', (route) =>
 			route.fulfill({
 				status: 200,
 				contentType: 'application/json',
@@ -32,7 +32,10 @@ test.describe('DNS tool page', () => {
 		);
 
 		await page.fill('#name', 'example.com');
-		await Promise.all([page.waitForResponse('**/tool/dig'), page.click('button[type="submit"]')]);
+		await Promise.all([
+			page.waitForResponse('**/api/tools/dig'),
+			page.click('button[type="submit"]'),
+		]);
 
 		await expect(page.locator('.table-wrapper > table')).toBeVisible();
 		await expect(page.locator('.table-wrapper > table tbody tr')).toHaveCount(1);
@@ -45,7 +48,7 @@ test.describe('DNS tool page', () => {
 	test('errors when the lookup fails', async ({ page }) => {
 		const toolsPage = new ToolsPage(page);
 		await toolsPage.goto('dns');
-		await page.route('**/tool/dig', (route) => route.abort());
+		await page.route('**/api/tools/dig', (route) => route.abort());
 
 		await page.fill('#name', 'example.com');
 		await page.click('button[type="submit"]');

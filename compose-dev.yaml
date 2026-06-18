@@ -8,11 +8,13 @@ services:
     networks:
       - dgapp
 
-  app:
-    image: gibbs/app.dangibbs.uk:0.7.1
+  api:
+    image: gibbs/api.dangibbs.uk:1.0.0
     volumes:
-      - ${PWD}/.docker/database.sqlite3:/var/www/html/database/database.sqlite3:rw
+      - ${PWD}/.docker/database.sqlite:/var/www/html/database/database.sqlite:rw
       - ${PWD}/.docker/.env:/var/www/html/.env
+    ports:
+      - '9000:9000'
     networks:
       - dgapp
 
@@ -29,6 +31,23 @@ services:
       - ${PWD}/.docker/.env
     volumes:
       - ${PWD}/.docker/meilisearch/search:/meili_data
+    networks:
+      - dgapp
+
+  cloudflare-api-proxy:
+    build:
+      context: ${PWD}/.docker/cloudflare/
+      dockerfile: ${PWD}/.docker/cloudflare/Dockerfile
+    ports:
+      - "8787:8787"
+    volumes:
+      - ./.docker/cloudflare/src:/app
+      - ./.docker/.env:/app/.dev.vars
+      - /app/node_modules
+    env_file:
+      - ${PWD}/.docker/.env
+    depends_on:
+      - api
     networks:
       - dgapp
 

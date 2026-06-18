@@ -55,9 +55,9 @@ const frontmatter = generateFrontmatter(tool);
 	</slot>
 </ToolLayout>
 
-<script is:inline define:vars={{ APP_SERVICE_URL: env.APP_SERVICE_URL }}>
+<script is:inline define:vars={{ APP_API_PROXY_URL: env.APP_API_PROXY_URL }}>
 	document.addEventListener('alpine:init', () => {
-		const url = new URL(APP_SERVICE_URL.replace(/\/+$/, '') + '/tool/uuidgen').toString();
+		const url = new URL(APP_API_PROXY_URL.replace(/\/+$/, '') + '/tools/uuid').toString();
 
 		Alpine.data('tool', () => {
 			return {
@@ -81,7 +81,15 @@ const frontmatter = generateFrontmatter(tool);
 						},
 						body: JSON.stringify(Object.fromEntries(formData)),
 					})
-						.then((res) => res.json())
+						.then((res) => {
+							if (!res.ok) {
+								return res.json().then((errData) => {
+									throw new Error(errData.message || 'Validation failed');
+								});
+							}
+
+							return res.json();
+						})
 						.then((data) => {
 							this.result = {
 								class: `result ${data.success ? 'result-success' : 'result-danger'}`,

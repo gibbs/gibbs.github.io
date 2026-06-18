@@ -21,13 +21,18 @@ npm run dev
 
 ## Docker Environments
 
-Service dependencies can be run locally with `compose-dev.yaml`
+Service dependencies can be run locally with `compose-dev.yaml`. Ensure
+`.docker/.env.local` is copied to `.docker/.env` and updated where appropriate.
 
 ```bash
 docker compose -f compose-dev.yaml up -d
 ```
 
 ## Testing
+
+```bash
+npm run build:testing
+```
 
 ```bash
 npm run test:e2e

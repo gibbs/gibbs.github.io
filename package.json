@@ -53,7 +53,7 @@
 	"devDependencies": {
 		"@axe-core/playwright": "^4.11.1",
 		"@csstools/postcss-global-data": "^3.0.0",
-		"@playwright/test": "^1.49.1",
+		"@playwright/test": "^1.61.0",
 		"@richhouse83/xsd-validator": "^1.0.0",
 		"@types/dotenv": "^6.1.1",
 		"@types/luxon": "^3.7.1",
