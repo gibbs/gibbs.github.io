@@ -8,46 +8,54 @@ import { generateFrontmatter } from '@utils/frontmatter';
 const tool = await getPageByUID('pwgen', 'tools');
 const frontmatter = generateFrontmatter(tool);
 
-const pwgenCheckboxes: { name: string; title: string; desc: string }[] = [
+const pwgenCheckboxes: { name: string; title: string; desc: string, checked: boolean }[] = [
 	{
 		name: 'secure',
 		title: 'Secure',
 		desc: 'completely randomise output (hard-to-memorise)',
+		checked: true,
 	},
 	{
 		name: 'numerals',
 		title: 'Include Numerals',
 		desc: 'include at least one number in the password',
+		checked: true,
 	},
 	{
 		name: 'symbols',
 		title: 'Include Symbols',
 		desc: 'include at least one special character in the password',
+		checked: true,
 	},
 	{
 		name: 'capitalize',
 		title: 'Include Capitals',
 		desc: 'include at least one capital letter in the password',
+		checked: true,
 	},
 	{
 		name: 'ambiguous',
 		title: 'No Ambiguity',
 		desc: "do not use characters that could be confused when printed, such as 'l' and '1', or '0' or 'O'",
+		checked: false,
 	},
 	{
 		name: 'no-capitalize',
 		title: 'No Capitals',
 		desc: 'stops passwords including capitalisation',
+		checked: false,
 	},
 	{
 		name: 'no-numerals',
 		title: 'No Numerals',
 		desc: 'do not include numbers in the generated passwords',
+		checked: false,
 	},
 	{
 		name: 'no-vowels',
 		title: 'No Vowels',
 		desc: 'do not include vowels or numbers that might be mistaken for vowels',
+		checked: false,
 	},
 ];
 ---
@@ -69,7 +77,7 @@ const pwgenCheckboxes: { name: string; title: string; desc: string }[] = [
 						name="length"
 						min="1"
 						max="1024"
-						value="16"
+						value="32"
 						autocomplete="off"
 						required
 						x-bind:disabled="loading"
@@ -110,18 +118,9 @@ const pwgenCheckboxes: { name: string; title: string; desc: string }[] = [
 					/>
 					<span class="form-helper form-helper--active all">Characters to be ignored.</span>
 				</div>
-
-				<div class="col" style="align-self: center;">
-					<button
-						type="button"
-						id="pwgen_options_toggle"
-						class="button button--secondary button--form"
-						x-on:click="options = !options">More</button
-					>
-				</div>
 			</fieldset>
 
-			<fieldset class="fieldset" x-cloak x-show="options">
+			<fieldset class="fieldset">
 				<legend class="hidden">Password Creator Options</legend>
 				{
 					pwgenCheckboxes.map((checkbox) => (
@@ -133,6 +132,7 @@ const pwgenCheckboxes: { name: string; title: string; desc: string }[] = [
 								value="1"
 								id={checkbox.name}
 								x-bind:disabled="loading"
+								:checked={checkbox.checked ? 1 : 0}
 							/>
 							<label class="form-checkbox-label" for={checkbox.name}>
 								<strong>{checkbox.title}</strong> - {checkbox.desc}
@@ -168,7 +168,7 @@ const pwgenCheckboxes: { name: string; title: string; desc: string }[] = [
 
 	@media (--vp-lg) {
 		.fieldset-tool {
-			grid-template-columns: 2fr 2fr 4fr minmax(0, 1fr);
+			grid-template-columns: 2fr 2fr 4fr;
 			grid-template-rows: 1fr;
 		}
 	}
@@ -181,7 +181,6 @@ const pwgenCheckboxes: { name: string; title: string; desc: string }[] = [
 		Alpine.data('tool', () => {
 			return {
 				loading: false,
-				options: false,
 				result: {
 					class: null,
 					command: null,
