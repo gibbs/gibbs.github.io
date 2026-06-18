@@ -168,10 +168,10 @@ const frontmatter = generateFrontmatter(tool);
 						})
 						.then((data) => {
 							this.result = {
-								class: `result ${data.success ? 'result-success' : 'result-danger'}`,
+								class: 'result result-success',
 								command: data.command,
 								output: data.output,
-								success: data.success,
+								success: true,
 							};
 						})
 						.catch((err) => {

@@ -9,7 +9,7 @@ services:
       - dgapp
 
   api:
-    image: gibbs/api.dangibbs.uk:1.0.0
+    image: gibbs/api.dangibbs.uk:1.0.1
     volumes:
       - ${PWD}/.docker/database.sqlite:/var/www/html/database/database.sqlite:rw
       - ${PWD}/.docker/.env:/var/www/html/.env

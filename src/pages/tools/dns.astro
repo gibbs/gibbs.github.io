@@ -246,11 +246,15 @@ const records: { name: string; title: string; selected: boolean }[] = [
 							return res.json();
 						})
 						.then((data) => {
+							if (data.output.length === 0) {
+								throw new Error(`No records returned for "${formData.get('name')}"`);
+							}
+
 							this.result = {
-								class: `result ${data.success ? 'result-success' : 'result-error'}`,
+								class: 'result result-success',
 								command: data.command,
 								output: data.output,
-								success: data.success,
+								success: true,
 							};
 						})
 						.catch((err) => {
