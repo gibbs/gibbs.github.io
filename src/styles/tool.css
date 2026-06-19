@@ -6,6 +6,8 @@
 	font-size: small;
 	border: 3px solid;
 	animation: result ease var(--transition-duration);
+	max-width: 100%;
+	overflow-x: auto;
 
 	pre {
 		margin: 0;
