@@ -1,0 +1,290 @@
+---
+import ToolLayout from '@layouts/Tool.astro';
+import { env } from '@src/env.config';
+import SliceLibrary from '@components/Prismic/SliceLibrary.astro';
+import { getPageByUID } from '@src/prismic';
+import { generateFrontmatter } from '@utils/frontmatter';
+
+const tool = await getPageByUID('qr-code-generator', 'tools');
+const frontmatter = generateFrontmatter(tool);
+
+const qrcodeCheckboxes: { name: string; title: string; desc: string; checked: boolean }[] = [
+	{
+		name: 'ignorecase',
+		title: 'Ignore Case',
+		desc: 'ignore case distinctions and use only upper-case characters',
+		checked: false,
+	},
+	{
+		name: 'casesensitive',
+		title: 'Case Sensitive',
+		desc: 'encode lower-case alphabet characters in 8-bit mode',
+		checked: true,
+	},
+];
+---
+
+<ToolLayout frontmatter={frontmatter} url={Astro.url}>
+	<slot slot="content">
+		<SliceLibrary slices={tool.data.slices} />
+
+		<form id="tool" class="form" method="post" x-data="tool" @submit.prevent="generate">
+			<fieldset class="fieldset">
+				<legend class="hidden">QR Code Generator Input</legend>
+
+				<div class="col">
+					<label class="form-label" for="input">Input</label>
+					<textarea
+						name="input"
+						rows="2"
+						id="input"
+						x-bind:disabled="loading"
+						autocomplete="off"
+						required></textarea>
+				</div>
+			</fieldset>
+
+			<fieldset class="fieldset fieldset-tool">
+				<legend class="hidden">QR Code Settings</legend>
+
+				<div class="col">
+					<label class="form-label" for="type">Image type</label>
+					<select
+						class="form-select"
+						aria-label="QR code image type"
+						name="type"
+						id="type"
+						required
+						x-bind:disabled="loading"
+						x-on:change="imageTypeChanged($event.target.value)"
+					>
+						<option value="PNG" selected="selected">PNG</option>
+						<option value="SVG">SVG</option>
+						<option value="EPS">EPS</option>
+						<option value="ASCII">ASCII</option>
+						<option value="XPM">XPM</option>
+					</select>
+				</div>
+
+				<div class="col">
+					<label class="form-label" for="dpi">DPI</label>
+					<input
+						type="number"
+						name="dpi"
+						id="dpi"
+						min="72"
+						max="1200"
+						value="72"
+						x-bind:disabled="!dpi || loading"
+					/>
+					<span class="form-helper form-helper--active all">The image DPI (PNG)</span>
+				</div>
+
+				<div class="col">
+					<label class="form-label" for="background">Background Colour</label>
+					<input
+						type="text"
+						name="background"
+						id="background"
+						value="FFFFFF"
+						pattern="([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})"
+					/>
+					<span class="form-helper form-helper--active all">Hex colour</span>
+				</div>
+
+				<div class="col">
+					<label class="form-label" for="foreground">Foreground Colour</label>
+					<input
+						type="text"
+						name="foreground"
+						id="foreground"
+						value="000000"
+						pattern="([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})"
+					/>
+					<span class="form-helper form-helper--active all">Hex colour</span>
+				</div>
+
+				<div class="col">
+					<label class="form-label" for="margin">Margin</label>
+					<input type="number" name="margin" id="margin" min="1" max="20" value="2" />
+					<span class="form-helper form-helper--active all">The margin width (1-20)</span>
+				</div>
+
+				<div class="col">
+					<label class="form-label" for="size">Size</label>
+					<input type="number" name="size" id="size" min="1" max="50" value="6" />
+					<span class="form-helper form-helper--active all">The pixel size (1-50)</span>
+				</div>
+			</fieldset>
+
+			<fieldset class="fieldset">
+				<legend class="hidden">QR Code Options</legend>
+				{
+					qrcodeCheckboxes.map((checkbox) => (
+						<div class="col-checkbox">
+							<input
+								class="form-checkbox-input"
+								type="checkbox"
+								name={checkbox.name}
+								value="1"
+								id={checkbox.name}
+								x-bind:disabled="loading"
+								x-bind:checked={checkbox.checked ? 1 : 0}
+							/>
+							<label class="form-checkbox-label" for={checkbox.name}>
+								<strong>{checkbox.title}</strong> - {checkbox.desc}
+							</label>
+						</div>
+					))
+				}
+			</fieldset>
+
+			<button type="submit" id="mkpasswd_generate" class="button" x-bind:disabled="loading"
+				>Generate</button
+			>
+
+			<pre
+				x-cloak
+				x-show="result.success && ['ASCII', 'XPM'].includes(result.type)"
+				x-text="result.output"
+				class="result">
+			</pre>
+
+			<div
+				x-cloak
+				x-show="result.success && ['PNG', 'SVG'].includes(result.type)"
+				class="result result-image"
+			>
+				<img src="data:," x-bind:src="result.output || 'data:,'" alt="Generated QR code" />
+			</div>
+
+			<div x-cloak x-show="result.success && result.type === 'EPS'" class="result">
+				<a
+					class="button"
+					href="data:,"
+					x-bind:href="result.output || 'data:,'"
+					download="qrcode.eps">Download EPS file</a
+				>
+			</div>
+
+			<output
+				x-cloak
+				x-show="result.success === false"
+				x-text="result.output"
+				class="result result-error"></output>
+		</form>
+	</slot>
+</ToolLayout>
+
+<script is:inline define:vars={{ APP_API_PROXY_URL: env.APP_API_PROXY_URL }}>
+	document.addEventListener('alpine:init', () => {
+		const url = new URL(APP_API_PROXY_URL.replace(/\/+$/, '') + '/tools/qrcode').toString();
+
+		Alpine.data('tool', () => {
+			return {
+				loading: false,
+				dpi: true,
+				result: {
+					command: null,
+					output: null,
+					type: null,
+					success: null,
+				},
+
+				isLoading() {
+					return this.loading;
+				},
+
+				imageTypeChanged(value) {
+					this.dpi = value == 'PNG';
+				},
+
+				generate() {
+					this.loading = true;
+					const formData = new FormData(document.getElementById('tool'));
+					const type = formData.get('type');
+
+					fetch(url, {
+						method: 'post',
+						cache: 'no-cache',
+						headers: {
+							'content-type': 'application/json',
+						},
+						body: JSON.stringify(Object.fromEntries(formData)),
+					})
+						.then((res) => {
+							if (!res.ok) {
+								return res.json().then((errData) => {
+									throw new Error(errData.message || 'Validation failed');
+								});
+							}
+
+							return res.json();
+						})
+						.then((data) => {
+							const mimeTypes = {
+								PNG: 'image/png',
+								SVG: 'image/svg+xml',
+								EPS: 'application/postscript',
+							};
+
+							const output = ['ASCII', 'XPM'].includes(type)
+								? atob(data.output)
+								: `data:${mimeTypes[type]};base64,${data.output}`;
+
+							this.result = {
+								command: data.command,
+								output: output,
+								type: type,
+								success: true,
+							};
+						})
+						.catch((err) => {
+							this.result = {
+								command: null,
+								output: err.message,
+								type: null,
+								success: false,
+							};
+						})
+						.finally(() => {
+							this.loading = false;
+						});
+				},
+			};
+		});
+	});
+</script>
+
+<style>
+	.fieldset-tool {
+		display: grid;
+		gap: var(--gap);
+		grid-template-columns: 1fr;
+		grid-template-rows: 1fr;
+	}
+
+	@media (--vp-md) {
+		.fieldset-tool {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	@media (--vp-lg) {
+		.fieldset-tool {
+			grid-template-columns: 1fr 1fr 1fr;
+		}
+	}
+
+	@media (--vp-xl) {
+		.fieldset-tool {
+			grid-template-columns: repeat(6, auto);
+			grid-template-rows: 1fr min-content;
+		}
+	}
+
+	.result:not(.result-command) {
+		border: 0;
+		padding: 0;
+	}
+</style>

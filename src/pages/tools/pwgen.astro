@@ -8,7 +8,7 @@ import { generateFrontmatter } from '@utils/frontmatter';
 const tool = await getPageByUID('pwgen', 'tools');
 const frontmatter = generateFrontmatter(tool);
 
-const pwgenCheckboxes: { name: string; title: string; desc: string, checked: boolean }[] = [
+const pwgenCheckboxes: { name: string; title: string; desc: string; checked: boolean }[] = [
 	{
 		name: 'secure',
 		title: 'Secure',
@@ -131,8 +131,8 @@ const pwgenCheckboxes: { name: string; title: string; desc: string, checked: boo
 								name={checkbox.name}
 								value="1"
 								id={checkbox.name}
+								x-bind:checked={checkbox.checked ? 1 : 0}
 								x-bind:disabled="loading"
-								:checked={checkbox.checked ? 1 : 0}
 							/>
 							<label class="form-checkbox-label" for={checkbox.name}>
 								<strong>{checkbox.title}</strong> - {checkbox.desc}

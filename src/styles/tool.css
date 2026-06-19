@@ -20,6 +20,24 @@
 		oklch(from var(--success) calc(l - 0.15) c h / 0.8),
 		oklch(from var(--success) calc(l + 0.15) c h / 0.5)
 	);
+
+	a {
+		color: var(--white);
+		text-decoration: underline;
+	}
+}
+
+.result-image {
+	justify-content: center;
+
+	img {
+		max-width: 100%;
+		width: fit-content;
+		height: auto;
+		background-color: var(--white);
+		padding: var(--gap-sm);
+		border-radius: var(--border-radius);
+	}
 }
 
 .result-error {
