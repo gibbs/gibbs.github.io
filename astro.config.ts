@@ -7,6 +7,7 @@ import { transformerCopyButton } from '@rehype-pretty/transformers';
 import markdownIntegration from '@astropub/md';
 import remarkFlexibleMarkers from 'remark-flexible-markers';
 import searchIndexIntegration from './integrations/search-index-integration';
+import buildBadgesIntegration from './integrations/build-badges-integration';
 
 const env: Record<string, string> = loadEnv(
 	process.env.NODE_ENV ?? 'production',
@@ -25,6 +26,7 @@ export default defineConfig({
 	integrations: [
 		markdownIntegration(),
 		searchIndexIntegration(),
+		buildBadgesIntegration(),
 		sentry({
 			project: 'dangibbsuk',
 			org: 'dan-gibbd',
@@ -100,6 +102,11 @@ export default defineConfig({
 				},
 			],
 		],
+	},
+	vite: {
+		define: {
+			__SENTRY_DEBUG__: false,
+		},
 	},
 	output: 'static',
 	server: {

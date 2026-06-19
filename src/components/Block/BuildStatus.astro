@@ -1,5 +1,6 @@
 ---
 import { __ } from '@i18n/utils';
+import { env } from '@src/env.config';
 
 const buildDate: string = new Date().toJSON().slice(0, 10).split('-').reverse().join('-');
 const buildTime: string = new Date().toISOString();
@@ -12,7 +13,7 @@ const buildTime: string = new Date().toISOString();
 	<div class="flex gap-xs">
 		<a href="https://github.com/gibbs/gibbs.github.io/actions/workflows/test.yml">
 			<img
-				src="https://img.shields.io/github/actions/workflow/status/gibbs/gibbs.github.io/test.yml?label=Tests&style=flat-square"
+				src={new URL('/badges/test-status.svg', env.BASE_URL).href}
 				alt="Tests status badge"
 				height="26"
 				width="117"
@@ -21,7 +22,7 @@ const buildTime: string = new Date().toISOString();
 		</a>
 		<a href="https://github.com/gibbs/gibbs.github.io/actions/workflows/deploy.yml">
 			<img
-				src="https://img.shields.io/github/actions/workflow/status/gibbs/gibbs.github.io/deploy.yml?label=Release&style=flat-square"
+				src={new URL('/badges/deploy-status.svg', env.BASE_URL).href}
 				alt="Deploy status badge"
 				height="26"
 				width="135"

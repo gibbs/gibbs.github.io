@@ -77,8 +77,6 @@ const {
 
 <script>
 	// @ts-nocheck
-	import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
-
 	document.addEventListener('alpine:init', () => {
 		window.Alpine.data('search', () => ({
 			client: /** @type {any} */ (null),
@@ -103,13 +101,21 @@ const {
 
 				if (!this.url || !this.key || !this.index) {
 					this.status = 'Search is currently unavailable.';
-
-					return;
 				}
+			},
+
+			async loadClient() {
+				if (this.client) {
+					return this.client;
+				}
+
+				const { instantMeiliSearch } = await import('@meilisearch/instant-meilisearch');
 
 				this.client = instantMeiliSearch(this.url, this.key, {
 					placeholderSearch: false,
 				}).searchClient;
+
+				return this.client;
 			},
 
 			resultId(index) {
@@ -127,13 +133,14 @@ const {
 					return;
 				}
 
-				if (!this.client) {
+				if (!this.url || !this.key || !this.index) {
 					this.status = 'Search is currently unavailable.';
 					return;
 				}
 
 				try {
-					const response = await this.client.search([
+					const client = await this.loadClient();
+					const response = await client.search([
 						{
 							indexName: this.index,
 							params: {

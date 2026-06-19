@@ -18,12 +18,20 @@ const {
 >
 
 <script>
-	import { DateTime } from 'luxon';
+	const formats = {
+		TIME_24_WITH_SHORT_OFFSET: {
+			hour: 'numeric',
+			minute: '2-digit',
+			second: '2-digit',
+			hourCycle: 'h23',
+			timeZoneName: 'shortOffset',
+		},
+	};
 
 	document.addEventListener('alpine:init', () => {
 		Alpine.data('xtime', () => {
 			return {
-				date: DateTime.now(),
+				date: new Date(),
 				interval: 0,
 				format: 'TIME_24_WITH_SHORT_OFFSET',
 				timezone: 'Europe/London',
@@ -34,21 +42,24 @@ const {
 					this.timezone = this.$el.dataset.timezone || this.timezone;
 
 					if (!this.interval) {
-						this.date = DateTime.now().setZone(this.timezone);
+						this.date = new Date();
 						return;
 					}
 
 					setInterval(() => {
-						this.date = DateTime.now().setZone(this.timezone);
+						this.date = new Date();
 					}, this.interval);
 				},
 
 				getTime() {
-					return this.date.toLocaleString(DateTime[this.format]);
+					return new Intl.DateTimeFormat(undefined, {
+						...(formats[this.format] ?? formats.TIME_24_WITH_SHORT_OFFSET),
+						timeZone: this.timezone,
+					}).format(this.date);
 				},
 
 				getDatetime() {
-					return this.date.toISO();
+					return this.date.toISOString();
 				},
 			};
 		});
