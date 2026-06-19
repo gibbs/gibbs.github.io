@@ -1,7 +1,7 @@
 <button
 	type="button"
 	class="scheme-preference"
-	:class="{ 'active': active == true, 'animate': animate == true }"
+	:class="{ 'active': active == true }"
 	id="scheme-preference"
 	title="Toggle colour scheme"
 	aria-label="Toggle colour scheme"
@@ -13,22 +13,31 @@
 	@click="changeScheme"
 >
 	<svg
-		fill="#000000"
-		width="20px"
-		height="20px"
-		viewBox="0 0 32 32"
-		version="1.1"
+		x-show="!isDark"
+		width="32px"
+		height="32px"
+		viewBox="0 0 24 24"
 		xmlns="http://www.w3.org/2000/svg"
 		aria-hidden="true"
 	>
 		<path
-			d="M0 16q0 3.264 1.28 6.24t3.392 5.088 5.12 3.424 6.208 1.248q3.264 0 6.24-1.248t5.088-3.424 3.392-5.088 1.28-6.24-1.28-6.208-3.392-5.12-5.088-3.392-6.24-1.28q-3.264 0-6.208 1.28t-5.12 3.392-3.392 5.12-1.28 6.208zM4 16q0-3.264 1.6-6.016t4.384-4.352 6.016-1.632 6.016 1.632 4.384 4.352 1.6 6.016-1.6 6.048-4.384 4.352-6.016 1.6-6.016-1.6-4.384-4.352-1.6-6.048zM16 26.016q2.72 0 5.024-1.344t3.648-3.648 1.344-5.024-1.344-4.992-3.648-3.648-5.024-1.344v20z"
+			d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.106 17.834a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.166 7.106a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591z"
 		></path>
 	</svg>
 
-	<span class="scheme-preference-switch" aria-hidden="true">
-		<span class="scheme-preference-slider"></span>
-	</span>
+	<svg
+		x-show="isDark"
+		width="32px"
+		height="32px"
+		viewBox="0 0 24 24"
+		xmlns="http://www.w3.org/2000/svg"
+		aria-hidden="true"
+	>
+		<path
+			d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 008.998-5.998z"
+		></path>
+	</svg>
+
 	<span class="sr-only" x-text="buttonLabel"></span>
 </button>
 
@@ -39,7 +48,6 @@
 				key: 'sp',
 				scheme: 'dark',
 				active: false,
-				animate: false,
 
 				init() {
 					this.scheme = this.getCustomPreference();
@@ -62,7 +70,6 @@
 				changeScheme() {
 					const preference = this.getToggledPreference();
 
-					this.animate = true;
 					this.scheme = preference;
 					localStorage.setItem(this.key, preference);
 					document.documentElement.setAttribute('data-color-scheme', preference);
@@ -92,22 +99,10 @@
 </script>
 
 <style>
-	:root {
-		--switch-height: 38px;
-		--switch-padding: 4px;
-		--switch-width: calc((var(--switch-height) * 2 - var(--switch-padding) * 2));
-		--switch-thumb-height: calc(var(--switch-height) - (var(--switch-padding) * 2));
-		--switch-thumb-width: calc(var(--switch-thumb-height));
-		--switch-thumb-travel: calc(
-			var(--switch-width) - var(--switch-thumb-width) - (var(--switch-padding) * 2)
-		);
-	}
-
 	.scheme-preference {
 		position: relative;
 		display: flex;
 		flex-direction: row;
-		gap: var(--gap-sm);
 		align-items: center;
 		align-self: center;
 		background: none;
@@ -116,14 +111,16 @@
 		border-radius: 50%;
 		cursor: pointer;
 		opacity: 0;
-		transition: opacity ease-in calc(var(--transition-duration) * 2);
 		appearance: none;
+		transition: opacity ease-in var(--transition-duration);
+		width: 32px;
+		height: 32px;
 
 		& > svg {
 			color: var(--white);
 			fill: currentColor;
-			width: 20px;
-			height: 20px;
+			width: 32px;
+			height: 32px;
 			stroke-linecap: round;
 		}
 
@@ -133,64 +130,7 @@
 		}
 	}
 
-	.scheme-preference-switch {
-		position: relative;
-		display: none;
-		width: var(--switch-width);
-		height: var(--switch-height);
-		padding: var(--switch-padding);
-	}
-
-	.scheme-preference-slider {
-		position: relative;
-		display: inline-flex;
-		align-items: center;
-		cursor: pointer;
-		width: 100%;
-		height: 100%;
-		background-color: var(--surface-2);
-		border: var(--border-width) solid rgba(0, 0, 0, 0.6);
-		border-radius: var(--border-radius);
-		transition: none;
-	}
-
-	.scheme-preference-slider:after {
-		position: relative;
-		display: flex;
-		content: '';
-		height: var(--switch-thumb-height);
-		width: var(--switch-thumb-width);
-		background-color: var(--white);
-		border: var(--border-width) solid rgba(0, 0, 0, 0.6);
-		border-radius: var(--border-radius);
-		transition: none;
-	}
-
 	.scheme-preference.active {
 		opacity: 1;
-	}
-
-	.scheme-preference.animate {
-		.scheme-preference-slider {
-			transition: var(--transition-duration);
-		}
-
-		.scheme-preference-slider:after {
-			transition: var(--transition-duration);
-		}
-	}
-
-	.scheme-preference[aria-pressed='true'] .scheme-preference-slider {
-		background-color: var(--accent);
-	}
-
-	.scheme-preference[aria-pressed='true'] .scheme-preference-slider:after {
-		transform: translateX(var(--switch-thumb-travel));
-	}
-
-	@media (--vp-md) {
-		.scheme-preference-switch {
-			display: flex;
-		}
 	}
 </style>

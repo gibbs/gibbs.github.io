@@ -13,6 +13,9 @@ const trans: Record<string, any> = {
 		},
 		copyright: `Copyright $1 2007 - $2 Dan Gibbs`,
 		build: 'Build',
+		github: {
+			label: 'View source on GitHub',
+		},
 		githubinsights: {
 			sourced: 'Data sourced from public repositories',
 		},

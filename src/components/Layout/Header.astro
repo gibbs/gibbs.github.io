@@ -1,4 +1,5 @@
 ---
+import GithubLink from '@components/Block/GithubLink.astro';
 import SchemePreference from '@components/Block/SchemePreference.astro';
 import Navigation from '@components/Layout/Navigation.astro';
 import SearchBar from '@components/Block/SearchBar.astro';
@@ -7,7 +8,10 @@ import SearchBar from '@components/Block/SearchBar.astro';
 <header class="header">
 	<Navigation />
 	<SearchBar />
-	<SchemePreference />
+	<div class="header-actions">
+		<GithubLink />
+		<SchemePreference />
+	</div>
 
 	<slot name="header" slot="header" />
 </header>
