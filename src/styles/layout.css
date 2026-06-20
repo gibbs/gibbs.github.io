@@ -98,7 +98,13 @@ td, th {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	gap: var(--gap);
+	gap: var(--gap-xs);
+
+	a, button {
+		min-width: 44px;
+		min-height: 44px;
+		justify-content: center;
+	}
 }
 
 .skip-link {
