@@ -172,8 +172,9 @@ td, th {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
-	background: oklch(0% 0 0 / 0.75);
-	border: 1px solid oklch(from var(--accent) calc(l + 0.1) c h / 0.5);
+	background: oklch(from var(--accent) calc(l + 0.1) c h / 0.9);
+	border: 2px solid oklch(from var(--accent) calc(l + 0.1) c h / 0.5);
+	border-top: 0;
 	border-radius: 0;
 	z-index: 110;
 }
@@ -246,7 +247,7 @@ td, th {
 
 .nav-link.active {
 	color: white;
-	background: oklch(0% 0 0 / 0.4);
+	background: oklch(0% 0 0 / 0.6);
 	border-color: var(--secondary-dark);
 }
 
