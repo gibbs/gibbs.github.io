@@ -33,10 +33,11 @@ const metadata: PuppetMetadata = JSON.parse(data);
 ---
 
 <ol class="metadata">
+	<li><h3 class="metadata-heading">Version Information</h3></li>
 	{
 		metadata.requirements && metadata.requirements.length > 0 && (
 			<li class="puppet-version">
-				<strong>Puppet version:</strong> {metadata.requirements[0].version_requirement}
+				<strong>Puppet:</strong> {metadata.requirements[0].version_requirement}
 			</li>
 		)
 	}
@@ -67,7 +68,7 @@ const metadata: PuppetMetadata = JSON.parse(data);
 		margin: var(--gap) 0 0 0;
 		padding: var(--gap-sm);
 		list-style-type: none;
-		border-left: calc(var(--border-width) * 2) solid var(--surface-3);
+		border-radius: var(--border-radius);
 
 		li {
 			margin: 0;
@@ -78,6 +79,12 @@ const metadata: PuppetMetadata = JSON.parse(data);
 			margin: 0;
 			padding: 0;
 		}
+	}
+
+	.metadata-heading {
+		margin: 0;
+		font-weight: 500;
+		font-size: var(--font-size-h5);
 	}
 
 	.os-support,
