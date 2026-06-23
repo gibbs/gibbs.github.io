@@ -1,0 +1,5 @@
+{
+  "name": "cloudflare-web-workers",
+  "main": "worker.api-proxy.ts",
+  "compatibility_date": "2024-01-01"
+}

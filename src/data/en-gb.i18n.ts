@@ -4,6 +4,7 @@ const trans: Record<string, any> = {
 		blog: 'Blog',
 		projects: 'Projects',
 		tools: 'Tools',
+		contact: 'Contact',
 	},
 	component: {
 		hero: {
@@ -14,7 +15,10 @@ const trans: Record<string, any> = {
 		copyright: `Copyright $1 2007 - $2 Dan Gibbs`,
 		build: 'Build',
 		github: {
-			label: 'View source on GitHub',
+			label: 'Visit Dan Gibbs GitHub',
+		},
+		linkedin: {
+			label: 'Visit Dan Gibbs LinkedIn',
 		},
 		githubinsights: {
 			sourced: 'Data sourced from public repositories',

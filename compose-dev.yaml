@@ -38,6 +38,7 @@ services:
     build:
       context: ${PWD}/.docker/cloudflare/
       dockerfile: ${PWD}/.docker/cloudflare/Dockerfile
+    command: npx wrangler dev --config wrangler.api-proxy.json --ip 0.0.0.0 --port 8787
     ports:
       - "8787:8787"
     volumes:
@@ -48,6 +49,22 @@ services:
       - ${PWD}/.docker/.env
     depends_on:
       - api
+    networks:
+      - dgapp
+
+  cloudflare-contact-form:
+    build:
+      context: ${PWD}/.docker/cloudflare/
+      dockerfile: ${PWD}/.docker/cloudflare/Dockerfile
+    command: npx wrangler dev --config wrangler.contact-form.json --ip 0.0.0.0 --port 8788
+    ports:
+      - "8788:8788"
+    volumes:
+      - ./.docker/cloudflare/src:/app
+      - ./.docker/.env:/app/.dev.vars
+      - /app/node_modules
+    env_file:
+      - ${PWD}/.docker/.env
     networks:
       - dgapp
 

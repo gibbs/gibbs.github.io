@@ -34,6 +34,7 @@ interface CspDirectives {
 const resources: CspDirectives = {
 	'connect-src': [
 		new URL('/', env.APP_API_PROXY_URL).href,
+		new URL('/', env.APP_CONTACT_FORM_URL).href,
 		new URL('/', env.APP_SEARCH_URL).href,
 		'https://o4511127957929984.ingest.us.sentry.io',
 	].join(' '),
