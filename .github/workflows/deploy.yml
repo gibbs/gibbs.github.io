@@ -23,6 +23,7 @@ jobs:
           npm run build
         env:
           APP_API_PROXY_URL: ${{ vars.APP_API_PROXY_URL }}
+          APP_CONTACT_FORM_URL: ${{ vars.APP_CONTACT_FORM_URL }}
           APP_SEARCH_URL: ${{ vars.APP_SEARCH_URL }}
           BASE_URL: ${{ vars.BASE_URL }}
           PRISMIC_REPOSITORY: ${{ secrets.PRISMIC_REPOSITORY }}

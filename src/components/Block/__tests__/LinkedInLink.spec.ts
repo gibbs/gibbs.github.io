@@ -1,15 +1,15 @@
 // @vitest-environment happy-dom
 import { experimental_AstroContainer as AstroContainer } from 'astro/container';
 import { describe, expect, test } from 'vitest';
-import GithubLink from '../GithubLink.astro';
+import GithubLink from '../LinkedInLink.astro';
 
-describe('GithubLink component', () => {
-	test('renders a link to the GitHub profile', async () => {
+describe('LinkedIn link component', () => {
+	test('renders a link', async () => {
 		const container = await AstroContainer.create();
 		const result = await container.renderToString(GithubLink);
 
 		expect(result).toContain('<a');
-		expect(result).toContain('href="https://github.com/gibbs/"');
+		expect(result).toContain('href="https://www.linkedin.com/in/dangibbscouk/"');
 		expect(result).toContain('rel="noopener noreferrer"');
 	});
 
@@ -19,6 +19,6 @@ describe('GithubLink component', () => {
 
 		expect(result).toContain('<svg');
 		expect(result).toContain('aria-hidden="true"');
-		expect(result).toContain('aria-label="Visit Dan Gibbs GitHub"');
+		expect(result).toContain('aria-label="Visit Dan Gibbs LinkedIn"');
 	});
 });

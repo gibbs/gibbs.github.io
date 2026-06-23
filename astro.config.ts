@@ -40,6 +40,11 @@ export default defineConfig({
 				access: 'public',
 				optional: false,
 			}),
+			APP_CONTACT_FORM_URL: envField.string({
+				context: 'client',
+				access: 'public',
+				optional: false,
+			}),
 			APP_SEARCH_URL: envField.string({
 				context: 'client',
 				access: 'public',
