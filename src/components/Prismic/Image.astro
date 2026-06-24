@@ -1,23 +1,185 @@
 ---
-import type { ImageSliceDefaultPrimary } from '@src/prismicio-types';
+import * as prismic from '@prismicio/client';
+import type {
+	ImageSliceDefaultPrimary,
+	ImageSliceImageGridPrimary,
+	ImageSliceImageGridPrimaryItemsItem,
+	ImageSliceIconGridPrimary,
+	ImageSliceIconGridPrimaryItemsItem,
+} from '@src/prismicio-types';
+import LogoIcon from '@components/Block/LogoIcon.astro';
+
 const props = Astro.props;
+const variation = props.variation ?? 'default';
 
-const data: ImageSliceDefaultPrimary = props.primary;
-
-const image = {
-	id: data.image.id,
-	alt: data.image.alt,
-	dimensions: data.image.dimensions,
-	url: data.image.url,
-};
+const defaultData = props.primary as ImageSliceDefaultPrimary;
+const imageGridData = props.primary as ImageSliceImageGridPrimary;
+const iconGridData = props.primary as ImageSliceIconGridPrimary;
 ---
 
-<a class="image-anchor" href={image.url}>
-	<img
-		class="image"
-		src={image.url}
-		alt={image.alt}
-		width={image.dimensions?.width}
-		height={image.dimensions?.height}
-	/>
-</a>
+{
+	variation === 'default' && (
+		<a class="image-anchor" href={defaultData.image.url}>
+			<img
+				class="image"
+				src={defaultData.image.url}
+				alt={defaultData.image.alt}
+				width={defaultData.image.dimensions?.width}
+				height={defaultData.image.dimensions?.height}
+			/>
+		</a>
+	)
+}
+
+{
+	variation === 'imageGrid' && (
+		<div class="image-grid-block">
+			{imageGridData.heading && <h2>{imageGridData.heading}</h2>}
+			{prismic.isFilled.richText(imageGridData.description) && (
+				<div class="image-grid-intro" set:html={prismic.asHTML(imageGridData.description)} />
+			)}
+			<ul class="image-grid">
+				{imageGridData.items.map((item: ImageSliceImageGridPrimaryItemsItem) => (
+					<li class="image-grid-item">
+						<img
+							class="image-grid-item-image"
+							src={item.image.url}
+							alt={item.image.alt}
+							width={item.image.dimensions?.width}
+							height={item.image.dimensions?.height}
+							loading="lazy"
+						/>
+						{item.title && <h3 class="image-grid-item-title">{item.title}</h3>}
+						{prismic.isFilled.richText(item.description) && (
+							<div
+								class="image-grid-item-description"
+								set:html={prismic.asHTML(item.description)}
+							/>
+						)}
+					</li>
+				))}
+			</ul>
+		</div>
+	)
+}
+
+{
+	variation === 'iconGrid' && (
+		<div class="icon-grid-block">
+			{iconGridData.heading && <h2>{iconGridData.heading}</h2>}
+			{prismic.isFilled.richText(iconGridData.description) && (
+				<div class="icon-grid-intro" set:html={prismic.asHTML(iconGridData.description)} />
+			)}
+			<ul class="icon-grid">
+				{iconGridData.items.map((item: ImageSliceIconGridPrimaryItemsItem) => (
+					<li class="icon-grid-item">
+						<div class="icon-grid-heading">
+							<span class="icon-grid-item-icon">
+								<LogoIcon
+									size={32}
+									className="icon-grid-item-icon-logo"
+									icon={String(item.icon ?? '')
+										.replace(/\s+/g, '-')
+										.toLowerCase()}
+								/>
+							</span>
+							{item.title && <h3 class="icon-grid-item-title">{item.title}</h3>}
+						</div>
+						{prismic.isFilled.richText(item.description) && (
+							<div class="icon-grid-item-description" set:html={prismic.asHTML(item.description)} />
+						)}
+					</li>
+				))}
+			</ul>
+		</div>
+	)
+}
+
+<style>
+	.image-grid-block,
+	.icon-grid-block {
+		h2 {
+			text-align: center;
+			margin: 0 0 var(--gap-lg) 0;
+		}
+	}
+
+	.image-grid-intro,
+	.icon-grid-intro {
+		text-align: center;
+		max-width: 60ch;
+		margin: 0 auto var(--gap-lg) auto;
+	}
+
+	.image-grid,
+	.icon-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: var(--gap);
+		list-style-type: none;
+		margin: var(--gap-sm) 0 0 0;
+		padding: 0;
+	}
+
+	.image-grid-item,
+	.icon-grid-item {
+		display: flex;
+		flex-direction: column;
+		border-radius: var(--border-radius-lg);
+		background: var(--surface-1);
+		padding: var(--gap);
+		gap: var(--gap-xs);
+		margin: 0;
+	}
+
+	.image-grid-item-image {
+		width: 100%;
+		height: auto;
+		border-radius: var(--border-radius);
+		margin-bottom: var(--gap-sm);
+	}
+
+	.icon-grid-item-icon {
+		display: inline-flex;
+		color: var(--accent);
+	}
+	.icon-grid-heading {
+		display: flex;
+		flex-direction: row;
+		gap: var(--gap-sm);
+		align-items: center;
+
+		h3 {
+			margin: 0;
+		}
+	}
+
+	.image-grid-item-title,
+	.icon-grid-item-title {
+		margin: 0 0 var(--gap-xs) 0;
+	}
+
+	.image-grid-item-description,
+	.icon-grid-item-description {
+		font-size: small;
+		color: var(--text-muted);
+
+		:global(p:last-of-type) {
+			margin-bottom: 0;
+		}
+	}
+
+	@media (--vp-md) {
+		.image-grid,
+		.icon-grid {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	@media (--vp-xl) {
+		.image-grid,
+		.icon-grid {
+			grid-template-columns: 1fr 1fr 1fr;
+		}
+	}
+</style>

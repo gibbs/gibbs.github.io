@@ -9,7 +9,8 @@ const trans: Record<string, any> = {
 	component: {
 		hero: {
 			title: 'Dan Gibbs',
-			subtitle: 'Full-stack web developer',
+			subtitle: 'Full-stack developer based in Devon',
+			based: 'Based in $1',
 			location: 'Devon, UK',
 		},
 		copyright: `Copyright $1 2007 - $2 Dan Gibbs`,

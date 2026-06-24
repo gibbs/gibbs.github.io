@@ -23,27 +23,27 @@ const {
 ---
 
 <x-card class="card">
-	<div class="card-preview">
-		{
-			icon && icon.length > 0 && (
-				<>
-					<span class="card-logo">
-						<Logo size={92} icon={icon} />
-					</span>
-					<span class="card-logo-mask">
-						<Logo size={512} icon={icon} />
-					</span>
-				</>
-			)
-		}
-		{
-			tag && tag.length > 0 && (
-				<>
-					<x-tag class="card-tag">{tag}</x-tag>
-				</>
-			)
-		}
-	</div>
+	{
+		((icon && icon.length > 0) || (tag && tag.length > 0)) && (
+			<div class="card-preview">
+				{icon && icon.length > 0 && (
+					<>
+						<span class="card-logo">
+							<Logo size={92} icon={icon} />
+						</span>
+						<span class="card-logo-mask">
+							<Logo size={512} icon={icon} />
+						</span>
+					</>
+				)}
+				{tag && tag.length > 0 && (
+					<>
+						<x-tag class="card-tag">{tag}</x-tag>
+					</>
+				)}
+			</div>
+		)
+	}
 	<div class="card-details">
 		<h2 class="card-heading">
 			<a class="card-heading-anchor" href={new URL(uri, env.BASE_URL).href}>

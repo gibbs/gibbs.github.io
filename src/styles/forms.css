@@ -90,9 +90,9 @@ body {
 	}
 
 	button {
-		padding: var(--gap-xs) var(--gap-sm);
-		font-size: large;
-		font-weight: 400;
+		padding: var(--gap-sm) var(--gap-lg);
+		font-size: var(--font-size-h6);
+		font-weight: 500;
 		border: var(--form-border-width) solid var(--accent);
 		border-radius: var(--form-border-radius);
 		background-color: var(--form-button-bg);

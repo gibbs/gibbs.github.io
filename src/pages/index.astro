@@ -4,6 +4,7 @@ import { getPageByUID } from '@src/prismic';
 import { generateFrontmatter } from '@utils/frontmatter';
 import BaseLayout from '@layouts/Base.astro';
 import { env } from '@src/env.config';
+import SliceLibrary from '@components/Prismic/SliceLibrary.astro';
 import TechStack from '@components/Block/TechStack.astro';
 import GithubActivityFeed from '@components/Block/GithubActivityFeed.astro';
 import GithubInsights from '@components/Block/GithubInsights.astro';
@@ -26,8 +27,14 @@ const frontmatter = generateFrontmatter(page, 'Website');
 		</span>
 	</section>
 
-	<GithubActivityFeed containerClass="container container-feed" />
-	<GithubInsights containerClass="container" />
+	<div class="container">
+		<SliceLibrary slices={page.data.slices} />
+	</div>
+
+	<div class="container container-feed">
+		<GithubActivityFeed containerClass="" />
+		<GithubInsights containerClass="" headings={false} popularity={true} distribution={false} />
+	</div>
 
 	<div class="container">
 		<TechStack />
@@ -80,46 +87,43 @@ const frontmatter = generateFrontmatter(page, 'Website');
 		padding: 0;
 	}
 
-	.header {
-		color-scheme: dark;
-	}
-
-	.header::before {
-		background-color: oklch(0% 0 0 / 0.75);
-	}
-
-	.header::after {
-		background: none;
+	.latest {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: var(--gap);
+		margin-top: var(--gap);
 	}
 
 	.hero {
-		color-scheme: dark;
-		min-height: 100svh;
+		position: relative;
+		min-height: 70svh;
 		align-content: center;
-		padding: var(--gap) var(--gap) 0 var(--gap);
+		padding: var(--gap-xl) var(--gap-xl);
 		width: 100%;
-		justify-content: center;
-		text-align: center;
 		overflow: hidden;
 
 		h1 {
-			font-size: 5.5rem;
-			letter-spacing: -0.5rem;
-			font-weight: 500;
-			color: white;
-			margin: 0;
-			text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+			font-size: 4rem;
+			color: var(--primary);
+			letter-spacing: -0.25rem;
 			text-align: center;
+			line-height: 1;
+			font-weight: 500;
+			margin: 0;
+			margin-left: -5px;
+			text-shadow: 0px 2px 4px light-dark(rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.3));
 			word-break: unset;
 			min-width: 100%;
-			animation: slideinT ease-in-out 1s;
 		}
 
 		h2 {
-			font-weight: 400;
-			margin: 1.5rem 0;
-			text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
-			color: #fff;
+			font-weight: 300;
+			font-size: var(--font-size-h3);
+			text-align: center;
+			color: light-dark(var(--text-muted), var(--text));
+			margin: 0.75rem 0 1.25rem 0;
+			text-shadow: 0px 1px 2px light-dark(rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.3));
+			letter-spacing: -0.15rem;
 			overflow: hidden;
 			word-break: unset;
 			min-width: 100%;
@@ -132,7 +136,6 @@ const frontmatter = generateFrontmatter(page, 'Website');
 
 	.hero::before {
 		content: '';
-		color-scheme: dark;
 		background-color: var(--bg);
 		position: absolute;
 		top: 0;
@@ -150,29 +153,69 @@ const frontmatter = generateFrontmatter(page, 'Website');
 		width: 100%;
 		height: 100%;
 		z-index: -1;
-		background: linear-gradient(-135deg, var(--primary-dark), var(--accent), var(--primary-light));
+		background: linear-gradient(-135deg, var(--bg), var(--accent), var(--bg));
 		background-size: 350% 350%;
 		animation: header-gradient 30s ease infinite;
 		animation-duration: 15s;
-		opacity: 0.5;
+		opacity: 0.3;
 	}
 
 	.hero-location {
 		display: flex;
+		width: fit-content;
+		padding: 1rem;
+		border-radius: var(--border-radius-lg);
+		justify-content: center;
+		background: oklch(from var(--surface-1) l c h / 0.5);
 		flex-direction: row;
-		color: var(--text);
+		color: light-dark(var(--text-muted), var(--text));
 		gap: var(--gap-xs);
 		align-items: center;
-		margin: 0.5rem 0;
+		margin: 0.5rem auto;
 		font-size: small;
-		justify-content: center;
-		text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+		text-shadow: 0px 1px 2px light-dark(rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.3));
 	}
 
 	.container-feed {
 		position: relative;
-		padding-top: 0;
-		padding-bottom: 0;
+		display: grid;
+		grid-template-columns: 1fr;
+		flex-direction: row;
+	}
+
+	.icon-grid-block {
+		margin-top: var(--gap-lg);
+	}
+
+	.icon-grid-item-title {
+		font-size: var(--font-size-h4);
+		font-weight: 400;
+	}
+
+	@media (--vp-md) {
+		.hero {
+			h1 {
+				font-size: 5rem;
+			}
+
+			h2 {
+				font-size: var(--font-size-h2);
+			}
+		}
+
+		.latest {
+			gap: var(--gap-lg);
+			grid-template-columns: 1fr 1fr 1fr;
+		}
+
+		.container {
+			padding: calc(var(--gap-xxl) * 2) var(--gap-xxl);
+		}
+
+		.container-feed {
+			gap: var(--gap);
+			grid-template-columns: 2fr 1fr;
+		}
 	}
 
 	@keyframes slideinT {

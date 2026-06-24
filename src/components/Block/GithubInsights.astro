@@ -4,9 +4,19 @@ import '@styles/vendor/github-language-colours.css';
 
 interface Props {
 	containerClass: string;
+	headings: boolean;
+	popularity: boolean;
+	distribution: boolean;
+	sourced: boolean;
 }
 
-const { containerClass = '' } = Astro.props;
+const {
+	containerClass = '',
+	headings = true,
+	popularity = true,
+	distribution = false,
+	sourced = false,
+} = Astro.props;
 ---
 
 <x-in
@@ -14,64 +24,81 @@ const { containerClass = '' } = Astro.props;
 	x-intersect:once="boot"
 	x-on:x-insights.document="update($event)"
 	data-container-class={containerClass}
+	data-popularity={popularity}
+	data-distribution={distribution}
 >
 	<div class="xin" :class="show ? containerClass : ''" x-show="show == true" x-cloak>
-		<section class="xin-panel">
-			<h3>{__('component.insights.heading.popularity')}</h3>
+		{
+			popularity && (
+				<section class="xin-panel">
+					{headings && <h3>{__('component.insights.heading.popularity')}</h3>}
 
-			<template x-if="loading">
-				<p class="xin-muted">{__('component.insights.loading')}</p>
-			</template>
-
-			<template x-if="!loading && popularity.length === 0">
-				<p class="xin-muted">{__('component.insights.nodata')}</p>
-			</template>
-
-			<ul class="xin-bar-chart" x-show="popularity.length > 0">
-				<template x-for="language in popularity" :key="language.name">
-					<li class="xin-bar-item">
-						<span class="xin-bar-progress">
-							<span
-								:class="'xin-bar-progress-value gh-language gh-language--' + languageClass(language.name)"
-								:style="{ width: language.width + '%' }"></span>
-							<span
-								class="xin-bar-title"
-								x-text="language.name + ' (' + language.percentage.toFixed(1) + '%)'"></span>
-						</span>
-					</li>
-				</template>
-			</ul>
-		</section>
-
-		<section class="xin-panel">
-			<h3>{__('component.insights.heading.distribution')}</h3>
-
-			<div class="xin-distribution" x-show="distribution.length > 0">
-				<div
-					class="xin-pie"
-					role="img"
-					aria-label="Language distribution chart"
-					:style="{ background: pieGradient }"
-				>
-				</div>
-
-				<ol class="xin-language-key">
-					<template x-for="language in distribution" :key="'key-' + language.name">
-						<li
-							:class="'gh-language gh-language--' + languageClass(language.name) + (isLanguageActive(language.name) ? ' xin-language-key-active' : '')"
-							x-on:mouseenter="setHoveredLanguage(language.name)"
-							x-on:mouseleave="clearHoveredLanguage()"
-							x-on:click="toggleSelectedLanguage(language.name)"
-						>
-							<span x-text="language.name"></span>
-							<span class="xin-key-value" x-text="language.percentage.toFixed(1) + '%'"></span>
-						</li>
+					<template x-if="loading">
+						<p class="xin-muted">{__('component.insights.loading')}</p>
 					</template>
-				</ol>
-			</div>
-		</section>
 
-		<p class="text-center xin-footer"><small>{__('component.insights.source')}</small></p>
+					<template x-if="!loading && popularity.length === 0">
+						<p class="xin-muted">{__('component.insights.nodata')}</p>
+					</template>
+
+					<ul class="xin-bar-chart" x-show="popularity.length > 0">
+						<template x-for="language in popularity" x-bind:key="language.name">
+							<li class="xin-bar-item">
+								<span class="xin-bar-progress">
+									<span
+										x-bind:class="'xin-bar-progress-value gh-language gh-language--' + languageClass(language.name)"
+										x-bind:style="{ width: language.width + '%' }"
+									/>
+									<span
+										class="xin-bar-title"
+										x-text="language.name + ' (' + language.percentage.toFixed(1) + '%)'"
+									/>
+								</span>
+							</li>
+						</template>
+					</ul>
+				</section>
+			)
+		}
+
+		{
+			distribution && (
+				<section class="xin-panel">
+					{headings && <h3>{__('component.insights.heading.distribution')}</h3>}
+
+					<div class="xin-distribution" x-show="distribution.length > 0">
+						<div
+							class="xin-pie"
+							role="img"
+							aria-label="Language distribution chart"
+							x-bind:style="{ background: pieGradient }"
+						/>
+
+						<ol class="xin-language-key">
+							<template x-for="language in distribution" x-bind:key="'key-' + language.name">
+								<li
+									x-bind:class="'gh-language gh-language--' + languageClass(language.name) + (isLanguageActive(language.name) ? ' xin-language-key-active' : '')"
+									x-on:mouseenter="setHoveredLanguage(language.name)"
+									x-on:mouseleave="clearHoveredLanguage()"
+									x-on:click="toggleSelectedLanguage(language.name)"
+								>
+									<span x-text="language.name" />
+									<span class="xin-key-value" x-text="language.percentage.toFixed(1) + '%'" />
+								</li>
+							</template>
+						</ol>
+					</div>
+				</section>
+			)
+		}
+
+		{
+			sourced && (
+				<p class="text-center xin-footer">
+					<small>{__('component.insights.source')}</small>
+				</p>
+			)
+		}
 	</div>
 </x-in>
 
@@ -377,7 +404,6 @@ const { containerClass = '' } = Astro.props;
 		display: flex;
 		flex-direction: column;
 		padding: var(--gap);
-		border: var(--border-width) solid var(--border-color);
 		border-radius: var(--border-radius);
 		background: light-dark(var(--surface-i-2), var(--surface-1));
 		min-height: 22rem;
@@ -515,8 +541,10 @@ const { containerClass = '' } = Astro.props;
 	}
 
 	@media (--vp-md) {
-		.xin {
-			grid-template-columns: 1fr 1fr;
+		x-in[data-popularity='true'][data-distribution='true'] {
+			.xin {
+				grid-template-columns: 1fr 1fr;
+			}
 		}
 
 		.xin-distribution {
