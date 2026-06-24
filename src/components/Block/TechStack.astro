@@ -100,9 +100,15 @@ const tabs = sections.map((section) => ({
 		}
 	}
 
-	@media (--vp-lg) {
+	@media (--vp-md) {
 		.stack-items {
-			grid-template-columns: repeat(auto-fill, minmax(250px, auto));
+			grid-template-columns: 1fr 1fr 1fr;
+		}
+	}
+
+	@media (--vp-xl) {
+		.stack-items {
+			grid-template-columns: repeat(auto-fill, minmax(300px, auto));
 		}
 	}
 </style>
@@ -141,11 +147,11 @@ const tabs = sections.map((section) => ({
 		flex: 1 1 auto;
 		cursor: pointer;
 		color: var(--text-muted);
-		font-weight: 400;
+		font-weight: 500;
 		background-image: none;
 		background-color: var(--surface-1);
 		border: var(--border-width) solid var(--surface-2);
-		padding: var(--gap) var(--gap);
+		padding: var(--gap) var(--gap-lg);
 		white-space: nowrap;
 		border-radius: calc(var(--border-radius));
 	}
@@ -187,7 +193,7 @@ const tabs = sections.map((section) => ({
 		}
 
 		.xt-stack-label {
-			padding: var(--gap-sm) var(--gap-xl);
+			padding: var(--gap) var(--gap-xxl);
 			border-radius: calc(var(--border-radius) * 3);
 		}
 	}
@@ -197,6 +203,17 @@ const tabs = sections.map((section) => ({
 			flex-direction: row;
 			gap: var(--gap-sm);
 			margin: 0;
+		}
+	}
+
+	@media (--vp-xl) {
+		.xt-stack-tablist {
+			justify-content: center;
+		}
+
+		.stack-item-logo > svg {
+			width: 42px;
+			height: 42px;
 		}
 	}
 </style>

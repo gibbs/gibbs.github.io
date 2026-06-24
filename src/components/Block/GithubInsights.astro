@@ -4,9 +4,13 @@ import '@styles/vendor/github-language-colours.css';
 
 interface Props {
 	containerClass: string;
+	headings: boolean,
+	popularity: boolean;
+	distribution: boolean;
+	sourced: boolean;
 }
 
-const { containerClass = '' } = Astro.props;
+const { containerClass = '', headings = true, popularity = true, distribution = false, sourced = false } = Astro.props;
 ---
 
 <x-in
@@ -14,10 +18,15 @@ const { containerClass = '' } = Astro.props;
 	x-intersect:once="boot"
 	x-on:x-insights.document="update($event)"
 	data-container-class={containerClass}
+	data-popularity={popularity}
+	data-distribution={distribution}
 >
 	<div class="xin" :class="show ? containerClass : ''" x-show="show == true" x-cloak>
+		{ popularity && (
 		<section class="xin-panel">
+			{ headings && (
 			<h3>{__('component.insights.heading.popularity')}</h3>
+			)}
 
 			<template x-if="loading">
 				<p class="xin-muted">{__('component.insights.loading')}</p>
@@ -42,9 +51,13 @@ const { containerClass = '' } = Astro.props;
 				</template>
 			</ul>
 		</section>
+		) }
 
+		{ distribution && (
 		<section class="xin-panel">
+			{ headings && (
 			<h3>{__('component.insights.heading.distribution')}</h3>
+			)}
 
 			<div class="xin-distribution" x-show="distribution.length > 0">
 				<div
@@ -70,8 +83,11 @@ const { containerClass = '' } = Astro.props;
 				</ol>
 			</div>
 		</section>
+	) }
 
+		{ sourced && (
 		<p class="text-center xin-footer"><small>{__('component.insights.source')}</small></p>
+		) }
 	</div>
 </x-in>
 
@@ -377,7 +393,6 @@ const { containerClass = '' } = Astro.props;
 		display: flex;
 		flex-direction: column;
 		padding: var(--gap);
-		border: var(--border-width) solid var(--border-color);
 		border-radius: var(--border-radius);
 		background: light-dark(var(--surface-i-2), var(--surface-1));
 		min-height: 22rem;
@@ -515,8 +530,10 @@ const { containerClass = '' } = Astro.props;
 	}
 
 	@media (--vp-md) {
-		.xin {
-			grid-template-columns: 1fr 1fr;
+		x-in[data-popularity="true"][data-distribution="true"] {
+			.xin {
+				grid-template-columns: 1fr 1fr;
+			}
 		}
 
 		.xin-distribution {

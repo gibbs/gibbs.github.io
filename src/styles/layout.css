@@ -79,6 +79,13 @@ td, th {
 	padding: var(--gap-sm);
 }
 
+.header,
+	.main,
+	.footer,
+	.container {
+		padding: var(--gap) var(--gap);
+	}
+
 .header {
 	position: sticky;
 	display: grid;

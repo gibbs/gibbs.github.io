@@ -17,7 +17,7 @@
 	--space-5: calc(var(--baseline) * 6);
 	--space-6: calc(var(--baseline) * 8);
 
-	--primary-light: oklch(58.186% 0.22631 26.568);
+	--primary-light: oklch(50% 0.1391 272.112);
 	--primary-dark: oklch(91.832% 0.09732 104.356);
 	--secondary-light: oklch(33.87% 0.03846 284.156);
 	--secondary-dark: oklch(78.898% 0.0499 246.612);
@@ -98,6 +98,7 @@
 
 	--border-width: 0.1rem;
 	--border-width-lg: 0.2rem;
+	--border-radius-lg: 0.5rem;
 	--border-radius: 0.25rem;
 	--border-radius-sm: 0.1rem;
 	--border-color: light-dark(

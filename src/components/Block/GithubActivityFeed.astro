@@ -3,9 +3,10 @@ import '@styles/icons.css';
 
 interface Props {
 	containerClass: string;
+	limit?: number;
 }
 
-const { containerClass = '' } = Astro.props;
+const { containerClass = '', limit = 5 } = Astro.props;
 ---
 
 <section
@@ -14,6 +15,7 @@ const { containerClass = '' } = Astro.props;
 	x-on:x-activity-timeline.document="update($event)"
 	aria-label="GitHub activity timeline"
 	data-container-class={containerClass}
+	data-limit={limit}
 	class="xat"
 	:class="show ? containerClass : ''"
 >
@@ -64,9 +66,11 @@ const { containerClass = '' } = Astro.props;
 				show: false,
 				timeline: {},
 				containerClass: '',
+				limit: 5,
 
 				init() {
 					this.containerClass = this.$el.dataset.containerClass || '';
+					this.limit = Number(this.$el.dataset.limit) || 5;
 				},
 
 				boot() {
@@ -75,11 +79,30 @@ const { containerClass = '' } = Astro.props;
 
 				update(event) {
 					if (event?.detail && typeof event.detail === 'object') {
-						this.timeline = event.detail;
+						this.timeline = this.applyLimit(event.detail);
 						this.show = true;
 					} else {
 						this.timeline = {};
 					}
+				},
+
+				applyLimit(detail) {
+					let remaining = this.limit;
+					const limited = {};
+
+					for (const [key, group] of Object.entries(detail)) {
+						if (remaining <= 0) break;
+						if (!group || !Array.isArray(group.items)) continue;
+
+						const items = group.items.slice(0, remaining);
+
+						if (items.length > 0) {
+							limited[key] = { ...group, items };
+							remaining -= items.length;
+						}
+					}
+
+					return limited;
 				},
 			};
 		});
@@ -96,7 +119,7 @@ const { containerClass = '' } = Astro.props;
 
 	.xat-group {
 		display: flex;
-		border: 0 solid var(--surface-2);
+		border: 0 solid var(--surface-1);
 		border-left-width: var(--border-width-lg);
 	}
 
@@ -104,15 +127,14 @@ const { containerClass = '' } = Astro.props;
 		display: flex;
 		flex-direction: column;
 		margin: 0;
-		padding: var(--gap);
+		padding: var(--gap-xs);
 		gap: var(--gap-sm);
 		list-style: none;
 	}
 
 	.xat-date {
-		font-size: small;
-		background-color: var(--surface-2);
-		max-width: fit-content;
+		font-size: smaller;
+		background-color: var(--surface-1);
 		padding: var(--gap) var(--gap-sm);
 		border-radius: 0 var(--border-radius) var(--border-radius) 0;
 	}
@@ -122,6 +144,7 @@ const { containerClass = '' } = Astro.props;
 		flex-direction: row;
 		flex-wrap: wrap;
 		gap: var(--gap-xxs);
+		padding: var(--gap-xxs) var(--gap-xs);
 		align-items: center;
 		animation-name: entryIn;
 		animation-duration: 500ms;
@@ -178,14 +201,9 @@ const { containerClass = '' } = Astro.props;
 	}
 
 	@media (--vp-md) {
-		.xat-entries {
-			padding: var(--gap);
-		}
-
 		.xat-entry {
 			flex-direction: row;
-			padding: var(--gap-xs);
-			gap: var(--gap-xl);
+			gap: var(--gap-sm);
 			flex-wrap: nowrap;
 		}
 
