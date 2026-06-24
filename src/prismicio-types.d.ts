@@ -963,6 +963,76 @@ type FileRendererSliceVariation = FileRendererSliceDefault;
 export type FileRendererSlice = prismic.SharedSlice<'file_renderer', FileRendererSliceVariation>;
 
 /**
+ * Item in *Image → ImageGrid → Primary → Items*
+ */
+export interface ImageSliceImageGridPrimaryItemsItem {
+	/**
+	 * Title field in *Image → ImageGrid → Primary → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: image.imageGrid.primary.items[].title
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	title: prismic.KeyTextField;
+
+	/**
+	 * Description field in *Image → ImageGrid → Primary → Items*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: image.imageGrid.primary.items[].description
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	description: prismic.RichTextField;
+
+	/**
+	 * Image field in *Image → ImageGrid → Primary → Items*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: image.imageGrid.primary.items[].image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	image: prismic.ImageField<never>;
+}
+
+/**
+ * Item in *Image → IconGrid → Primary → Items*
+ */
+export interface ImageSliceIconGridPrimaryItemsItem {
+	/**
+	 * Title field in *Image → IconGrid → Primary → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: image.iconGrid.primary.items[].title
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	title: prismic.KeyTextField;
+
+	/**
+	 * Description field in *Image → IconGrid → Primary → Items*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: image.iconGrid.primary.items[].description
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	description: prismic.RichTextField;
+
+	/**
+	 * Icon field in *Image → IconGrid → Primary → Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Icon name
+	 * - **API ID Path**: image.iconGrid.primary.items[].icon
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	icon: prismic.KeyTextField;
+}
+
+/**
  * Primary content in *Image → Default → Primary*
  */
 export interface ImageSliceDefaultPrimary {
@@ -991,9 +1061,105 @@ export type ImageSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *Image → ImageGrid → Primary*
+ */
+export interface ImageSliceImageGridPrimary {
+	/**
+	 * Heading field in *Image → ImageGrid → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: image.imageGrid.primary.heading
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	heading: prismic.KeyTextField;
+
+	/**
+	 * Description field in *Image → ImageGrid → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: image.imageGrid.primary.description
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	description: prismic.RichTextField;
+
+	/**
+	 * Items field in *Image → ImageGrid → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: image.imageGrid.primary.items[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	items: prismic.GroupField<Simplify<ImageSliceImageGridPrimaryItemsItem>>;
+}
+
+/**
+ * ImageGrid variation for Image Slice
+ *
+ * - **API ID**: `imageGrid`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ImageSliceImageGrid = prismic.SharedSliceVariation<
+	'imageGrid',
+	Simplify<ImageSliceImageGridPrimary>,
+	never
+>;
+
+/**
+ * Primary content in *Image → IconGrid → Primary*
+ */
+export interface ImageSliceIconGridPrimary {
+	/**
+	 * Heading field in *Image → IconGrid → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: image.iconGrid.primary.heading
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	heading: prismic.KeyTextField;
+
+	/**
+	 * Description field in *Image → IconGrid → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: image.iconGrid.primary.description
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	description: prismic.RichTextField;
+
+	/**
+	 * Items field in *Image → IconGrid → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: image.iconGrid.primary.items[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	items: prismic.GroupField<Simplify<ImageSliceIconGridPrimaryItemsItem>>;
+}
+
+/**
+ * IconGrid variation for Image Slice
+ *
+ * - **API ID**: `iconGrid`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ImageSliceIconGrid = prismic.SharedSliceVariation<
+	'iconGrid',
+	Simplify<ImageSliceIconGridPrimary>,
+	never
+>;
+
+/**
  * Slice variation for *Image*
  */
-type ImageSliceVariation = ImageSliceDefault;
+type ImageSliceVariation = ImageSliceDefault | ImageSliceImageGrid | ImageSliceIconGrid;
 
 /**
  * Image Shared Slice
@@ -1311,8 +1477,14 @@ declare module '@prismicio/client' {
 			FileRendererSliceDefault,
 			ImageSlice,
 			ImageSliceDefaultPrimary,
+			ImageSliceImageGridPrimaryItemsItem,
+			ImageSliceImageGridPrimary,
+			ImageSliceIconGridPrimaryItemsItem,
+			ImageSliceIconGridPrimary,
 			ImageSliceVariation,
 			ImageSliceDefault,
+			ImageSliceImageGrid,
+			ImageSliceIconGrid,
 			MarkdownSlice,
 			MarkdownSliceDefaultPrimary,
 			MarkdownSliceVariation,

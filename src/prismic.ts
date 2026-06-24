@@ -37,8 +37,26 @@ export async function getAllProjects() {
 	});
 }
 
+export async function getLatestProject() {
+	return client.getSingle('project', {
+		orderings: {
+			field: 'my.project.date',
+			direction: 'desc',
+		},
+	});
+}
+
 export async function getAllPosts() {
 	return client.getByType('blog', {
+		orderings: {
+			field: 'my.blog.date',
+			direction: 'desc',
+		},
+	});
+}
+
+export async function getLatestPost() {
+	return client.getSingle('blog', {
 		orderings: {
 			field: 'my.blog.date',
 			direction: 'desc',
@@ -51,6 +69,15 @@ export async function getAllTools() {
 		orderings: {
 			field: 'my.tools.uid',
 			direction: 'asc',
+		},
+	});
+}
+
+export async function getLatestTool() {
+	return client.getSingle('tools', {
+		orderings: {
+			field: 'my.tools.date',
+			direction: 'desc',
 		},
 	});
 }
