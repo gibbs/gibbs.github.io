@@ -33,6 +33,7 @@
 	"dependencies": {
 		"@alpinejs/csp": "^3.14.9",
 		"@alpinejs/intersect": "^3.15.4",
+		"@astrojs/markdown-remark": "^7.2.1",
 		"@astrojs/ts-plugin": "^1.10.7",
 		"@astropub/md": "npm:@mashehu/astropub-md@^3.0.0",
 		"@meilisearch/instant-meilisearch": "^0.30.0",
