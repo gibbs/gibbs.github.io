@@ -1,3 +1,0 @@
----
-osquery::repo_url: https://s3.amazonaws.com/osquery-packages/rpm/$basearch/
-osquery::repo_key_server: https://pkg.osquery.io/rpm/GPG
