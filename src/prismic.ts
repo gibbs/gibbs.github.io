@@ -31,7 +31,7 @@ export async function getHomepage() {
 export async function getAllProjects() {
 	return client.getByType('project', {
 		orderings: {
-			field: 'my.project.date',
+			field: 'document.last_publication_date',
 			direction: 'desc',
 		},
 	});
