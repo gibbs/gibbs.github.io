@@ -180,9 +180,6 @@ td, th {
 	margin: 0;
 	padding: 0;
 	background: oklch(from var(--accent) calc(l + 0.1) c h / 0.9);
-	border: 2px solid oklch(from var(--accent) calc(l + 0.1) c h / 0.5);
-	border-top: 0;
-	border-radius: 0;
 	z-index: 110;
 }
 
@@ -240,11 +237,10 @@ td, th {
 	color: white;
 	text-decoration: none;
 	font-weight: 400;
-	padding: var(--gap-sm) var(--gap-xl);
-	text-align: center;
-	transition: background-color 0.1s ease;
-	border: 1px solid transparent;
-	transition: background linear var(--transition-fast);
+	padding: var(--gap-sm) var(--gap);
+	text-align: left;
+	transition: none;
+	border: 0;
 
 	&:hover {
 		color: white;
@@ -384,7 +380,11 @@ td, th {
 	}
 
 	.nav-link {
+		text-align: center;
+		padding: var(--gap-sm) var(--gap-xl);
+		border: 1px solid transparent;
 		border-radius: var(--gap-xs) 0;
+		transition: background linear var(--transition-fast);
 	}
 
 	.nav {
