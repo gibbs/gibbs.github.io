@@ -1,0 +1,196 @@
+---
+import ToolLayout from '@layouts/Tool.astro';
+import { env } from '@src/env.config';
+import { getPageByUID } from '@src/prismic';
+import SliceLibrary from '@components/Prismic/SliceLibrary.astro';
+import { generateFrontmatter } from '@utils/frontmatter';
+
+const tool = await getPageByUID('whois', 'tools');
+
+const frontmatter = generateFrontmatter(tool);
+---
+
+<ToolLayout frontmatter={frontmatter} url={Astro.url}>
+	<slot slot="content">
+		<SliceLibrary slices={tool.data.slices} />
+
+		<form id="tool" class="form" method="post" x-data="tool" @submit.prevent="generate">
+			<fieldset class="fieldset fieldset-tool">
+				<legend class="hidden">WHOIS Tool</legend>
+
+				<div class="col">
+					<label for="domain">Domain</label>
+					<input
+						type="text"
+						id="domain"
+						name="domain"
+						placeholder="google.com"
+						minlength="1"
+						maxlength="255"
+						autocomplete="off"
+						x-bind:disabled="loading"
+						required
+					/>
+				</div>
+			</fieldset>
+
+			<button type="submit" x-bind:disabled="loading">Lookup</button>
+
+			<div class="table-wrapper" x-cloak x-show="result.success">
+				<table class="table">
+					<tbody>
+						<template x-for="line in result.output">
+							<tr>
+								<td x-text="getEntryKey"></td>
+								<td x-text="getEntryValue"></td>
+							</tr>
+						</template>
+					</tbody>
+				</table>
+			</div>
+
+			<output class="result result-error" x-cloak x-show="result.error" x-text="result.error"
+			></output>
+		</form>
+	</slot>
+</ToolLayout>
+
+<script is:inline define:vars={{ APP_API_PROXY_URL: env.APP_API_PROXY_URL }}>
+	document.addEventListener('alpine:init', () => {
+		const url = new URL(APP_API_PROXY_URL.replace(/\/+$/, '') + '/tools/rdap').toString();
+
+		Alpine.data('tool', () => {
+			return {
+				loading: false,
+				result: {
+					class: null,
+					command: null,
+					output: null,
+					success: null,
+					error: null,
+				},
+
+				generate() {
+					this.loading = true;
+					const formData = new FormData(document.getElementById('tool'));
+					const domain = this.processDomain(formData.get('domain'));
+
+					if (!domain) {
+						this.loading = false;
+						this.result = {
+							class: 'result result-error',
+							command: null,
+							output: null,
+							success: false,
+							error: 'Please enter a valid domain name.',
+						};
+						return;
+					}
+
+					const data = {
+						query: domain,
+						format: 'whois',
+						type: 'domain',
+					};
+
+					fetch(url, {
+						method: 'post',
+						cache: 'no-cache',
+						headers: {
+							'content-type': 'application/json',
+						},
+						body: JSON.stringify(data),
+					})
+						.then((res) => {
+							if (!res.ok) {
+								return res.json().then((errData) => {
+									throw new Error(errData.message || 'Validation failed');
+								});
+							}
+
+							return res.json();
+						})
+						.then((data) => {
+							const output = (data.output || [])
+								.map((line) => line.trim())
+								.filter((line) => line.length > 0);
+
+							if (output.length === 0) {
+								throw new Error(`WHOIS lookup failed for "${domain}"`);
+							}
+
+							this.result = {
+								class: 'result result-success',
+								command: data.command,
+								output: output,
+								success: true,
+							};
+						})
+						.catch((err) => {
+							this.result = {
+								class: 'result result-error',
+								command: null,
+								output: null,
+								success: false,
+								error: err.message,
+							};
+						})
+						.finally(() => {
+							this.loading = false;
+						});
+				},
+
+				processDomain(value) {
+					return (value || '').trim().replace(/[^a-zA-Z0-9.-]/g, '');
+				},
+
+				parseEntry(line) {
+					const separator = line.indexOf(':');
+
+					if (separator === -1) {
+						return { key: line.trim(), value: '' };
+					}
+
+					return {
+						key: line.slice(0, separator).trim(),
+						value: line.slice(separator + 1).trim(),
+					};
+				},
+
+				getEntryKey() {
+					return this.parseEntry(this.line).key;
+				},
+				getEntryValue() {
+					return this.parseEntry(this.line).value;
+				},
+			};
+		});
+	});
+</script>
+
+<style>
+	.fieldset-tool {
+		display: grid;
+		gap: var(--gap);
+		grid-template-columns: auto;
+	}
+
+	.table {
+		display: table;
+		margin: 0;
+	}
+
+	.table-wrapper {
+		overflow-x: auto;
+		border-radius: var(--border-radius);
+		width: 100%;
+		margin-top: var(--gap);
+	}
+
+	@media (--vp-md) {
+		.fieldset-tool {
+			grid-template-columns: 1fr auto;
+			grid-template-rows: 1fr;
+		}
+	}
+</style>
