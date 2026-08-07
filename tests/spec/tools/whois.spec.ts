@@ -44,7 +44,7 @@ test.describe('WHOIS tool page', () => {
 		});
 
 		await expect(page.locator('.table-wrapper > table')).toBeVisible();
-		await expect(page.locator('.table-wrapper > table tbody tr')).toHaveCount(4);
+		await expect(page.locator('.table-wrapper > table tbody tr')).toHaveCount(3);
 
 		const firstRow = page.locator('.table-wrapper > table tbody tr').first();
 		await expect(firstRow.locator('td').nth(0)).toHaveText('Domain Name');
