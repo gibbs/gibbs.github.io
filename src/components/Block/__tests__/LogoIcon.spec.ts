@@ -1,7 +1,21 @@
 // @vitest-environment happy-dom
 import { experimental_AstroContainer as AstroContainer } from 'astro/container';
-import { describe, expect, test } from 'vitest';
+import { describe, expect, test, vi } from 'vitest';
 import LogoIcon from '../LogoIcon.astro';
+
+vi.mock('astro:env/client', () => {
+	return {
+		BASE_URL: 'http://localhost',
+	};
+});
+
+vi.mock('@src/senv.config', () => {
+	return {
+		senv: {
+			ASSET_PATH: `${process.cwd()}/src/assets`,
+		},
+	};
+});
 
 describe('Logo component', () => {
 	test('renders SVG element with defaults', async () => {
@@ -33,7 +47,9 @@ describe('Logo component', () => {
 		const result = await container.renderToString(LogoIcon);
 
 		expect(result).toContain('<use');
-		expect(result).toContain('href="/logos.svg#default"');
+		expect(result).toMatch(
+			/href="http:\/\/localhost\/assets\/icons\/logos\.svg\?v=[0-9a-f]{8}#default"/,
+		);
 	});
 
 	test('uses SVG use reference for icons', async () => {
@@ -41,7 +57,7 @@ describe('Logo component', () => {
 		const result = await container.renderToString(LogoIcon);
 
 		expect(result).toContain('<use');
-		expect(result).toContain('href="/logos.svg#');
+		expect(result).toMatch(/href="http:\/\/localhost\/assets\/icons\/logos\.svg\?v=[0-9a-f]{8}#/);
 		expect(result).toContain('</use>');
 	});
 });

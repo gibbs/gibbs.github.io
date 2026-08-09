@@ -1,11 +1,7 @@
 ---
-import { env } from '@src/env.config';
+import { getLogosSpriteURL } from '@src/pages/assets/icons/logos.svg';
+
+const spriteURL = await getLogosSpriteURL();
 ---
 
-<link
-	rel="preload"
-	href={new URL('/logos.svg', env.BASE_URL).href}
-	as="image"
-	type="image/svg+xml"
-	fetchpriority="high"
-/>
+<link rel="preload" href={spriteURL} as="image" type="image/svg+xml" fetchpriority="high" />
