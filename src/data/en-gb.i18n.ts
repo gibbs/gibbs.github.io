@@ -52,6 +52,28 @@ const trans: Record<string, any> = {
 			nodata: 'No language usage data available.',
 			source: 'Data sourced from public repositories',
 		},
+		puppetlitmusimages: {
+			summary: '$1 images for $2 distros. $3 actively supported.',
+			filterLabel: 'Hide end-of-life versions',
+			navLabel: 'Jump to distribution',
+			tableCaption: '$1 Litmus images',
+			table: {
+				caption: '$1 Litmus images',
+				column: {
+					version: 'Version',
+					image: 'Image',
+					platforms: 'Platforms',
+					released: 'Released',
+					eol: 'End of life',
+					status: 'Status',
+				},
+			},
+			status: {
+				supported: 'Supported',
+				eol: 'End of life',
+				empty: 'All $1 versions are end of life.',
+			}
+		},
 	},
 };
 

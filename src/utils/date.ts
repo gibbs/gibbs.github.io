@@ -8,7 +8,7 @@ export function formatDate(date: Date | string): string {
 	const day = value.getUTCDate();
 	const month = value.toLocaleDateString('en-GB', {
 		month: 'short',
-		timeZone: 'Europe/London'
+		timeZone: 'Europe/London',
 	});
 
 	return `${day} ${month}, ${year}`;

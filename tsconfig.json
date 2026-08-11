@@ -21,6 +21,7 @@
 			"@files/*": ["./src/assets/files*"],
 			"@i18n/*": ["./src/i18n/*"],
 			"@icons/*": ["./src/assets/icons/*"],
+			"@interfaces/*": ["./src/types/*"],
 			"@lib/*": ["./src/lib/*"],
 			"@layouts/*": ["./src/layouts/*"],
 			"@src/*": ["./src/*"],

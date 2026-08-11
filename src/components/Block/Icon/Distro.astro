@@ -1,0 +1,18 @@
+---
+import { getDistrosSpriteURL } from '@src/pages/assets/icons/distros.svg';
+
+interface Props {
+	icon: string;
+	size?: number;
+	className?: string;
+}
+
+const { icon = 'default', size = 24, className = 'logo' } = Astro.props;
+
+const iconRef = icon;
+const iconURL = await getDistrosSpriteURL();
+---
+
+<svg xmlns="http://www.w3.org/2000/svg" class={className} width={size} height={size}>
+	<use href={`${iconURL}#${iconRef}`}></use>
+</svg>

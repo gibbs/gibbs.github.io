@@ -1,0 +1,333 @@
+---
+import ToolLayout from '@layouts/Tool.astro';
+import { env } from '@src/env.config';
+import SliceLibrary from '@components/Prismic/SliceLibrary.astro';
+import { getPageByUID } from '@src/prismic';
+import { generateFrontmatter } from '@utils/frontmatter';
+import Distro from '@components/Block/Icon/Distro.astro';
+import { __ } from '@i18n/utils';
+import type { LitmusImages, LitmusDistro, LitmusImage } from '@interfaces/litmus-images';
+
+const tool = await getPageByUID('puppet-litmus-images', 'tools');
+const frontmatter = generateFrontmatter(tool);
+
+const url = new URL(env.APP_API_PROXY_URL.replace(/\/+$/, '') + '/puppet/litmusimages').toString();
+const litmusResponse = await fetch(url);
+const litmusJson: LitmusImages = await litmusResponse.json();
+
+const distros = litmusJson.items;
+const totalImages = distros.reduce((total, distro) => total + distro.items.length, 0);
+const totalSupported = distros.reduce(
+	(total, distro) => total + distro.items.filter((image) => !image.eol.is_eol).length,
+	0,
+);
+
+function formatDate(date: string): string {
+	return new Date(date).toLocaleDateString('en-GB', {
+		day: 'numeric',
+		month: 'short',
+		year: 'numeric',
+		timeZone: 'UTC',
+	});
+}
+---
+
+<ToolLayout frontmatter={frontmatter} url={Astro.url}>
+	<slot slot="content">
+		<SliceLibrary slices={tool.data.slices} />
+
+		<section class="litmus-images">
+			<div class="litmus-toolbar">
+				<label class="litmus-filter">
+					<input type="checkbox" id="hide-eol" />
+					{__('component.puppetlitmusimages.filterLabel')}
+				</label>
+
+				<p class="litmus-summary">
+					{__('component.puppetlitmusimages.summary', totalImages, distros.length, totalSupported)}
+				</p>
+			</div>
+
+			<nav class="litmus-nav" aria-label={__('component.puppetlitmusimages.navLabel')}>
+				{
+					distros.map((distro: LitmusDistro) => (
+						<a class="litmus-nav-link" href={`#${distro.image}`}>
+							<Distro size={18} icon={distro.image} className="litmus-nav-icon" />
+							{distro.name}
+						</a>
+					))
+				}
+			</nav>
+
+			<div class="litmus-grid">
+				{
+					distros.map((distro: LitmusDistro) => {
+						const supported = distro.items.filter((image) => !image.eol.is_eol).length;
+
+						return (
+							<article class="distro" id={distro.image}>
+								<header class="distro-header">
+									<Distro size={48} icon={distro.image} className="distro-icon" />
+									<div>
+										<h2 class="distro-name">{distro.name}</h2>
+									</div>
+								</header>
+
+								<div class="table-wrapper">
+									<table class="table table-plain">
+										<caption class="sr-only">
+											{__('component.puppetlitmusimages.table.caption', distro.name)}
+										</caption>
+										<thead>
+											<tr>
+												<th scope="col">
+													{__('component.puppetlitmusimages.table.column.version')}
+												</th>
+												<th scope="col">{__('component.puppetlitmusimages.table.column.image')}</th>
+												<th scope="col">
+													{__('component.puppetlitmusimages.table.column.status')}
+												</th>
+												<th scope="col">
+													{__('component.puppetlitmusimages.table.column.platforms')}
+												</th>
+												<th scope="col">
+													{__('component.puppetlitmusimages.table.column.released')}
+												</th>
+												<th scope="col">{__('component.puppetlitmusimages.table.column.eol')}</th>
+											</tr>
+										</thead>
+										<tbody>
+											{distro.items.map((image: LitmusImage) => (
+												<tr data-eol={image.eol.is_eol}>
+													<td class="cell-version">{image.tag}</td>
+													<td>
+														<code>
+															{distro.image}:{image.tag}
+														</code>
+													</td>
+													<td>
+														<span
+															class={`status ${image.eol.is_eol ? 'status-eol' : 'status-supported'}`}
+														>
+															{image.eol.is_eol
+																? __('component.puppetlitmusimages.status.eol')
+																: __('component.puppetlitmusimages.status.supported')}
+														</span>
+													</td>
+													<td>
+														<ul class="platforms">
+															{image.platforms.map((platform) => (
+																<li class="platform">{platform}</li>
+															))}
+														</ul>
+													</td>
+													<td>{formatDate(image.eol.release_date)}</td>
+													<td>{formatDate(image.eol.eol_from)}</td>
+												</tr>
+											))}
+										</tbody>
+									</table>
+								</div>
+
+								{supported === 0 && (
+									<p class="distro-empty">
+										{__('component.puppetlitmusimages.status.empty', distro.name)}
+									</p>
+								)}
+							</article>
+						);
+					})
+				}
+			</div>
+		</section>
+	</slot>
+</ToolLayout>
+
+<style>
+	.litmus-images {
+		margin-top: var(--gap);
+	}
+
+	.litmus-toolbar {
+		display: flex;
+		flex-direction: column;
+		gap: var(--gap-sm);
+		align-items: flex-start;
+		justify-content: space-between;
+		padding: var(--gap) var(--gap-sm);
+		margin-bottom: var(--gap);
+		background-color: var(--surface-1);
+		border: var(--border-width) solid var(--border-color);
+		border-radius: var(--border-radius);
+	}
+
+	.litmus-summary {
+		margin: 0;
+		color: var(--text-muted);
+	}
+
+	.litmus-filter {
+		display: flex;
+		align-items: center;
+		gap: var(--gap-xs);
+		font-size: small;
+		white-space: nowrap;
+	}
+
+	.litmus-nav {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--gap-xs);
+		margin-bottom: var(--gap);
+	}
+
+	.litmus-nav-link {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--gap-xxs);
+		padding: var(--gap-xs) var(--gap-sm);
+		font-size: small;
+		color: var(--text);
+		text-decoration: none;
+		background-color: var(--surface-1);
+		border: var(--border-width) solid var(--border-color);
+		border-radius: var(--border-radius);
+		flex-grow: 1;
+
+		&:hover,
+		&:focus {
+			color: var(--primary);
+			border-color: var(--primary);
+		}
+	}
+
+	.litmus-nav-icon {
+		flex: 0 0 auto;
+	}
+
+	.litmus-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: var(--gap);
+		align-items: stretch;
+	}
+
+	.distro {
+		display: flex;
+		flex-direction: column;
+		border: var(--border-width) solid var(--border-color);
+		border-radius: var(--border-radius);
+		background-color: light-dark(var(--surface-i-1), var(--surface-1));
+		scroll-margin-top: var(--anchor-scroll-offset, 9rem);
+	}
+
+	.distro-header {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: var(--gap-sm);
+		padding: var(--gap-sm) var(--gap);
+		border-bottom: var(--border-width) solid var(--border-color);
+	}
+
+	.distro-icon {
+		flex: 0 0 auto;
+	}
+
+	.distro-name {
+		margin: 0;
+		font-size: var(--font-size-h4);
+	}
+
+	.distro-meta {
+		margin: 0;
+		font-size: small;
+		color: var(--text-muted);
+	}
+
+	.table-wrapper {
+		flex: 1 1 auto;
+		overflow-x: auto;
+	}
+
+	.distro-empty {
+		display: none;
+		margin: 0;
+		padding: var(--gap-sm) var(--gap);
+		font-size: small;
+		color: var(--text-muted);
+	}
+
+	.table {
+		margin: 0;
+	}
+
+	.table th,
+	.table td {
+		white-space: nowrap;
+	}
+
+	.cell-version {
+		font-weight: 600;
+	}
+
+	.platforms {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--gap-xxs);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.platform {
+		padding: 0 var(--gap-xs);
+		font-size: smaller;
+		color: var(--text-muted);
+		background-color: var(--surface-2);
+		border-radius: var(--border-radius-sm);
+	}
+
+	.status {
+		display: inline-block;
+		padding: var(--gap-xxs) var(--gap-xs);
+		font-size: smaller;
+		font-weight: 600;
+		border-radius: var(--border-radius-sm);
+	}
+
+	.status-supported {
+		color: var(--white);
+		background-color: var(--success);
+	}
+
+	.status-eol {
+		color: var(--white);
+		background-color: var(--danger);
+	}
+
+	.litmus-images:has(#hide-eol:checked) tr[data-eol='true'] {
+		display: none;
+	}
+
+	.litmus-images:has(#hide-eol:checked) .distro:has(.distro-empty) .table-wrapper {
+		display: none;
+	}
+
+	.litmus-images:has(#hide-eol:checked) .distro-empty {
+		display: block;
+	}
+
+	@media (--vp-md) {
+		.litmus-toolbar {
+			flex-direction: row;
+			align-items: center;
+		}
+	}
+
+	@media (--vp-lg) {
+		.litmus-grid {
+			grid-template-columns: repeat(auto-fill, minmax(720px, 1fr));
+		}
+	}
+</style>

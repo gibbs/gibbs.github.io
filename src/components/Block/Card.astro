@@ -5,8 +5,8 @@ import { formatDate } from '@utils/date';
 
 interface Props {
 	icon?: string;
-	iconSize?: number,
-	decorate?: boolean,
+	iconSize?: number;
+	decorate?: boolean;
 	tag?: string;
 	date?: Date;
 	heading: string;
@@ -31,7 +31,7 @@ const Icon = Logo;
 <x-card class="card">
 	{
 		((icon && icon.length > 0) || (tag && tag.length > 0)) && (
-			<div class=`card-preview ${decorate ? 'card-preview-decorate' : '' }`>
+			<div class={'card-preview ' + (decorate ? 'card-preview-decorate' : '')}>
 				{icon && icon.length > 0 && (
 					<>
 						<span class="card-logo">
@@ -56,9 +56,7 @@ const Icon = Logo;
 				{heading}
 			</a>
 		</h2>
-		{
-			date && date instanceof Date && <p class="card-date">{formatDate(date)}</p>
-		}
+		{date && date instanceof Date && <p class="card-date">{formatDate(date)}</p>}
 		<p>{summary}</p>
 		<slot />
 	</div>
