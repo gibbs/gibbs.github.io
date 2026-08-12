@@ -1,10 +1,12 @@
 ---
 import { env } from '@src/env.config';
-import Logo from '@components/Block/LogoIcon.astro';
-import { DateTime } from 'luxon';
+import Logo from '@components/Block/Icon/Logo.astro';
+import { formatDate } from '@utils/date';
 
 interface Props {
 	icon?: string;
+	iconSize?: number;
+	decorate?: boolean;
 	tag?: string;
 	date?: Date;
 	heading: string;
@@ -14,25 +16,29 @@ interface Props {
 
 const {
 	icon = null,
+	iconSize = 92,
+	decorate = true,
 	tag = null,
 	date = null,
 	heading = null,
 	summary = null,
 	uri = '/',
 } = Astro.props;
+
+const Icon = Logo;
 ---
 
 <x-card class="card">
 	{
 		((icon && icon.length > 0) || (tag && tag.length > 0)) && (
-			<div class="card-preview">
+			<div class={'card-preview ' + (decorate ? 'card-preview-decorate' : '')}>
 				{icon && icon.length > 0 && (
 					<>
 						<span class="card-logo">
-							<Logo size={92} icon={icon} />
+							<Icon size={iconSize} icon={icon} />
 						</span>
 						<span class="card-logo-mask">
-							<Logo size={512} icon={icon} />
+							<Icon size={512} icon={icon} />
 						</span>
 					</>
 				)}
@@ -50,14 +56,9 @@ const {
 				{heading}
 			</a>
 		</h2>
-		{
-			date && date instanceof Date && (
-				<p class="card-date">
-					{DateTime.fromISO(date.toISOString(), { locale: 'en-GB' }).toFormat('d LLL, yyyy')}
-				</p>
-			)
-		}
+		{date && date instanceof Date && <p class="card-date">{formatDate(date)}</p>}
 		<p>{summary}</p>
+		<slot />
 	</div>
 </x-card>
 
@@ -117,7 +118,7 @@ const {
 		border-radius: var(--border-radius) var(--border-radius) 0 0;
 	}
 
-	.card-preview::after {
+	.card-preview-decorate::after {
 		content: '';
 		position: absolute;
 		top: 0;

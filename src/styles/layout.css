@@ -74,6 +74,14 @@ tbody tr:nth-child(2n):hover {
 	);
 }
 
+.table-plain tbody tr,
+.table-plain tbody tr:hover,
+.table-plain tbody tr:nth-child(2n),
+.table-plain tbody tr:nth-child(2n):hover {
+	background-color: transparent;
+	border-bottom: 0;
+}
+
 td, th {
 	font-size: small;
 	padding: var(--gap-sm);

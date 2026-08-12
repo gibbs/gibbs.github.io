@@ -1,9 +1,9 @@
 ---
 import BaseLayout from '@layouts/Base.astro';
-import Logo from '@components/Block/LogoIcon.astro';
+import Logo from '@components/Block/Icon/Logo.astro';
 import Card from '@components/Block/Card.astro';
 import { env } from '@src/env.config';
-import { DateTime } from 'luxon';
+import { formatDate } from '@utils/date';
 import { getPageByUID, getAllPosts } from '@src/prismic';
 import { generateFrontmatter } from '@utils/frontmatter';
 import SliceLibrary from '@components/Prismic/SliceLibrary.astro';
@@ -30,9 +30,7 @@ const featured = posts.shift();
 			</h2>
 			<span class="meta">
 				{featured.tags.length > 0 && <x-tag>{featured.tags[0].toUpperCase()}</x-tag>}
-				<time datetime={featured.data.date}>
-					— {DateTime.fromISO(featured.data.date, { locale: 'en-GB' }).toFormat('d LLL, yyyy')}
-				</time>
+				<time datetime={featured.data.date}>— {formatDate(featured.data.date)}</time>
 			</span>
 			<p>{featured.data.summary}</p>
 		</div>

@@ -1,0 +1,550 @@
+{
+  "items": [
+    {
+      "image": "almalinux",
+      "name": "AlmaLinux",
+      "items": [
+        {
+          "tag": "8",
+          "dockerfile": "dnf_systemd",
+          "platforms": [
+            "amd64",
+            "arm64/v8"
+          ],
+          "base_image": "almalinux",
+          "base_tag": "8",
+          "eol": {
+            "cycle": "8",
+            "release_date": "2021-03-30",
+            "eol_from": "2029-05-31",
+            "is_eol": false,
+            "source": "endoflife.date"
+          }
+        },
+        {
+          "tag": "9",
+          "dockerfile": "dnf_systemd",
+          "platforms": [
+            "amd64",
+            "arm64/v8"
+          ],
+          "base_image": "almalinux",
+          "base_tag": "9",
+          "eol": {
+            "cycle": "9",
+            "release_date": "2022-05-26",
+            "eol_from": "2032-05-31",
+            "is_eol": false,
+            "source": "endoflife.date"
+          }
+        }
+      ]
+    },
+    {
+      "image": "amazonlinux",
+      "name": "Amazon Linux",
+      "items": [
+        {
+          "tag": "2023",
+          "dockerfile": "yum_systemd",
+          "platforms": [
+            "amd64",
+            "arm64/v8"
+          ],
+          "base_image": "amazonlinux",
+          "base_tag": "2023",
+          "eol": {
+            "cycle": "2023",
+            "release_date": "2023-03-01",
+            "eol_from": "2029-06-30",
+            "is_eol": false,
+            "source": "endoflife.date"
+          }
+        },
+        {
+          "tag": "2",
+          "dockerfile": "yum_systemd_ssh",
+          "platforms": [
+            "amd64"
+          ],
+          "base_image": "amazonlinux",
+          "base_tag": "2",
+          "eol": {
+            "cycle": "2",
+            "release_date": "2018-06-26",
+            "eol_from": "2026-06-30",
+            "is_eol": true,
+            "source": "endoflife.date"
+          }
+        }
+      ]
+    },
+    {
+      "image": "centos",
+      "name": "CentOS",
+      "items": [
+        {
+          "tag": "6",
+          "dockerfile": "yum_initd",
+          "platforms": [
+            "amd64"
+          ],
+          "base_image": "centos",
+          "base_tag": "6",
+          "eol": {
+            "cycle": "6",
+            "release_date": "2011-07-10",
+            "eol_from": "2020-11-30",
+            "is_eol": true,
+            "source": "endoflife.date"
+          }
+        },
+        {
+          "tag": "7",
+          "dockerfile": "yum_systemd_ssh",
+          "platforms": [
+            "amd64"
+          ],
+          "base_image": "centos",
+          "base_tag": "7",
+          "eol": {
+            "cycle": "7",
+            "release_date": "2014-07-07",
+            "eol_from": "2024-06-30",
+            "is_eol": true,
+            "source": "endoflife.date"
+          }
+        },
+        {
+          "tag": "stream8",
+          "dockerfile": "yum_systemd",
+          "platforms": [
+            "amd64",
+            "arm64/v8"
+          ],
+          "base_image": "quay.io/centos/centos",
+          "base_tag": "stream8",
+          "eol": {
+            "cycle": "8",
+            "release_date": "2019-09-24",
+            "eol_from": "2024-05-31",
+            "is_eol": true,
+            "source": "endoflife.date"
+          }
+        },
+        {
+          "tag": "stream9",
+          "dockerfile": "dnf_systemd",
+          "platforms": [
+            "amd64",
+            "arm64/v8"
+          ],
+          "base_image": "quay.io/centos/centos",
+          "base_tag": "stream9",
+          "eol": {
+            "cycle": "9",
+            "release_date": "2021-09-15",
+            "eol_from": "2027-05-31",
+            "is_eol": false,
+            "source": "endoflife.date"
+          }
+        }
+      ]
+    },
+    {
+      "image": "debian",
+      "name": "Debian",
+      "items": [
+        {
+          "tag": "10",
+          "dockerfile": "apt_sysvinit-utils",
+          "platforms": [
+            "amd64"
+          ],
+          "base_image": "debian",
+          "base_tag": "10",
+          "eol": {
+            "cycle": "10",
+            "release_date": "2019-07-06",
+            "eol_from": "2022-09-10",
+            "is_eol": true,
+            "source": "endoflife.date"
+          }
+        },
+        {
+          "tag": "11",
+          "dockerfile": "apt_sysvinit-utils",
+          "platforms": [
+            "amd64",
+            "arm64/v8"
+          ],
+          "base_image": "debian",
+          "base_tag": "bullseye",
+          "eol": {
+            "cycle": "11",
+            "release_date": "2021-08-14",
+            "eol_from": "2024-08-14",
+            "is_eol": true,
+            "source": "endoflife.date"
+          }
+        },
+        {
+          "tag": "12",
+          "dockerfile": "apt_sysvinit-utils",
+          "platforms": [
+            "amd64",
+            "arm64/v8"
+          ],
+          "base_image": "debian",
+          "base_tag": "12",
+          "eol": {
+            "cycle": "12",
+            "release_date": "2023-06-10",
+            "eol_from": "2026-07-11",
+            "is_eol": true,
+            "source": "endoflife.date"
+          }
+        },
+        {
+          "tag": "13",
+          "dockerfile": "apt_sysvinit-utils",
+          "platforms": [
+            "amd64",
+            "arm64/v8"
+          ],
+          "base_image": "debian",
+          "base_tag": "13",
+          "eol": {
+            "cycle": "13",
+            "release_date": "2025-08-09",
+            "eol_from": "2028-08-09",
+            "is_eol": false,
+            "source": "endoflife.date"
+          }
+        }
+      ]
+    },
+    {
+      "image": "fedora",
+      "name": "Fedora",
+      "items": [
+        {
+          "tag": "36",
+          "dockerfile": "dnf_systemd",
+          "platforms": [
+            "amd64"
+          ],
+          "base_image": "fedora",
+          "base_tag": "36",
+          "eol": {
+            "cycle": "36",
+            "release_date": "2022-05-10",
+            "eol_from": "2023-05-16",
+            "is_eol": true,
+            "source": "endoflife.date"
+          }
+        }
+      ]
+    },
+    {
+      "image": "oraclelinux",
+      "name": "Oracle Linux",
+      "items": [
+        {
+          "tag": "6",
+          "dockerfile": "yum_initd",
+          "platforms": [
+            "amd64"
+          ],
+          "base_image": "oraclelinux",
+          "base_tag": "6",
+          "eol": {
+            "cycle": "6",
+            "release_date": "2011-02-12",
+            "eol_from": "2021-03-31",
+            "is_eol": true,
+            "source": "endoflife.date"
+          }
+        },
+        {
+          "tag": "7",
+          "dockerfile": "yum_systemd_ssh",
+          "platforms": [
+            "amd64",
+            "arm64/v8"
+          ],
+          "base_image": "oraclelinux",
+          "base_tag": "7",
+          "eol": {
+            "cycle": "7",
+            "release_date": "2014-07-23",
+            "eol_from": "2024-12-31",
+            "is_eol": true,
+            "source": "endoflife.date"
+          }
+        },
+        {
+          "tag": "8",
+          "dockerfile": "dnf_systemd",
+          "platforms": [
+            "amd64",
+            "arm64/v8"
+          ],
+          "base_image": "oraclelinux",
+          "base_tag": "8",
+          "eol": {
+            "cycle": "8",
+            "release_date": "2019-07-19",
+            "eol_from": "2029-07-31",
+            "is_eol": false,
+            "source": "endoflife.date"
+          }
+        },
+        {
+          "tag": "9",
+          "dockerfile": "dnf_systemd",
+          "platforms": [
+            "amd64",
+            "arm64/v8"
+          ],
+          "base_image": "oraclelinux",
+          "base_tag": "9",
+          "eol": {
+            "cycle": "9",
+            "release_date": "2022-07-06",
+            "eol_from": "2032-06-30",
+            "is_eol": false,
+            "source": "endoflife.date"
+          }
+        }
+      ]
+    },
+    {
+      "image": "redhat",
+      "name": "Red Hat Enterprise Linux",
+      "items": [
+        {
+          "tag": "7",
+          "dockerfile": "yum_systemd_ssh",
+          "platforms": [
+            "amd64"
+          ],
+          "base_image": "registry.access.redhat.com/ubi7/ubi",
+          "base_tag": "latest",
+          "eol": {
+            "cycle": "7",
+            "release_date": "2014-06-10",
+            "eol_from": "2024-06-30",
+            "is_eol": true,
+            "source": "endoflife.date"
+          }
+        },
+        {
+          "tag": "8",
+          "dockerfile": "yum_systemd",
+          "platforms": [
+            "amd64"
+          ],
+          "base_image": "redhat/ubi8",
+          "base_tag": "latest",
+          "eol": {
+            "cycle": "8",
+            "release_date": "2019-05-07",
+            "eol_from": "2029-05-31",
+            "is_eol": false,
+            "source": "endoflife.date"
+          }
+        },
+        {
+          "tag": "9",
+          "dockerfile": "dnf_systemd",
+          "platforms": [
+            "amd64"
+          ],
+          "base_image": "redhat/ubi9",
+          "base_tag": "latest",
+          "eol": {
+            "cycle": "9",
+            "release_date": "2022-05-18",
+            "eol_from": "2032-05-31",
+            "is_eol": false,
+            "source": "endoflife.date"
+          }
+        }
+      ]
+    },
+    {
+      "image": "rockylinux",
+      "name": "Rocky Linux",
+      "items": [
+        {
+          "tag": "8",
+          "dockerfile": "dnf_systemd",
+          "platforms": [
+            "amd64",
+            "arm64/v8"
+          ],
+          "base_image": "rockylinux/rockylinux",
+          "base_tag": "8",
+          "eol": {
+            "cycle": "8",
+            "release_date": "2021-05-01",
+            "eol_from": "2029-05-31",
+            "is_eol": false,
+            "source": "endoflife.date"
+          }
+        },
+        {
+          "tag": "9",
+          "dockerfile": "dnf_systemd",
+          "platforms": [
+            "amd64",
+            "arm64/v8"
+          ],
+          "base_image": "rockylinux/rockylinux",
+          "base_tag": "9",
+          "eol": {
+            "cycle": "9",
+            "release_date": "2022-07-14",
+            "eol_from": "2032-05-31",
+            "is_eol": false,
+            "source": "endoflife.date"
+          }
+        }
+      ]
+    },
+    {
+      "image": "scientificlinux",
+      "name": "Scientific Linux",
+      "items": [
+        {
+          "tag": "6",
+          "dockerfile": "yum_initd",
+          "platforms": [
+            "amd64"
+          ],
+          "base_image": "scientificlinux/sl",
+          "base_tag": "6",
+          "eol": {
+            "cycle": "6",
+            "release_date": "2011-05-10",
+            "eol_from": "2020-11-30",
+            "is_eol": true,
+            "source": "manual"
+          }
+        },
+        {
+          "tag": "7",
+          "dockerfile": "yum_systemd_ssh",
+          "platforms": [
+            "amd64"
+          ],
+          "base_image": "scientificlinux/sl",
+          "base_tag": "7",
+          "eol": {
+            "cycle": "7",
+            "release_date": "2014-05-14",
+            "eol_from": "2024-06-30",
+            "is_eol": true,
+            "source": "manual"
+          }
+        }
+      ]
+    },
+    {
+      "image": "sles",
+      "name": "SLES",
+      "items": [
+        {
+          "tag": "15",
+          "dockerfile": "zypper_systemd",
+          "platforms": [
+            "amd64"
+          ],
+          "base_image": "registry.suse.com/suse/sle15",
+          "base_tag": "15.5",
+          "eol": {
+            "cycle": "15.5",
+            "release_date": "2023-06-20",
+            "eol_from": "2024-12-31",
+            "is_eol": true,
+            "source": "endoflife.date"
+          }
+        }
+      ]
+    },
+    {
+      "image": "ubuntu",
+      "name": "Ubuntu",
+      "items": [
+        {
+          "tag": "18.04",
+          "dockerfile": "apt_sysvinit-utils",
+          "platforms": [
+            "amd64"
+          ],
+          "base_image": "ubuntu",
+          "base_tag": "18.04",
+          "eol": {
+            "cycle": "18.04",
+            "release_date": "2018-04-26",
+            "eol_from": "2023-05-31",
+            "is_eol": true,
+            "source": "endoflife.date"
+          }
+        },
+        {
+          "tag": "20.04",
+          "dockerfile": "apt_sysvinit-utils",
+          "platforms": [
+            "amd64",
+            "arm64/v8"
+          ],
+          "base_image": "ubuntu",
+          "base_tag": "20.04",
+          "eol": {
+            "cycle": "20.04",
+            "release_date": "2020-04-23",
+            "eol_from": "2025-05-31",
+            "is_eol": true,
+            "source": "endoflife.date"
+          }
+        },
+        {
+          "tag": "22.04",
+          "dockerfile": "apt_sysvinit-utils",
+          "platforms": [
+            "amd64",
+            "arm64/v8"
+          ],
+          "base_image": "ubuntu",
+          "base_tag": "22.04",
+          "eol": {
+            "cycle": "22.04",
+            "release_date": "2022-04-21",
+            "eol_from": "2027-04-01",
+            "is_eol": false,
+            "source": "endoflife.date"
+          }
+        },
+        {
+          "tag": "24.04",
+          "dockerfile": "apt_sysvinit-utils",
+          "platforms": [
+            "amd64",
+            "arm64/v8"
+          ],
+          "base_image": "ubuntu",
+          "base_tag": "24.04",
+          "eol": {
+            "cycle": "24.04",
+            "release_date": "2024-04-25",
+            "eol_from": "2029-05-31",
+            "is_eol": false,
+            "source": "endoflife.date"
+          }
+        }
+      ]
+    }
+  ]
+}

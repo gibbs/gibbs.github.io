@@ -3,7 +3,7 @@ import { __ } from '@i18n/utils';
 import type { Content } from '@prismicio/client';
 import { getAllTechStackSections } from '@src/prismic';
 import Tabs from '@components/Block/Tabs.astro';
-import LogoIcon from '@components/Block/LogoIcon.astro';
+import LogoIcon from '@components/Block/Icon/Logo.astro';
 
 const sections = await getAllTechStackSections().then((response) => response.results);
 
