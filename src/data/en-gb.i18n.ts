@@ -72,7 +72,7 @@ const trans: Record<string, any> = {
 				supported: 'Supported',
 				eol: 'End of life',
 				empty: 'All $1 versions are end of life.',
-			}
+			},
 		},
 	},
 };

@@ -7,29 +7,34 @@ import { generateFrontmatter } from '@utils/frontmatter';
 import Distro from '@components/Block/Icon/Distro.astro';
 import { __ } from '@i18n/utils';
 import type { LitmusImages, LitmusDistro, LitmusImage } from '@interfaces/litmus-images';
+import litmusImageDataFallback from '@data/puppet-litmus-images.json' with { type: 'json' };
+import { formatDate } from '@utils/date';
 
 const tool = await getPageByUID('puppet-litmus-images', 'tools');
 const frontmatter = generateFrontmatter(tool);
 
 const url = new URL(env.APP_API_PROXY_URL.replace(/\/+$/, '') + '/puppet/litmusimages').toString();
-const litmusResponse = await fetch(url);
-const litmusJson: LitmusImages = await litmusResponse.json();
 
-const distros = litmusJson.items;
+let litmusImageData: LitmusImages;
+
+try {
+	const response = await fetch(url);
+
+	if (!response.ok) {
+		throw new Error(`Unexpected response status: ${response.status}`);
+	}
+
+	litmusImageData = await response.json();
+} catch {
+	litmusImageData = litmusImageDataFallback as LitmusImages;
+}
+
+const distros = litmusImageData.items;
 const totalImages = distros.reduce((total, distro) => total + distro.items.length, 0);
 const totalSupported = distros.reduce(
 	(total, distro) => total + distro.items.filter((image) => !image.eol.is_eol).length,
 	0,
 );
-
-function formatDate(date: string): string {
-	return new Date(date).toLocaleDateString('en-GB', {
-		day: 'numeric',
-		month: 'short',
-		year: 'numeric',
-		timeZone: 'UTC',
-	});
-}
 ---
 
 <ToolLayout frontmatter={frontmatter} url={Astro.url}>
