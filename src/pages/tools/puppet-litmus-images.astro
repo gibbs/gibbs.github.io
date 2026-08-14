@@ -220,10 +220,10 @@ const totalSupported = distros.reduce(
 	.distro {
 		display: flex;
 		flex-direction: column;
+		min-width: 0;
 		border: var(--border-width) solid var(--border-color);
 		border-radius: var(--border-radius);
 		background-color: light-dark(var(--surface-i-1), var(--surface-1));
-		scroll-margin-top: var(--anchor-scroll-offset, 9rem);
 	}
 
 	.distro-header {
@@ -252,6 +252,7 @@ const totalSupported = distros.reduce(
 
 	.table-wrapper {
 		flex: 1 1 auto;
+		min-width: 0;
 		overflow-x: auto;
 	}
 
