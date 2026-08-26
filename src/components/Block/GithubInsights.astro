@@ -115,15 +115,24 @@ const {
 				hoveredLanguage: '',
 				selectedLanguage: '',
 				limit: 10,
-
-				palette: [
-					'oklch(65% 0.17 250)',
-					'oklch(62% 0.18 30)',
-					'oklch(68% 0.15 145)',
-					'oklch(70% 0.16 90)',
-					'oklch(60% 0.13 315)',
-					'oklch(72% 0.15 205)',
-				],
+				palette:
+					typeof CSS !== 'undefined' && CSS.supports('color', 'oklch(65% 0.17 250)')
+						? [
+								'oklch(65% 0.17 250)',
+								'oklch(62% 0.18 30)',
+								'oklch(68% 0.15 145)',
+								'oklch(70% 0.16 90)',
+								'oklch(60% 0.13 315)',
+								'oklch(72% 0.15 205)',
+							]
+						: [
+								'#2393f1',
+								'#dd503f',
+								'#54b05a',
+								'#c59800',
+								'#9d66b5',
+								'#00bed1',
+							],
 				languageColorCache: {},
 
 				boot() {
@@ -366,6 +375,10 @@ const {
 						return baseColor;
 					}
 
+					if (typeof CSS === 'undefined' || !CSS.supports('color', 'color-mix(in oklch, red, blue)')) {
+						return baseColor;
+					}
+
 					return `color-mix(in oklch, ${baseColor} 50%, var(--surface-2))`;
 				},
 
@@ -484,8 +497,12 @@ const {
 		border-radius: 999px;
 		margin: 0 auto;
 		position: relative;
-		box-shadow: 0 4px 20px color-mix(in oklch, var(--border-color) 40%, transparent);
+		box-shadow: 0 4px 20px rgba(216, 217, 218, 0.4);
 		transition: background 320ms ease;
+
+		@supports (color: oklch(from red l c h)) {
+			box-shadow: 0 4px 20px color-mix(in oklch, var(--border-color) 40%, transparent);
+		}
 	}
 
 	.xin-pie::after {
@@ -523,7 +540,11 @@ const {
 	.xin-language-key li:hover,
 	.xin-language-key li.xin-language-key-active {
 		background: light-dark(var(--surface-i-3), var(--surface-3));
-		box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--border-color), transparent 15%);
+		box-shadow: inset 0 0 0 1px rgba(216, 217, 218, 0.85);
+
+		@supports (color: oklch(from red l c h)) {
+			box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--border-color), transparent 15%);
+		}
 	}
 
 	.xin-key-value {

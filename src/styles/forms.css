@@ -1,17 +1,24 @@
 body {
 	--form-button-bg: var(--accent);
-	--form-border-color: light-dark(
-		oklch(from var(--bg) calc(l - 0.15) c h),
-		oklch(from var(--bg) calc(l + 0.25) c h)
-	);
+	--form-border-color: #c8c9ca;
 	--form-border-width: 0.15rem;
 	--form-border-radius: var(--border-radius);
 	--form-outline-color: var(--tertiary);
 	--form-box-shadow: 0 0 2px .25rem var(--tertiary);
-	--form-input-bg: light-dark(
-		var(--white),
-		oklch(from var(--bg) calc(l + 0.15) c h)
-	);
+	--form-input-bg: var(--white);
+}
+
+@supports (color: oklch(from red l c h)) {
+	body {
+		--form-border-color: light-dark(
+			oklch(from var(--bg) calc(l - 0.15) c h),
+			oklch(from var(--bg) calc(l + 0.25) c h)
+		);
+		--form-input-bg: light-dark(
+			var(--white),
+			oklch(from var(--bg) calc(l + 0.15) c h)
+		);
+	}
 }
 
 .main {
@@ -36,21 +43,29 @@ body {
 	input:focus-visible,
 	textarea:focus-visible,
 	select:focus-visible {
-		border-color: light-dark(
-			oklch(from var(--form-border-color) calc(l - 0.15) c h),
-			oklch(from var(--form-border-color) calc(l + 0.20) c h)
-		);
+		border-color: var(--form-border-color);
 		outline: 2px solid var(--form-outline-color);
 		outline-offset: 2px;
+
+		@supports (color: oklch(from red l c h)) {
+			border-color: light-dark(
+				oklch(from var(--form-border-color) calc(l - 0.15) c h),
+				oklch(from var(--form-border-color) calc(l + 0.20) c h)
+			);
+		}
 	}
 
 	input:focus,
 	textarea:focus,
 	select:focus {
-		border-color: light-dark(
-			oklch(from var(--form-border-color) calc(l - 0.15) c h),
-			oklch(from var(--form-border-color) calc(l + 0.20) c h)
-		);
+		border-color: var(--form-border-color);
+
+		@supports (color: oklch(from red l c h)) {
+			border-color: light-dark(
+				oklch(from var(--form-border-color) calc(l - 0.15) c h),
+				oklch(from var(--form-border-color) calc(l + 0.20) c h)
+			);
+		}
 	}
 
 	input,
@@ -103,7 +118,11 @@ body {
 	}
 
 	button:hover:not(:disabled) {
-		background-color: oklch(from var(--accent) calc(l - 0.06) c h);
+		background-color: var(--accent);
+
+		@supports (color: oklch(from red l c h)) {
+			background-color: oklch(from var(--accent) calc(l - 0.06) c h);
+		}
 	}
 
 	button:active:not(:disabled) {

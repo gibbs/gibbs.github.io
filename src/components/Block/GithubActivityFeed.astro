@@ -184,7 +184,11 @@ const { containerClass = '', limit = 5 } = Astro.props;
 
 	.xat-link:hover,
 	.xat-link:focus {
-		background-color: oklch(from var(--tab) calc(l - 0.1) c h);
+		background-color: var(--tab);
+
+		@supports (color: oklch(from red l c h)) {
+			background-color: oklch(from var(--tab) calc(l - 0.1) c h);
+		}
 	}
 
 	.gg-git-commit,

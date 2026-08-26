@@ -280,15 +280,23 @@ const {
 		padding: var(--gap-sm);
 		border: var(--border-width) solid var(--border-color);
 		border-radius: var(--border-radius);
-		background-color: light-dark(var(--white), oklch(from var(--bg) calc(l + 0.15) c h));
+		background-color: var(--white);
 		outline: var(--tertiary);
 		font-size: var(--font-size);
 		min-width: 100%;
 		max-width: 100%;
+
+		@supports (color: oklch(from red l c h)) {
+			background-color: light-dark(var(--white), oklch(from var(--bg) calc(l + 0.15) c h));
+		}
 	}
 
 	.search-bar-input::placeholder {
-		color: light-dark(var(--text-muted), oklch(88% 0.02 260));
+		color: var(--text-muted);
+
+		@supports (color: oklch(from red l c h)) {
+			color: light-dark(var(--text-muted), oklch(88% 0.02 260));
+		}
 	}
 
 	.search-bar-input:focus-visible {
@@ -299,7 +307,7 @@ const {
 	.search-bar-results {
 		position: absolute;
 		color: light-dark(var(--text), var(--white));
-		background-color: light-dark(var(--white), oklch(from var(--bg) calc(l + 0.15) c h));
+		background-color: var(--white);
 		margin: 0;
 		padding: var(--gap-xxs) 0;
 		top: calc(100% + 2px);
@@ -313,6 +321,10 @@ const {
 		border-radius: 0 0 var(--border-radius) var(--border-radius);
 		box-shadow: 0 0.5rem 1rem light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5));
 		z-index: 10;
+
+		@supports (color: oklch(from red l c h)) {
+			background-color: light-dark(var(--white), oklch(from var(--bg) calc(l + 0.15) c h));
+		}
 	}
 
 	.search-bar-result {
@@ -324,12 +336,16 @@ const {
 	}
 
 	.search-bar-result.is-highlighted {
-		background: light-dark(
-			oklch(from var(--tertiary) calc(l + 0.15) calc(c * 0.3) h),
-			oklch(from var(--tertiary) calc(l - 0.1) calc(c * 0.3) h)
-		);
+		background: #a2abc7;
 		outline: 2px solid var(--tertiary);
 		outline-offset: -2px;
+
+		@supports (color: oklch(from red l c h)) {
+			background: light-dark(
+				oklch(from var(--tertiary) calc(l + 0.15) calc(c * 0.3) h),
+				oklch(from var(--tertiary) calc(l - 0.1) calc(c * 0.3) h)
+			);
+		}
 	}
 
 	.search-bar-result-heading {

@@ -42,16 +42,21 @@ const icon = icons[type];
 		padding: var(--gap-lg) var(--gap);
 		border: var(--border-width) solid;
 		margin: var(--gap-sm) 0 var(--gap-sm) 0;
-		border-color: light-dark(
-			oklch(from var(--alert-color) calc(l - 0.15) c h / 0.8),
-			oklch(from var(--alert-color) calc(l + 0.15) c h / 0.5)
-		);
-		background-color: light-dark(
-			oklch(from var(--alert-color) l c h / 0.8),
-			oklch(from var(--alert-color) l c h / 0.5)
-		);
+		border-color: var(--alert-color);
+		background-color: var(--alert-color);
 		border-radius: var(--border-radius);
 		color: var(--white);
+
+		@supports (color: oklch(from red l c h)) {
+			border-color: light-dark(
+				oklch(from var(--alert-color) calc(l - 0.15) c h / 0.8),
+				oklch(from var(--alert-color) calc(l + 0.15) c h / 0.5)
+			);
+			background-color: light-dark(
+				oklch(from var(--alert-color) l c h / 0.8),
+				oklch(from var(--alert-color) l c h / 0.5)
+			);
+		}
 	}
 
 	.alert-content :global(p:last-of-type) {
@@ -59,6 +64,10 @@ const icon = icons[type];
 	}
 
 	.has-icon [class^='gg-'] {
-		--text-color: oklch(from var(--alert-color) calc(l + 0.25) c h);
+		--text-color: var(--white);
+
+		@supports (color: oklch(from red l c h)) {
+			--text-color: oklch(from var(--alert-color) calc(l + 0.25) c h);
+		}
 	}
 </style>
