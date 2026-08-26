@@ -125,14 +125,7 @@ const {
 								'oklch(60% 0.13 315)',
 								'oklch(72% 0.15 205)',
 							]
-						: [
-								'#2393f1',
-								'#dd503f',
-								'#54b05a',
-								'#c59800',
-								'#9d66b5',
-								'#00bed1',
-							],
+						: ['#2393f1', '#dd503f', '#54b05a', '#c59800', '#9d66b5', '#00bed1'],
 				languageColorCache: {},
 
 				boot() {
@@ -375,7 +368,10 @@ const {
 						return baseColor;
 					}
 
-					if (typeof CSS === 'undefined' || !CSS.supports('color', 'color-mix(in oklch, red, blue)')) {
+					if (
+						typeof CSS === 'undefined' ||
+						!CSS.supports('color', 'color-mix(in oklch, red, blue)')
+					) {
 						return baseColor;
 					}
 
