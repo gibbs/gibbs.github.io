@@ -10,6 +10,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	flex: 1 0 auto;
+	min-height: 100vh;
 	min-height: 100svh;
 	font-family: var(--font-family-sans);
 	text-rendering: optimizelegibility;
@@ -57,10 +58,14 @@ tbody tr {
 }
 
 tbody tr:hover {
-	background-color: light-dark(
-		oklch(from var(--table-row-bg-color) calc(l - 0.04) c h),
-		oklch(from var(--table-row-bg-color) calc(l + 0.04) c h)
-	);
+	background-color: var(--table-row-bg-color);
+
+	@supports (color: oklch(from red l c h)) {
+		background-color: light-dark(
+			oklch(from var(--table-row-bg-color) calc(l - 0.04) c h),
+			oklch(from var(--table-row-bg-color) calc(l + 0.04) c h)
+		);
+	}
 }
 
 tbody tr:nth-child(2n) {
@@ -68,10 +73,14 @@ tbody tr:nth-child(2n) {
 }
 
 tbody tr:nth-child(2n):hover {
-	background-color: light-dark(
-		oklch(from var(--table-row-bg-color) calc(l - 0.04) c h),
-		oklch(from var(--table-row-bg-color) calc(l + 0.04) c h)
-	);
+	background-color: var(--table-row-bg-color);
+
+	@supports (color: oklch(from red l c h)) {
+		background-color: light-dark(
+			oklch(from var(--table-row-bg-color) calc(l - 0.04) c h),
+			oklch(from var(--table-row-bg-color) calc(l + 0.04) c h)
+		);
+	}
 }
 
 .table-plain tbody tr,
@@ -158,11 +167,16 @@ td, th {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: linear-gradient(-90deg, light-dark(oklch(from var(--accent) l c h / 0.8), oklch(from var(--accent) l c h / 0.4)), oklch(from var(--accent) l c h / 0.9));
+	background: linear-gradient(-90deg, rgba(89, 95, 217, 0.8), rgba(89, 95, 217, 0.9));
 	background-size: 200% 200%;
 	animation: header-gradient 30s ease infinite;
 	z-index: -1;
 	opacity: 0.75;
+
+	@supports (color: oklch(from red l c h)) {
+		background: linear-gradient(-90deg, light-dark(oklch(from var(--accent) l c h / 0.8), oklch(from var(--accent) l c h / 0.4)), oklch(from var(--accent) l c h / 0.9));
+		background-size: 200% 200%;
+	}
 }
 
 .site-nav {
@@ -187,8 +201,12 @@ td, th {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
-	background: oklch(from var(--accent) calc(l + 0.1) c h / 0.9);
+	background: rgba(116, 127, 252, 0.9);
 	z-index: 110;
+
+	@supports (color: oklch(from red l c h)) {
+		background: oklch(from var(--accent) calc(l + 0.1) c h / 0.9);
+	}
 }
 
 .nav.is-open {
@@ -201,17 +219,22 @@ td, th {
 	align-items: center;
 	justify-content: center;
 	cursor: pointer;
-	background: oklch(from var(--accent) calc(l - 0.5) c h / 0.75);
+	background: rgba(14, 0, 55, 0.75);
 	border: 1px solid transparent;
-	border-color: oklch(from var(--accent) calc(l + 0.1) c h / 0.5);
+	border-color: rgba(116, 127, 252, 0.5);
 	width: 3rem;
 	height: 3rem;
 	border-radius: var(--gap-xs);
 	padding: 0;
+
+	@supports (color: oklch(from red l c h)) {
+		background: oklch(from var(--accent) calc(l - 0.5) c h / 0.75);
+		border-color: oklch(from var(--accent) calc(l + 0.1) c h / 0.5);
+	}
 }
 
 .nav-menu-button[aria-expanded='true'] {
-	background: oklch(0% 0 0 / 0.6);
+	background: rgba(0, 0, 0, 0.6);
 
 	.nav-menu-icon.icon {
 		background: transparent;
@@ -252,13 +275,13 @@ td, th {
 
 	&:hover {
 		color: white;
-		background-color: oklch(0% 0 0 / 0.4);
+		background-color: rgba(0, 0, 0, 0.4);
 	}
 }
 
 .nav-link.active {
 	color: white;
-	background: oklch(0% 0 0 / 0.6);
+	background: rgba(0, 0, 0, 0.6);
 	border-color: var(--secondary-dark);
 }
 

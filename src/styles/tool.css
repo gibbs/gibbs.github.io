@@ -1,3 +1,26 @@
+body {
+	--border-color-success: rgba(21, 87, 36, 0.8);
+	--border-color-error: rgba(114, 28, 36, 0.8);
+	--border-color-command: rgba(30, 58, 138, 0.8);
+}
+
+@supports (color: oklch(from red l c h)) {
+	body {
+		--border-color-success: light-dark(
+			oklch(from var(--success) calc(l - 0.15) c h / 0.8),
+			oklch(from var(--success) calc(l + 0.15) c h / 0.5)
+		);
+		--border-color-error: light-dark(
+			oklch(from var(--danger) calc(l - 0.15) c h / 0.8),
+			oklch(from var(--danger) calc(l + 0.15) c h / 0.5)
+		);
+		--border-color-command: light-dark(
+			oklch(from var(--info) calc(l - 0.15) c h / 0.8),
+			oklch(from var(--info) calc(l + 0.15) c h / 0.5)
+		);
+	}
+}
+
 .result {
 	display: flex;
 	padding: var(--gap);
@@ -18,10 +41,7 @@
 .result-success {
 	color: var(--white);
 	background-color: var(--success);
-	border-color: light-dark(
-		oklch(from var(--success) calc(l - 0.15) c h / 0.8),
-		oklch(from var(--success) calc(l + 0.15) c h / 0.5)
-	);
+	border-color: var(--border-color-success);
 
 	a {
 		color: var(--white);
@@ -45,10 +65,7 @@
 .result-error {
 	color: var(--white);
 	background-color: var(--danger);
-	border-color: light-dark(
-		oklch(from var(--danger) calc(l - 0.15) c h / 0.8),
-		oklch(from var(--danger) calc(l + 0.15) c h / 0.5)
-	);
+	border-color: var(--border-color-error);
 }
 
 .result-command {
@@ -57,10 +74,7 @@
 	padding: var(--gap);
 	background-color: var(--info);
 	color: var(--white);
-	border-color: light-dark(
-		oklch(from var(--info) calc(l - 0.15) c h / 0.8),
-		oklch(from var(--info) calc(l + 0.15) c h / 0.5)
-	);
+	border-color: var(--border-color-command)
 }
 
 .result-command:empty {
