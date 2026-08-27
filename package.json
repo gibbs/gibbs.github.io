@@ -52,6 +52,8 @@
 	"devDependencies": {
 		"@axe-core/playwright": "^4.11.1",
 		"@csstools/postcss-global-data": "^3.0.0",
+		"@csstools/postcss-light-dark-function": "^3.0.3",
+		"@csstools/postcss-oklab-function": "^5.0.9",
 		"@playwright/test": "^1.61.0",
 		"@richhouse83/xsd-validator": "^1.0.0",
 		"@types/dotenv": "^6.1.1",
@@ -66,7 +68,7 @@
 		"html-validate": "^10.7.0",
 		"install": "^0.13.0",
 		"patch-package": "^8.0.1",
-		"postcss": "^8.5.4",
+		"postcss": "^8.5.26",
 		"postcss-custom-media": "^11.0.6",
 		"postcss-nesting": "^13.0.1",
 		"prettier": "^3.5.3",
