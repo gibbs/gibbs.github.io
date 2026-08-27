@@ -300,6 +300,16 @@
 		"tm_scope": "source.aiken",
 		"language_id": 899409497
 	},
+	"Aleo": {
+		"type": "programming",
+		"color": "#154BF9",
+		"extensions": [
+			".aleo"
+		],
+		"tm_scope": "source.aleo",
+		"ace_mode": "text",
+		"language_id": 566431048
+	},
 	"Alloy": {
 		"type": "programming",
 		"color": "#64C800",
@@ -442,6 +452,7 @@
 	"AppleScript": {
 		"type": "programming",
 		"aliases": [
+			"apples",
 			"osascript"
 		],
 		"extensions": [
@@ -554,6 +565,8 @@
 		],
 		"extensions": [
 			".ahk",
+			".ah1",
+			".ah2",
 			".ahkl"
 		],
 		"tm_scope": "source.ahk",
@@ -605,6 +618,16 @@
 		"ace_mode": "text",
 		"language_id": 28
 	},
+	"B": {
+		"type": "programming",
+		"color": "#da7666",
+		"extensions": [
+			".b"
+		],
+		"tm_scope": "source.c",
+		"ace_mode": "text",
+		"language_id": 700792152
+	},
 	"B (Formal Method)": {
 		"type": "programming",
 		"color": "#8aa8c5",
@@ -613,7 +636,7 @@
 		],
 		"tm_scope": "source.b",
 		"ace_mode": "text",
-		"language_id": 700792152
+		"language_id": 993355937
 	},
 	"B4X": {
 		"type": "programming",
@@ -630,6 +653,18 @@
 		"codemirror_mime_type": "text/x-vb",
 		"language_id": 96642275
 	},
+	"BAML": {
+		"type": "programming",
+		"color": "#a855f7",
+		"extensions": [
+			".baml"
+		],
+		"tm_scope": "source.baml",
+		"ace_mode": "io",
+		"codemirror_mode": "stylus",
+		"codemirror_mime_type": "text/x-styl",
+		"language_id": 502521509
+	},
 	"BASIC": {
 		"type": "programming",
 		"extensions": [
@@ -639,6 +674,30 @@
 		"ace_mode": "basic",
 		"color": "#ff0000",
 		"language_id": 28923963
+	},
+	"BBCode": {
+		"type": "markup",
+		"extensions": [
+			".bbcode"
+		],
+		"tm_scope": "text.bbcode",
+		"ace_mode": "text",
+		"color": "#CAFF42",
+		"language_id": 206921123
+	},
+	"BIRD2": {
+		"type": "data",
+		"color": "#b6d7e4",
+		"filenames": [
+			"bird.conf"
+		],
+		"aliases": [
+			"bird",
+			"bird3"
+		],
+		"ace_mode": "text",
+		"tm_scope": "source.bird2",
+		"language_id": 584191811
 	},
 	"BQN": {
 		"type": "programming",
@@ -827,6 +886,19 @@
 		"ace_mode": "text",
 		"language_id": 35
 	},
+	"Blueprint": {
+		"type": "markup",
+		"color": "#3584E4",
+		"extensions": [
+			".blp"
+		],
+		"aliases": [
+			"blp"
+		],
+		"tm_scope": "source.blueprint",
+		"ace_mode": "text",
+		"language_id": 765545512
+	},
 	"Bluespec": {
 		"type": "programming",
 		"color": "#12223c",
@@ -972,7 +1044,7 @@
 		"codemirror_mode": "clike",
 		"codemirror_mime_type": "text/x-csharp",
 		"tm_scope": "source.cs",
-		"color": "#178600",
+		"color": "#7355dd",
 		"aliases": [
 			"csharp",
 			"cake",
@@ -1313,10 +1385,8 @@
 		"extensions": [
 			".carbon"
 		],
-		"ace_mode": "golang",
-		"codemirror_mode": "go",
-		"codemirror_mime_type": "text/x-go",
-		"tm_scope": "source.v",
+		"ace_mode": "text",
+		"tm_scope": "source.carbon",
 		"language_id": 55627273
 	},
 	"CartoCSS": {
@@ -1594,6 +1664,7 @@
 			"._coffee",
 			".cake",
 			".cjsx",
+			".coffee.erb",
 			".iced"
 		],
 		"filenames": [
@@ -2455,6 +2526,8 @@
 		"tm_scope": "source.emacs.lisp",
 		"color": "#c065db",
 		"aliases": [
+			"cask",
+			"eask",
 			"elisp",
 			"emacs"
 		],
@@ -2466,6 +2539,7 @@
 			".spacemacs",
 			".viper",
 			"Cask",
+			"Eask",
 			"Project.ede",
 			"_emacs",
 			"abbrev_defs"
@@ -2602,6 +2676,17 @@
 		"ace_mode": "text",
 		"language_id": 106
 	},
+	"FPP": {
+		"type": "programming",
+		"color": "#d37327",
+		"extensions": [
+			".fpp",
+			".fppi"
+		],
+		"tm_scope": "source.fpp",
+		"ace_mode": "text",
+		"language_id": 252360067
+	},
 	"Factor": {
 		"type": "programming",
 		"color": "#636746",
@@ -2684,6 +2769,16 @@
 		"tm_scope": "none",
 		"ace_mode": "text",
 		"language_id": 112
+	},
+	"FlatBuffers": {
+		"type": "data",
+		"color": "#ed284a",
+		"extensions": [
+			".fbs"
+		],
+		"tm_scope": "source.flatbuffers",
+		"ace_mode": "text",
+		"language_id": 577640576
 	},
 	"Flix": {
 		"type": "programming",
@@ -3172,6 +3267,7 @@
 			"commit"
 		],
 		"filenames": [
+			".gitmessage",
 			"COMMIT_EDITMSG"
 		],
 		"ace_mode": "text",
@@ -3192,7 +3288,9 @@
 		],
 		"filenames": [
 			".gitconfig",
-			".gitmodules"
+			".gitmodules",
+			".tgitconfig",
+			"config.worktree"
 		],
 		"ace_mode": "ini",
 		"codemirror_mode": "properties",
@@ -3271,6 +3369,21 @@
 		"tm_scope": "source.bdf",
 		"ace_mode": "text",
 		"language_id": 997665271
+	},
+	"Gno": {
+		"type": "programming",
+		"color": "#226c57",
+		"aliases": [
+			"gnolang"
+		],
+		"extensions": [
+			".gno"
+		],
+		"tm_scope": "source.gno",
+		"ace_mode": "golang",
+		"codemirror_mode": "go",
+		"codemirror_mime_type": "text/x-go",
+		"language_id": 279301301
 	},
 	"Gnuplot": {
 		"type": "programming",
@@ -3524,6 +3637,27 @@
 		"codemirror_mode": "htmlembedded",
 		"codemirror_mime_type": "application/x-jsp",
 		"language_id": 143
+	},
+	"GtkRC": {
+		"type": "data",
+		"color": "#7fe719",
+		"aliases": [
+			"gtk",
+			"gtk 1",
+			"gtk 2"
+		],
+		"extensions": [
+			".gtkrc"
+		],
+		"filenames": [
+			"gtkrc",
+			"gtkrc-2.0"
+		],
+		"tm_scope": "source.gtkrc",
+		"ace_mode": "ruby",
+		"codemirror_mode": "ruby",
+		"codemirror_mime_type": "text/x-ruby",
+		"language_id": 876401352
 	},
 	"HAProxy": {
 		"type": "data",
@@ -3926,6 +4060,20 @@
 		"ace_mode": "text",
 		"language_id": 162
 	},
+	"IL Assembly": {
+		"type": "programming",
+		"color": "#512BD4",
+		"extensions": [
+			".il"
+		],
+		"tm_scope": "source.il",
+		"ace_mode": "text",
+		"aliases": [
+			"ilasm",
+			"msil"
+		],
+		"language_id": 592065806
+	},
 	"INI": {
 		"type": "data",
 		"color": "#d1dbe0",
@@ -3933,18 +4081,26 @@
 			".ini",
 			".cfg",
 			".cnf",
+			".container",
 			".dof",
 			".frm",
 			".lektorproject",
+			".mount",
+			".network",
 			".prefs",
 			".pro",
 			".properties",
+			".service",
+			".socket",
+			".target",
+			".timer",
 			".url"
 		],
 		"filenames": [
 			".buckconfig",
 			".coveragerc",
 			".flake8",
+			".gitreview",
 			".pylintrc",
 			"HOSTS",
 			"buildozer.spec",
@@ -3954,6 +4110,7 @@
 		],
 		"tm_scope": "source.ini",
 		"aliases": [
+			"conf",
 			"dosini"
 		],
 		"ace_mode": "ini",
@@ -4012,14 +4169,17 @@
 			".gitignore"
 		],
 		"filenames": [
+			".agignore",
 			".atomignore",
 			".babelignore",
 			".bzrignore",
+			".ckignore",
 			".coffeelintignore",
 			".cvsignore",
 			".dockerignore",
 			".easignore",
 			".eleventyignore",
+			".eslint-ignore",
 			".eslintignore",
 			".gitignore",
 			".ignore",
@@ -4027,6 +4187,7 @@
 			".nodemonignore",
 			".npmignore",
 			".prettierignore",
+			".rgignore",
 			".stylelintignore",
 			".vercelignore",
 			".vscodeignore",
@@ -4038,6 +4199,23 @@
 		"codemirror_mode": "shell",
 		"codemirror_mime_type": "text/x-sh",
 		"language_id": 74444240
+	},
+	"ImHex Pattern Language": {
+		"type": "programming",
+		"color": "#3a6be0",
+		"extensions": [
+			".hexpat"
+		],
+		"aliases": [
+			"ImHex",
+			"ImHexPatternLanguage",
+			"imhexpl"
+		],
+		"tm_scope": "source.pl",
+		"ace_mode": "c_cpp",
+		"codemirror_mode": "clike",
+		"codemirror_mime_type": "text/x-csrc",
+		"language_id": 805861688
 	},
 	"ImageJ Macro": {
 		"type": "programming",
@@ -4168,6 +4346,19 @@
 		"ace_mode": "text",
 		"language_id": 447261135
 	},
+	"JASS": {
+		"type": "programming",
+		"color": "#FF0303",
+		"aliases": [
+			"jass2"
+		],
+		"extensions": [
+			".j"
+		],
+		"tm_scope": "source.jass",
+		"ace_mode": "text",
+		"language_id": 504860504
+	},
 	"JCL": {
 		"type": "programming",
 		"color": "#d90e09",
@@ -4217,6 +4408,7 @@
 			".jsonl",
 			".mcmeta",
 			".sarif",
+			".slnlaunch",
 			".tact",
 			".tfstate",
 			".tfstate.backup",
@@ -4234,6 +4426,8 @@
 			".htmlhintrc",
 			".imgbotconfig",
 			".nycrc",
+			".releaserc",
+			".secrets.baseline",
 			".tern-config",
 			".tern-project",
 			".watchmanconfig",
@@ -4263,6 +4457,7 @@
 			".jsonc",
 			".code-snippets",
 			".code-workspace",
+			".hujson",
 			".sublime-build",
 			".sublime-color-scheme",
 			".sublime-commands",
@@ -4282,6 +4477,7 @@
 		"filenames": [
 			".babelrc",
 			".devcontainer.json",
+			".eslintrc",
 			".eslintrc.json",
 			".jscsrc",
 			".jshintrc",
@@ -4477,8 +4673,10 @@
 			"Jakefile"
 		],
 		"interpreters": [
+			"bun",
 			"chakra",
 			"d8",
+			"deno",
 			"gjs",
 			"js",
 			"node",
@@ -5135,6 +5333,16 @@
 		"ace_mode": "liquid",
 		"language_id": 204
 	},
+	"Liquidsoap": {
+		"type": "programming",
+		"color": "#990066",
+		"extensions": [
+			".liq"
+		],
+		"tm_scope": "source.liquidsoap",
+		"ace_mode": "text",
+		"language_id": 614641732
+	},
 	"Literate Agda": {
 		"type": "programming",
 		"color": "#315665",
@@ -5208,6 +5416,16 @@
 		"codemirror_mode": "livescript",
 		"codemirror_mime_type": "text/x-livescript",
 		"language_id": 208
+	},
+	"Lobster": {
+		"type": "programming",
+		"color": "#f95428",
+		"extensions": [
+			".lobster"
+		],
+		"ace_mode": "python",
+		"tm_scope": "source.lobster",
+		"language_id": 790066842
 	},
 	"Logos": {
 		"type": "programming",
@@ -5489,6 +5707,7 @@
 			"Makefile.frag",
 			"Makefile.in",
 			"Makefile.inc",
+			"Makefile.pc",
 			"Makefile.wat",
 			"makefile",
 			"makefile.sco",
@@ -5611,6 +5830,16 @@
 		"codemirror_mime_type": "application/json",
 		"language_id": 227
 	},
+	"MeTTa": {
+		"type": "programming",
+		"color": "#6a5acd",
+		"extensions": [
+			".metta"
+		],
+		"tm_scope": "source.metta",
+		"ace_mode": "text",
+		"language_id": 1037612668
+	},
 	"Mercury": {
 		"type": "programming",
 		"color": "#ff2b2b",
@@ -5688,6 +5917,16 @@
 		"tm_scope": "none",
 		"ace_mode": "text",
 		"language_id": 231
+	},
+	"MiniScript": {
+		"type": "programming",
+		"color": "#4B4A56",
+		"extensions": [
+			".ms"
+		],
+		"tm_scope": "source.ms",
+		"ace_mode": "text",
+		"language_id": 704299647
 	},
 	"MiniYAML": {
 		"type": "data",
@@ -6666,6 +6905,22 @@
 		"ace_mode": "text",
 		"language_id": 267
 	},
+	"OverPy": {
+		"type": "programming",
+		"color": "#78b355",
+		"wrap": true,
+		"extensions": [
+			".opy"
+		],
+		"tm_scope": "source.opy",
+		"aliases": [
+			"opy"
+		],
+		"ace_mode": "python",
+		"codemirror_mode": "python",
+		"codemirror_mime_type": "text/x-python",
+		"language_id": 492781155
+	},
 	"OverpassQL": {
 		"type": "programming",
 		"color": "#cce2aa",
@@ -7185,6 +7440,19 @@
 		"ace_mode": "text",
 		"language_id": 291
 	},
+	"Power Query": {
+		"type": "programming",
+		"aliases": [
+			"powerquery"
+		],
+		"extensions": [
+			".pq"
+		],
+		"tm_scope": "source.powerquery",
+		"ace_mode": "text",
+		"color": "#d38e0d",
+		"language_id": 37496382
+	},
 	"PowerBuilder": {
 		"type": "programming",
 		"color": "#8f0f8d",
@@ -7238,6 +7506,19 @@
 		"tm_scope": "source.prisma",
 		"ace_mode": "prisma",
 		"language_id": 499933428
+	},
+	"Pro*C": {
+		"fs_name": "ProC",
+		"color": "#bb8368",
+		"type": "programming",
+		"extensions": [
+			".pc"
+		],
+		"tm_scope": "source.c",
+		"ace_mode": "c_cpp",
+		"codemirror_mode": "clike",
+		"codemirror_mime_type": "text/x-csrc",
+		"language_id": 991047534
 	},
 	"Processing": {
 		"type": "programming",
@@ -7331,7 +7612,8 @@
 		"extensions": [
 			".textproto",
 			".pbt",
-			".pbtxt"
+			".pbtxt",
+			".txtpb"
 		],
 		"tm_scope": "source.textproto",
 		"ace_mode": "text",
@@ -7462,6 +7744,8 @@
 			"uv"
 		],
 		"aliases": [
+			"py",
+			"py3",
 			"python3",
 			"rusthon"
 		],
@@ -7563,6 +7847,18 @@
 		"tm_scope": "source.quakec",
 		"language_id": 472308069
 	},
+	"Quartus Simulation IP": {
+		"type": "data",
+		"color": "#58C42E",
+		"extensions": [
+			".sip"
+		],
+		"tm_scope": "source.tcl",
+		"ace_mode": "tcl",
+		"codemirror_mode": "tcl",
+		"codemirror_mime_type": "text/x-tcl",
+		"language_id": 828144309
+	},
 	"QuickBASIC": {
 		"type": "programming",
 		"color": "#008080",
@@ -7583,6 +7879,16 @@
 		"codemirror_mime_type": "text/x-vb",
 		"language_id": 593107205
 	},
+	"Quint": {
+		"type": "programming",
+		"color": "#9d6ce5",
+		"extensions": [
+			".qnt"
+		],
+		"tm_scope": "source.quint",
+		"ace_mode": "text",
+		"language_id": 562056483
+	},
 	"R": {
 		"type": "programming",
 		"color": "#198CE7",
@@ -7593,9 +7899,12 @@
 		"extensions": [
 			".r",
 			".rd",
+			".rhistory",
 			".rsx"
 		],
 		"filenames": [
+			".Rapp.history",
+			".Rhistory",
 			".Rprofile",
 			"expr-dist"
 		],
@@ -7984,6 +8293,16 @@
 		"ace_mode": "text",
 		"language_id": 1020148948
 	},
+	"Redscript": {
+		"type": "programming",
+		"color": "#f44336",
+		"extensions": [
+			".reds"
+		],
+		"tm_scope": "source.redscript",
+		"ace_mode": "text",
+		"language_id": 686691365
+	},
 	"Regular Expression": {
 		"type": "data",
 		"color": "#009a00",
@@ -8032,6 +8351,16 @@
 		"color": "#FFDAB3",
 		"language_id": 498022874
 	},
+	"Rhai": {
+		"type": "programming",
+		"color": "#FBA63B",
+		"extensions": [
+			".rhai"
+		],
+		"tm_scope": "source.rhai",
+		"ace_mode": "text",
+		"language_id": 713228814
+	},
 	"Rich Text Format": {
 		"type": "markup",
 		"extensions": [
@@ -8071,6 +8400,20 @@
 		"tm_scope": "text.robot",
 		"ace_mode": "robot",
 		"language_id": 324
+	},
+	"Robots Exclusion Rules": {
+		"type": "data",
+		"aliases": [
+			"robots",
+			"robots txt",
+			"robotx.txt"
+		],
+		"filenames": [
+			"robots.txt"
+		],
+		"ace_mode": "text",
+		"tm_scope": "text.robots-txt",
+		"language_id": 674736065
 	},
 	"Roc": {
 		"type": "programming",
@@ -8347,6 +8690,18 @@
 		"ace_mode": "text",
 		"language_id": 880010326
 	},
+	"SIP": {
+		"type": "programming",
+		"color": "#4E8D83",
+		"extensions": [
+			".sip"
+		],
+		"tm_scope": "source.c++",
+		"ace_mode": "c_cpp",
+		"codemirror_mode": "clike",
+		"codemirror_mime_type": "text/x-c++src",
+		"language_id": 796891177
+	},
 	"SMT": {
 		"type": "programming",
 		"extensions": [
@@ -8539,12 +8894,12 @@
 		"tm_scope": "source.sail",
 		"language_id": 1029438153
 	},
-	"SaltStack": {
+	"Salt": {
 		"type": "programming",
-		"color": "#646464",
+		"color": "#57bcad",
 		"aliases": [
-			"saltstate",
-			"salt"
+			"saltstack",
+			"saltstate"
 		],
 		"extensions": [
 			".sls"
@@ -8684,6 +9039,7 @@
 			".command",
 			".fcgi",
 			".ksh",
+			".pacscript",
 			".sbatch",
 			".sh.in",
 			".slurm",
@@ -8997,6 +9353,16 @@
 		"ace_mode": "text",
 		"language_id": 354
 	},
+	"SpiceDB Schema": {
+		"type": "data",
+		"color": "#a5318a",
+		"extensions": [
+			".zed"
+		],
+		"tm_scope": "source.spicedb",
+		"ace_mode": "text",
+		"language_id": 864005057
+	},
 	"Spline Font Database": {
 		"type": "data",
 		"extensions": [
@@ -9287,6 +9653,8 @@
 			"Cargo.toml.orig",
 			"Gopkg.lock",
 			"Pipfile",
+			"mise.local.lock",
+			"mise.lock",
 			"pdm.lock",
 			"poetry.lock",
 			"uv.lock"
@@ -9338,6 +9706,9 @@
 		"type": "programming",
 		"color": "#3178c6",
 		"group": "TypeScript",
+		"aliases": [
+			"typescriptreact"
+		],
 		"extensions": [
 			".tsx"
 		],
@@ -9376,6 +9747,18 @@
 		],
 		"tm_scope": "source.talon",
 		"language_id": 959889508
+	},
+	"Tape": {
+		"type": "programming",
+		"aliases": [
+			"vhs"
+		],
+		"extensions": [
+			".tape"
+		],
+		"tm_scope": "source.vhs",
+		"ace_mode": "text",
+		"language_id": 516874200
 	},
 	"Tcl": {
 		"type": "programming",
@@ -9548,6 +9931,7 @@
 			"README.me",
 			"README.mysql",
 			"README.nss",
+			"README.pc",
 			"click.me",
 			"delete.me",
 			"keep.me",
@@ -9621,6 +10005,18 @@
 		"tm_scope": "source.toit",
 		"ace_mode": "text",
 		"language_id": 356554395
+	},
+	"Tolk": {
+		"type": "programming",
+		"color": "#30A1F5",
+		"extensions": [
+			".tolk"
+		],
+		"tm_scope": "source.tolk",
+		"ace_mode": "text",
+		"codemirror_mode": "stylus",
+		"codemirror_mime_type": "text/x-styl",
+		"language_id": 678673060
 	},
 	"Tor Config": {
 		"type": "data",
@@ -9704,7 +10100,8 @@
 			"bun",
 			"deno",
 			"ts-node",
-			"tsx"
+			"tsx",
+			"node"
 		],
 		"extensions": [
 			".ts",
@@ -9932,7 +10329,8 @@
 			"vdf"
 		],
 		"extensions": [
-			".vdf"
+			".vdf",
+			".vmf"
 		],
 		"ace_mode": "text",
 		"tm_scope": "source.keyvalues",
@@ -9977,6 +10375,29 @@
 		"codemirror_mime_type": "text/x-verilog",
 		"language_id": 387
 	},
+	"Verse": {
+		"type": "programming",
+		"color": "#518ef8",
+		"extensions": [
+			".verse"
+		],
+		"tm_scope": "source.verse",
+		"ace_mode": "text",
+		"language_id": 180832205
+	},
+	"Vespa Schema Definition": {
+		"type": "data",
+		"color": "#61D790",
+		"extensions": [
+			".sd"
+		],
+		"tm_scope": "source.vespaSchema",
+		"ace_mode": "text",
+		"aliases": [
+			"vespa"
+		],
+		"language_id": 587879709
+	},
 	"Vim Help File": {
 		"type": "prose",
 		"color": "#199f4b",
@@ -9991,7 +10412,25 @@
 		"ace_mode": "text",
 		"language_id": 508563686
 	},
-	"Vim Script": {
+	"Vim Snippet": {
+		"type": "markup",
+		"color": "#199f4b",
+		"aliases": [
+			"SnipMate",
+			"UltiSnip",
+			"UltiSnips",
+			"NeoSnippet"
+		],
+		"extensions": [
+			".snip",
+			".snippet",
+			".snippets"
+		],
+		"tm_scope": "source.vim-snippet",
+		"ace_mode": "text",
+		"language_id": 81265970
+	},
+	"Vim script": {
 		"type": "programming",
 		"color": "#199f4b",
 		"tm_scope": "source.viml",
@@ -10019,24 +10458,6 @@
 		],
 		"ace_mode": "text",
 		"language_id": 388
-	},
-	"Vim Snippet": {
-		"type": "markup",
-		"color": "#199f4b",
-		"aliases": [
-			"SnipMate",
-			"UltiSnip",
-			"UltiSnips",
-			"NeoSnippet"
-		],
-		"extensions": [
-			".snip",
-			".snippet",
-			".snippets"
-		],
-		"tm_scope": "source.vim-snippet",
-		"ace_mode": "text",
-		"language_id": 81265970
 	},
 	"Visual Basic .NET": {
 		"type": "programming",
@@ -10489,6 +10910,7 @@
 			".grxml",
 			".gst",
 			".hzp",
+			".icls",
 			".iml",
 			".ivy",
 			".jelly",
@@ -10496,6 +10918,7 @@
 			".kml",
 			".launch",
 			".mdpolicy",
+			".meta4",
 			".mjml",
 			".mm",
 			".mod",
@@ -10517,6 +10940,7 @@
 			".pt",
 			".pubxml",
 			".qhelp",
+			".rbxmx",
 			".rdf",
 			".res",
 			".resx",
@@ -10737,7 +11161,9 @@
 			".clang-format",
 			".clang-tidy",
 			".clangd",
+			".eslintrc",
 			".gemrc",
+			".releaserc",
 			"CITATION.cff",
 			"glide.lock",
 			"pixi.lock",
@@ -10921,11 +11347,11 @@
 		"language_id": 705203557
 	},
 	"desktop": {
+		"group": "INI",
 		"type": "data",
 		"extensions": [
 			".desktop",
-			".desktop.in",
-			".service"
+			".desktop.in"
 		],
 		"tm_scope": "source.desktop",
 		"ace_mode": "text",
@@ -11116,6 +11542,22 @@
 		"ace_mode": "text",
 		"language_id": 418
 	},
+	"pkg-config": {
+		"type": "data",
+		"color": "#2b5e82",
+		"aliases": [
+			"pkgconf"
+		],
+		"extensions": [
+			".pc",
+			".pc.in"
+		],
+		"tm_scope": "source.pkgconf",
+		"ace_mode": "properties",
+		"codemirror_mode": "properties",
+		"codemirror_mime_type": "text/x-properties",
+		"language_id": 925023573
+	},
 	"q": {
 		"type": "programming",
 		"extensions": [
@@ -11147,19 +11589,6 @@
 		"codemirror_mime_type": "text/x-rst",
 		"language_id": 419
 	},
-	"robots.txt": {
-		"type": "data",
-		"aliases": [
-			"robots",
-			"robots txt"
-		],
-		"filenames": [
-			"robots.txt"
-		],
-		"ace_mode": "text",
-		"tm_scope": "text.robots-txt",
-		"language_id": 674736065
-	},
 	"sed": {
 		"type": "programming",
 		"color": "#64b970",
@@ -11185,6 +11614,21 @@
 		"ace_mode": "text",
 		"tm_scope": "source.templ",
 		"language_id": 795579337
+	},
+	"ucode": {
+		"type": "programming",
+		"color": "#00b8d4",
+		"extensions": [
+			".uc"
+		],
+		"interpreters": [
+			"ucode"
+		],
+		"ace_mode": "javascript",
+		"codemirror_mode": "javascript",
+		"codemirror_mime_type": "text/javascript",
+		"tm_scope": "source.ucode",
+		"language_id": 365454253
 	},
 	"vCard": {
 		"type": "data",
