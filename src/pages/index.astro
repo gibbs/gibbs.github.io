@@ -167,7 +167,7 @@ const frontmatter = generateFrontmatter(page, 'Website');
 		padding: 1rem;
 		border-radius: var(--border-radius-lg);
 		justify-content: center;
-		background: rgba(241, 242, 243, 0.5);
+		background: oklch(from var(--surface-1) l c h / 0.5);
 		flex-direction: row;
 		color: light-dark(var(--text-muted), var(--text));
 		gap: var(--gap-xs);
@@ -175,10 +175,6 @@ const frontmatter = generateFrontmatter(page, 'Website');
 		margin: 0.5rem auto;
 		font-size: small;
 		text-shadow: 0px 1px 2px light-dark(rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.3));
-
-		@supports (color: oklch(from red l c h)) {
-			background: oklch(from var(--surface-1) l c h / 0.5);
-		}
 	}
 
 	.container-feed {
