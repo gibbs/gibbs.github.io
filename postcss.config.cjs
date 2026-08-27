@@ -1,5 +1,6 @@
 const postcssGlobalData = require('@csstools/postcss-global-data');
 const postcssOKLabFunction = require('@csstools/postcss-oklab-function');
+const postcssLightDarkFunction = require('@csstools/postcss-light-dark-function');
 
 module.exports = {
 	plugins: [
@@ -15,5 +16,9 @@ module.exports = {
 			preserve: false,
 			enableProgressiveCustomProperties: true
     }),
+		postcssLightDarkFunction({
+			preserve: true,
+			enableProgressiveCustomProperties: true,
+		})
 	],
 };
