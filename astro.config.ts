@@ -2,10 +2,8 @@ import path from 'path';
 import { loadEnv } from 'vite';
 import { defineConfig, envField } from 'astro/config';
 import sentry from '@sentry/astro';
-import rehypePrettyCode from 'rehype-pretty-code';
-import { transformerCopyButton } from '@rehype-pretty/transformers';
-import markdownIntegration from '@astropub/md';
-import remarkFlexibleMarkers from 'remark-flexible-markers';
+import { unified } from '@astrojs/markdown-remark';
+import { remarkPlugins, rehypePlugins } from './src/markdown.config';
 import searchIndexIntegration from './integrations/search-index-integration';
 import buildBadgesIntegration from './integrations/build-badges-integration';
 
@@ -24,13 +22,13 @@ export default defineConfig({
 		redirects: true,
 	},
 	integrations: [
-		markdownIntegration(),
 		searchIndexIntegration(),
 		buildBadgesIntegration(),
 		sentry({
 			project: 'dangibbsuk',
 			org: 'dan-gibbd',
 			authToken: process.env.SENTRY_AUTH_TOKEN,
+			telemetry: false,
 		}),
 	],
 	env: {
@@ -92,21 +90,7 @@ export default defineConfig({
 
 	markdown: {
 		syntaxHighlight: false,
-		remarkPlugins: [remarkFlexibleMarkers],
-		rehypePlugins: [
-			[
-				rehypePrettyCode,
-				{
-					theme: 'github-dark',
-					transformers: [
-						transformerCopyButton({
-							visibility: 'always',
-							feedbackDuration: 3_000,
-						}),
-					],
-				},
-			],
-		],
+		processor: unified({ remarkPlugins, rehypePlugins }),
 	},
 	vite: {
 		define: {

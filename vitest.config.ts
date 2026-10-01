@@ -3,7 +3,7 @@ import { getViteConfig } from 'astro/config';
 
 export default getViteConfig({
 	test: {
-		environment: 'happy-dom',
+		environment: 'node',
 		setupFiles: ['dotenv/config'],
 		globals: true,
 		exclude: ['backup/*', 'node_modules/*', 'tests/*'],

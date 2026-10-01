@@ -1,7 +1,7 @@
 ---
-import { Markdown as PrismicMarkdown } from '@astropub/md';
+import { renderMarkdown } from '@src/utils/markdown';
 
 const props = Astro.props;
 ---
 
-<PrismicMarkdown of={props.primary.content[0].text} />
+<Fragment set:html={await renderMarkdown(props.primary.content[0].text)} />

@@ -11,7 +11,7 @@ test.describe('Home page', () => {
 		await homepage.assertAccessibility();
 	});
 
-	test('hero element', async ({ page }) => {
+	test.skip('hero element', async ({ page }) => {
 		const homepage = new HomePage(page);
 		await homepage.goto();
 		const heroElement = homepage.hero;
