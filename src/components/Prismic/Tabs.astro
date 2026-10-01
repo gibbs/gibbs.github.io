@@ -1,6 +1,6 @@
 ---
 import type { TabsSliceDefaultPrimary } from '@src/prismicio-types';
-import { Markdown } from '@astropub/md';
+import { renderMarkdownInline } from '@src/utils/markdown';
 import FileRenderer from '@components/Prismic/FileRenderer.astro';
 import TabsBlock from '@components/Block/Tabs.astro';
 
@@ -19,7 +19,11 @@ const tabData = props.primary[variant].map((tab: TabsSliceDefaultPrimary, i: num
 }));
 ---
 
-{props.primary.content.length > 0 && <Markdown.Inline of={props.primary.content[0].text} />}
+{
+	props.primary.content.length > 0 && (
+		<Fragment set:html={renderMarkdownInline(props.primary.content[0].text)} />
+	)
+}
 
 <TabsBlock
 	tabs={tabData}
@@ -37,7 +41,7 @@ const tabData = props.primary[variant].map((tab: TabsSliceDefaultPrimary, i: num
 				data-tab-panel={`tabpanel_${props.key}_tabpanel_${i + 1}`}
 				x-show="isActiveTab"
 			>
-				{variant === 'tabs' && <Markdown.Inline of={tab.content[0]?.text} />}
+				{variant === 'tabs' && <Fragment set:html={renderMarkdownInline(tab.content[0]?.text)} />}
 				{variant === 'files' && <FileRenderer primary={tab} />}
 			</x-tabpanel>
 		))

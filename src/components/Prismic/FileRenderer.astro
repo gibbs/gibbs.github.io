@@ -2,7 +2,7 @@
 import fs from 'node:fs';
 import path from 'path';
 import { senv } from '@src/senv.config';
-import { Markdown } from '@astropub/md';
+import { renderMarkdown } from '@src/utils/markdown';
 import { transformContent } from '@src/utils/content';
 import { createHighlighter } from 'shiki';
 import type { BundledLanguage } from 'shiki';
@@ -45,7 +45,7 @@ highlighter.dispose();
 {
 	language == 'markdown' && (
 		<div class="renderer-markdown">
-			<Markdown of={file.content} />
+			<Fragment set:html={renderMarkdown(file.content)} />
 		</div>
 	)
 }

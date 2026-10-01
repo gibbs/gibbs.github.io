@@ -1,4 +1,3 @@
-// @vitest-environment happy-dom
 import { experimental_AstroContainer as AstroContainer } from 'astro/container';
 import { describe, expect, test } from 'vitest';
 import GithubActivityFeed from '../GithubActivityFeed.astro';
