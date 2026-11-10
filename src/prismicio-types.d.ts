@@ -1066,6 +1066,17 @@ export type ImageSliceDefault = prismic.SharedSliceVariation<
  */
 export interface ImageSliceImageGridPrimary {
 	/**
+	 * Enabled field in *Image → ImageGrid → Primary*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: true
+	 * - **API ID Path**: image.imageGrid.primary.enabled
+	 * - **Documentation**: https://prismic.io/docs/fields/boolean
+	 */
+	enabled: prismic.BooleanField;
+
+	/**
 	 * Heading field in *Image → ImageGrid → Primary*
 	 *
 	 * - **Field Type**: Text
@@ -1113,6 +1124,17 @@ export type ImageSliceImageGrid = prismic.SharedSliceVariation<
  * Primary content in *Image → IconGrid → Primary*
  */
 export interface ImageSliceIconGridPrimary {
+	/**
+	 * Enabled field in *Image → IconGrid → Primary*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: true
+	 * - **API ID Path**: image.iconGrid.primary.enabled
+	 * - **Documentation**: https://prismic.io/docs/fields/boolean
+	 */
+	enabled: prismic.BooleanField;
+
 	/**
 	 * Heading field in *Image → IconGrid → Primary*
 	 *
