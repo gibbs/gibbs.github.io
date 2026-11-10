@@ -24,7 +24,8 @@ type PickContentRelationshipFieldData<
 				prismic.CustomTypeModelFetchContentRelationshipLevel1
 			> as TSubRelationship['id']
 		]: ContentRelationshipFieldWithData<TSubRelationship['customtypes'], TLang>;
-	} & { // Group
+	} & {
+		// Group
 		[
 			TGroup in Extract<
 				TRelationship['fields'][number],
@@ -33,7 +34,8 @@ type PickContentRelationshipFieldData<
 		]: TData[TGroup['id']] extends prismic.GroupField<infer TGroupData>
 			? prismic.GroupField<PickContentRelationshipFieldData<TGroup, TGroupData, TLang>>
 			: never;
-	} & { // Other fields
+	} & {
+		// Other fields
 		[TFieldKey in Extract<TRelationship['fields'][number], string>]: TFieldKey extends keyof TData
 			? TData[TFieldKey]
 			: never;
