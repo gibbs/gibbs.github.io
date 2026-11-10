@@ -15,6 +15,8 @@ const variation = props.variation ?? 'default';
 const defaultData = props.primary as ImageSliceDefaultPrimary;
 const imageGridData = props.primary as ImageSliceImageGridPrimary;
 const iconGridData = props.primary as ImageSliceIconGridPrimary;
+const imageGridEnabled = variation === 'imageGrid' && imageGridData.enabled !== false;
+const iconGridEnabled = variation === 'iconGrid' && iconGridData.enabled !== false;
 ---
 
 {
@@ -32,7 +34,7 @@ const iconGridData = props.primary as ImageSliceIconGridPrimary;
 }
 
 {
-	variation === 'imageGrid' && (
+	imageGridEnabled && (
 		<div class="image-grid-block">
 			{imageGridData.heading && <h2>{imageGridData.heading}</h2>}
 			{prismic.isFilled.richText(imageGridData.description) && (
@@ -64,7 +66,7 @@ const iconGridData = props.primary as ImageSliceIconGridPrimary;
 }
 
 {
-	variation === 'iconGrid' && (
+	iconGridEnabled && (
 		<div class="icon-grid-block">
 			{iconGridData.heading && <h2>{iconGridData.heading}</h2>}
 			{prismic.isFilled.richText(iconGridData.description) && (
